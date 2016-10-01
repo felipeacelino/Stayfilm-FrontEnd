@@ -6,6 +6,18 @@ html, body {
   margin-left: 18%;
   margin-bottom: 3%;
 }
+.user-descricao {
+  margin-right: 5px;
+  background: #F5F5F5;
+  font-size: 1em;
+  padding: 10px 10px; 
+  border-radius: 5px;
+}
+.user-descricao span {
+  padding: 5px;
+  border: 1px solid #333;
+}
+
 .barra-superior {
   background-color: #fff !important;
 }
