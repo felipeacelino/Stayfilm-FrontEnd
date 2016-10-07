@@ -3,24 +3,19 @@ html, body {
   background-color: #F5F5F5;
 }
 
-.container {
-  max-width: 90%;
-  margin: 0 auto;
-}
-
 .card-login-principal {
   width: 95%;
-  max-width: 450px;
+  max-width: 440px;
   height: 350px;
   margin: 0 auto;
   top: 100px;
-  z-index: 99;
+  z-index: 2;
 }
 
 .card-login-secundario  {
   width: 100%;
   height: 220px;
-  max-width: 500px;
+  max-width: 480px;
   background-color: #B0262C;
   margin: 0 auto;
   top: -50px;
@@ -54,7 +49,8 @@ html, body {
 }
 
 .logo-login {
-  width: 200px;
+  width: 60%;
+  max-width: 200px;
 }
 
 #bico {
@@ -63,18 +59,27 @@ html, body {
   border-left: 30px solid transparent;
   border-right: 30px solid transparent;
   border-top: 10px solid #B0262C;
+  margin-top: -1px;
   margin-bottom: 10px;
   margin-left: auto;
   margin-right: auto;
 }
 
+#form-login {
+  width: 100%;
+  padding: 0 20px;
+}
+
 .mdl-textfield {
-  width: 90%;
-  margin-left: 22px;
+  width: 100%;
+}
+
+.mdl-textfield__input {
+  border-bottom: 1px solid rgba(18,34,45,0.5);
 }
 
 .mdl-textfield__label {
-  color: #12222D !important;
+  color: rgba(18,34,45,0.8) !important;
 }
 
 .mdl-textfield__label::after {
