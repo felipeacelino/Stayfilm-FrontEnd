@@ -99,6 +99,7 @@ html, body {
           align-items: center;
   color: rgba(255, 255, 255, 0.56);
   font-weight: 500;
+  padding: 0 10px; 
 }
 .estrutura .demo-navigation .mdl-navigation__link:hover {
   background-color: #161F26;
