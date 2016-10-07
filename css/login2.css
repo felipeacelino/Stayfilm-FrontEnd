@@ -1,0 +1,88 @@
+html, body {
+  font-family: 'Roboto', 'Helvetica', sans-serif;
+  background-color: #F5F5F5;
+}
+
+.container {
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+.card-login-principal {
+  width: 95%;
+  max-width: 450px;
+  height: 350px;
+  margin: 0 auto;
+  top: 100px;
+  z-index: 99;
+}
+
+.card-login-secundario  {
+  width: 100%;
+  height: 220px;
+  max-width: 500px;
+  background-color: #B0262C;
+  margin: 0 auto;
+  top: -50px;
+}
+
+.card-login-secundario .mdl-card__title {
+  margin-top: 150px;
+}
+
+.card-login-secundario .mdl-card__title h3 {
+  width: 100%;
+  color: #FFF;
+  text-align: center;
+  font-size: 14px;
+}
+
+.card-login-secundario .mdl-card__title h3 a {
+  color: #FFF;
+  text-decoration: none;
+}
+
+.card-login-principal > .mdl-card__title {
+  height: 130px;
+  background-color: #B0262C;
+  text-align: center;
+}
+
+.card-login-principal > .mdl-card__title > h2 {
+  width: 100%;
+  text-align: center;
+}
+
+.logo-login {
+  width: 200px;
+}
+
+#bico {
+  width: 0;
+  height: 0;
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
+  border-top: 10px solid #B0262C;
+  margin-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mdl-textfield {
+  width: 90%;
+  margin-left: 22px;
+}
+
+.mdl-textfield__label {
+  color: #12222D !important;
+}
+
+.mdl-textfield__label::after {
+  background-color: #12222D;
+}
+
+.mdl-card__actions {
+  margin-top: 5px;
+  text-align: right;
+  padding-right: 20px;
+}
