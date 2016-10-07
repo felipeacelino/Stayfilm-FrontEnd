@@ -3,6 +3,11 @@ html, body {
   background-color: #F5F5F5;
 }
 
+.container {
+  max-width: 90%;
+  margin: 0 auto;
+}
+
 .card-login-principal {
   width: 95%;
   max-width: 440px;
@@ -66,8 +71,8 @@ html, body {
 }
 
 #form-login {
-  width: 100%;
-  padding: 0 20px;
+  margin: 0 auto;
+  width: 90%;
 }
 
 .mdl-textfield {
@@ -75,19 +80,34 @@ html, body {
 }
 
 .mdl-textfield__input {
-  border-bottom: 1px solid rgba(18,34,45,0.5);
+  border-bottom: 1px solid #B0BEC5;
 }
 
 .mdl-textfield__label {
-  color: rgba(18,34,45,0.8) !important;
+  font-size: 14px;
+  color: #B0BEC5;
 }
 
-.mdl-textfield__label::after {
-  background-color: #12222D;
+.mdl-textfield--floating-label.is-focused .mdl-textfield__label,
+.mdl-textfield--floating-label.has-placeholder .mdl-textfield__label,
+.mdl-textfield--floating-label.is-dirty .mdl-textfield__label {
+  color: #455A64;
+}
+
+.mdl-textfield--floating-label.is-invalid .mdl-textfield__label {
+  color: rgb(213,0,0);
+}
+
+.mdl-textfield__label:after {
+  background-color: #455A64;
 }
 
 .mdl-card__actions {
   margin-top: 5px;
   text-align: right;
   padding-right: 20px;
+}
+
+.mdl-button{
+  color: #455A64;
 }
