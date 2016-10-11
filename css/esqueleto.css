@@ -95,7 +95,8 @@ html, body {
 }
 
 .conteudo {
-  height: 87vh;        
+  height: 87vh; 
+  padding: 20px;       
 }
 
 
