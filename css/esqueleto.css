@@ -6,26 +6,36 @@ html, body {
   color: #263238;
 }
 
-.user-descricao {
-  margin-right: 5px;
-  font-size: 1em;
-  padding: 10px 10px; 
-  border-radius: 3px;
-}
-
 .barra-lateral {
   border: none;
 }
 
-.logo-principal {
-  width: 150px;
-  margin-left: 18%;
-  margin-bottom: 3%;
+.barra-lateral-header {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 16px;
+  height: auto;
+}
+.user-descricao {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  font-weight: 500;
+  margin-top: 30px;
 }
 
-.user-descricao span {
-  padding: 5px;
-  border: 1px solid #333;
+.logo-principal {
+  margin: 0 auto;
+  width: 90%;
+  max-width: 170px;
+}
+
+.user-descricao .material-icons {
+  margin-right: 16px;
 }
 
 .barra-lateral .mdl-menu .mdl-menu__item {
@@ -48,15 +58,14 @@ html, body {
   -webkit-justify-content: flex-end;
       -ms-flex-pack: end;
           justify-content: flex-end;
-  height: 65px;
+  height: auto;
   background: #B0262C;
 }
 
 .nav-lateral {
   -webkit-flex-grow: 1;
       -ms-flex-positive: 1;
-          flex-grow: 1;
-  background: #12222D;        
+          flex-grow: 1;    
 }
 
 .nav-lateral .mdl-navigation__link {
@@ -70,13 +79,14 @@ html, body {
       -ms-flex-align: center;
           align-items: center;
   font-weight: 500;
+  padding-left: 16px !important;
 }
+
 .estrutura .nav-lateral .mdl-navigation__link:hover {
-  background-color: #161F26;
+  background-color: #37474F;
 }
+
 .nav-lateral .mdl-navigation__link .material-icons {
-  font-size: 24px;
-  color: rgba(255, 255, 255, 0.56);
   margin-right: 16px;
 }
 
@@ -88,7 +98,4 @@ html, body {
   height: 87vh;        
 }
 
-.material-icons-bell {
-  font-size: 60px;
-}
 

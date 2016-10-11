@@ -3,26 +3,10 @@
 <html lang="pt-br">
 
   <head>
+
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <title>Stayfilm - Curadoria</title>
-
-    <!-- Add to homescreen for Chrome on Android -->
-    <meta name="mobile-web-app-capable" content="yes">
-    <link rel="icon" sizes="192x192" href="images/android-desktop.png">
-
-    <!-- Add to homescreen for Safari on iOS -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="Material Design Lite">
-    <link rel="apple-touch-icon-precomposed" href="images/ios-desktop.png">
-
-    <!-- Tile icon for Win8 (144x144 + tile color) -->
-    <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
-    <meta name="msapplication-TileColor" content="#3372DF">
-
-    <link rel="shortcut icon" href="images/favicon.png">
+    <title>Stayfilm</title>
 
     <!-- FONTS -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -34,6 +18,7 @@
     <link rel="stylesheet" href="css/esqueleto.css">
 
   </head>
+
   <body>
 
     <!-- ESTRUTURA -->
@@ -45,24 +30,22 @@
         <div class="mdl-layout__header-row mdl-color-text--blue-grey-900">
 
           <!-- TÍTULO PRINCIPAL -->
-          <span class="mdl-layout-title">Curadoria</span>
+          <span class="mdl-layout-title">Sistema de Curadoria</span>
           <!-- FIM TÍTULO PRINCIPAL -->
 
           <div class="mdl-layout-spacer"></div>
 
-          <!-- USUÁRIO -->
-          <div class="user-descricao mdl-color-text--blue-grey-900 mdl-color--blue-grey-200">
-            Usuário            
-          </div>     
-          <!-- FIM USUÁRIO -->
-
           <!-- MENU OPÇÕES -->
+          <!--
           <button class="btn-menu mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="btn-menu">
             <i class="material-icons">more_vert</i>
           </button>
           <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="btn-menu">
-            <li class="mdl-menu__item">Sair</li>
+            <li class="mdl-menu__item">Opção 1</li>
+            <li class="mdl-menu__item">Opção 2</li>
+            <li class="mdl-menu__item">Opção 3</li>
           </ul> 
+          -->
           <!-- FIM MENU OPÇÕES -->
 
         </div>
@@ -72,23 +55,56 @@
       <!-- FIM BARRA SUPERIOR -->
 
       <!-- BARRA LATERAL -->
-      <div class="barra-lateral mdl-layout__drawer">
+      <div class="barra-lateral mdl-layout__drawer">   
 
-      <!-- LOGO -->
-        <div class="barra-lateral-header">
-          <img src="images/logo.png" class="logo-principal">
-        </div>
+        <header class="barra-lateral-header">
 
-        <nav class="nav-lateral mdl-navigation">
+          <!-- LOGO -->
+          <img src="images/logo.jpg" class="logo-principal">
+
+          <!-- USUÁRIO -->
+          <div class="user-descricao mdl-color-text--white">
+            <i class="material-icons" role="presentation">person</i>
+            <span>Fulano de Tal</span>            
+            <div class="mdl-layout-spacer"></div>
+            <button id="menu_user" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+              <i class="material-icons" role="presentation">arrow_drop_down</i>
+              <span class="visuallyhidden">Accounts</span>
+            </button>
+            <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="menu_user">
+              <li class="mdl-menu__item">Meus Dados</li>
+            </ul>
+          </div>
+
+        </header>             
+
+        <nav class="nav-lateral mdl-navigation mdl-color--blue-grey-900">
 
           <!-- ITEM BARRA LATERAL -->
           <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="">
-            <i class="material-icons" role="presentation">home</i>Curadoria
+            <i class="material-icons" role="presentation">movie</i>Curadoria
           </a>
 
           <!-- ITEM BARRA LATERAL -->
           <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="">
             <i class="material-icons" role="presentation">event</i>Escala
+          </a>
+
+          <!-- ITEM BARRA LATERAL -->
+          <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="">
+            <i class="material-icons" role="presentation">group</i>Colaboradores
+          </a>
+
+          <!-- ITEM BARRA LATERAL -->
+          <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="">
+            <i class="material-icons" role="presentation">forum</i>Respostas
+          </a>
+
+          <div class="mdl-layout-spacer"></div>
+
+          <!-- ITEM BARRA LATERAL -->
+          <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="">
+            <i class="material-icons" role="presentation">backspace</i>Sair
           </a>
 
         </nav>
