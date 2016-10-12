@@ -14,8 +14,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
 
     <!-- CSS -->    
-    <link rel="stylesheet" href="vendors/mdl/material.css">    
+    <link rel="stylesheet" href="vendors/mdl/material.css">       
     <link rel="stylesheet" href="css/esqueleto.css">
+    <link rel="stylesheet" href="css/curadoria.css">
 
   </head>
 
@@ -81,7 +82,7 @@
         <nav class="nav-lateral mdl-navigation mdl-color--blue-grey-900">
 
           <!-- ITEM BARRA LATERAL -->
-          <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="curadoria.html">
+          <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="#">
             <i class="material-icons" role="presentation">movie</i>Curadoria
           </a>
 
@@ -102,7 +103,7 @@
 
           <!-- ITEM BARRA LATERAL -->
           <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="#">
-            <i class="material-icons" role="presentation">language</i>Idiomas
+            <i class="material-icons" role="presentation">public</i>Idiomas
           </a>
 
           <div class="mdl-layout-spacer"></div>
@@ -122,7 +123,56 @@
         <div class="mdl-grid content">
           <div class="conteudo mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
 
-            <!-- CONTEÚDO AQUI -->
+            
+
+            <table class="mdl-data-table mdl-js-data-table">
+              <thead>
+                <tr>
+                  <th class="mdl-data-table__cell--non-numeric">Filme</th>
+                  <th class="mdl-data-table__cell--non-numeric">Usuário</th>
+                  <th class="mdl-data-table__cell--non-numeric">Cliente</th>
+                  <th class="mdl-data-table__cell--non-numeric">Data</th>
+                  <th class="mdl-data-table__cell--non-numeric">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="mdl-data-table__cell--non-numeric">Filme 1</td>
+                  <td class="mdl-data-table__cell--non-numeric">Fulano</td>
+                  <td class="mdl-data-table__cell--non-numeric">Disney</td>
+                  <td class="mdl-data-table__cell--non-numeric">00/00/0000 00:00:00</td>                  
+                  <td class="mdl-data-table__cell--non-numeric"><span class="span_status pendente">Pendente</span></td>
+                </tr>
+                <tr>
+                  <td class="mdl-data-table__cell--non-numeric">Filme 1</td>
+                  <td class="mdl-data-table__cell--non-numeric">Fulano</td>
+                  <td class="mdl-data-table__cell--non-numeric">Disney</td>
+                  <td class="mdl-data-table__cell--non-numeric">00/00/0000 00:00:00</td>                  
+                  <td class="mdl-data-table__cell--non-numeric"><span class="span_status aprovado">Aprovado</span></td>
+                </tr>
+                <tr>
+                  <td class="mdl-data-table__cell--non-numeric">Filme 1</td>
+                  <td class="mdl-data-table__cell--non-numeric">Fulano</td>
+                  <td class="mdl-data-table__cell--non-numeric">Disney</td>
+                  <td class="mdl-data-table__cell--non-numeric">00/00/0000 00:00:00</td>                  
+                  <td class="mdl-data-table__cell--non-numeric"><span class="span_status revisao">Revisão</span></td>
+                </tr>
+                <tr>
+                  <td class="mdl-data-table__cell--non-numeric">Filme 1</td>
+                  <td class="mdl-data-table__cell--non-numeric">Fulano</td>
+                  <td class="mdl-data-table__cell--non-numeric">Disney</td>
+                  <td class="mdl-data-table__cell--non-numeric">00/00/0000 00:00:00</td>                  
+                  <td class="mdl-data-table__cell--non-numeric"><span class="span_status reprovado">Reprovado</span></td>
+                </tr>
+                <tr>
+                  <td class="mdl-data-table__cell--non-numeric">Filme 1</td>
+                  <td class="mdl-data-table__cell--non-numeric">Fulano</td>
+                  <td class="mdl-data-table__cell--non-numeric">Disney</td>
+                  <td class="mdl-data-table__cell--non-numeric">00/00/0000 00:00:00</td>                  
+                  <td class="mdl-data-table__cell--non-numeric"><span class="span_status favorito">Aprovado</span></td>
+                </tr>
+              </tbody>
+            </table>
             
           </div>          
         </div>
