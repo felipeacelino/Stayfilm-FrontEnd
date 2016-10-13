@@ -2,6 +2,39 @@ html, body {
   font-family: 'Roboto', 'Helvetica', sans-serif;
 }
 
+.header_filtros {
+  width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+/*.header_filtros .mdl-badge {
+  margin-right: 10px;
+  border-radius: 100%;
+  padding: 5px;
+  color: #FFF;
+}
+
+.mdl-badge[data-badge]:after {
+  background: #263238;
+}*/
+
+.header_filtros .filtro {
+  position: relative;
+  float: right;
+  border: 0px solid red;
+  margin-left: 30px;
+}
+
+span.count {
+  color: #fff;
+  padding: 5px;
+  font-size: 0.7em;
+  border-radius: 3px;
+  margin-right: 10px;
+}
+
 .span_status {
   padding: 5px;
   font-size: 0.7em;
@@ -28,6 +61,10 @@ html, body {
 
 .favorito {
   background-color: #2196F3;
+}
+
+.total {
+  background-color: #263238;
 }
 
 .table-responsive-vertical {
@@ -123,7 +160,7 @@ html, body {
 
 .table-hover > tbody > tr:hover > td,
 .table-hover > tbody > tr:hover > th {
-  background-color: rgba(0, 0, 0, 0.12);
+  background-color: #EEE;
 }
 
 .table-hover > tbody > tr > td > a {
