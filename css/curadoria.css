@@ -7,7 +7,6 @@ html, body {
   height: 40px;
   margin-bottom: 10px;
   position: relative;
-  border: 0px solid blue;
 }
 
 /*.header_filtros .mdl-badge {
@@ -24,7 +23,6 @@ html, body {
 .header_filtros .filtro {
   position: relative;
   float: right;
-  border: 0px solid red;
   margin-left: 30px;
 }
 
@@ -200,50 +198,9 @@ span.count {
   width: 38px;
 }
 
-ul.simple-pagination {
-  list-style: none;
-}
-
-.simple-pagination {
+#pag-nav {
   float: right;
-  display: block;
-  overflow: hidden;
-  padding: 0 5px 5px 0;
-  margin-left: 20px;
 }
-
-.simple-pagination ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.simple-pagination li {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  float: left;
-}
-
-.material-pagination a, .material-pagination span {
-  float: left;
-  color: rgba(0, 0, 0, 0.54);
-  font-size:14px;
-  line-height:24px;
-  font-weight: normal;
-  text-align: center;
-  min-width: 14px;
-  padding: 0 7px;
-}
-
-.material-pagination a:hover {
-  text-decoration: none;
-}
-
-.material-pagination .current {
-  cursor: default;
-}
-
 @media screen and (max-width: 700px) {
 
   /* TABELA */
