@@ -35,9 +35,12 @@ span.count {
 }
 
 .span_status {
+  float: left;
+  width: 70px;
   padding: 5px;
   font-size: 0.7em;
   text-transform: uppercase;
+  text-align: center;
   border-radius: 3px;
   color: #fff; 
 }
@@ -212,15 +215,15 @@ span.count {
 
   .table-responsive-vertical > .table > thead,
   .table-responsive-vertical > .table > tfoot {
-    display: none !important;
+    display: none;
   }
 
   .table-responsive-vertical > .table > tbody {
-    display: block !important;
+    display: block;
   }
 
   .table-responsive-vertical > .table > tbody > tr {
-    display: block !important;
+    display: block;
     border: 1px solid #e0e0e0;
     border-radius: 2px;
     margin-bottom: 1.6rem;
@@ -228,7 +231,7 @@ span.count {
 
   .table-responsive-vertical > .table > tbody > tr > td {
     background-color: #ffffff;
-    display: block !important;
+    display: block;
     vertical-align: middle;
     text-align: left;
   }
@@ -240,8 +243,16 @@ span.count {
     color: rgba(0,0,0,0.4);
   }*/
 
+  .table-responsive-vertical > .table > tbody > tr > td:first-child {
+    text-align: right;
+    background: rgba(0, 0, 0, 0.02);
+  }
+
   .table-responsive-vertical > .table > tbody > tr > td:nth-child(2) {
+    background: rgba(0, 0, 0, 0.02);
     font-size: 2em;
+    border-bottom: 1px solid #e0e0e0;
+    
   }
 
   .table-responsive-vertical {
@@ -263,16 +274,11 @@ span.count {
     border: 0;
   }
 
-  .table-responsive-vertical > .table > tbody > tr > td:first-child {
-    text-align: right;
-  }
+  
 
-  .table-responsive-vertical > .table > tbody > tr > td:last-child {
-    border-top: 1px solid #e0e0e0;
-    background: rgba(0, 0, 0, 0.02);
-    border-bottom: 0;
-    text-align: right;
-  }
+  .span_status {
+    float: right;
+  } 
 
 }
 
