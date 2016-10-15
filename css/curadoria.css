@@ -4,9 +4,10 @@ html, body {
 
 .header_filtros {
   width: 100%;
-  height: auto;
+  height: 40px;
   margin-bottom: 10px;
   position: relative;
+  border: 0px solid blue;
 }
 
 /*.header_filtros .mdl-badge {
@@ -67,8 +68,13 @@ span.count {
   background-color: #263238;
 }
 
+/* TABELA */
+
 .table-responsive-vertical {
+  float: left ;
+  border: 0px solid red;
   width: 100%;
+  height: 100%;
 }
 
 .table {
@@ -172,7 +178,75 @@ span.count {
   font-size: 0.9em;
 }
 
+/* PAGINAÇÃO */
+
+#page-nav-controls {
+  margin-top: 20px;
+  float: right;
+}
+
+#page-nav-controls label {
+  font-size: 14px;
+  color: rgba(0,0,0,0.54);
+  margin-left: 20px;
+}
+
+#page-nav-controls select {
+  border: none;
+  background: #FFF;
+  outline: 0;
+  color: rgba(0,0,0,0.54);
+  margin-left: 20px;
+  width: 38px;
+}
+
+ul.simple-pagination {
+  list-style: none;
+}
+
+.simple-pagination {
+  float: right;
+  display: block;
+  overflow: hidden;
+  padding: 0 5px 5px 0;
+  margin-left: 20px;
+}
+
+.simple-pagination ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.simple-pagination li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  float: left;
+}
+
+.material-pagination a, .material-pagination span {
+  float: left;
+  color: rgba(0, 0, 0, 0.54);
+  font-size:14px;
+  line-height:24px;
+  font-weight: normal;
+  text-align: center;
+  min-width: 14px;
+  padding: 0 7px;
+}
+
+.material-pagination a:hover {
+  text-decoration: none;
+}
+
+.material-pagination .current {
+  cursor: default;
+}
+
 @media screen and (max-width: 700px) {
+
+  /* TABELA */
 
   .table-responsive-vertical > .table {
     margin-bottom: 0;
@@ -181,23 +255,23 @@ span.count {
 
   .table-responsive-vertical > .table > thead,
   .table-responsive-vertical > .table > tfoot {
-    display: none;
+    display: none !important;
   }
 
   .table-responsive-vertical > .table > tbody {
-    display: block;
+    display: block !important;
   }
 
   .table-responsive-vertical > .table > tbody > tr {
-    display: block;
+    display: block !important;
     border: 1px solid #e0e0e0;
     border-radius: 2px;
-    margin-bottom: 1.6rem;;
+    margin-bottom: 1.6rem;
   }
 
   .table-responsive-vertical > .table > tbody > tr > td {
     background-color: #ffffff;
-    display: block;
+    display: block !important;
     vertical-align: middle;
     text-align: left;
   }
