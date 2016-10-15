@@ -6,19 +6,7 @@ html, body {
   width: 100%;
   height: 40px;
   margin-bottom: 10px;
-  position: relative;
 }
-
-/*.header_filtros .mdl-badge {
-  margin-right: 10px;
-  border-radius: 100%;
-  padding: 5px;
-  color: #FFF;
-}
-
-.mdl-badge[data-badge]:after {
-  background: #263238;
-}*/
 
 .header_filtros .filtro {
   position: relative;
@@ -26,12 +14,19 @@ html, body {
   margin-left: 30px;
 }
 
+.header_filtros .filtro .btn-filtro-status .mdl-menu__item {
+  width: 150px;
+}
+
+.header_filtros .filtro .btn-filtro-status .mdl-menu__item label {
+  float: left;
+  width: 100px;
+}
 span.count {
   color: #fff;
-  padding: 5px;
+  padding: 5px 8px;
   font-size: 0.7em;
   border-radius: 3px;
-  margin-right: 10px;
 }
 
 .span_status {
@@ -72,10 +67,7 @@ span.count {
 /* TABELA */
 
 .table-responsive-vertical {
-  float: left ;
-  border: 0px solid red;
   width: 100%;
-  height: 100%;
 }
 
 .table {
@@ -168,6 +160,7 @@ span.count {
 .table-hover > tbody > tr:hover > td,
 .table-hover > tbody > tr:hover > th {
   background-color: #EEE;
+  cursor: pointer;
 }
 
 .table-hover > tbody > tr > td > a {
@@ -181,28 +174,31 @@ span.count {
 
 /* PAGINAÇÃO */
 
-#page-nav-controls {
+.paginacao {
   margin-top: 20px;
+  font-size: 14px;
+  color: rgba(0,0,0,0.54);
   float: right;
 }
 
-#page-nav-controls label {
-  font-size: 14px;
-  color: rgba(0,0,0,0.54);
-  margin-left: 20px;
+.paginacao label {
+  float: left;
+  margin-left: 10px;
 }
 
-#page-nav-controls select {
+.paginacao select {
+  margin-left: 10px;
+  float: left;
   border: none;
   background: #FFF;
-  outline: 0;
   color: rgba(0,0,0,0.54);
-  margin-left: 20px;
+  outline: 0;
   width: 38px;
 }
 
-#pag-nav {
-  float: right;
+.paginacao .page-nav {
+  float: left;
+  margin-left: 10px;
 }
 @media screen and (max-width: 700px) {
 

@@ -123,21 +123,6 @@
         <div class="mdl-grid content">
           <div class="conteudo mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
 
-            <!-- <div class="header_filtros">
-              
-              <div class="material-icons mdl-badge mdl-badge--overlap pendente" data-badge="3">error</div>
-              <label>Pendentes</label>
-              <div class="material-icons mdl-badge mdl-badge--overlap revisao" data-badge="1">flag</div>
-              <label>Revisão</label>
-              <div class="material-icons mdl-badge mdl-badge--overlap aprovado" data-badge="3">done</div>
-              <label>Aprovados</label>
-              <div class="material-icons mdl-badge mdl-badge--overlap reprovado" data-badge="2">block</div>
-              <label>Reprovados</label>
-              <div class="material-icons mdl-badge mdl-badge--overlap favorito" data-badge="1">star</div>
-              <label>Favoritos</label>
-
-            </div> -->
-
             <div class="header_filtros">         
               
               <div class="filtro">
@@ -145,12 +130,12 @@
                 <button class="btn-menu mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="btn-filtro-status">
                   <i class="material-icons" role="presentation">filter_list</i>
                 </button>
-                <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="btn-filtro-status">
-                  <li class="mdl-menu__item"><span class="count pendente">3</span> Pendentes</li>
-                  <li class="mdl-menu__item"><span class="count revisao">1</span> Revisão</li>
-                  <li class="mdl-menu__item"><span class="count aprovado">3</span> Aprovados</li>
-                  <li class="mdl-menu__item"><span class="count reprovado">2</span> Reprovados</li>
-                  <li class="mdl-menu__item"><span class="count favorito">1</span> Favoritos</li>
+                <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right btn-filtro-status" for="btn-filtro-status">
+                  <li class="mdl-menu__item"><label>Pendentes</label><span class="count pendente">3</span></li>
+                  <li class="mdl-menu__item"><label>Revisão</label><span class="count revisao">1</span></li>
+                  <li class="mdl-menu__item"><label>Aprovados</label><span class="count aprovado">3</span></li>
+                  <li class="mdl-menu__item"><label>Reprovados</label><span class="count reprovado">2</span></li>
+                  <li class="mdl-menu__item"><label>Favoritos</label><span class="count favorito">1</span></li>
                 </ul>
               </div>
 
@@ -184,7 +169,7 @@
 
                 <tbody>
 
-                  <tr>
+                  <tr onclick="location.href='curadoria_acao.html'">
                     <td data-title="Status"><span class="span_status pendente">Pendente</span></td>
                     <td data-title="Filme">Filme</td>            
                     <td data-title="Usuário">Usuário 1</td>   
@@ -192,7 +177,7 @@
                     <td data-title="Data">00/00/0000 00:00</td>                                                                
                   </tr>
 
-                  <tr>
+                  <tr onclick="location.href='curadoria_acao.html'">
                     <td data-title="Status"><span class="span_status revisao">Revisão</span></td>
                     <td data-title="Filme">Filme 2</td>            
                     <td data-title="Usuário">Usuário 2</td>            
@@ -200,7 +185,7 @@
                     <td data-title="Data">00/00/0000 00:00</td>                                
                   </tr>
 
-                  <tr>
+                  <tr onclick="location.href='curadoria_acao.html'">
                     <td data-title="Status"><span class="span_status aprovado">Aprovado</span></td>
                     <td data-title="Filme">Filme 3</td>            
                     <td data-title="Usuário">Usuário 3</td>            
@@ -208,7 +193,7 @@
                     <td data-title="Data">00/00/0000 00:00</td>                                
                   </tr>
 
-                  <tr>
+                  <tr onclick="location.href='curadoria_acao.html'">
                     <td data-title="Status"><span class="span_status revisao">Revisão</span></td>
                     <td data-title="Filme">Filme 2</td>            
                     <td data-title="Usuário">Usuário 2</td>            
@@ -216,7 +201,7 @@
                     <td data-title="Data">00/00/0000 00:00</td>                                
                   </tr>
 
-                  <tr>
+                  <tr onclick="location.href='curadoria_acao.html'">
                     <td data-title="Status"><span class="span_status aprovado">Aprovado</span></td>
                     <td data-title="Filme">Filme 3</td>            
                     <td data-title="Usuário">Usuário 3</td>            
@@ -224,7 +209,7 @@
                     <td data-title="Data">00/00/0000 00:00</td>                                
                   </tr>
 
-                  <tr>
+                  <tr onclick="location.href='curadoria_acao.html'">
                     <td data-title="Status"><span class="span_status aprovado">Aprovado</span></td>
                     <td data-title="Filme">Filme 4</td>            
                     <td data-title="Usuário">Usuário 4</td>            
@@ -232,7 +217,7 @@
                     <td data-title="Data">00/00/0000 00:00</td>                                
                   </tr>
 
-                  <tr>
+                  <tr onclick="location.href='curadoria_acao.html'">
                     <td data-title="Status"><span class="span_status reprovado">Reprovado</span></td>
                     <td data-title="Filme">Filme 5</td>            
                     <td data-title="Usuário">Usuário 5</td>            
@@ -240,7 +225,7 @@
                     <td data-title="Data">00/00/0000 00:00</td>                                
                   </tr>
 
-                  <tr>
+                  <tr onclick="location.href='curadoria_acao.html'">
                     <td data-title="Status"><span class="span_status reprovado">Reprovado</span></td>
                     <td data-title="Filme">Filme 6</td>            
                     <td data-title="Usuário">Usuário 6</td>            
@@ -248,7 +233,7 @@
                     <td data-title="Data">00/00/0000 00:00</td>                                
                   </tr>
 
-                  <tr>
+                  <tr onclick="location.href='curadoria_acao.html'">
                     <td data-title="Status"><span class="span_status aprovado">Aprovado</span></td>
                     <td data-title="Filme">Filme 7</td>            
                     <td data-title="Usuário">Usuário 7</td>            
@@ -256,7 +241,7 @@
                     <td data-title="Data">00/00/0000 00:00</td>                                
                   </tr> 
 
-                  <tr>
+                  <tr onclick="location.href='curadoria_acao.html'">
                     <td data-title="Status"><span class="span_status pendente">Pendente</span></td>
                     <td data-title="Filme">Filme 8</td>            
                     <td data-title="Usuário">Usuário 8</td>            
@@ -264,7 +249,7 @@
                     <td data-title="Data">00/00/0000 00:00</td>                                
                   </tr>
 
-                  <tr>
+                  <tr onclick="location.href='curadoria_acao.html'">
                     <td data-title="Status"><span class="span_status pendente">Pendente</span></td>
                     <td data-title="Filme">Filme 9</td>            
                     <td data-title="Usuário">Usuário 9</td>            
@@ -272,7 +257,7 @@
                     <td data-title="Data">00/00/0000 00:00</td>                                
                   </tr>
 
-                  <tr>
+                  <tr onclick="location.href='curadoria_acao.html'">
                     <td data-title="Status"><span class="span_status favorito">Favorito</span></td>
                     <td data-title="Filme">Filme 10</td>            
                     <td data-title="Usuário">Usuário 10</td>            
@@ -284,21 +269,25 @@
 
               </table>
 
-              <div id="page-nav-controls">
+             <div class="paginacao">
+
                 <label for="qtde_pagina">Linhas por página:</label>
                 <select id="qtde_pagina">
                   <option value="10">10</option>
                   <option value="25">25</option>
                   <option value=50>50</option>
                 </select>
+
                 <label>
                   <span id="start">1</span>-<span id="end">10</span> de <span id="total">10</span>
                 </label>
-                <div id="page-nav">
+
+                <div class="page-nav">
                   <i class="material-icons" role="presentation">chevron_left</i>
                   <i class="material-icons" role="presentation">chevron_right</i>
                 </div>
-              </div>             
+
+              </div>         
 
             </div>
             
