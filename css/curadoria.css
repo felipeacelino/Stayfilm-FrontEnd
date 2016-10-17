@@ -68,6 +68,7 @@ span.count {
 
 .table-responsive-vertical {
   width: 100%;
+  border: 1px solid red;
 }
 
 .table {
