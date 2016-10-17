@@ -1,0 +1,356 @@
+<!doctype html>
+
+<html lang="pt-br">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Stayfilm</title>
+
+    <!-- FONTS -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+
+    <!-- CSS -->    
+    <link rel="stylesheet" href="vendors/mdl/material.css">       
+    <link rel="stylesheet" href="css/esqueleto.css">
+    <link rel="stylesheet" href="css/curadoria.css">
+
+  </head>
+
+  <body>
+
+    <!-- ESTRUTURA -->
+    <div class="estrutura mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+
+      <!-- BARRA SUPERIOR -->
+      <header class="barra-superior mdl-layout__header mdl-color--white">
+
+        <div class="mdl-layout__header-row mdl-color-text--blue-grey-900">
+
+          <!-- TÍTULO PRINCIPAL -->
+          <span class="mdl-layout-title">Sistema de Curadoria</span>
+          <!-- FIM TÍTULO PRINCIPAL -->
+
+          <div class="mdl-layout-spacer"></div>
+
+          <!-- MENU OPÇÕES -->
+          <!--
+          <button class="btn-menu mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="btn-menu">
+            <i class="material-icons">more_vert</i>
+          </button>
+          <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="btn-menu">
+            <li class="mdl-menu__item">Opção 1</li>
+            <li class="mdl-menu__item">Opção 2</li>
+            <li class="mdl-menu__item">Opção 3</li>
+          </ul> 
+          -->
+          <!-- FIM MENU OPÇÕES -->
+
+        </div>
+
+      </header>
+
+      <!-- FIM BARRA SUPERIOR -->
+
+      <!-- BARRA LATERAL -->
+      <div class="barra-lateral mdl-layout__drawer">   
+
+        <header class="barra-lateral-header">
+
+          <!-- LOGO -->
+          <img src="images/logo.jpg" class="logo-principal">
+
+          <!-- USUÁRIO -->
+          <div class="user-descricao mdl-color-text--white">
+            <i class="material-icons" role="presentation">person</i>
+            <span>Fulano de Tal</span>            
+            <div class="mdl-layout-spacer"></div>
+            <button id="menu_user" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+              <i class="material-icons" role="presentation">arrow_drop_down</i>
+              <span class="visuallyhidden">Accounts</span>
+            </button>
+            <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="menu_user">
+              <li class="mdl-menu__item">Meus Dados</li>
+            </ul>
+          </div>
+
+        </header>             
+
+        <nav class="nav-lateral mdl-navigation mdl-color--blue-grey-900">
+
+          <!-- ITEM BARRA LATERAL -->
+          <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="#">
+            <i class="material-icons" role="presentation">movie</i>Curadoria
+          </a>
+
+          <!-- ITEM BARRA LATERAL -->
+          <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="#">
+            <i class="material-icons" role="presentation">event</i>Escala
+          </a>
+
+          <!-- ITEM BARRA LATERAL -->
+          <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="#">
+            <i class="material-icons" role="presentation">group</i>Colaboradores
+          </a>
+
+          <!-- ITEM BARRA LATERAL -->
+          <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="#">
+            <i class="material-icons" role="presentation">forum</i>Respostas
+          </a>
+
+          <!-- ITEM BARRA LATERAL -->
+          <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="#">
+            <i class="material-icons" role="presentation">language</i>Idiomas
+          </a>
+
+          <div class="mdl-layout-spacer"></div>
+
+          <!-- ITEM BARRA LATERAL -->
+          <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="login.html">
+            <i class="material-icons" role="presentation">backspace</i>Sair
+          </a>
+
+        </nav>
+
+      </div>
+      <!-- FIM BARRA LATERAL -->
+
+      <!-- CONTEÚDO -->
+      <main class="mdl-layout__content mdl-color--grey-100">
+        <div class="mdl-grid content">
+          <div class="conteudo mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+
+            <!-- <div class="header_filtros">
+              
+              <div class="material-icons mdl-badge mdl-badge--overlap pendente" data-badge="3">error</div>
+              <label>Pendentes</label>
+              <div class="material-icons mdl-badge mdl-badge--overlap revisao" data-badge="1">flag</div>
+              <label>Revisão</label>
+              <div class="material-icons mdl-badge mdl-badge--overlap aprovado" data-badge="3">done</div>
+              <label>Aprovados</label>
+              <div class="material-icons mdl-badge mdl-badge--overlap reprovado" data-badge="2">block</div>
+              <label>Reprovados</label>
+              <div class="material-icons mdl-badge mdl-badge--overlap favorito" data-badge="1">star</div>
+              <label>Favoritos</label>
+
+            </div> -->
+
+            <div class="header_filtros">         
+              
+              <div class="filtro">
+                <span>Status</span>
+                <button class="btn-menu mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="btn-filtro-status">
+                  <i class="material-icons" role="presentation">filter_list</i>
+                </button>
+                <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="btn-filtro-status">
+                  <li class="mdl-menu__item"><span class="count pendente">3</span> Pendentes</li>
+                  <li class="mdl-menu__item"><span class="count revisao">1</span> Revisão</li>
+                  <li class="mdl-menu__item"><span class="count aprovado">3</span> Aprovados</li>
+                  <li class="mdl-menu__item"><span class="count reprovado">2</span> Reprovados</li>
+                  <li class="mdl-menu__item"><span class="count favorito">1</span> Favoritos</li>
+                </ul>
+              </div>
+
+              <div class="filtro">
+                <span>Cliente</span>
+                <button class="btn-menu mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="btn-filtro-cliente">
+                  <i class="material-icons" role="presentation">filter_list</i>
+                </button>
+                <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="btn-filtro-cliente">
+                  <li class="mdl-menu__item">Cliente 1</li>
+                  <li class="mdl-menu__item">Cliente 2</li>
+                  <li class="mdl-menu__item">Cliente 3</li>
+                </ul>
+              </div>              
+
+            </div>
+
+            <div class="table-responsive-vertical">
+              
+              <table id="table" class="table table-hover table-bordered">
+
+                <thead>
+                  <tr>
+                    <th>Status</th>
+                    <th>Filme</th>
+                    <th>Usuário</th>
+                    <th>Cliente</th>
+                    <th>Data</th>                    
+                    <th></th>                    
+                  </tr>
+                </thead>
+
+                <tbody>
+
+                  <tr>
+                    <td data-title="Status"><span class="span_status pendente">Pendente</span></td>
+                    <td data-title="Filme">Filme</td>            
+                    <td data-title="Usuário"><a href="https://www.stayfilm.com/" target="_blank">Usuário 1</a></td>   
+                    <td data-title="Cliente">Disney</td>            
+                    <td data-title="Data">00/00/0000 00:00</td>                                
+                    <td>
+                      <a href="#">
+                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--blue-grey-900">
+                          Visualizar
+                        </button>
+                      </a>
+                    </td>                                
+                  </tr>
+
+                  <tr>
+                    <td data-title="Status"><span class="span_status revisao">Revisão</span></td>
+                    <td data-title="Filme">Filme 2</td>            
+                    <td data-title="Usuário"><a href="https://www.stayfilm.com/" target="_blank">Usuário 2</a></td>            
+                    <td data-title="Cliente">Disney</td>            
+                    <td data-title="Data">00/00/0000 00:00</td>
+                    <td>
+                      <a href="#">
+                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--blue-grey-900">
+                          Visualizar
+                        </button>
+                      </a>
+                    </td>                                
+                  </tr>
+
+                  <tr>
+                    <td data-title="Status"><span class="span_status aprovado">Aprovado</span></td>
+                    <td data-title="Filme">Filme 3</td>            
+                    <td data-title="Usuário"><a href="https://www.stayfilm.com/" target="_blank">Usuário 3</a></td>            
+                    <td data-title="Cliente">Disney</td>            
+                    <td data-title="Data">00/00/0000 00:00</td>
+                    <td>
+                      <a href="#">
+                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--blue-grey-900">
+                          Visualizar
+                        </button>
+                      </a>
+                    </td>                                
+                  </tr>
+
+                  <tr>
+                    <td data-title="Status"><span class="span_status aprovado">Aprovado</span></td>
+                    <td data-title="Filme">Filme 4</td>            
+                    <td data-title="Usuário"><a href="https://www.stayfilm.com/" target="_blank">Usuário 4</a></td>            
+                    <td data-title="Cliente">Disney</td>            
+                    <td data-title="Data">00/00/0000 00:00</td>
+                    <td>
+                      <a href="#">
+                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--blue-grey-900">
+                          Visualizar
+                        </button>
+                      </a>
+                    </td>                                
+                  </tr>
+
+                  <tr>
+                    <td data-title="Status"><span class="span_status reprovado">Reprovado</span></td>
+                    <td data-title="Filme">Filme 5</td>            
+                    <td data-title="Usuário"><a href="https://www.stayfilm.com/" target="_blank">Usuário 5</a></td>            
+                    <td data-title="Cliente">Disney</td>            
+                    <td data-title="Data">00/00/0000 00:00</td>
+                    <td>
+                      <a href="#">
+                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--blue-grey-900">
+                          Visualizar
+                        </button>
+                      </a>
+                    </td>                                
+                  </tr>
+
+                  <tr>
+                    <td data-title="Status"><span class="span_status reprovado">Reprovado</span></td>
+                    <td data-title="Filme">Filme 6</td>            
+                    <td data-title="Usuário"><a href="https://www.stayfilm.com/" target="_blank">Usuário 6</a></td>            
+                    <td data-title="Cliente">Disney</td>            
+                    <td data-title="Data">00/00/0000 00:00</td>
+                    <td>
+                      <a href="#">
+                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--blue-grey-900">
+                          Visualizar
+                        </button>
+                      </a>
+                    </td>                                
+                  </tr>
+
+                  <tr>
+                    <td data-title="Status"><span class="span_status aprovado">Aprovado</span></td>
+                    <td data-title="Filme">Filme 7</td>            
+                    <td data-title="Usuário"><a href="https://www.stayfilm.com/" target="_blank">Usuário 7</a></td>            
+                    <td data-title="Cliente">Disney</td>            
+                    <td data-title="Data">00/00/0000 00:00</td>
+                    <td>
+                      <a href="#">
+                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--blue-grey-900">
+                          Visualizar
+                        </button>
+                      </a>
+                    </td>                                
+                  </tr> 
+
+                  <tr>
+                    <td data-title="Status"><span class="span_status pendente">Pendente</span></td>
+                    <td data-title="Filme">Filme 8</td>            
+                    <td data-title="Usuário"><a href="https://www.stayfilm.com/" target="_blank">Usuário 8</a></td>            
+                    <td data-title="Cliente">Disney</td>            
+                    <td data-title="Data">00/00/0000 00:00</td>
+                    <td>
+                      <a href="#">
+                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--blue-grey-900">
+                          Visualizar
+                        </button>
+                      </a>
+                    </td>                                
+                  </tr>
+
+                  <tr>
+                    <td data-title="Status"><span class="span_status pendente">Pendente</span></td>
+                    <td data-title="Filme">Filme 9</td>            
+                    <td data-title="Usuário"><a href="https://www.stayfilm.com/" target="_blank">Usuário 9</a></td>            
+                    <td data-title="Cliente">Disney</td>            
+                    <td data-title="Data">00/00/0000 00:00</td>
+                    <td>
+                      <a href="#">
+                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--blue-grey-900">
+                          Visualizar
+                        </button>
+                      </a>
+                    </td>                                
+                  </tr>
+
+                  <tr>
+                    <td data-title="Status"><span class="span_status favorito">Favorito</span></td>
+                    <td data-title="Filme">Filme 10</td>            
+                    <td data-title="Usuário"><a href="https://www.stayfilm.com/" target="_blank">Usuário 10</a></td>            
+                    <td data-title="Cliente">Disney</td>            
+                    <td data-title="Data">00/00/0000 00:00</td>
+                    <td>
+                      <a href="#">
+                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--blue-grey-900">
+                          Visualizar
+                        </button>
+                      </a>
+                    </td>                                
+                  </tr>                 
+
+                </tbody>
+
+              </table>
+
+            </div>
+            
+          </div>          
+        </div>
+      </main>
+      <!-- FIM CONTEÚDO -->
+
+    </div>
+    <!-- FIM ESTRUTURA -->
+    
+    <!-- JAVA SCRIPT -->
+    <script src="vendors/mdl/material.js"></script>
+
+  </body>
+</html>

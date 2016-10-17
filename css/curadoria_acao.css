@@ -1,6 +1,10 @@
 
 /*GRID IMAGENS*/
 
+.titulo-filme {  
+    color: #f00;
+}
+
 .grid-media-title header .material-icons {
   border: 1px solid red;
   font-size:30px;
