@@ -130,53 +130,31 @@
 
             <section class="grid-media">
 
-              <a href="images/ex2.jpg" class="media-img">
-                <figure><img src="images/ex2.jpg" /></figure>
-              </a>
+              <a href="images/ex1.jpg" class="media-img mdl-shadow--6dp" data-simplbox><figure><img src="images/ex1.jpg" /></figure></a>
 
-              <a href="images/ex2.jpg" class="media-img">
-                <figure><img src="images/ex2.jpg" /></figure>
-              </a>
+              <a href="images/ex2.jpg" class="media-img mdl-shadow--6dp" data-simplbox><figure><img src="images/ex2.jpg" /></figure></a>
 
-              <a href="images/ex2.jpg" class="media-img">
-                <figure><img src="images/ex2.jpg" /></figure>
-              </a>
+              <a href="images/ex3.jpg" class="media-img mdl-shadow--6dp" data-simplbox><figure><img src="images/ex3.jpg" /></figure></a>
 
-              <a href="images/ex2.jpg" class="media-img">
-                <figure><img src="images/ex2.jpg" /></figure>
-              </a>
+              <a href="images/ex4.jpg" class="media-img mdl-shadow--6dp" data-simplbox><figure><img src="images/ex4.jpg" /></figure></a>
 
-              <a href="images/ex2.jpg" class="media-img">
-                <figure><img src="images/ex2.jpg" /></figure>
-              </a>
+              <a href="images/ex5.jpg" class="media-img mdl-shadow--6dp" data-simplbox><figure><img src="images/ex5.jpg" /></figure></a>
 
-              <a href="images/ex2.jpg" class="media-img">
-                <figure><img src="images/ex2.jpg" /></figure>
-              </a>
+              <a href="images/ex6.jpg" class="media-img mdl-shadow--6dp" data-simplbox><figure><img src="images/ex6.jpg" /></figure></a>
 
-              <a href="images/ex2.jpg" class="media-img">
-                <figure><img src="images/ex2.jpg" /></figure>
-              </a>
+              <a href="images/ex1.jpg" class="media-img mdl-shadow--6dp" data-simplbox><figure><img src="images/ex1.jpg" /></figure></a>
 
-              <a href="images/ex2.jpg" class="media-img">
-                <figure><img src="images/ex2.jpg" /></figure>
-              </a>
+              <a href="images/ex2.jpg" class="media-img mdl-shadow--6dp" data-simplbox><figure><img src="images/ex2.jpg" /></figure></a>
 
-              <a href="images/ex2.jpg" class="media-img">
-                <figure><img src="images/ex2.jpg" /></figure>
-              </a>
+              <a href="images/ex3.jpg" class="media-img mdl-shadow--6dp" data-simplbox><figure><img src="images/ex3.jpg" /></figure></a>
 
-              <a href="images/ex2.jpg" class="media-img">
-                <figure><img src="images/ex2.jpg" /></figure>
-              </a>
+              <a href="images/ex4.jpg" class="media-img mdl-shadow--6dp" data-simplbox><figure><img src="images/ex4.jpg" /></figure></a>
 
-              <a href="images/ex2.jpg" class="media-img">
-                <figure><img src="images/ex2.jpg" /></figure>
-              </a>
+              <a href="images/ex5.jpg" class="media-img mdl-shadow--6dp" data-simplbox><figure><img src="images/ex5.jpg" /></figure></a>
 
-              <a href="images/ex2.jpg" class="media-img">
-                <figure><img src="images/ex2.jpg" /></figure>
-              </a>
+              <a href="images/ex6.jpg" class="media-img mdl-shadow--6dp" data-simplbox><figure><img src="images/ex6.jpg" /></figure></a>
+
+              <video src="images/demo.mp4" class="media-video mdl-shadow--6dp" controls></video>
 
             </section>
             
@@ -190,6 +168,29 @@
     
     <!-- JAVA SCRIPT -->
     <script src="vendors/mdl/material.js"></script>
+    <script src="vendors/simplbox/simplbox.js"></script>
+    <script type="text/javascript">
+
+      var overlayOn = function () {
+        var newA = document.createElement("div");
+        newA.setAttribute("id", "simplbox-overlay");
+        document.body.appendChild(newA);
+      };
+
+      var overlayOff = function () {
+        var elA = document.getElementById("simplbox-overlay");
+        elA.parentNode.removeChild(elA);
+      };
+
+      var myelement = document.querySelectorAll("[data-simplbox]");
+      var simplbox = new SimplBox(myelement, {
+        onStart: overlayOn,
+        onEnd: overlayOff,
+      });  
+
+      simplbox.init();
+
+    </script>
 
   </body>
 </html>

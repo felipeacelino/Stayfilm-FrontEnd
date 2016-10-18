@@ -54,13 +54,21 @@ figure {
 }
 
 .grid-media .media-img {
-  border: 1px solid #ddd;
+  border: 0px solid #f00;
   overflow: hidden;
   float: left;
-  width: calc(32% - 4px);
+  width: calc(32% - 5px);
   margin: 0 10px 10px 0;
   background: #fff;
 }
+
+.grid-media .media-video {
+  border: 0px solid #f00;
+  float: left;
+  margin: 0 10px 10px 0;
+  width: calc(48% - 5px);
+}
+
 
 .grid-media .media-img img {
   border: none;
@@ -79,5 +87,37 @@ figure {
   .grid-media .media-img {    
     width: 43%; 
   }
+
+  .grid-media .media-video {    
+    width: 100%; 
+  }
   
+}
+
+/* LIGHTBOX */
+
+html {
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+}
+
+
+#simplbox {
+  z-index: 10000;
+  ms-touch-action: none;
+  touch-action: none;
+  -moz-box-shadow: 0 0 20px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.75);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.75);
+}
+
+#simplbox-overlay {
+  background-color: #F4F4F4;
+  background-color: rgba(0, 0, 0, 0.8);
+  position: fixed;
+  z-index: 9998;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }
