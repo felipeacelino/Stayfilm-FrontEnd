@@ -16,6 +16,7 @@
     <!-- CSS -->    
     <link rel="stylesheet" href="vendors/mdl/material.css">       
     <link rel="stylesheet" href="css/esqueleto.css">
+    <link rel="stylesheet" href="css/filmes.css">
     <link rel="stylesheet" href="css/curadoria.css">
 
   </head>
@@ -26,29 +27,33 @@
     <div class="estrutura mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
 
       <!-- BARRA SUPERIOR -->
-      <header class="barra-superior mdl-layout__header mdl-color--white">
+      <header class="barra-superior mdl-layout__header mdl-layout__header--waterfall mdl-color--white">
 
         <div class="mdl-layout__header-row mdl-color-text--blue-grey-900">
 
           <!-- TÍTULO PRINCIPAL -->
-          <span class="mdl-layout-title">Sistema de Curadoria</span>
-          <!-- FIM TÍTULO PRINCIPAL -->
+          <span class="mdl-layout-title">Filme de Fulano</span>
+          <!-- FIM TÍTULO PRINCIPAL -->          
+            
+        </div>
+          
+        <div class="mdl-layout__header-row descricao-filme">
 
-          <div class="mdl-layout-spacer"></div>
+          <nav class="mdl-navigation">
+            <a class="mdl-navigation__link mdl-color-text--blue-grey-900 usuario-filme" target="_blank" href="https://www.stayfilm.com/">
+              <i class="material-icons" role="presentation">person</i>Fulano
+            </a>
+          </nav>
+            
+        </div>
+          
+        <div class="mdl-layout__header-row descricao-filme">
 
-          <!-- MENU OPÇÕES -->
-          <!--
-          <button class="btn-menu mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="btn-menu">
-            <i class="material-icons">more_vert</i>
-          </button>
-          <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="btn-menu">
-            <li class="mdl-menu__item">Opção 1</li>
-            <li class="mdl-menu__item">Opção 2</li>
-            <li class="mdl-menu__item">Opção 3</li>
-          </ul> 
-          -->
-          <!-- FIM MENU OPÇÕES -->
-
+          <nav class="mdl-navigation">
+            <a class="mdl-navigation__link mdl-color-text--blue-grey-900 tema-filme" href="#">Disney</a>
+            <a class="mdl-navigation__link mdl-color-text--blue-grey-900 data-filme" href="#">00/00/0000 00:00</a>
+          </nav>    
+            
         </div>
 
       </header>
@@ -82,7 +87,7 @@
         <nav class="nav-lateral mdl-navigation mdl-color--blue-grey-900">
 
           <!-- ITEM BARRA LATERAL -->
-          <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="#">
+          <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="filmes.html">
             <i class="material-icons" role="presentation">movie</i>Curadoria
           </a>
 
@@ -123,173 +128,57 @@
         <div class="mdl-grid content">
           <div class="conteudo mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
 
-            <div class="header_filtros">         
-              
-              <div class="filtro">
-                <span>Status</span>
-                <button class="btn-menu mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="btn-filtro-status">
-                  <i class="material-icons" role="presentation">filter_list</i>
-                </button>
-                <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right btn-filtro-status" for="btn-filtro-status">
-                  <li class="mdl-menu__item"><label>Pendentes</label><span class="count pendente">3</span></li>
-                  <li class="mdl-menu__item"><label>Revisão</label><span class="count revisao">1</span></li>
-                  <li class="mdl-menu__item"><label>Aprovados</label><span class="count aprovado">3</span></li>
-                  <li class="mdl-menu__item"><label>Reprovados</label><span class="count reprovado">2</span></li>
-                  <li class="mdl-menu__item"><label>Favoritos</label><span class="count favorito">1</span></li>
-                </ul>
-              </div>
+            <section class="grid-media">
 
-              <div class="filtro">
-                <span>Cliente</span>
-                <button class="btn-menu mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="btn-filtro-cliente">
-                  <i class="material-icons" role="presentation">filter_list</i>
-                </button>
-                <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="btn-filtro-cliente">
-                  <li class="mdl-menu__item">Cliente 1</li>
-                  <li class="mdl-menu__item">Cliente 2</li>
-                  <li class="mdl-menu__item">Cliente 3</li>
-                </ul>
-              </div>              
+              <a href="images/ex2.jpg" class="media-img">
+                <figure><img src="images/ex2.jpg" /></figure>
+              </a>
 
-            </div>
+              <a href="images/ex2.jpg" class="media-img">
+                <figure><img src="images/ex2.jpg" /></figure>
+              </a>
 
-            <div class="table-responsive-vertical">
-              
-              <table id="table" class="table table-hover table-bordered">
+              <a href="images/ex2.jpg" class="media-img">
+                <figure><img src="images/ex2.jpg" /></figure>
+              </a>
 
-                <thead>
-                  <tr>
-                    <th>Status</th>
-                    <th>Filme</th>
-                    <th>Usuário</th>
-                    <th>Cliente</th>
-                    <th>Data</th>                                        
-                  </tr>
-                </thead>
+              <a href="images/ex2.jpg" class="media-img">
+                <figure><img src="images/ex2.jpg" /></figure>
+              </a>
 
-                <tbody>
+              <a href="images/ex2.jpg" class="media-img">
+                <figure><img src="images/ex2.jpg" /></figure>
+              </a>
 
-                  <tr onclick="location.href='curadoria_acao.html'">
-                    <td data-title="Status"><span class="span_status pendente">Pendente</span></td>
-                    <td data-title="Filme">Filme</td>            
-                    <td data-title="Usuário">Usuário 1</td>   
-                    <td data-title="Cliente">Disney</td>            
-                    <td data-title="Data">00/00/0000 00:00</td>                                                                
-                  </tr>
+              <a href="images/ex2.jpg" class="media-img">
+                <figure><img src="images/ex2.jpg" /></figure>
+              </a>
 
-                  <tr onclick="location.href='curadoria_acao.html'">
-                    <td data-title="Status"><span class="span_status revisao">Revisão</span></td>
-                    <td data-title="Filme">Filme 2</td>            
-                    <td data-title="Usuário">Usuário 2</td>            
-                    <td data-title="Cliente">Disney</td>            
-                    <td data-title="Data">00/00/0000 00:00</td>                                
-                  </tr>
+              <a href="images/ex2.jpg" class="media-img">
+                <figure><img src="images/ex2.jpg" /></figure>
+              </a>
 
-                  <tr onclick="location.href='curadoria_acao.html'">
-                    <td data-title="Status"><span class="span_status aprovado">Aprovado</span></td>
-                    <td data-title="Filme">Filme 3</td>            
-                    <td data-title="Usuário">Usuário 3</td>            
-                    <td data-title="Cliente">Disney</td>            
-                    <td data-title="Data">00/00/0000 00:00</td>                                
-                  </tr>
+              <a href="images/ex2.jpg" class="media-img">
+                <figure><img src="images/ex2.jpg" /></figure>
+              </a>
 
-                  <tr onclick="location.href='curadoria_acao.html'">
-                    <td data-title="Status"><span class="span_status revisao">Revisão</span></td>
-                    <td data-title="Filme">Filme 2</td>            
-                    <td data-title="Usuário">Usuário 2</td>            
-                    <td data-title="Cliente">Disney</td>            
-                    <td data-title="Data">00/00/0000 00:00</td>                                
-                  </tr>
+              <a href="images/ex2.jpg" class="media-img">
+                <figure><img src="images/ex2.jpg" /></figure>
+              </a>
 
-                  <tr onclick="location.href='curadoria_acao.html'">
-                    <td data-title="Status"><span class="span_status aprovado">Aprovado</span></td>
-                    <td data-title="Filme">Filme 3</td>            
-                    <td data-title="Usuário">Usuário 3</td>            
-                    <td data-title="Cliente">Disney</td>            
-                    <td data-title="Data">00/00/0000 00:00</td>                                
-                  </tr>
+              <a href="images/ex2.jpg" class="media-img">
+                <figure><img src="images/ex2.jpg" /></figure>
+              </a>
 
-                  <tr onclick="location.href='curadoria_acao.html'">
-                    <td data-title="Status"><span class="span_status aprovado">Aprovado</span></td>
-                    <td data-title="Filme">Filme 4</td>            
-                    <td data-title="Usuário">Usuário 4</td>            
-                    <td data-title="Cliente">Disney</td>            
-                    <td data-title="Data">00/00/0000 00:00</td>                                
-                  </tr>
+              <a href="images/ex2.jpg" class="media-img">
+                <figure><img src="images/ex2.jpg" /></figure>
+              </a>
 
-                  <tr onclick="location.href='curadoria_acao.html'">
-                    <td data-title="Status"><span class="span_status reprovado">Reprovado</span></td>
-                    <td data-title="Filme">Filme 5</td>            
-                    <td data-title="Usuário">Usuário 5</td>            
-                    <td data-title="Cliente">Disney</td>            
-                    <td data-title="Data">00/00/0000 00:00</td>                                
-                  </tr>
+              <a href="images/ex2.jpg" class="media-img">
+                <figure><img src="images/ex2.jpg" /></figure>
+              </a>
 
-                  <tr onclick="location.href='curadoria_acao.html'">
-                    <td data-title="Status"><span class="span_status reprovado">Reprovado</span></td>
-                    <td data-title="Filme">Filme 6</td>            
-                    <td data-title="Usuário">Usuário 6</td>            
-                    <td data-title="Cliente">Disney</td>            
-                    <td data-title="Data">00/00/0000 00:00</td>                                
-                  </tr>
-
-                  <tr onclick="location.href='curadoria_acao.html'">
-                    <td data-title="Status"><span class="span_status aprovado">Aprovado</span></td>
-                    <td data-title="Filme">Filme 7</td>            
-                    <td data-title="Usuário">Usuário 7</td>            
-                    <td data-title="Cliente">Disney</td>            
-                    <td data-title="Data">00/00/0000 00:00</td>                                
-                  </tr> 
-
-                  <tr onclick="location.href='curadoria_acao.html'">
-                    <td data-title="Status"><span class="span_status pendente">Pendente</span></td>
-                    <td data-title="Filme">Filme 8</td>            
-                    <td data-title="Usuário">Usuário 8</td>            
-                    <td data-title="Cliente">Disney</td>            
-                    <td data-title="Data">00/00/0000 00:00</td>                                
-                  </tr>
-
-                  <tr onclick="location.href='curadoria_acao.html'">
-                    <td data-title="Status"><span class="span_status pendente">Pendente</span></td>
-                    <td data-title="Filme">Filme 9</td>            
-                    <td data-title="Usuário">Usuário 9</td>            
-                    <td data-title="Cliente">Disney</td>            
-                    <td data-title="Data">00/00/0000 00:00</td>                                
-                  </tr>
-
-                  <tr onclick="location.href='curadoria_acao.html'">
-                    <td data-title="Status"><span class="span_status favorito">Favorito</span></td>
-                    <td data-title="Filme">Filme 10</td>            
-                    <td data-title="Usuário">Usuário 10</td>            
-                    <td data-title="Cliente">Disney</td>            
-                    <td data-title="Data">00/00/0000 00:00</td>                                
-                  </tr>
-
-                </tbody>
-
-              </table>
-
-             <div class="paginacao">
-
-                <label for="qtde_pagina">Linhas por página:</label>
-                <select id="qtde_pagina">
-                  <option value="10">10</option>
-                  <option value="25">25</option>
-                  <option value=50>50</option>
-                </select>
-
-                <label>
-                  <span id="start">1</span>-<span id="end">10</span> de <span id="total">10</span>
-                </label>
-
-                <div class="page-nav">
-                  <i class="material-icons" role="presentation">chevron_left</i>
-                  <i class="material-icons" role="presentation">chevron_right</i>
-                </div>
-
-              </div>         
-
-            </div>
+            </section>
             
           </div>          
         </div>
