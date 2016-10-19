@@ -1,0 +1,49 @@
+/**
+* @author: Nestor Alcantara
+* @copyright: Copyright (c) 2016 Nestor Alcantara. All rights reserved.
+* @license: Licensed under the MIT license. See http://www.opensource.org/licenses/mit-license
+* @website: http://nesgael.github.io/mdl-speed-dial/
+*/
+
+header {
+	position: relative;
+}
+
+.mdl-speed-dial {
+	position: absolute;
+	text-align: right;
+	z-index: 9999;
+	margin: 0;
+}
+
+.mdl-speed-dial--bottom-fixed {
+	bottom: 28px;
+	right: 40px;
+}
+
+.mdl-speed-dial--header-edge {
+	top: calc(100% - 28px);
+	right: 40px;
+}
+
+.mdl-speed-dial__options {
+	display: none;
+	margin-bottom: 16px;
+}
+
+.mdl-speed-dial__option {
+	margin: 16px 8px 2px 8px;
+}
+
+.mdl-speed-dial__tooltip {
+	margin-right: 5px;
+	padding: 4px;
+	display: inline;
+	background: rgba(97, 97, 97, 0.9);
+	border-radius: 2px;
+	color: #fff;
+}
+
+.mdl-speed-dial_main-fab-icon--hidden {
+	display: none;
+}

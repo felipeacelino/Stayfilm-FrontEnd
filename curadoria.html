@@ -15,6 +15,8 @@
 
     <!-- CSS -->    
     <link rel="stylesheet" href="vendors/mdl/material.css">       
+    <link rel="stylesheet" href="vendors/mdl-speed-dial-master/mdl-speed-dial.css">       
+    <link rel="stylesheet" href="vendors/featherlight/featherlight.css">              
     <link rel="stylesheet" href="css/esqueleto.css">
     <link rel="stylesheet" href="css/filmes.css">
     <link rel="stylesheet" href="css/curadoria.css">
@@ -44,6 +46,19 @@
               <i class="material-icons" role="presentation">person</i>Fulano
             </a>
           </nav>
+
+          <div class="mdl-layout-spacer"></div>
+
+          <nav class="mdl-navigation">
+            <a class="mdl-navigation__link mdl-color-text--blue-grey-900" data-featherlight="#lightbox_video" href="#">
+              <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" id="play-filme">
+                <i class="material-icons">play_arrow</i>
+              </button>
+            </a>
+          </nav>
+
+
+
             
         </div>
           
@@ -128,69 +143,99 @@
         <div class="mdl-grid content">
           <div class="conteudo mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
 
+            <div id="lightbox_video" class="lightbox"><video src="images/demo.mp4" id="filme-final" controls></video></div>
+
             <section class="grid-media">
 
-              <a href="images/ex1.jpg" class="media-img mdl-shadow--6dp" data-simplbox><figure><img src="images/ex1.jpg" /></figure></a>
+              <a href="images/ex1.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex1.jpg" /></figure></a>
 
-              <a href="images/ex2.jpg" class="media-img mdl-shadow--6dp" data-simplbox><figure><img src="images/ex2.jpg" /></figure></a>
+              <a href="images/ex2.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex2.jpg" /></figure></a>
 
-              <a href="images/ex3.jpg" class="media-img mdl-shadow--6dp" data-simplbox><figure><img src="images/ex3.jpg" /></figure></a>
+              <a href="images/ex3.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex3.jpg" /></figure></a>
 
-              <a href="images/ex4.jpg" class="media-img mdl-shadow--6dp" data-simplbox><figure><img src="images/ex4.jpg" /></figure></a>
+              <a href="images/ex4.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex4.jpg" /></figure></a>
 
-              <a href="images/ex5.jpg" class="media-img mdl-shadow--6dp" data-simplbox><figure><img src="images/ex5.jpg" /></figure></a>
+              <a href="images/ex5.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex5.jpg" /></figure></a>
 
-              <a href="images/ex6.jpg" class="media-img mdl-shadow--6dp" data-simplbox><figure><img src="images/ex6.jpg" /></figure></a>
+              <a href="images/ex6.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex6.jpg" /></figure></a>
 
-              <a href="images/ex7.jpg" class="media-img mdl-shadow--6dp" data-simplbox><figure><img src="images/ex7.jpg" /></figure></a>
+              <a href="images/ex7.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex7.jpg" /></figure></a>
 
-              <a href="images/ex1.jpg" class="media-img mdl-shadow--6dp" data-simplbox><figure><img src="images/ex1.jpg" /></figure></a>
+              <a href="images/ex1.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex1.jpg" /></figure></a>
 
-              <a href="images/ex2.jpg" class="media-img mdl-shadow--6dp" data-simplbox><figure><img src="images/ex2.jpg" /></figure></a>
+              <a href="images/ex2.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex2.jpg" /></figure></a>
 
-              <a href="images/ex3.jpg" class="media-img mdl-shadow--6dp" data-simplbox><figure><img src="images/ex3.jpg" /></figure></a>
+              <a href="images/ex3.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex3.jpg" /></figure></a>
 
-              <a href="images/ex4.jpg" class="media-img mdl-shadow--6dp" data-simplbox><figure><img src="images/ex4.jpg" /></figure></a>
+              <a href="images/ex4.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex4.jpg" /></figure></a>
 
-              <a href="images/ex5.jpg" class="media-img mdl-shadow--6dp" data-simplbox><figure><img src="images/ex5.jpg" /></figure></a>
+              <a href="images/ex5.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex5.jpg" /></figure></a>
 
-              <a href="images/ex6.jpg" class="media-img mdl-shadow--6dp" data-simplbox><figure><img src="images/ex6.jpg" /></figure></a>
+              <a href="images/ex6.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex6.jpg" /></figure></a>
 
-              <a href="images/ex7.jpg" class="media-img mdl-shadow--6dp" data-simplbox><figure><img src="images/ex7.jpg" /></figure></a>
+              <a href="images/ex7.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex7.jpg" /></figure></a>
 
-              <a href="images/ex1.jpg" class="media-img mdl-shadow--6dp" data-simplbox><figure><img src="images/ex1.jpg" /></figure></a>
+              <a href="images/ex1.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex1.jpg" /></figure></a>
 
-              <a href="images/ex2.jpg" class="media-img mdl-shadow--6dp" data-simplbox><figure><img src="images/ex2.jpg" /></figure></a>
+              <a href="images/ex2.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex2.jpg" /></figure></a>
 
-              <a href="images/ex3.jpg" class="media-img mdl-shadow--6dp" data-simplbox><figure><img src="images/ex3.jpg" /></figure></a>
+              <a href="images/ex3.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex3.jpg" /></figure></a>
 
-              <a href="images/ex4.jpg" class="media-img mdl-shadow--6dp" data-simplbox><figure><img src="images/ex4.jpg" /></figure></a>
+              <a href="images/ex4.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex4.jpg" /></figure></a>
 
-              <a href="images/ex5.jpg" class="media-img mdl-shadow--6dp" data-simplbox><figure><img src="images/ex5.jpg" /></figure></a>
+              <a href="images/ex5.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex5.jpg" /></figure></a>
 
-              <a href="images/ex6.jpg" class="media-img mdl-shadow--6dp" data-simplbox><figure><img src="images/ex6.jpg" /></figure></a>
+              <a href="images/ex6.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex6.jpg" /></figure></a>
 
-              <a href="images/ex7.jpg" class="media-img mdl-shadow--6dp" data-simplbox><figure><img src="images/ex7.jpg" /></figure></a>
+              <a href="images/ex7.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex7.jpg" /></figure></a>
 
-              <a href="images/ex1.jpg" class="media-img mdl-shadow--6dp" data-simplbox><figure><img src="images/ex1.jpg" /></figure></a>
+              <a href="images/ex1.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex1.jpg" /></figure></a>
 
-              <a href="images/ex2.jpg" class="media-img mdl-shadow--6dp" data-simplbox><figure><img src="images/ex2.jpg" /></figure></a>
+              <a href="images/ex2.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex2.jpg" /></figure></a>
 
-              <a href="images/ex3.jpg" class="media-img mdl-shadow--6dp" data-simplbox><figure><img src="images/ex3.jpg" /></figure></a>
+              <a href="images/ex3.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex3.jpg" /></figure></a>
 
-              <a href="images/ex4.jpg" class="media-img mdl-shadow--6dp" data-simplbox><figure><img src="images/ex4.jpg" /></figure></a>
+              <a href="images/ex4.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex4.jpg" /></figure></a>
 
-              <a href="images/ex5.jpg" class="media-img mdl-shadow--6dp" data-simplbox><figure><img src="images/ex5.jpg" /></figure></a>
+              <a href="images/ex5.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex5.jpg" /></figure></a>
 
-              <a href="images/ex6.jpg" class="media-img mdl-shadow--6dp" data-simplbox><figure><img src="images/ex6.jpg" /></figure></a>
+              <a href="images/ex6.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex6.jpg" /></figure></a>
 
-              <a href="images/ex7.jpg" class="media-img mdl-shadow--6dp" data-simplbox><figure><img src="images/ex7.jpg" /></figure></a>
-
-              
-
-              <!-- <video src="images/demo.mp4" class="media-video mdl-shadow--6dp" controls></video> -->
+              <a href="images/ex7.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex7.jpg" /></figure></a>
 
             </section>
+
+            <section class="media-video">
+              <video src="images/demo.mp4" class="media-video mdl-shadow--6dp" controls></video>
+            </section>
+
+              <div class="mdl-speed-dial mdl-speed-dial--bottom-fixed">
+                <div class="mdl-speed-dial__options">
+                  <div class="mdl-speed-dial__option">
+                    <p class="mdl-speed-dial__tooltip">Option 3</p>
+                    <a href="#" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab">
+                      <i class="material-icons">folder</i>
+                    </a>
+                  </div>
+                  <div class="mdl-speed-dial__option">
+                    <p class="mdl-speed-dial__tooltip">Option 2</p>
+                    <a href="#" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab">
+                      <i class="material-icons">attach_file</i>
+                    </a>
+                  </div>
+                  <div class="mdl-speed-dial__option">
+                    <p class="mdl-speed-dial__tooltip">Option 1</p>
+                    <a href="#" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab">
+                      <i class="material-icons">email</i>
+                    </a>
+                  </div>
+                </div>
+                <!-- Be sure to put the .mdl-speed-dial__main-fab button after the .mdl-speed-dial__options section -->
+                <button class="mdl-speed-dial__main-fab mdl-speed-dial__main-fab--spin mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+                  <i class="material-icons mdl-speed-dial_main-fab-icon mdl-speed-dial_main-fab-icon--primary">add</i>
+                  <i class="material-icons mdl-speed-dial_main-fab-icon mdl-speed-dial_main-fab-icon--secondary">create</i>
+                </button>
+              </div>
             
           </div>          
         </div>
@@ -201,8 +246,11 @@
     <!-- FIM ESTRUTURA -->
     
     <!-- JAVA SCRIPT -->
+    <script src="vendors/jquery/jquery.js"></script>
     <script src="vendors/mdl/material.js"></script>
+    <script src="vendors/mdl-speed-dial-master/mdl-speed-dial.js"></script>
     <script src="vendors/simplbox/simplbox.js"></script>
+    <script src="vendors/featherlight/featherlight.js"></script>
     <script type="text/javascript">
 
       var overlayOn = function () {
@@ -223,6 +271,10 @@
       });  
 
       simplbox.init();
+
+      $("#play-filme").click(function(e){
+        $('#filme-final').attr({'autoplay':'true'});
+      })
 
     </script>
 
