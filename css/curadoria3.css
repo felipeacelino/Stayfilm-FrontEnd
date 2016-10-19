@@ -46,56 +46,56 @@
 
 figure {
   margin: 0;
+  overflow: hidden;
 }
 
 .grid-media {
-  border: 0px solid red;
   width: 100%;
+  float: left;
 }
 
 .grid-media .media-img {
   border: 0px solid #f00;
   float: left;
   margin: 0 10px 10px 0;
-  width: 320px;
+  width: 310px;
   height: 200px;
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
+  transition: all .2s ease-in-out;
 }
 
-.grid-media .media-video {
-  border: 0px solid #f00;
-  float: left;
-  margin: 0 10px 10px 0;
-  width: calc(48% - 5px);
+.grid-media .media-img:hover {
+  opacity: 0.7;
 }
 
+@media screen and (max-width: 1200px) and (min-width: 768px) {
 
-.grid-media .media-img img {
-  border: none;
-  max-width: 100%;
-  max-height: 100%;  
-  background: #fff;
-  transition: transform .2s ease-in-out;
-}
-
-.grid-media .media-img:hover img {
-  transform: scale(1.15);
-}
-
-@media screen and (max-width: 768px) {
-
-  .grid-media .media-img {    
-    width: 45%; 
-    height: 7%;
+  .grid-media .media-img { 
+    width: 200px; 
+    height: 120px;
   }
 
-  .grid-media .media-video {    
+}
+
+@media screen and (max-width: 768px) and (min-width: 400px) {
+
+  .grid-media .media-img {   
+    width: 150px; 
+    height: 90px;
+  }
+
+}
+
+@media screen and (max-width: 400px) {
+
+  .grid-media .media-img {       
     width: 100%; 
   }
-  
+
 }
+
 
 /* LIGHTBOX */
 
