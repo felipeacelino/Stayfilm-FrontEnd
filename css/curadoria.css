@@ -173,6 +173,9 @@ html {
 .mdl-button--fab_flinger-container {
   bottom: 16px;
   right: 35px;
+  z-index: 99;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
 }
 
 .mdl-button--fab_flinger-container.is-showing-options .mdl-button--fab_flinger-options {
