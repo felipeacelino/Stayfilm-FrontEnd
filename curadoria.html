@@ -213,7 +213,7 @@
               <button id="fab_btn" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored favorito"><i class="material-icons">thumbs_up_down</i></button>
               <div class="mdl-button--fab_flinger-options">
                 <label>Aprovar</label>
-                <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored aprovado">
+                <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored aprovado" data-featherlight-close-on-esc="false" data-featherlight-close-on-click="false" data-featherlight="#lightbox_aprovado">
                   <i class="material-icons">thumb_up</i>         
                 </button>
                 <label>Reprovar</label>
@@ -221,15 +221,67 @@
                   <i class="material-icons">thumb_down</i>            
                 </button>
                 <label>Favorito</label>
-                <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored favorito">
+                <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored favorito" data-featherlight-close-on-esc="false" data-featherlight-close-on-click="false" data-featherlight="#lightbox_favorito">
                   <i class="material-icons">star</i>            
                 </button>
                 <label>Revisao</label>
-                <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored revisao">
+                <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored revisao" data-featherlight-close-on-esc="false" data-featherlight-close-on-click="false" data-featherlight="#lightbox_revisao">
                   <i class="material-icons">flag</i>            
                 </button>
               </div>
             </div>
+
+            <a href="" data-featherlight-close-on-esc="false" data-featherlight-close-on-click="false" data-featherlight="#lightbox_aprovado">open</a>
+
+            <div id="lightbox_aprovado" class="lightbox lightbox_aprovado">
+              <div class="lightbox_card mdl-card mdl-shadow--2dp">
+                <div class="mdl-card__title mdl-card--expand mdl-color-text--white aprovado">
+                  <h2 class="mdl-card__title-text">Filme Aprovado</h2>
+                </div>
+                <div class="mdl-card__supporting-text">
+                  O filme foi aprovado com sucesso e já liberado para o usuário. 
+                </div>
+                <div class="mdl-card__actions mdl-card--border">
+                  <a href="filmes.html" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-color-text--blue-grey-900">
+                    Ok
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div id="lightbox_revisao" class="lightbox lightbox_revisao">
+              <div class="lightbox_card mdl-card mdl-shadow--2dp">
+                <div class="mdl-card__title mdl-card--expand mdl-color-text--white revisao">
+                  <h2 class="mdl-card__title-text">Filme em Revisão</h2>
+                </div>
+                <div class="mdl-card__supporting-text">
+                  O filme foi marcado para revisão e poderá ser reanalisado em breve. 
+                </div>
+                <div class="mdl-card__actions mdl-card--border">
+                  <a href="filmes.html" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-color-text--blue-grey-900">
+                    Ok
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div id="lightbox_favorito" class="lightbox lightbox_favorito">
+              <div class="lightbox_card mdl-card mdl-shadow--2dp">
+                <div class="mdl-card__title mdl-card--expand mdl-color-text--white favorito">
+                  <h2 class="mdl-card__title-text">Filme Favoritado</h2>
+                </div>
+                <div class="mdl-card__supporting-text">
+                  O filme foi aprovado e adicionado na lista de favoritos. 
+                </div>
+                <div class="mdl-card__actions mdl-card--border">
+                  <a href="filmes.html" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-color-text--blue-grey-900">
+                    Ok
+                  </a>
+                </div>
+              </div>
+            </div>
+
+
             
           </div>          
         </div>

@@ -64,6 +64,30 @@ span.count {
   background-color: #263238 !important;
 }
 
+.pendente_text {
+  color: #FFCA28 !important;
+}
+
+.revisao_text {
+  color: #F57C00 !important;
+}
+
+.aprovado_text {
+  color: #8BC34A !important;
+}
+
+.reprovado_text {
+  color: #F44336 !important;
+}
+
+.favorito_text {
+  color: #2196F3 !important;
+}
+
+.total_text {
+  color: #263238 !important;
+}
+
 /* TABELA */
 
 .table-responsive-vertical {
