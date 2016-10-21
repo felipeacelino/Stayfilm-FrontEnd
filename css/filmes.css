@@ -41,27 +41,27 @@ span.count {
 }
 
 .pendente {
-  background-color: #FFCA28;
+  background-color: #FFCA28 !important;
 }
 
 .revisao {
-  background-color: #F57C00;
+  background-color: #F57C00 !important;
 }
 
 .aprovado {
-  background-color: #8BC34A;
+  background-color: #8BC34A !important;
 }
 
 .reprovado {
-  background-color: #F44336;
+  background-color: #F44336 !important;
 }
 
 .favorito {
-  background-color: #2196F3;
+  background-color: #2196F3 !important;
 }
 
 .total {
-  background-color: #263238;
+  background-color: #263238 !important;
 }
 
 /* TABELA */

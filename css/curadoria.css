@@ -177,6 +177,27 @@ html {
   height: 100%;   
 }
 
-.mdl-speed-dial {
-  position: fixed;
+.mdl-button--fab_flinger-container {
+  bottom: 16px;
+  right: 35px;
+}
+
+.mdl-button--fab_flinger-container .mdl-button--fab_flinger-options {
+  right: -10px;
+}
+
+.mdl-button--fab_flinger-container.is-showing-options .mdl-button--fab_flinger-options {
+  background: #FFF;
+  padding: 10px 10px;
+  border-radius: 5px;
+}
+
+.mdl-button--fab_flinger-container.is-showing-options .mdl-button--fab_flinger-options .mdl-button--fab {
+  color: #FFF;
+}
+
+.mdl-button--fab_flinger-container.is-showing-options .mdl-button--fab_flinger-options label {
+  color: #263238;
+  padding-left: 4px;
+  border-radius: 2px;
 }
