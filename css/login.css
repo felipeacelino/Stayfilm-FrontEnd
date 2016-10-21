@@ -19,18 +19,22 @@ html, body {
   background-color: #B0262C;
   margin: 0 auto;
   top: -50px;
+  z-index: 1;
 }
 
-.card-login-secundario .mdl-card__title {
-  margin-top: 150px;
+.card-login-secundario .mdl-card__actions {
+  padding: 0;
+  position: absolute;
+  bottom: 15px;
 }
 
-.card-login-secundario .mdl-card__title h3 {
+.card-login-secundario .mdl-card__actions h3 {
   width: 100%;
+  margin: 0;
   text-align: center;  
 }
 
-.card-login-secundario .mdl-card__title h3 a {
+.card-login-secundario .mdl-card__actions h3 a {
   text-decoration: none;
   font-size: 14px;
   color: #FFF;
