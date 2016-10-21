@@ -56,16 +56,15 @@ figure {
   width: 100%;
   line-height: 0; 
   -webkit-column-count: 4;
-  -webkit-column-gap:   0px;
+  -webkit-column-gap:   10px;
   -moz-column-count:    4;
-  -moz-column-gap:      0px;
+  -moz-column-gap:      10px;
   column-count:         4;
-  column-gap:           0px;
+  column-gap:           10px;
 }
 
 .grid-media .media-img {
-  float: left;
-  margin-right: 10px;
+  display: inline-block;
   margin-bottom: 10px;
 }
 
@@ -176,14 +175,11 @@ html {
   right: 35px;
 }
 
-.mdl-button--fab_flinger-container .mdl-button--fab_flinger-options {
-  right: -10px;
-}
-
 .mdl-button--fab_flinger-container.is-showing-options .mdl-button--fab_flinger-options {
   background: #FFF;
   padding: 10px 10px;
   border-radius: 5px;
+  right: -10px;
 }
 
 .mdl-button--fab_flinger-container.is-showing-options .mdl-button--fab_flinger-options .mdl-button--fab {
