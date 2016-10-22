@@ -161,16 +161,16 @@ html {
 }
 
 .mdl-button--fab_flinger-container {
-  bottom: 16px;
-  right: 35px;
+  bottom: 20px;
+  right: 50px;
   z-index: 99;
   transform: translateZ(0);
   -webkit-transform: translateZ(0);
 }
 
 .mdl-button--fab_flinger-container.is-showing-options .mdl-button--fab_flinger-options {
-  background: #FFF;
-  padding: 10px 10px;
+  background: rgba(255,255,255,0.9);
+  padding: 0 5px 10px 5px;
   border-radius: 5px;
   right: -10px;
 }
@@ -180,7 +180,7 @@ html {
 }
 
 .mdl-button--fab_flinger-container.is-showing-options .mdl-button--fab_flinger-options label {
-  color: #263238;
+  color: rgba(0,0,0,0.54);
   padding-left: 4px;
   border-radius: 2px;
 }
