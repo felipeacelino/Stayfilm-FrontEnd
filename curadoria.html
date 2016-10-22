@@ -31,18 +31,18 @@
       <!-- BARRA SUPERIOR -->
       <header class="barra-superior mdl-layout__header mdl-layout__header--waterfall mdl-color--white">
 
-        <div class="mdl-layout__header-row mdl-color-text--blue-grey-900">
+        <div class="mdl-layout__header-row">
 
           <!-- TÍTULO PRINCIPAL -->
-          <span class="mdl-layout-title">Filme de Fulano</span>
+          <span class="mdl-layout-title mdl-color-text--blue-grey-900">Filme de Fulano</span>
           <!-- FIM TÍTULO PRINCIPAL -->          
             
         </div>
           
-        <div class="mdl-layout__header-row descricao-filme">
+        <div class="mdl-layout__header-row mdl-layout__header-row-subtitle">
 
           <nav class="mdl-navigation">
-            <a class="mdl-navigation__link mdl-color-text--blue-grey-900 usuario-filme" target="_blank" href="https://www.stayfilm.com/">
+            <a class="mdl-navigation__link mdl-color-text--blue-grey-900" target="_blank" href="https://www.stayfilm.com/">
               <i class="material-icons" role="presentation">person</i>Fulano
             </a>
           </nav>
@@ -56,17 +56,14 @@
               </button>
             </a>
           </nav>
-
-
-
             
         </div>
           
-        <div class="mdl-layout__header-row descricao-filme">
+        <div class="mdl-layout__header-row mdl-layout__header-row-subtitle">
 
           <nav class="mdl-navigation">
-            <a class="mdl-navigation__link mdl-color-text--blue-grey-900 tema-filme" href="#">Disney</a>
-            <a class="mdl-navigation__link mdl-color-text--blue-grey-900 data-filme" href="#">00/00/0000 00:00</a>
+            <a class="mdl-navigation__link mdl-color-text--blue-grey-900 tema-filme">Disney</a>
+            <a class="mdl-navigation__link mdl-color-text--blue-grey-900 data-filme">00/00/0000 00:00</a>
           </nav>    
             
         </div>
@@ -217,9 +214,9 @@
                   <i class="material-icons">thumb_up</i>         
                 </button>
                 <label>Reprovar</label>
-                <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored reprovado">
+                <a href="resposta.html"><button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored reprovado">
                   <i class="material-icons">thumb_down</i>            
-                </button>
+                </button></a>
                 <label>Favorito</label>
                 <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored favorito" data-featherlight-close-on-esc="false" data-featherlight-close-on-click="false" data-featherlight="#lightbox_favorito">
                   <i class="material-icons">star</i>            

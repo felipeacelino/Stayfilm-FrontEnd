@@ -12,28 +12,6 @@ html, body {
   z-index: 2;
 }
 
-.card-login-secundario  {
-  width: 95%;
-  height: 220px;
-  max-width: 480px;
-  background-color: #B0262C;
-  margin: 0 auto;
-  top: -50px;
-  z-index: 1;
-}
-
-.card-login-secundario .mdl-card__actions {
-  padding: 0;
-  position: absolute;
-  bottom: 15px;
-}
-
-.card-login-secundario .mdl-card__actions h3 {
-  width: 100%;
-  margin: 0;
-  text-align: center;  
-}
-
 .card-login-secundario .mdl-card__actions h3 a {
   text-decoration: none;
   font-size: 14px;
@@ -56,6 +34,34 @@ html, body {
   max-width: 200px;
 }
 
+.card-login-principal .mdl-card__actions {
+  margin-top: 5px;
+  text-align: right;
+  padding-right: 20px;
+}
+
+.card-login-secundario  {
+  width: 95%;
+  height: 220px;
+  max-width: 480px;
+  background-color: #B0262C;
+  margin: 0 auto;
+  top: -50px;
+  z-index: 1;
+}
+
+.card-login-secundario .mdl-card__actions {
+  padding: 0;
+  position: absolute;
+  bottom: 15px;
+}
+
+.card-login-secundario .mdl-card__actions h3 {
+  width: 100%;
+  margin: 0;
+  text-align: center;  
+}
+
 #bico {
   width: 0;
   height: 0;
@@ -73,23 +79,22 @@ html, body {
   width: 90%;
 }
 
-.card-login-principal .mdl-textfield {
-  width: 100%;
+/* TEXTFIELD */
+
+.mdl-textfield {
+  width: 100% !important;
 }
 
-.card-login-principal .mdl-textfield .mdl-textfield__input {
-  border-bottom: 1px solid #B0BEC5;
-}
 
-.card-login-principal .mdl-textfield .mdl-textfield__label {
-  font-size: 14px;
-  color: #B0BEC5;
+
+.mdl-textfield .mdl-textfield__label {
+  color: rgba(0,0,0, 0.54);
 }
 
 .mdl-textfield--floating-label.is-focused .mdl-textfield__label,
 .mdl-textfield--floating-label.has-placeholder .mdl-textfield__label,
 .mdl-textfield--floating-label.is-dirty .mdl-textfield__label {
-  color: #263238;
+  color: #69ACB5;
 }
 
 .mdl-textfield--floating-label.is-invalid .mdl-textfield__label {
@@ -97,11 +102,6 @@ html, body {
 }
 
 .mdl-textfield__label:after {
-  background-color: #263238;
+  background-color: #69ACB5;
 }
 
-.card-login-principal .mdl-card__actions {
-  margin-top: 5px;
-  text-align: right;
-  padding-right: 20px;
-}

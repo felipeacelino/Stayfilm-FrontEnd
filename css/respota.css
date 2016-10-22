@@ -1,0 +1,27 @@
+.form-resposta {
+  width: 100%;
+}
+
+.form-resposta .mdl-card__supporting-text {
+  width: 100%;
+  font-size: 16px;
+  padding: 0;
+  margin-bottom: 20px;
+}
+
+.form-resposta .menu_idioma {
+  width: 100%;
+  float: right;
+}
+
+.form-resposta .menu_idioma .mdl-textfield {
+  max-width: 300px;
+  float: right;
+}
+
+.mdl-card__actions-resposta {
+  width: 100%;
+  display: flex;
+  box-sizing:border-box;
+  align-items: center;
+}
