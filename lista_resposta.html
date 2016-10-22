@@ -15,6 +15,8 @@
     <!-- CSS -->    
     <link rel="stylesheet" href="vendors/mdl/material.css">       
     <link rel="stylesheet" href="css/esqueleto.css">
+    <link rel="stylesheet" href="css/filmes.css">
+
     <link rel="stylesheet" href="css/lista_resposta.css">
     <link rel="stylesheet" href="css/login.css">
     <link href="vendors/flag-icon-css-master/assets/docs.css" rel="stylesheet">
@@ -117,31 +119,24 @@
             <div class="header_filtros">         
               
               <div class="filtro">
-                <span>Status</span>
-                <button class="btn-menu mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="btn-filtro-status">
-                  <i class="material-icons" role="presentation">filter_list</i>
+                <span>Idioma</span>
+                <button class="btn-menu mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="btn-filtro-status"><i class="material-icons" role="presentation">filter_list</i>
                 </button>
                 <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right btn-filtro-status" for="btn-filtro-status">
-                  <li class="mdl-menu__item"><label>Pendentes</label><span class="count pendente">3</span></li>
-                  <li class="mdl-menu__item"><label>Revisão</label><span class="count revisao">1</span></li>
-                  <li class="mdl-menu__item"><label>Aprovados</label><span class="count aprovado">3</span></li>
-                  <li class="mdl-menu__item"><label>Reprovados</label><span class="count reprovado">2</span></li>
-                  <li class="mdl-menu__item"><label>Favoritos</label><span class="count favorito">1</span></li>
+                  <li class="mdl-menu__item">
+                  <span style="padding-right:15px;" class="flag-icon flag-icon-br"></span>
+                  <label>Português</label>
+                  </li>
+                  <li class="mdl-menu__item">
+                  <span style="padding-right:15px;" class="flag-icon flag-icon-us"></span>
+                  <label>Inglês</label>
+                  </li>
+                  <li class="mdl-menu__item">
+                  <span style="padding-right:15px;" class="flag-icon flag-icon-es"></span>
+                  <label>Espanhol</label>
+                  </li>
                 </ul>
-              </div>
-
-              <div class="filtro">
-                <span>Cliente</span>
-                <button class="btn-menu mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="btn-filtro-cliente">
-                  <i class="material-icons" role="presentation">filter_list</i>
-                </button>
-                <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="btn-filtro-cliente">
-                  <li class="mdl-menu__item">Cliente 1</li>
-                  <li class="mdl-menu__item">Cliente 2</li>
-                  <li class="mdl-menu__item">Cliente 3</li>
-                </ul>
-              </div>              
-
+              </div>       
             </div>
 
             <div class="table-responsive-vertical">
@@ -150,7 +145,7 @@
                 <thead>
                   <tr>
                     <th>Idioma</th>
-                    <th>Título</th>
+                    <th>Motivo</th>
                     <th>Resposta</th>
                   </tr>                                     
                 </thead>
@@ -235,6 +230,46 @@
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident, corporis, atque. 
                     </td>    
                   </tr>
+                    <tr onclick="location.href='#'">
+                    <td>
+                      <span style="padding-right:15px;" class="flag-icon flag-icon-br"></span>
+                      <span>Português</span>
+                    </td>
+                    <td >
+                      <span>Nudez, Pornografia ou Violência</span>
+                    </td>            
+                    <td >
+                      <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident, corporis, atque. 
+                    </td>    
+                  </tr>
+                  <tr onclick="location.href='#'">
+                    <td>
+                      <span style="padding-right:15px;" class="flag-icon flag-icon-us"></span>
+                      <span>Inglês</span>
+                    </td>
+                    <td >
+                      <span>Direito de Imagem</span>
+                    </td>            
+                    <td >
+                      <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident, corporis, atque. 
+                    </td>    
+                  </tr>
+                  
+                  <tr onclick="location.href='#'">
+                    <td>
+                      <span style="padding-right:15px;" class="flag-icon flag-icon-es"></span>
+                      <span>Espanhol</span>
+                    </td>
+                    <td >
+                      <span>Viola Regras ou Políticas</span>
+                    </td>            
+                    <td >
+                      <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident, corporis, atque. 
+                    </td>    
+                  </tr>
                 </tbody>
 
               </table>
@@ -257,8 +292,12 @@
                   <i class="material-icons" role="presentation">chevron_right</i>
                 </div>
 
-              </div>         
-
+              </div>   
+              <a href="add_resposta.html">      
+              <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored btn_acao mdl-shadow--4dp favorito">
+                <i class="material-icons">add</i>
+              </button>
+              </a>
             </div>
             
           </div>          
