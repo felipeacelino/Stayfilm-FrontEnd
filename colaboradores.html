@@ -1,0 +1,227 @@
+<!doctype html>
+
+<html lang="pt-br">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Stayfilm</title>
+
+    <!-- FONTS -->
+    <link href="vendors/material-icons/material-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+
+    <!-- CSS -->    
+    <link rel="stylesheet" href="vendors/mdl/material.css">       
+    <link rel="stylesheet" href="css/esqueleto.css">
+    <link rel="stylesheet" href="css/filmes.css">
+
+  </head>
+
+  <body>
+
+    <!-- ESTRUTURA -->
+    <div class="estrutura mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+
+      <!-- BARRA SUPERIOR -->
+      <header class="barra-superior mdl-layout__header mdl-color--white">
+
+        <div class="mdl-layout__header-row mdl-color-text--blue-grey-900">
+
+          <!-- TÍTULO PRINCIPAL -->
+          <span class="mdl-layout-title">Colaboradores</span>
+          <!-- FIM TÍTULO PRINCIPAL -->
+
+          <div class="mdl-layout-spacer"></div>
+
+        </div>
+
+      </header>
+
+      <!-- FIM BARRA SUPERIOR -->
+
+      <!-- BARRA LATERAL -->
+      <div class="barra-lateral mdl-layout__drawer">   
+
+        <header class="barra-lateral-header">
+
+          <!-- LOGO -->
+          <img src="images/logo.jpg" class="logo-principal">
+
+          <!-- USUÁRIO -->
+          <div class="user-descricao mdl-color-text--white">
+            <i class="material-icons" role="presentation">person</i>
+            <span>Fulano de Tal</span>            
+            <div class="mdl-layout-spacer"></div>
+            <button id="menu_user" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+              <i class="material-icons" role="presentation">arrow_drop_down</i>
+              <span class="visuallyhidden">Accounts</span>
+            </button>
+            <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="menu_user">
+              <li class="mdl-menu__item">Meus Dados</li>
+            </ul>
+          </div>
+
+        </header>             
+
+        <nav class="nav-lateral mdl-navigation mdl-color--blue-grey-900">
+
+          <!-- ITEM BARRA LATERAL -->
+          <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="filmes.html">
+            <i class="material-icons" role="presentation">movie</i>Curadoria
+          </a>
+
+          <!-- ITEM BARRA LATERAL -->
+          <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="#">
+            <i class="material-icons" role="presentation">event</i>Escala
+          </a>
+
+          <!-- ITEM BARRA LATERAL -->
+          <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="colaboradores.html">
+            <i class="material-icons" role="presentation">group</i>Colaboradores
+          </a>
+
+          <!-- ITEM BARRA LATERAL -->
+          <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="#">
+            <i class="material-icons" role="presentation">forum</i>Respostas
+          </a>
+
+          <!-- ITEM BARRA LATERAL -->
+          <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="#">
+            <i class="material-icons" role="presentation">language</i>Idiomas
+          </a>
+
+          <div class="mdl-layout-spacer"></div>
+
+          <!-- ITEM BARRA LATERAL -->
+          <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="login.html">
+            <i class="material-icons" role="presentation">backspace</i>Sair
+          </a>
+
+        </nav>
+
+      </div>
+      <!-- FIM BARRA LATERAL -->
+
+      <!-- CONTEÚDO -->
+      <main class="mdl-layout__content mdl-color--grey-100">
+        <div class="mdl-grid content">
+          <div class="conteudo mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+
+            <div class="header_filtros">         
+              
+              <div class="filtro">
+                <span>Status</span>
+                <button class="btn-menu mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="btn-filtro-status">
+                  <i class="material-icons" role="presentation">filter_list</i>
+                </button>
+                <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="btn-filtro-status">
+                  <li class="mdl-menu__item">Ativos</li>
+                  <li class="mdl-menu__item">Inativos</li>
+                </ul>
+              </div>              
+
+            </div>
+
+            <div class="table-responsive-vertical">
+              
+              <table id="table" class="table table-hover table-bordered">
+
+                <thead>
+                  <tr>
+                    <th>Status</th>
+                    <th>Nome</th>
+                    <th>E-mail</th>                                        
+                  </tr>
+                </thead>
+
+                <tbody>
+
+                  <tr onclick="location.href='ver_colaborador.html'">
+                    <td><span class="span_status aprovado">Ativo</span></td>
+                    <td>Fulano de Tal</td>            
+                    <td>fulano@email.com</td>
+                  </tr>
+
+                  <tr onclick="location.href='ver_colaborador.html'">
+                    <td><span class="span_status aprovado">Ativo</span></td>
+                    <td>Fulano de Tal</td>            
+                    <td>fulano@email.com</td>
+                  </tr>
+
+                  <tr onclick="location.href='ver_colaborador.html'">
+                    <td><span class="span_status aprovado">Ativo</span></td>
+                    <td>Fulano de Tal</td>            
+                    <td>fulano@email.com</td>
+                  </tr>
+
+                  <tr onclick="location.href='ver_colaborador.html'">
+                    <td><span class="span_status aprovado">Ativo</span></td>
+                    <td>Fulano de Tal</td>            
+                    <td>fulano@email.com</td>
+                  </tr>
+
+                  <tr onclick="location.href='ver_colaborador.html'">
+                    <td><span class="span_status aprovado">Ativo</span></td>
+                    <td>Fulano de Tal</td>            
+                    <td>fulano@email.com</td>
+                  </tr>
+
+                  <tr onclick="location.href='ver_colaborador.html'">
+                    <td><span class="span_status aprovado">Ativo</span></td>
+                    <td>Fulano de Tal</td>            
+                    <td>fulano@email.com</td>
+                  </tr>
+
+                  <tr onclick="location.href='ver_colaborador.html'">
+                    <td><span class="span_status reprovado">Inativo</span></td>
+                    <td>Fulano de Tal</td>            
+                    <td>fulano@email.com</td>
+                  </tr>
+
+                  <tr onclick="location.href='ver_colaborador.html'">
+                    <td><span class="span_status aprovado">Ativo</span></td>
+                    <td>Fulano de Tal</td>            
+                    <td>fulano@email.com</td>
+                  </tr>
+
+                </tbody>
+
+              </table>
+
+             <div class="paginacao">
+
+                <label for="qtde_pagina">Linhas por página:</label>
+                <select id="qtde_pagina">
+                  <option value="10">10</option>
+                  <option value="25">25</option>
+                  <option value=50>50</option>
+                </select>
+
+                <label>
+                  <span id="start">1</span>-<span id="end">10</span> de <span id="total">10</span>
+                </label>
+
+                <div class="page-nav">
+                  <i class="material-icons" role="presentation">chevron_left</i>
+                  <i class="material-icons" role="presentation">chevron_right</i>
+                </div>
+
+              </div>         
+
+            </div>
+            
+          </div>          
+        </div>
+      </main>
+      <!-- FIM CONTEÚDO -->
+
+    </div>
+    <!-- FIM ESTRUTURA -->
+    
+    <!-- JAVA SCRIPT -->
+    <script src="vendors/mdl/material.js"></script>
+
+  </body>
+</html>
