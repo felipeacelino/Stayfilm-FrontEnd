@@ -4,18 +4,20 @@ html, body {
 
 .header_filtros {
   width: 100%;
-  height: 40px;
+  height: auto;
   margin-bottom: 10px;
+  border: 1px solid red;
 }
 
 .header_filtros .filtro {
   position: relative;
   float: right;
   margin-left: 30px;
+  border: 1px solid blue;
 }
 
-.header_filtros .filtro .btn-filtro-status .mdl-menu__item {
-  width: 150px;
+.header_filtros .filtro .mdl-textfield {
+  border: 1px solid green;
 }
 
 .header_filtros .filtro .btn-filtro-status .mdl-menu__item label {
@@ -61,11 +63,7 @@ span.count {
 }
 
 .accent {
-  background-color: #69ACB5 !important;
-}
-
-.total {
-  background-color: #263238 !important;
+  background-color: #408F9C !important;
 }
 
 .pendente_text {
@@ -89,11 +87,7 @@ span.count {
 }
 
 .accent_text {
-  color: #69ACB5 !important;
-}
-
-.total_text {
-  color: #263238 !important;
+  color: #408F9C !important;
 }
 
 /* TABELA */

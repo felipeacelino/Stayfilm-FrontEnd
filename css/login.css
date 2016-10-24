@@ -94,7 +94,7 @@ html, body {
 .mdl-textfield--floating-label.is-focused .mdl-textfield__label,
 .mdl-textfield--floating-label.has-placeholder .mdl-textfield__label,
 .mdl-textfield--floating-label.is-dirty .mdl-textfield__label {
-  color: #69ACB5;
+  color: #408F9C;
 }
 
 .mdl-textfield--floating-label.is-invalid .mdl-textfield__label {
@@ -102,6 +102,6 @@ html, body {
 }
 
 .mdl-textfield__label:after {
-  background-color: #69ACB5;
+  background-color: #408F9C;
 }
 

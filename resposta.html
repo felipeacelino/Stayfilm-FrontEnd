@@ -123,7 +123,7 @@
         <div class="mdl-grid content">
           <div class="conteudo mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
 
-            <form class="form-resposta">
+            <form class="form-resposta" id="form">
 
               <div class="mdl-card__supporting-text">
                 Por favor, escolha abaixo o motivo pelo qual o filme será reprovado. 
@@ -131,18 +131,19 @@
 
               <div class="menu_idioma">
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fullwidth getmdl-select__fix-height">
-                  <input class="mdl-textfield__input" type="text" id="idioma" value="" readonly tabIndex="-1">
+                  <input class="mdl-textfield__input required" type="text" id="idioma" value="" readonly tabIndex="-1">
                   <label for="idioma" class="mdl-textfield__label">Idioma</label>
                   <ul for="idioma" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
                     <li class="mdl-menu__item">Português</li>
                     <li class="mdl-menu__item">Inglês</li>
                     <li class="mdl-menu__item">Espanhol</li>
                   </ul>
+                  <span class="mdl-textfield__error">Selecione um idioma</span>
                 </div>
               </div>
 
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fullwidth getmdl-select__fix-height">
-                <input class="mdl-textfield__input" type="text" id="motivo" value="" readonly tabIndex="-1">
+                <input class="mdl-textfield__input required" type="text" id="motivo" value="" readonly tabIndex="-1">
                 <label for="motivo" class="mdl-textfield__label">Motivo</label>
                 <ul for="motivo" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
                   <li class="mdl-menu__item">Viola as Regras ou Políticas</li>
@@ -150,28 +151,44 @@
                   <li class="mdl-menu__item">Direito de Imagem</li>
                   <li class="mdl-menu__item">Outro Motivo</li>
                 </ul>
+                <span class="mdl-textfield__error">Selecione um motivo</span>
               </div>
 
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <textarea class="mdl-textfield__input" type="text" rows="5" id="detalhes"></textarea>
+                <textarea class="mdl-textfield__input required" type="text" rows="5" id="detalhes"></textarea>
                 <label class="mdl-textfield__label" for="detalhes">Detalhes</label>
+                <span class="mdl-textfield__error">Campo obrigatório</span>
               </div>
 
-            </form>
+              <div class="mdl-radio-group">
+                <label class="mdl-radio-group__label">Sexo</label>
+                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="feminino">
+                  <input type="radio" id="feminino" class="mdl-radio__button" name="options" value="feminino">
+                  <span class="mdl-radio__label">Feminino</span>
+                </label>
+                <div class="mdl-layout-spacer"></div>
+                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="masculino">
+                  <input type="radio" id="masculino" class="mdl-radio__button" name="options" value="masculino">
+                  <span class="mdl-radio__label">Masculino</span>
+                </label>
+                <span class="mdl-textfield__error">Campo obrigatório</span>
+              </div>
 
-            <div class="mdl-card__actions mdl-card__actions-resposta"> 
-              <a href="curadoria.html">
-                <button id="cancelar" class="mdl-button mdl-js-button mdl-js-ripple-effect ">
-                  Cancelar
-                </button>
-              </a>
-              <div class="mdl-layout-spacer"></div>
-              <a href="" data-featherlight-close-on-esc="false" data-featherlight-close-on-click="false" data-featherlight="#lightbox_reprovado">
-                <button id="reprovar" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored reprovado">
-                  Reprovar
-                </button>
-              </a>
-            </div>
+              <div class="mdl-card__actions mdl-card__actions-resposta"> 
+                <a href="curadoria.html">
+                  <button id="cancelar" class="mdl-button mdl-js-button mdl-js-ripple-effect ">
+                    Cancelar
+                  </button>
+                </a>
+                <div class="mdl-layout-spacer"></div>
+                <a href="">
+                  <input type="submit" value="Reprovar" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored reprovado" />
+                </a>
+              </div>
+
+
+
+            </form>
 
             <div id="lightbox_reprovado" class="lightbox lightbox_reprovado">
               <div class="lightbox_card mdl-card mdl-shadow--2dp">
@@ -203,11 +220,31 @@
     <script src="vendors/jquery/jquery.js"></script>
     <script src="vendors/featherlight/featherlight.js"></script>
     <script type="text/javascript">
-      
-      /*$("#sample1").change(function(){
-        alert($(this).val());
-      });*/
 
+    $(".required").blur(function(){
+
+      if(!this.value){
+        $(this).parent().addClass('is-invalid');
+      }
+
+    });
+      
+    $("#form").submit(function(e){
+
+      if(!$('#feminino').is(':checked') && !$('#masculino').is(':checked')){
+        e.preventDefault();
+      }
+
+      $(".required").each(function() {        
+        if(!this.value){
+          $(this).parent().addClass('is-invalid');
+          e.preventDefault();           
+        }else{
+          $(this).parent().removeClass('is-invalid');
+        }
+      });
+
+    });
     </script>
 
   </body>
