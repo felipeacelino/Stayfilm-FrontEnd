@@ -6,24 +6,24 @@ html, body {
   width: 100%;
   height: auto;
   margin-bottom: 10px;
-  border: 1px solid red;
 }
 
 .header_filtros .filtro {
   position: relative;
   float: right;
   margin-left: 30px;
-  border: 1px solid blue;
 }
 
-.header_filtros .filtro .mdl-textfield {
-  border: 1px solid green;
+.header_filtros .filtro .btn-filtro-status {
+  width: 170px;
 }
+
 
 .header_filtros .filtro .btn-filtro-status .mdl-menu__item label {
   float: left;
-  width: 100px;
+  width: 80px;
 }
+
 span.count {
   color: #fff;
   padding: 5px 8px;
@@ -62,6 +62,10 @@ span.count {
   background-color: #2196F3 !important;
 }
 
+.action {
+  background-color: rgb(63,81,181) !important;
+}
+
 .accent {
   background-color: #408F9C !important;
 }
@@ -84,6 +88,10 @@ span.count {
 
 .favorito_text {
   color: #2196F3 !important;
+}
+
+.action_text {
+  color: rgb(63,81,181) !important;
 }
 
 .accent_text {
@@ -245,6 +253,10 @@ span.count {
     word-break:break-all;
   }
 
+  .table-responsive-vertical > .table > tbody > tr > td:last-child {
+    text-align: right;
+  }
+
   .table-responsive-vertical {
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
@@ -294,3 +306,10 @@ span.count {
   margin-left: 10px;
 }
 
+/*BOTAO AÇÃO*/
+
+.btn_acao{
+  position: fixed;
+  bottom: 20px;
+  right: 25px;
+}

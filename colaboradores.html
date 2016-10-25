@@ -54,14 +54,6 @@
           <div class="user-descricao mdl-color-text--white">
             <i class="material-icons" role="presentation">person</i>
             <span>Fulano de Tal</span>            
-            <div class="mdl-layout-spacer"></div>
-            <button id="menu_user" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-              <i class="material-icons" role="presentation">arrow_drop_down</i>
-              <span class="visuallyhidden">Accounts</span>
-            </button>
-            <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="menu_user">
-              <li class="mdl-menu__item">Meus Dados</li>
-            </ul>
           </div>
 
         </header>             
@@ -74,7 +66,7 @@
           </a>
 
           <!-- ITEM BARRA LATERAL -->
-          <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="#">
+          <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="escala.html">
             <i class="material-icons" role="presentation">event</i>Escala
           </a>
 
@@ -84,12 +76,12 @@
           </a>
 
           <!-- ITEM BARRA LATERAL -->
-          <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="#">
+          <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="respostas.html">
             <i class="material-icons" role="presentation">forum</i>Respostas
           </a>
 
           <!-- ITEM BARRA LATERAL -->
-          <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="#">
+          <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="idiomas.html">
             <i class="material-icons" role="presentation">language</i>Idiomas
           </a>
 
@@ -112,17 +104,6 @@
 
             <div class="header_filtros">         
               
-              <div class="filtro">
-                <span>Status</span>
-                <button class="btn-menu mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="btn-filtro-status">
-                  <i class="material-icons" role="presentation">filter_list</i>
-                </button>
-                <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="btn-filtro-status">
-                  <li class="mdl-menu__item">Ativos</li>
-                  <li class="mdl-menu__item">Inativos</li>
-                </ul>
-              </div>              
-
               <div class="filtro">
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
                   <label class="mdl-button mdl-js-button mdl-button--icon" for="search">
@@ -202,7 +183,7 @@
 
               </table>
 
-             <div class="paginacao">
+              <div class="paginacao">
 
                 <label for="qtde_pagina">Linhas por página:</label>
                 <select id="qtde_pagina">
@@ -223,6 +204,12 @@
               </div>         
 
             </div>
+
+            <a href="add_resposta.html">      
+            <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored action btn_acao mdl-shadow--4dp">
+              <i class="material-icons">add</i>
+            </button>
+            </a>
             
           </div>          
         </div>

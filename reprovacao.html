@@ -1,0 +1,203 @@
+<!doctype html>
+
+<html lang="pt-br">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Stayfilm</title>
+
+    <!-- FONTS -->
+    <link href="vendors/material-icons/material-icons.css"
+      rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+
+    <!-- CSS -->    
+    <link rel="stylesheet" href="vendors/mdl/material.css">    
+    <link rel="stylesheet" href="vendors/getmdl-select-master/getmdl-select.min.css">  
+    <link rel="stylesheet" href="vendors/featherlight/featherlight.css">  
+    <link rel="stylesheet" href="css/esqueleto.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/filmes.css">
+    <link rel="stylesheet" href="css/curadoria.css">
+    <link rel="stylesheet" href="css/reprovacao.css">
+
+  </head>
+
+  <body>
+
+    <!-- ESTRUTURA -->
+    <div class="estrutura mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+
+      <!-- BARRA SUPERIOR -->
+      <header class="barra-superior mdl-layout__header mdl-layout__header--waterfall mdl-color--white">
+
+        <div class="mdl-layout__header-row">
+
+          <!-- TÍTULO PRINCIPAL -->
+          <span class="mdl-layout-title mdl-color-text--blue-grey-900">Filme de Fulano</span>
+          <!-- FIM TÍTULO PRINCIPAL -->   
+
+        </div>
+
+        <div class="mdl-layout__header-row mdl-layout__header-row-subtitle">
+
+          <nav class="mdl-navigation">
+            <a class="mdl-navigation__link mdl-color-text--blue-grey-900">
+              Reprovação
+            </a>
+          </nav>
+
+        </div>  
+
+      </header>
+
+      <!-- FIM BARRA SUPERIOR -->
+
+      <!-- BARRA LATERAL -->
+      <div class="barra-lateral mdl-layout__drawer">   
+
+        <header class="barra-lateral-header">
+
+          <!-- LOGO -->
+          <img src="images/logo.jpg" class="logo-principal">
+
+          <!-- USUÁRIO -->
+          <div class="user-descricao mdl-color-text--white">
+            <i class="material-icons" role="presentation">person</i>
+            <span>Fulano de Tal</span>            
+          </div>
+
+        </header>             
+
+        <nav class="nav-lateral mdl-navigation mdl-color--blue-grey-900">
+
+          <!-- ITEM BARRA LATERAL -->
+          <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="filmes.html">
+            <i class="material-icons" role="presentation">movie</i>Curadoria
+          </a>
+
+          <!-- ITEM BARRA LATERAL -->
+          <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="escala.html">
+            <i class="material-icons" role="presentation">event</i>Escala
+          </a>
+
+          <!-- ITEM BARRA LATERAL -->
+          <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="colaboradores.html">
+            <i class="material-icons" role="presentation">group</i>Colaboradores
+          </a>
+
+          <!-- ITEM BARRA LATERAL -->
+          <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="respostas.html">
+            <i class="material-icons" role="presentation">forum</i>Respostas
+          </a>
+
+          <!-- ITEM BARRA LATERAL -->
+          <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="idiomas.html">
+            <i class="material-icons" role="presentation">language</i>Idiomas
+          </a>
+
+          <div class="mdl-layout-spacer"></div>
+
+          <!-- ITEM BARRA LATERAL -->
+          <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="login.html">
+            <i class="material-icons" role="presentation">backspace</i>Sair
+          </a>
+
+        </nav>
+
+      </div>
+      <!-- FIM BARRA LATERAL -->
+
+      <!-- CONTEÚDO -->
+      <main class="mdl-layout__content mdl-color--grey-100">
+        <div class="mdl-grid content">
+          <div class="conteudo mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+
+            <form class="form-resposta" id="form">
+
+              <div class="mdl-card__supporting-text">
+                Por favor, escolha abaixo o motivo pelo qual o filme será reprovado. 
+              </div>
+
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fullwidth getmdl-select__fix-height menu_idioma">
+                <input class="mdl-textfield__input required" type="text" id="idioma" value="" readonly tabIndex="-1">
+                <label for="idioma" class="mdl-textfield__label">Idioma</label>
+                <ul for="idioma" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
+                  <li class="mdl-menu__item">Português</li>
+                  <li class="mdl-menu__item">Inglês</li>
+                  <li class="mdl-menu__item">Espanhol</li>
+                </ul>
+                <span class="mdl-textfield__error">Selecione um idioma</span>
+              </div>
+
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fullwidth getmdl-select__fix-height">
+                <input class="mdl-textfield__input required" type="text" id="motivo" value="" readonly tabIndex="-1">
+                <label for="motivo" class="mdl-textfield__label">Motivo</label>
+                <ul for="motivo" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
+                  <li class="mdl-menu__item">Viola as Regras ou Políticas</li>
+                  <li class="mdl-menu__item">Nudez, Pornografia ou Violência</li>
+                  <li class="mdl-menu__item">Direito de Imagem</li>
+                  <li class="mdl-menu__item">Outro Motivo</li>
+                </ul>
+                <span class="mdl-textfield__error">Selecione um motivo</span>
+              </div>
+
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <textarea class="mdl-textfield__input required" type="text" rows="5" id="detalhes"></textarea>
+                <label class="mdl-textfield__label" for="detalhes">Detalhes</label>
+                <span class="mdl-textfield__error">Campo obrigatório</span>
+              </div>
+
+              <div class="mdl-card__actions mdl-card__actions-resposta"> 
+                <a href="curadoria.html" class="mdl-button mdl-js-button mdl-js-ripple-effect">Cancelar</a>
+                <div class="mdl-layout-spacer"></div>
+                <input type="submit" value="Reprovar" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored reprovado" />
+              </div>
+
+            </form>
+
+          </div>          
+        </div>
+      </main>
+      <!-- FIM CONTEÚDO -->
+
+    </div>
+    <!-- FIM ESTRUTURA -->
+    
+    <!-- JAVA SCRIPT -->
+    <script src="vendors/mdl/material.js"></script>
+    <script src="vendors/getmdl-select-master/getmdl-select.min.js"></script>
+    <script src="vendors/jquery/jquery.js"></script>
+    <script src="vendors/featherlight/featherlight.js"></script>
+    <script type="text/javascript">
+
+    $(".required").blur(function(){
+
+      if(!this.value){
+        $(this).parent().addClass('is-invalid');
+      }
+
+    });
+      
+    $("#form").submit(function(e){
+
+      if(!$('#feminino').is(':checked') && !$('#masculino').is(':checked')){
+        e.preventDefault();
+      }
+
+      $(".required").each(function() {        
+        if(!this.value){
+          $(this).parent().addClass('is-invalid');
+          e.preventDefault();           
+        }else{
+          $(this).parent().removeClass('is-invalid');
+        }
+      });
+
+    });
+    </script>
+
+  </body>
+</html>

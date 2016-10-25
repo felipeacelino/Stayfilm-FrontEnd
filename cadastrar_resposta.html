@@ -15,7 +15,13 @@
 
     <!-- CSS -->    
     <link rel="stylesheet" href="vendors/mdl/material.css">    
+    <link rel="stylesheet" href="vendors/getmdl-select-master/getmdl-select.min.css">  
+    <link rel="stylesheet" href="vendors/featherlight/featherlight.css">  
     <link rel="stylesheet" href="css/esqueleto.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/filmes.css">
+    <link rel="stylesheet" href="css/curadoria.css">
+    <link rel="stylesheet" href="css/reprovacao.css">
 
   </head>
 
@@ -25,13 +31,13 @@
     <div class="estrutura mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
 
       <!-- BARRA SUPERIOR -->
-      <header class="barra-superior mdl-layout__header mdl-color--white">
+      <header class="barra-superior mdl-layout__header mdl-layout__header--waterfall mdl-color--white">
 
-        <div class="mdl-layout__header-row mdl-color-text--blue-grey-900">
+        <div class="mdl-layout__header-row">
 
           <!-- TÍTULO PRINCIPAL -->
-          <span class="mdl-layout-title">Sistema de Curadoria</span>
-          <!-- FIM TÍTULO PRINCIPAL -->
+          <span class="mdl-layout-title mdl-color-text--blue-grey-900">Nova Resposta</span>
+          <!-- FIM TÍTULO PRINCIPAL -->   
 
         </div>
 
@@ -99,8 +105,41 @@
         <div class="mdl-grid content">
           <div class="conteudo mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
 
-            <!-- CONTEÚDO AQUI -->
-            
+            <form class="form-resposta">
+
+              <div class="mdl-card__supporting-text">
+                Por favor, preencha os campos abaixo para cadastrar uma nova resposta. 
+              </div>           
+              
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fullwidth getmdl-select__fix-height menu_idioma">
+                <input class="mdl-textfield__input required" type="text" id="idioma" value="" readonly tabIndex="-1">
+                <label for="idioma" class="mdl-textfield__label">Idioma</label>
+                <ul for="idioma" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
+                  <li class="mdl-menu__item">Português</li>
+                  <li class="mdl-menu__item">Inglês</li>
+                  <li class="mdl-menu__item">Espanhol</li>
+                </ul>
+                <span class="mdl-textfield__error">Selecione um idioma</span>
+              </div>
+
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text">
+                <label class="mdl-textfield__label">Motivo</label>            
+              </div>
+
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <textarea class="mdl-textfield__input" type="text" rows="5" id="detalhes"></textarea>
+                <label class="mdl-textfield__label" for="detalhes">Detalhes</label>
+              </div>
+
+            </form>
+
+            <div class="mdl-card__actions mdl-card__actions-resposta"> 
+              <a href="respostas.html" class="mdl-button mdl-js-button mdl-js-ripple-effect">Cancelar</a>
+              <div class="mdl-layout-spacer"></div>
+              <input type="submit" value="Cadastrar" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored action" />
+            </div>
+
           </div>          
         </div>
       </main>
@@ -111,6 +150,8 @@
     
     <!-- JAVA SCRIPT -->
     <script src="vendors/mdl/material.js"></script>
+    <script src="vendors/getmdl-select-master/getmdl-select.min.js"></script>
+    <script src="vendors/jquery/jquery.js"></script>
 
   </body>
 </html>

@@ -162,14 +162,14 @@ html {
 
 .mdl-button--fab_flinger-container {
   bottom: 20px;
-  right: 50px;
+  right: 25px;
   z-index: 99;
   transform: translateZ(0);
   -webkit-transform: translateZ(0);
 }
 
 .mdl-button--fab_flinger-container.is-showing-options .mdl-button--fab_flinger-options {
-  background: rgba(255,255,255,0.9);
+  background: rgba(38,50,56,0.8);
   padding: 0 5px 10px 5px;
   border-radius: 5px;
   right: -5px;
@@ -180,7 +180,7 @@ html {
 }
 
 .mdl-button--fab_flinger-container.is-showing-options .mdl-button--fab_flinger-options label {
-  color: rgba(0,0,0,0.54);
+  color: #FFF;
   padding-left: 4px;
   border-radius: 2px;
 }
@@ -191,4 +191,8 @@ html {
 
 .lightbox_card .mdl-card__actions {
   text-align: right;
+  display: flex;
+  box-sizing:border-box;
+  align-items: center;
 }
+
