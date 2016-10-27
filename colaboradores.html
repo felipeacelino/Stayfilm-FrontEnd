@@ -13,10 +13,13 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
 
     <!-- CSS -->    
-    <link rel="stylesheet" href="vendors/mdl/material.css">       
-    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="vendors/mdl/material.css">  
+    <link rel="stylesheet" href="vendors/featherlight/featherlight.css">     
     <link rel="stylesheet" href="css/esqueleto.css">
     <link rel="stylesheet" href="css/filmes.css">
+    <link rel="stylesheet" href="css/respostas.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/curadoria.css">
 
   </head>
 
@@ -34,7 +37,7 @@
           <span class="mdl-layout-title">Colaboradores</span>
           <!-- FIM TÍTULO PRINCIPAL -->
 
-          <div class="mdl-layout-spacer"></div>
+          <div class="mdl-layout-spacer"></div>         
 
         </div>
 
@@ -80,11 +83,7 @@
             <i class="material-icons" role="presentation">forum</i>Respostas
           </a>
 
-          <!-- ITEM BARRA LATERAL -->
-          <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="idiomas.html">
-            <i class="material-icons" role="presentation">language</i>Idiomas
-          </a>
-
+          
           <div class="mdl-layout-spacer"></div>
 
           <!-- ITEM BARRA LATERAL -->
@@ -102,21 +101,6 @@
         <div class="mdl-grid content">
           <div class="conteudo mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
 
-            <div class="header_filtros">         
-              
-              <div class="filtro">
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
-                  <label class="mdl-button mdl-js-button mdl-button--icon" for="search">
-                    <i class="material-icons">search</i>
-                  </label>
-                  <div class="mdl-textfield__expandable-holder">
-                    <input class="mdl-textfield__input" type="text" id="search">
-                    <label class="mdl-textfield__label" for="search"></label>
-                  </div>
-                </div>
-              </div>              
-            </div>
-
             <div class="table-responsive-vertical">
               
               <table id="table" class="table table-hover table-bordered">
@@ -125,8 +109,8 @@
                   <tr>
                     <th>Status</th>
                     <th>Nome</th>
-                    <th>E-mail</th>                                        
-                  </tr>
+                    <th>E-mail</th>
+                  </tr>                                     
                 </thead>
 
                 <tbody>
@@ -134,56 +118,68 @@
                   <tr onclick="location.href='ver_colaborador.html'">
                     <td><span class="span_status aprovado">Ativo</span></td>
                     <td>Fulano de Tal</td>            
-                    <td>fulano@email.com</td>
+                    <td>fulano@email.com</td>   
                   </tr>
 
                   <tr onclick="location.href='ver_colaborador.html'">
                     <td><span class="span_status aprovado">Ativo</span></td>
                     <td>Fulano de Tal</td>            
-                    <td>fulano@email.com</td>
+                    <td>fulano@email.com</td>   
                   </tr>
 
                   <tr onclick="location.href='ver_colaborador.html'">
                     <td><span class="span_status aprovado">Ativo</span></td>
                     <td>Fulano de Tal</td>            
-                    <td>fulano@email.com</td>
+                    <td>fulano@email.com</td>   
                   </tr>
 
                   <tr onclick="location.href='ver_colaborador.html'">
                     <td><span class="span_status aprovado">Ativo</span></td>
                     <td>Fulano de Tal</td>            
-                    <td>fulano@email.com</td>
-                  </tr>
-
-                  <tr onclick="location.href='ver_colaborador.html'">
-                    <td><span class="span_status aprovado">Ativo</span></td>
-                    <td>Fulano de Tal</td>            
-                    <td>fulano@email.com</td>
-                  </tr>
-
-                  <tr onclick="location.href='ver_colaborador.html'">
-                    <td><span class="span_status aprovado">Ativo</span></td>
-                    <td>Fulano de Tal</td>            
-                    <td>fulano@email.com</td>
+                    <td>fulano@email.com</td>   
                   </tr>
 
                   <tr onclick="location.href='ver_colaborador.html'">
                     <td><span class="span_status reprovado">Inativo</span></td>
                     <td>Fulano de Tal</td>            
-                    <td>fulano@email.com</td>
+                    <td>fulano@email.com</td>   
                   </tr>
 
                   <tr onclick="location.href='ver_colaborador.html'">
                     <td><span class="span_status aprovado">Ativo</span></td>
                     <td>Fulano de Tal</td>            
-                    <td>fulano@email.com</td>
+                    <td>fulano@email.com</td>   
                   </tr>
 
+                  <tr onclick="location.href='ver_colaborador.html'">
+                    <td><span class="span_status aprovado">Ativo</span></td>
+                    <td>Fulano de Tal</td>            
+                    <td>fulano@email.com</td>   
+                  </tr>
+
+                  <tr onclick="location.href='ver_colaborador.html'">
+                    <td><span class="span_status aprovado">Ativo</span></td>
+                    <td>Fulano de Tal</td>            
+                    <td>fulano@email.com</td>   
+                  </tr>
+
+                  <tr onclick="location.href='ver_colaborador.html'">
+                    <td><span class="span_status aprovado">Ativo</span></td>
+                    <td>Fulano de Tal</td>            
+                    <td>fulano@email.com</td>   
+                  </tr>
+
+                  <tr onclick="location.href='ver_colaborador.html'">
+                    <td><span class="span_status aprovado">Ativo</span></td>
+                    <td>Fulano de Tal</td>            
+                    <td>fulano@email.com</td>   
+                  </tr>
+                  
                 </tbody>
 
               </table>
 
-              <div class="paginacao">
+             <div class="paginacao">
 
                 <label for="qtde_pagina">Linhas por página:</label>
                 <select id="qtde_pagina">
@@ -201,15 +197,35 @@
                   <i class="material-icons" role="presentation">chevron_right</i>
                 </div>
 
-              </div>         
+              </div>   
 
             </div>
 
-            <a href="add_resposta.html">      
+            <a href="cadastrar_colaborador.html">      
             <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored action btn_acao mdl-shadow--4dp">
               <i class="material-icons">add</i>
             </button>
             </a>
+
+            <div id="lightbox_remover" class="lightbox lightbox_reprovado">
+              <div class="lightbox_card mdl-card mdl-shadow--2dp">
+                <div class="mdl-card__title mdl-card--expand mdl-color-text--white reprovado">
+                  <h2 class="mdl-card__title-text">Remover Item</h2>
+                </div>
+                <div class="mdl-card__supporting-text">
+                  Deseja realmente remover o item selecionado?
+                </div>
+                <div class="mdl-card__actions mdl-card--border">
+                  <button id="cancelar" class="mdl-button mdl-js-button mdl-js-ripple-effect">
+                    Cancelar
+                  </button>
+                  <div class="mdl-layout-spacer"></div>
+                  <a href="respostas.html" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored reprovado">
+                    Remover
+                  </a>
+                </div>
+              </div>
+            </div>
             
           </div>          
         </div>
@@ -220,7 +236,17 @@
     <!-- FIM ESTRUTURA -->
     
     <!-- JAVA SCRIPT -->
+    <script src="vendors/jquery/jquery.js"></script>
     <script src="vendors/mdl/material.js"></script>
+    <script src="vendors/featherlight/featherlight.js"></script>
+
+    <script type="text/javascript">
+
+    $.extend($.featherlight.defaults, {
+      otherClose: '#cancelar'
+    });
+
+    </script>
 
   </body>
 </html>

@@ -6,4 +6,10 @@
 
 .mdl-menu-item .mdl-menu__item .material-icons {
 	margin-right: 16px;
+	position: relative;
+	top: 6px;
+}
+
+.link_item {
+	text-decoration: none;
 }

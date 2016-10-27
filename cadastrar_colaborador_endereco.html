@@ -11,7 +11,7 @@
     <!-- FONTS -->
     <link href="vendors/material-icons/material-icons.css"
       rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en"> -->
 
     <!-- CSS -->    
     <link rel="stylesheet" href="vendors/mdl/material.css">    
@@ -36,7 +36,7 @@
         <div class="mdl-layout__header-row">
 
           <!-- TÍTULO PRINCIPAL -->
-          <span class="mdl-layout-title mdl-color-text--blue-grey-900">Nova Resposta</span>
+          <span class="mdl-layout-title mdl-color-text--blue-grey-900">Cadastrar Endereço</span>
           <!-- FIM TÍTULO PRINCIPAL -->   
 
         </div>
@@ -101,39 +101,73 @@
         <div class="mdl-grid content">
           <div class="conteudo mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
 
-            <form class="form-resposta">
-
-              <div class="mdl-card__supporting-text">
-                Por favor, preencha os campos abaixo para cadastrar uma nova resposta. 
-              </div>           
+            <form class="form-colaborador">         
               
-              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fullwidth getmdl-select__fix-height menu_idioma">
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" name="endereco">
+                <label class="mdl-textfield__label">Endereço</label>            
+              </div>
+
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" name="endereco">
+                <label class="mdl-textfield__label">Complemento</label>            
+              </div>
+
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" name="bairro">
+                <label class="mdl-textfield__label">Bairro</label>            
+              </div>
+
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" name="cidade">
+                <label class="mdl-textfield__label">Cidade</label>            
+              </div>
+
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fullwidth getmdl-select__fix-height">
                 <input class="mdl-textfield__input required" type="text" id="idioma" value="" readonly tabIndex="-1">
-                <label for="idioma" class="mdl-textfield__label">Idioma</label>
+                <label for="idioma" class="mdl-textfield__label">Estado</label>
                 <ul for="idioma" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
-                  <li class="mdl-menu__item">Português</li>
-                  <li class="mdl-menu__item">Inglês</li>
-                  <li class="mdl-menu__item">Espanhol</li>
+                  <li class="mdl-menu__item">Acre</li>
+                  <li class="mdl-menu__item">Alagoas</li>
+                  <li class="mdl-menu__item">Amapá</li>
+                  <li class="mdl-menu__item">Amazonas</li>
+                  <li class="mdl-menu__item">Bahia</li>
+                  <li class="mdl-menu__item">Ceará</li>
+                  <li class="mdl-menu__item">Distrito Federal</li>
+                  <li class="mdl-menu__item">Espírito Santo</li>
+                  <li class="mdl-menu__item">Goiás</li>
+                  <li class="mdl-menu__item">Maranhão</li>
+                  <li class="mdl-menu__item">Mato Grosso</li>
+                  <li class="mdl-menu__item">Mato Grosso do Sul</li>
+                  <li class="mdl-menu__item">Minas Gerais</li>
+                  <li class="mdl-menu__item">Pará</li>
+                  <li class="mdl-menu__item">Paraíba</li>
+                  <li class="mdl-menu__item">Paraná</li>
+                  <li class="mdl-menu__item">Pernambuco</li>
+                  <li class="mdl-menu__item">Piauí</li>
+                  <li class="mdl-menu__item">Rio de Janeiro</li>
+                  <li class="mdl-menu__item">Rio Grande do Norte</li>
+                  <li class="mdl-menu__item">Rio Grande do Sul</li>
+                  <li class="mdl-menu__item">Rondônia</li>
+                  <li class="mdl-menu__item">Roraima</li>
+                  <li class="mdl-menu__item">Santa Catarina</li>
+                  <li class="mdl-menu__item">São Paulo</li>
+                  <li class="mdl-menu__item">Sergipe</li>
+                  <li class="mdl-menu__item">Tocantins</li>
                 </ul>
-                <span class="mdl-textfield__error">Selecione um idioma</span>
+                <span class="mdl-textfield__error">Selecione um status</span>
               </div>
 
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text">
-                <label class="mdl-textfield__label">Motivo</label>            
-              </div>
-
-              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <textarea class="mdl-textfield__input" type="text" rows="5" id="detalhes"></textarea>
-                <label class="mdl-textfield__label" for="detalhes">Detalhes</label>
+                <input class="mdl-textfield__input" type="text" name="cep">
+                <label class="mdl-textfield__label">CEP</label>            
               </div>
 
             </form>
 
             <div class="mdl-card__actions mdl-card__actions-resposta"> 
-              <a href="respostas.html" class="mdl-button mdl-js-button mdl-js-ripple-effect">Cancelar</a>
               <div class="mdl-layout-spacer"></div>
-              <input type="submit" value="Cadastrar" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored action" />
+              <input type="submit" value="Concluir" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored action" />
             </div>
 
           </div>          

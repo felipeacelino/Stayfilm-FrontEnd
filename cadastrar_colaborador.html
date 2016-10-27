@@ -11,7 +11,7 @@
     <!-- FONTS -->
     <link href="vendors/material-icons/material-icons.css"
       rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en"> -->
 
     <!-- CSS -->    
     <link rel="stylesheet" href="vendors/mdl/material.css">    
@@ -36,7 +36,7 @@
         <div class="mdl-layout__header-row">
 
           <!-- TÍTULO PRINCIPAL -->
-          <span class="mdl-layout-title mdl-color-text--blue-grey-900">Nova Resposta</span>
+          <span class="mdl-layout-title mdl-color-text--blue-grey-900">Novo Colaborador</span>
           <!-- FIM TÍTULO PRINCIPAL -->   
 
         </div>
@@ -101,39 +101,44 @@
         <div class="mdl-grid content">
           <div class="conteudo mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
 
-            <form class="form-resposta">
-
-              <div class="mdl-card__supporting-text">
-                Por favor, preencha os campos abaixo para cadastrar uma nova resposta. 
-              </div>           
+            <form class="form-colaborador">         
               
-              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fullwidth getmdl-select__fix-height menu_idioma">
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" name="nome">
+                <label class="mdl-textfield__label">Nome Completo</label>            
+              </div>
+
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" name="email">
+                <label class="mdl-textfield__label">E-mail</label>            
+              </div>
+
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" name="telefone">
+                <label class="mdl-textfield__label">Telefone</label>            
+              </div>
+
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" name="nascimento">
+                <label class="mdl-textfield__label">Nascimento</label>            
+              </div>
+
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fullwidth getmdl-select__fix-height">
                 <input class="mdl-textfield__input required" type="text" id="idioma" value="" readonly tabIndex="-1">
-                <label for="idioma" class="mdl-textfield__label">Idioma</label>
+                <label for="idioma" class="mdl-textfield__label">Status</label>
                 <ul for="idioma" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
-                  <li class="mdl-menu__item">Português</li>
-                  <li class="mdl-menu__item">Inglês</li>
-                  <li class="mdl-menu__item">Espanhol</li>
+                  <li class="mdl-menu__item">Ativo</li>
+                  <li class="mdl-menu__item">Inativo</li>
                 </ul>
-                <span class="mdl-textfield__error">Selecione um idioma</span>
-              </div>
-
-              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text">
-                <label class="mdl-textfield__label">Motivo</label>            
-              </div>
-
-              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <textarea class="mdl-textfield__input" type="text" rows="5" id="detalhes"></textarea>
-                <label class="mdl-textfield__label" for="detalhes">Detalhes</label>
+                <span class="mdl-textfield__error">Selecione um status</span>
               </div>
 
             </form>
 
             <div class="mdl-card__actions mdl-card__actions-resposta"> 
-              <a href="respostas.html" class="mdl-button mdl-js-button mdl-js-ripple-effect">Cancelar</a>
+              <a href="colaboradores.html" class="mdl-button mdl-js-button mdl-js-ripple-effect">Cancelar</a>
               <div class="mdl-layout-spacer"></div>
-              <input type="submit" value="Cadastrar" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored action" />
+              <input type="submit" value="Avançar" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored action" onclick="location.href='cadastrar_colaborador_endereco.html'" />
             </div>
 
           </div>          
