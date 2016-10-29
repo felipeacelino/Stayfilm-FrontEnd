@@ -32,10 +32,31 @@
           <!-- TÍTULO PRINCIPAL -->
           <span class="mdl-layout-title">Sistema de Curadoria</span>
           <!-- FIM TÍTULO PRINCIPAL -->
-
-          <div class="mdl-layout-spacer"></div>
-
         </div>
+        <!--CONTADORES DE FILMES-->
+        <div class="mdl-layout__header-row mdl-layout__header-row-subtitle" style="position:">        
+          <div class="material-icons mdl-badge pendente-badge mdl-badge--overlap" data-badge="3"  style="margin-left: 5px;">
+            <i class="material-icons" style="color:#444">error</i>
+          </div> 
+          <div class="material-icons mdl-badge revisao-badge mdl-badge--overlap" data-badge="2"  style="margin-left: 5px;">
+            <i class="material-icons" style="color:#444">help</i>
+          </div>  
+          <div class="material-icons mdl-badge aprovado-badge mdl-badge--overlap" data-badge="4"  style="margin-left: 5px;">
+            <i class="material-icons" style="color:#444">check_circle</i>
+          </div>     
+          <div class="material-icons mdl-badge reprovado-badge mdl-badge--overlap" data-badge="4"  style="margin-left: 5px;">
+            <i class="material-icons" style="color:#444">cancel</i>
+          </div>   
+          <div class="material-icons mdl-badge favorito-badge mdl-badge--overlap" data-badge="4"  style="margin-left: 5px;">
+            <i class="material-icons" style="color:#444">stars</i>
+          </div>    
+          <div style="margin-top: 8px; margin-left: 5px;">
+           <span class="mdl-badge" data-badge="12" style="color:#444"><strong>Total</strong></span>
+          </div>   
+          
+        </div>
+
+      
 
       </header>
 
@@ -63,6 +84,11 @@
           <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="filmes.html">
             <i class="material-icons" role="presentation">movie</i>Curadoria
           </a>
+
+          <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="filmes.html">
+            <i class="material-icons" role="presentation">assessment</i>Monitoria
+          </a>
+
 
           <!-- ITEM BARRA LATERAL -->
           <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="escala.html">
@@ -97,8 +123,9 @@
         <div class="mdl-grid content">
           <div class="conteudo mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
 
+           
             <div class="header_filtros">         
-              
+        
               <div class="filtro">
                 <span>Status</span>
                 <button class="btn-menu mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="btn-filtro-status">
@@ -126,7 +153,6 @@
               </div>              
 
             </div>
-
             <div class="table-responsive-vertical">
               
               <table id="table" class="table table-hover table-bordered">
@@ -144,7 +170,14 @@
                 <tbody>
 
                   <tr onclick="location.href='curadoria.html'">
-                    <td><span class="span_status pendente">Pendente</span></td>
+                    <td>
+                      <div class="span_status pendente">
+                        <div style=" width: 0px; height: 0px; margin-right: 10px;">
+                          <i class="material-icons" style="font-size: 15px;">error</i>
+                        </div>
+                        <span style="margin-left: 15px;">Pendente</span>
+                      </div>
+                    </td>
                     <td>Filme</td>            
                     <td>Usuário 1</td>   
                     <td>Disney</td>            
@@ -152,7 +185,14 @@
                   </tr>
 
                   <tr onclick="location.href='curadoria_revisao.html'">
-                    <td><span class="span_status revisao">Revisão</span></td>
+                    <td>
+                     <div class="span_status revisao">
+                        <div style=" width: 0px; height: 0px; margin-right: 10px;">
+                          <i class="material-icons" style="font-size: 15px;">help</i>
+                        </div>
+                        <span style="margin-left: 7px;">Revisão</span>
+                      </div>
+                    </td>
                     <td>Filme 2</td>            
                     <td>Usuário 2</td>            
                     <td>Disney</td>            
@@ -160,7 +200,14 @@
                   </tr>
 
                   <tr onclick="location.href='curadoria.html'">
-                    <td><span class="span_status aprovado">Aprovado</span></td>
+                    <td>
+                      <div class="span_status aprovado">
+                        <div style=" width: 0px; height: 0px; margin-right: 10px;">
+                          <i class="material-icons" style="font-size: 15px;">check_circle</i>
+                        </div>
+                        <span style="margin-left: 18px;">Aprovado</span>
+                      </div>
+                    </td>
                     <td>Filme 3</td>            
                     <td>Usuário 3</td>            
                     <td>Disney</td>            
@@ -168,7 +215,13 @@
                   </tr>
 
                   <tr onclick="location.href='curadoria_revisao.html'">
-                    <td><span class="span_status revisao">Revisão</span></td>
+                     <td>
+                     <div class="span_status revisao">
+                        <div style=" width: 0px; height: 0px; margin-right: 10px;">
+                          <i class="material-icons" style="font-size: 15px;">help</i>
+                        </div>
+                        <span style="margin-left: 7px;">Revisão</span>
+                      </div>
                     <td>Filme 2</td>            
                     <td>Usuário 2</td>            
                     <td>Disney</td>            
@@ -176,7 +229,14 @@
                   </tr>
 
                   <tr onclick="location.href='curadoria.html'">
-                    <td><span class="span_status aprovado">Aprovado</span></td>
+                    <td>
+                      <div class="span_status aprovado">
+                        <div style=" width: 0px; height: 0px; margin-right: 10px;">
+                          <i class="material-icons" style="font-size: 15px;">check_circle</i>
+                        </div>
+                        <span style="margin-left: 18px;">Aprovado</span>
+                      </div>
+                    </td>
                     <td>Filme 3</td>            
                     <td>Usuário 3</td>            
                     <td>Disney</td>            
@@ -184,7 +244,14 @@
                   </tr>
 
                   <tr onclick="location.href='curadoria.html'">
-                    <td><span class="span_status aprovado">Aprovado</span></td>
+                    <td>
+                      <div class="span_status aprovado">
+                        <div style=" width: 0px; height: 0px; margin-right: 10px;">
+                          <i class="material-icons" style="font-size: 15px;">check_circle</i>
+                        </div>
+                        <span style="margin-left: 18px;">Aprovado</span>
+                      </div>
+                    </td>
                     <td>Filme 4</td>            
                     <td>Usuário 4</td>            
                     <td>Disney</td>            
@@ -192,7 +259,14 @@
                   </tr>
 
                   <tr onclick="location.href='curadoria.html'">
-                    <td><span class="span_status reprovado">Reprovado</span></td>
+                    <td>
+                      <div class="span_status reprovado">
+                        <div style=" width: 0px; height: 0px; margin-right: 10px;">
+                          <i class="material-icons" style="font-size: 15px;">cancel</i>
+                        </div>
+                        <span style="margin-left: 17px;">Reprovado</span>
+                      </div>
+                    </td>
                     <td>Filme 5</td>            
                     <td>Usuário 5</td>            
                     <td>Disney</td>            
@@ -200,7 +274,14 @@
                   </tr>
 
                   <tr onclick="location.href='curadoria.html'">
-                    <td><span class="span_status reprovado">Reprovado</span></td>
+                   <td>
+                      <div class="span_status reprovado">
+                        <div style=" width: 0px; height: 0px; margin-right: 10px;">
+                          <i class="material-icons" style="font-size: 15px;">cancel</i>
+                        </div>
+                        <span style="margin-left: 17px;">Reprovado</span>
+                      </div>
+                    </td>
                     <td>Filme 6</td>            
                     <td>Usuário 6</td>            
                     <td>Disney</td>            
@@ -208,7 +289,14 @@
                   </tr>
 
                   <tr onclick="location.href='curadoria.html'">
-                    <td><span class="span_status aprovado">Aprovado</span></td>
+                   <td>
+                      <div class="span_status aprovado">
+                        <div style=" width: 0px; height: 0px; margin-right: 10px;">
+                          <i class="material-icons" style="font-size: 15px;">check_circle</i>
+                        </div>
+                        <span style="margin-left: 18px;">Aprovado</span>
+                      </div>
+                    </td>
                     <td>Filme 7</td>            
                     <td>Usuário 7</td>            
                     <td>Disney</td>            
@@ -216,7 +304,14 @@
                   </tr> 
 
                   <tr onclick="location.href='curadoria.html'">
-                    <td><span class="span_status pendente">Pendente</span></td>
+                    <td>
+                      <div class="span_status pendente">
+                        <div style=" width: 0px; height: 0px; margin-right: 10px;">
+                          <i class="material-icons" style="font-size: 15px;">error</i>
+                        </div>
+                        <span style="margin-left: 15px;">Pendente</span>
+                      </div>
+                    </td>
                     <td>Filme 8</td>            
                     <td>Usuário 8</td>            
                     <td>Disney</td>            
@@ -224,7 +319,14 @@
                   </tr>
 
                   <tr onclick="location.href='curadoria.html'">
-                    <td><span class="span_status pendente">Pendente</span></td>
+                    <td>
+                      <div class="span_status pendente">
+                        <div style="width: 0px; height: 0px; margin-right: 10px;">
+                          <i class="material-icons" style="font-size: 15px;">error</i>
+                        </div>
+                        <span style="margin-left: 15px;">Pendente</span>
+                      </div>
+                    </td>
                     <td>Filme 9</td>            
                     <td>Usuário 9</td>            
                     <td>Disney</td>            
@@ -232,7 +334,14 @@
                   </tr>
 
                   <tr onclick="location.href='curadoria.html'">
-                    <td><span class="span_status favorito">Favorito</span></td>
+                    <td>
+                      <div class="span_status favorito">
+                        <div style="width: 0px; height: 0px; margin-right: 10px;">
+                          <i class="material-icons" style="font-size: 15px;">stars</i>
+                        </div>
+                        <span style="margin-left: 15px;">Favorito</span>
+                      </div>
+                    </td>
                     <td>Filme 10</td>            
                     <td>Usuário 10</td>            
                     <td>Disney</td>            

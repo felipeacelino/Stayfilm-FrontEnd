@@ -313,3 +313,25 @@ span.count {
   bottom: 20px;
   right: 25px;
 }
+
+/*CONTADORES BADGES*/
+.mdl-badge.pendente-badge[data-badge]:after {
+   background: #FFCA28 !important;
+}
+
+.mdl-badge.revisao-badge[data-badge]:after {
+   background: #F57C00 !important;
+}
+
+.mdl-badge.aprovado-badge[data-badge]:after {
+   background: #8BC34A !important;
+}
+
+.mdl-badge.reprovado-badge[data-badge]:after {
+   background: #F44336 !important;
+}
+
+.mdl-badge.favorito-badge[data-badge]:after {
+   background: #2196F3 !important;
+}
+
