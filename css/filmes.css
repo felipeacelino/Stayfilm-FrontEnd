@@ -14,23 +14,6 @@ html, body {
   margin-left: 30px;
 }
 
-.header_filtros .filtro .btn-filtro-status {
-  width: 170px;
-}
-
-
-.header_filtros .filtro .btn-filtro-status .mdl-menu__item label {
-  float: left;
-  width: 80px;
-}
-
-span.count {
-  color: #fff;
-  padding: 5px 8px;
-  font-size: 0.7em;
-  border-radius: 3px;
-}
-
 .span_status {
   float: left;
   width: 70px;
@@ -70,6 +53,27 @@ span.count {
   background-color: #408F9C !important;
 }
 
+.monitoria-color {
+  background-color: #3071A8 !important;
+}
+
+.curadoria-color {
+  background-color: #B0262C !important;
+}
+
+.pendentes-badge[data-badge]:after {
+  background: #FFF !important;
+  color: #333;
+}
+
+.count-pendentes {
+  padding: 1px 10px;
+  font-size: 12px;
+  color: #FFF;
+  font-weight: bold;
+  border-radius: 20px;
+}
+
 .pendente_text {
   color: #FFCA28 !important;
 }
@@ -96,6 +100,14 @@ span.count {
 
 .accent_text {
   color: #408F9C !important;
+}
+
+.monitoria-color_text {
+  color: #3071A8 !important;
+}
+
+.curadoria-color_text {
+  color: #B0262C !important;
 }
 
 /* TABELA */
@@ -277,35 +289,6 @@ span.count {
 
 }
 
-/* PAGINAÇÃO */
-
-.paginacao {
-  margin-top: 20px;
-  font-size: 14px;
-  color: rgba(0,0,0,0.54);
-  float: right;
-}
-
-.paginacao label {
-  float: left;
-  margin-left: 10px;
-}
-
-.paginacao select {
-  margin-left: 10px;
-  float: left;
-  border: none;
-  background: #FFF;
-  color: rgba(0,0,0,0.54);
-  outline: 0;
-  width: 38px;
-}
-
-.paginacao .page-nav {
-  float: left;
-  margin-left: 10px;
-}
-
 /*BOTAO AÇÃO*/
 
 .btn_acao{
@@ -313,25 +296,3 @@ span.count {
   bottom: 20px;
   right: 25px;
 }
-
-/*CONTADORES BADGES*/
-.mdl-badge.pendente-badge[data-badge]:after {
-   background: #FFCA28 !important;
-}
-
-.mdl-badge.revisao-badge[data-badge]:after {
-   background: #F57C00 !important;
-}
-
-.mdl-badge.aprovado-badge[data-badge]:after {
-   background: #8BC34A !important;
-}
-
-.mdl-badge.reprovado-badge[data-badge]:after {
-   background: #F44336 !important;
-}
-
-.mdl-badge.favorito-badge[data-badge]:after {
-   background: #2196F3 !important;
-}
-

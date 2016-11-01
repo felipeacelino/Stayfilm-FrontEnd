@@ -2,8 +2,13 @@ html, body {
   font-family: 'Roboto', 'Helvetica', sans-serif;
 }
 
-.estrutura .mdl-layout__header .mdl-layout__drawer-button{
+.estrutura .mdl-layout__header .mdl-layout__drawer-button {
   color: #263238;
+}
+
+.estrutura .curadoria-color .mdl-layout__drawer-button,
+.estrutura .monitoria-color .mdl-layout__drawer-button {
+  color: #FFF;
 }
 
 .barra-lateral {
@@ -80,10 +85,16 @@ html, body {
           align-items: center;
   font-weight: 500;
   padding-left: 16px !important;
+  transition: background-color 0.3s ease-in-out;
 }
 
 .estrutura .nav-lateral .mdl-navigation__link:hover {
   background-color: #37474F;
+}
+
+.estrutura .nav-lateral .mdl-navigation__link-active {
+  background-color: #37474F;
+  color: #FFF !important;
 }
 
 .nav-lateral .mdl-navigation__link .material-icons {
