@@ -29,12 +29,12 @@
     <div class="estrutura mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
 
       <!-- BARRA SUPERIOR -->
-      <header class="barra-superior mdl-layout__header mdl-layout__header--waterfall mdl-color--white">
+      <header class="barra-superior mdl-layout__header mdl-layout__header--waterfall curadoria-color">
 
         <div class="mdl-layout__header-row">
 
           <!-- TÍTULO PRINCIPAL -->
-          <span class="mdl-layout-title mdl-color-text--blue-grey-900">Filme de Fulano</span>
+          <span class="mdl-layout-title">Filme de Fulano</span>
           <!-- FIM TÍTULO PRINCIPAL -->          
             
         </div>
@@ -42,7 +42,7 @@
         <div class="mdl-layout__header-row mdl-layout__header-row-subtitle">
 
           <nav class="mdl-navigation">
-            <a class="mdl-navigation__link mdl-color-text--blue-grey-900" target="_blank" href="https://www.stayfilm.com/">
+            <a class="mdl-navigation__link" target="_blank" href="https://www.stayfilm.com/">
               <i class="material-icons" role="presentation">person</i>Fulano
             </a>
           </nav>
@@ -50,8 +50,8 @@
           <div class="mdl-layout-spacer"></div>
 
           <nav class="mdl-navigation">
-            <a class="mdl-navigation__link mdl-color-text--blue-grey-900" data-featherlight="#lightbox_video" href="#">
-              <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" id="play-filme">
+            <a class="mdl-navigation__link" data-featherlight="#lightbox_video" href="#">
+              <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-color--white curadoria-color_text" id="play-filme">
                 <i class="material-icons">play_arrow</i>
               </button>
             </a>
@@ -59,11 +59,11 @@
             
         </div>
           
-        <div class="mdl-layout__header-row mdl-layout__header-row-subtitle">
+        <div class="mdl-layout__header-row mdl-layout__header-row-subtitle-small">
 
           <nav class="mdl-navigation">
-            <a class="mdl-navigation__link mdl-color-text--blue-grey-900 tema-filme">Disney</a>
-            <a class="mdl-navigation__link mdl-color-text--blue-grey-900 data-filme">00/00/0000 00:00</a>
+            <a class="mdl-navigation__link tema-filme">Disney</a>
+            <a class="mdl-navigation__link data-filme">00/00/0000 00:00</a>
           </nav>    
             
         </div>
@@ -126,6 +126,33 @@
           <div class="conteudo mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
 
             <div id="lightbox_video" class="lightbox"><video src="images/demo.mp4" id="filme-final" controls></video></div>
+
+            <section class="detalhes-revisao">
+
+              <h2>Comentários</h2>
+
+              <div class="detalhe">
+                <p>
+                  Vi algumas imagens com conteúdo estranho. Não tenho certeza se são proibidas...
+                </p>
+                <span>Fulano de Tal em 00/00/0000</span>
+              </div>
+
+              <div class="detalhe">
+                <p>
+                  Vi algumas imagens com conteúdo estranho. Não tenho certeza se são proibidas...
+                </p>
+                <span>Fulano de Tal em 00/00/0000</span>
+              </div>
+
+              <div class="detalhe">
+                <p>
+                  Vi algumas imagens com conteúdo estranho. Não tenho certeza se são proibidas...
+                </p>
+                <span>Fulano de Tal em 00/00/0000</span>
+              </div>
+  
+            </section>
 
             <section class="grid-media">
 
@@ -193,7 +220,7 @@
 
             <div id="fab_ctn" class="mdl-button--fab_flinger-container">
 
-              <button id="fab_btn" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored action mdl-shadow--4dp"><i class="material-icons">thumbs_up_down</i></button>
+              <button id="fab_btn" style="display: none" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored action mdl-shadow--4dp"><i class="material-icons">thumbs_up_down</i></button>
               <div class="mdl-button--fab_flinger-options">
 
                 <!-- APROVAR -->
@@ -262,6 +289,23 @@
                 </div>
               </div>
             </div>
+
+            <div id="demo-toast-example" class="mdl-js-snackbar mdl-snackbar">
+              <div class="mdl-snackbar__text"></div>
+              <button class="mdl-snackbar__action" type="button"></button>
+            </div>
+
+            <script>
+              r(function(){
+                var snackbarContainer = document.querySelector('#demo-toast-example');
+                var data = { 
+                  message: 'Esse filme já está sendo visualizado por outra pessoa',
+                  timeout: 999999
+                };
+                snackbarContainer.MaterialSnackbar.showSnackbar(data);
+              });
+              function r(f){ /in/.test(document.readyState)?setTimeout('r('+f+')',9):f()}
+            </script>
             
           </div>          
         </div>
@@ -270,7 +314,7 @@
 
     </div>
     <!-- FIM ESTRUTURA -->
-    
+   
     <!-- JAVA SCRIPT -->
     <script src="vendors/jquery/jquery.js"></script>
     <script src="vendors/mdl/material.js"></script>
@@ -302,6 +346,21 @@
         otherClose: '#cancelar'
       });
 
+      $(function(){
+        console.log($(window).height());
+        console.log($(".mdl-layout__content").height());
+        console.log($(".mdl-layout__content").height() - $(window).height());
+      });
+
+      var limit = $(".mdl-layout__content").height() - $(window).height();
+        $(".mdl-layout__content").scroll(function() { 
+        if($(this).scrollTop() > limit) { 
+          $('#fab_btn').fadeIn("fast");   
+        } else { 
+          $('#fab_btn').fadeOut("fast"); 
+        }  
+      });      
+        
     </script>
 
   </body>

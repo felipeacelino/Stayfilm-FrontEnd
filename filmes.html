@@ -10,8 +10,8 @@
 
     <!-- FONTS -->
     <link href="vendors/material-icons/material-icons.css" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
- -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+
     <!-- CSS -->    
     <link rel="stylesheet" href="vendors/mdl/material.css">       
     <link rel="stylesheet" href="css/esqueleto.css">
@@ -40,7 +40,7 @@
         <div class="mdl-layout__header-row mdl-layout__header-row-subtitle-small">
 
           <span class="mdl-layout-title">Pendentes</span>
-          <span class="count-pendentes pendente">50</span>
+          <span class="count-label pendente">50</span>
       
           <div class="mdl-layout-spacer"></div>
 
@@ -55,7 +55,7 @@
         <div class="mdl-layout__header-row mdl-layout__header-row-subtitle-small hide-labels-movie">
 
           <span class="mdl-layout-title">Revisão</span>
-          <span class="count-pendentes revisao">50</span>
+          <span class="count-label revisao">50</span>
           
         </div>
         <!-- FIM LINHA LABEL REVISÃO -->
@@ -64,7 +64,7 @@
         <div class="mdl-layout__header-row mdl-layout__header-row-subtitle-small hide-labels-movie">
 
           <span class="mdl-layout-title">Aprovados</span>
-          <span class="count-pendentes aprovado">50</span>
+          <span class="count-label aprovado">50</span>
           
         </div>
         <!-- FIM LINHA LABEL APROVADO -->
@@ -73,7 +73,7 @@
         <div class="mdl-layout__header-row mdl-layout__header-row-subtitle-small hide-labels-movie">
 
           <span class="mdl-layout-title">Favoritos</span>
-          <span class="count-pendentes favorito">50</span>
+          <span class="count-label favorito">50</span>
           
         </div>
         <!-- FIM LINHA LABEL FAVORITO -->
@@ -82,7 +82,7 @@
         <div class="mdl-layout__header-row mdl-layout__header-row-subtitle-small hide-labels-movie">
 
           <span class="mdl-layout-title">Reprovados</span>
-          <span class="count-pendentes reprovado">50</span>
+          <span class="count-label reprovado">50</span>
           
         </div>
         <!-- FIM LINHA LABEL REPROVADO-->
@@ -112,11 +112,15 @@
           <!-- ITEM BARRA LATERAL -->
           <a class="mdl-navigation__link mdl-navigation__link-active mdl-color-text--blue-grey-100" href="filmes.html">
             <i class="material-icons" role="presentation">movie</i>Curadoria
+            <div class="mdl-layout-spacer"></div>
+            <span class="count-label pendente">50</span>
           </a>
 
           <!-- ITEM BARRA LATERAL -->
           <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="filmes.html">
-            <i class="material-icons" role="presentation">computer</i>Monitoria
+            <i class="material-icons" role="presentation">assessment</i>Monitoria
+            <div class="mdl-layout-spacer"></div>
+            <span class="count-label pendente">50</span>
           </a>
 
           <!-- ITEM BARRA LATERAL -->
