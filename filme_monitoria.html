@@ -20,7 +20,6 @@
     <link rel="stylesheet" href="css/esqueleto.css">
     <link rel="stylesheet" href="css/filmes.css">
     <link rel="stylesheet" href="css/curadoria.css">
-    <link rel="stylesheet" href="css/curadoria_revisao.css">
 
   </head>
 
@@ -30,12 +29,12 @@
     <div class="estrutura mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
 
       <!-- BARRA SUPERIOR -->
-      <header class="barra-superior mdl-layout__header mdl-layout__header--waterfall mdl-color--white">
+      <header class="barra-superior mdl-layout__header mdl-layout__header--waterfall monitoria-color">
 
         <div class="mdl-layout__header-row">
 
           <!-- TÍTULO PRINCIPAL -->
-          <span class="mdl-layout-title mdl-color-text--blue-grey-900">Filme de Fulano</span>
+          <span class="mdl-layout-title">Filme de Fulano</span>
           <!-- FIM TÍTULO PRINCIPAL -->          
             
         </div>
@@ -43,7 +42,7 @@
         <div class="mdl-layout__header-row mdl-layout__header-row-subtitle">
 
           <nav class="mdl-navigation">
-            <a class="mdl-navigation__link mdl-color-text--blue-grey-900" target="_blank" href="https://www.stayfilm.com/">
+            <a class="mdl-navigation__link" target="_blank" href="https://www.stayfilm.com/">
               <i class="material-icons" role="presentation">person</i>Fulano
             </a>
           </nav>
@@ -51,8 +50,8 @@
           <div class="mdl-layout-spacer"></div>
 
           <nav class="mdl-navigation">
-            <a class="mdl-navigation__link mdl-color-text--blue-grey-900" data-featherlight="#lightbox_video" href="#">
-              <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" id="play-filme">
+            <a class="mdl-navigation__link" data-featherlight="#lightbox_video" href="#">
+              <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-color--white monitoria-color_text" id="play-filme">
                 <i class="material-icons">play_arrow</i>
               </button>
             </a>
@@ -60,11 +59,11 @@
             
         </div>
           
-        <div class="mdl-layout__header-row mdl-layout__header-row-subtitle">
+        <div class="mdl-layout__header-row mdl-layout__header-row-subtitle-small">
 
           <nav class="mdl-navigation">
-            <a class="mdl-navigation__link mdl-color-text--blue-grey-900 tema-filme">Disney</a>
-            <a class="mdl-navigation__link mdl-color-text--blue-grey-900 data-filme">00/00/0000 00:00</a>
+            <a class="mdl-navigation__link tema-filme">Disney</a>
+            <a class="mdl-navigation__link data-filme">00/00/0000 00:00</a>
           </nav>    
             
         </div>
@@ -92,12 +91,17 @@
         <nav class="nav-lateral mdl-navigation mdl-color--blue-grey-900">
 
           <!-- ITEM BARRA LATERAL -->
-          <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="filmes.html">
+          <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="curadoria.html">
             <i class="material-icons" role="presentation">movie</i>Curadoria
+            <div class="mdl-layout-spacer"></div>
+            <span class="count-label pendente">50</span>
           </a>
 
-           <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="filmes.html">
+          <!-- ITEM BARRA LATERAL -->
+          <a class="mdl-navigation__link mdl-navigation__link-active mdl-color-text--blue-grey-100" href="monitoria.html">
             <i class="material-icons" role="presentation">assessment</i>Monitoria
+            <div class="mdl-layout-spacer"></div>
+            <span class="count-label pendente">50</span>
           </a>
 
           <!-- ITEM BARRA LATERAL -->
@@ -114,7 +118,13 @@
           <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="respostas.html">
             <i class="material-icons" role="presentation">forum</i>Respostas
           </a>
+          
+          <div class="mdl-layout-spacer"></div>
 
+          <!-- ITEM BARRA LATERAL -->
+          <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="login.html">
+            <i class="material-icons" role="presentation">backspace</i>Sair
+          </a>
           
         </nav>
 
@@ -153,7 +163,7 @@
                 <span>Fulano de Tal em 00/00/0000</span>
               </div>
   
-            </section>  
+            </section>
 
             <section class="grid-media">
 
@@ -221,7 +231,7 @@
 
             <div id="fab_ctn" class="mdl-button--fab_flinger-container">
 
-              <button id="fab_btn" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored action mdl-shadow--4dp"><i class="material-icons">thumbs_up_down</i></button>
+              <button id="fab_btn" style="display: none" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored action mdl-shadow--4dp"><i class="material-icons">thumbs_up_down</i></button>
               <div class="mdl-button--fab_flinger-options">
 
                 <!-- APROVAR -->
@@ -264,7 +274,7 @@
                     Cancelar
                   </button>
                   <div class="mdl-layout-spacer"></div>
-                  <a href="filmes.html" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored aprovado">
+                  <a href="curadoria.html" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored aprovado">
                     Aprovar
                   </a>
                 </div>
@@ -284,12 +294,29 @@
                     Cancelar
                   </button>
                   <div class="mdl-layout-spacer"></div>
-                  <a href="filmes.html" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored favorito">
+                  <a href="curadoria.html" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored favorito">
                     Aprovar
                   </a>
                 </div>
               </div>
             </div>
+
+            <div id="demo-toast-example" class="mdl-js-snackbar mdl-snackbar">
+              <div class="mdl-snackbar__text"></div>
+              <button class="mdl-snackbar__action" type="button"></button>
+            </div>
+
+            <script>
+              r(function(){
+                var snackbarContainer = document.querySelector('#demo-toast-example');
+                var data = { 
+                  message: 'Esse filme já está sendo visualizado por outra pessoa',
+                  timeout: 999999
+                };
+                snackbarContainer.MaterialSnackbar.showSnackbar(data);
+              });
+              function r(f){ /in/.test(document.readyState)?setTimeout('r('+f+')',9):f()}
+            </script>
             
           </div>          
         </div>
@@ -298,7 +325,7 @@
 
     </div>
     <!-- FIM ESTRUTURA -->
-    
+   
     <!-- JAVA SCRIPT -->
     <script src="vendors/jquery/jquery.js"></script>
     <script src="vendors/mdl/material.js"></script>
@@ -330,6 +357,15 @@
         otherClose: '#cancelar'
       });
 
+      var limit = $(".mdl-layout__content").height() - $(window).height();
+      $(".mdl-layout__content").scroll(function() { 
+        if($(this).scrollTop() > limit) { 
+          $('#fab_btn').fadeIn("fast");   
+        } else { 
+          $('#fab_btn').fadeOut("fast"); 
+        }  
+      });      
+        
     </script>
 
   </body>

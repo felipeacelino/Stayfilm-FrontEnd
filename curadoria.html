@@ -9,14 +9,11 @@
     <title>Stayfilm</title>
 
     <!-- FONTS -->
-    <link href="vendors/material-icons/material-icons.css"
-      rel="stylesheet">
+    <link href="vendors/material-icons/material-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
 
     <!-- CSS -->    
     <link rel="stylesheet" href="vendors/mdl/material.css">       
-    <link rel="stylesheet" href="vendors/mdl-speed-dial/mdl_speed_dial.css">            
-    <link rel="stylesheet" href="vendors/featherlight/featherlight.css">              
     <link rel="stylesheet" href="css/esqueleto.css">
     <link rel="stylesheet" href="css/filmes.css">
     <link rel="stylesheet" href="css/curadoria.css">
@@ -29,44 +26,66 @@
     <div class="estrutura mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
 
       <!-- BARRA SUPERIOR -->
-      <header class="barra-superior mdl-layout__header mdl-layout__header--waterfall curadoria-color">
+      <header class="barra-superior mdl-layout__header curadoria-color">
 
         <div class="mdl-layout__header-row">
 
           <!-- TÍTULO PRINCIPAL -->
-          <span class="mdl-layout-title">Filme de Fulano</span>
-          <!-- FIM TÍTULO PRINCIPAL -->          
-            
+          <span class="mdl-layout-title">Curadoria de Filmes</span>
+          <!-- FIM TÍTULO PRINCIPAL -->
+
         </div>
-          
-        <div class="mdl-layout__header-row mdl-layout__header-row-subtitle">
 
-          <nav class="mdl-navigation">
-            <a class="mdl-navigation__link" target="_blank" href="https://www.stayfilm.com/">
-              <i class="material-icons" role="presentation">person</i>Fulano
-            </a>
-          </nav>
-
-          <div class="mdl-layout-spacer"></div>
-
-          <nav class="mdl-navigation">
-            <a class="mdl-navigation__link" data-featherlight="#lightbox_video" href="#">
-              <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-color--white curadoria-color_text" id="play-filme">
-                <i class="material-icons">play_arrow</i>
-              </button>
-            </a>
-          </nav>
-            
-        </div>
-          
+        <!-- LINHA LABEL PENDENTES -->
         <div class="mdl-layout__header-row mdl-layout__header-row-subtitle-small">
 
-          <nav class="mdl-navigation">
-            <a class="mdl-navigation__link tema-filme">Disney</a>
-            <a class="mdl-navigation__link data-filme">00/00/0000 00:00</a>
-          </nav>    
-            
+          <span class="mdl-layout-title">Pendentes</span>
+          <span class="count-label pendente">50</span>
+      
+          <div class="mdl-layout-spacer"></div>
+
+          <button id="togle-labels-movie" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+            <i class="material-icons" role="presentation">expand_more</i>
+          </button>
+          
         </div>
+        <!-- FIM LINHA LABEL PENDENTES -->
+
+        <!-- LINHA LABEL REVISÃO -->
+        <div class="mdl-layout__header-row mdl-layout__header-row-subtitle-small hide-labels-movie">
+
+          <span class="mdl-layout-title">Revisão</span>
+          <span class="count-label revisao">50</span>
+          
+        </div>
+        <!-- FIM LINHA LABEL REVISÃO -->
+
+        <!-- LINHA LABEL APROVADO -->
+        <div class="mdl-layout__header-row mdl-layout__header-row-subtitle-small hide-labels-movie">
+
+          <span class="mdl-layout-title">Aprovados</span>
+          <span class="count-label aprovado">50</span>
+          
+        </div>
+        <!-- FIM LINHA LABEL APROVADO -->
+
+        <!-- LINHA LABEL FAVORITO -->
+        <div class="mdl-layout__header-row mdl-layout__header-row-subtitle-small hide-labels-movie">
+
+          <span class="mdl-layout-title">Favoritos</span>
+          <span class="count-label favorito">50</span>
+          
+        </div>
+        <!-- FIM LINHA LABEL FAVORITO -->
+
+        <!-- LINHA LABEL REPROVADO-->
+        <div class="mdl-layout__header-row mdl-layout__header-row-subtitle-small hide-labels-movie">
+
+          <span class="mdl-layout-title">Reprovados</span>
+          <span class="count-label reprovado">50</span>
+          
+        </div>
+        <!-- FIM LINHA LABEL REPROVADO-->
 
       </header>
 
@@ -91,12 +110,17 @@
         <nav class="nav-lateral mdl-navigation mdl-color--blue-grey-900">
 
           <!-- ITEM BARRA LATERAL -->
-          <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="filmes.html">
+          <a class="mdl-navigation__link mdl-navigation__link-active mdl-color-text--blue-grey-100" href="curadoria.html">
             <i class="material-icons" role="presentation">movie</i>Curadoria
+            <div class="mdl-layout-spacer"></div>
+            <span class="count-label pendente">50</span>
           </a>
 
-           <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="filmes.html">
+          <!-- ITEM BARRA LATERAL -->
+          <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="monitoria.html">
             <i class="material-icons" role="presentation">assessment</i>Monitoria
+            <div class="mdl-layout-spacer"></div>
+            <span class="count-label pendente">50</span>
           </a>
 
           <!-- ITEM BARRA LATERAL -->
@@ -113,8 +137,14 @@
           <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="respostas.html">
             <i class="material-icons" role="presentation">forum</i>Respostas
           </a>
-
           
+          <div class="mdl-layout-spacer"></div>
+
+          <!-- ITEM BARRA LATERAL -->
+          <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="login.html">
+            <i class="material-icons" role="presentation">backspace</i>Sair
+          </a>
+
         </nav>
 
       </div>
@@ -125,187 +155,153 @@
         <div class="mdl-grid content">
           <div class="conteudo mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
 
-            <div id="lightbox_video" class="lightbox"><video src="images/demo.mp4" id="filme-final" controls></video></div>
-
-            <section class="detalhes-revisao">
-
-              <h2>Comentários</h2>
-
-              <div class="detalhe">
-                <p>
-                  Vi algumas imagens com conteúdo estranho. Não tenho certeza se são proibidas...
-                </p>
-                <span>Fulano de Tal em 00/00/0000</span>
+            <div class="header_filtros">         
+              
+              <div class="filtro">
+                <span>Status</span>
+                <button class="btn-menu mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="btn-filtro-status">
+                  <i class="material-icons" role="presentation">filter_list</i>
+                </button>
+                <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right " for="btn-filtro-status">
+                  <li class="mdl-menu__item">Pendentes</li>
+                  <li class="mdl-menu__item">Revisão</li>
+                  <li class="mdl-menu__item">Aprovados</li>
+                  <li class="mdl-menu__item">Reprovados</li>
+                  <li class="mdl-menu__item">Favoritos</li>
+                </ul>
               </div>
 
-              <div class="detalhe">
-                <p>
-                  Vi algumas imagens com conteúdo estranho. Não tenho certeza se são proibidas...
-                </p>
-                <span>Fulano de Tal em 00/00/0000</span>
-              </div>
+              <div class="filtro">
+                <span>Cliente</span>
+                <button class="btn-menu mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="btn-filtro-cliente">
+                  <i class="material-icons" role="presentation">filter_list</i>
+                </button>
+                <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right " for="btn-filtro-cliente">
+                  <li class="mdl-menu__item">Cliente 1</li>
+                  <li class="mdl-menu__item">Cliente 2</li>
+                  <li class="mdl-menu__item">Cliente 3</li>
+                </ul>
+              </div>              
 
-              <div class="detalhe">
-                <p>
-                  Vi algumas imagens com conteúdo estranho. Não tenho certeza se são proibidas...
-                </p>
-                <span>Fulano de Tal em 00/00/0000</span>
-              </div>
+            </div>
+
+            <div class="table-responsive-vertical">
+              
+              <table id="table" class="table table-hover table-bordered">
+
+                <thead>
+                  <tr>
+                    <th>Status</th>
+                    <th>Filme</th>
+                    <th>Usuário</th>
+                    <th>Cliente</th>
+                    <th>Data</th>                                        
+                  </tr>
+                </thead>
+
+                <tbody>
+
+                  <tr onclick="location.href='filme_curadoria.html'">
+                    <td><span class="span_status pendente">Pendente</span></td>
+                    <td>Filme</td>            
+                    <td>Usuário 1</td>   
+                    <td>Disney</td>            
+                    <td>00/00/0000 00:00</td>                                                                
+                  </tr>
+
+                  <tr onclick="location.href='curadoria_revisao.html'">
+                    <td><span class="span_status revisao">Revisão</span></td>
+                    <td>Filme 2</td>            
+                    <td>Usuário 2</td>            
+                    <td>Disney</td>            
+                    <td>00/00/0000 00:00</td>                                
+                  </tr>
+
+                  <tr onclick="location.href='filme_curadoria.html'">
+                    <td><span class="span_status aprovado">Aprovado</span></td>
+                    <td>Filme 3</td>            
+                    <td>Usuário 3</td>            
+                    <td>Disney</td>            
+                    <td>00/00/0000 00:00</td>                                
+                  </tr>
+
+                  <tr onclick="location.href='curadoria_revisao.html'">
+                    <td><span class="span_status revisao">Revisão</span></td>
+                    <td>Filme 2</td>            
+                    <td>Usuário 2</td>            
+                    <td>Disney</td>            
+                    <td>00/00/0000 00:00</td>                                
+                  </tr>
+
+                  <tr onclick="location.href='filme_curadoria.html'">
+                    <td><span class="span_status aprovado">Aprovado</span></td>
+                    <td>Filme 3</td>            
+                    <td>Usuário 3</td>            
+                    <td>Disney</td>            
+                    <td>00/00/0000 00:00</td>                                
+                  </tr>
+
+                  <tr onclick="location.href='filme_curadoria.html'">
+                    <td><span class="span_status aprovado">Aprovado</span></td>
+                    <td>Filme 4</td>            
+                    <td>Usuário 4</td>            
+                    <td>Disney</td>            
+                    <td>00/00/0000 00:00</td>                                
+                  </tr>
+
+                  <tr onclick="location.href='filme_curadoria.html'">
+                    <td><span class="span_status reprovado">Reprovado</span></td>
+                    <td>Filme 5</td>            
+                    <td>Usuário 5</td>            
+                    <td>Disney</td>            
+                    <td>00/00/0000 00:00</td>                                
+                  </tr>
+
+                  <tr onclick="location.href='filme_curadoria.html'">
+                    <td><span class="span_status reprovado">Reprovado</span></td>
+                    <td>Filme 6</td>            
+                    <td>Usuário 6</td>            
+                    <td>Disney</td>            
+                    <td>00/00/0000 00:00</td>                                
+                  </tr>
+
+                  <tr onclick="location.href='filme_curadoria.html'">
+                    <td><span class="span_status aprovado">Aprovado</span></td>
+                    <td>Filme 7</td>            
+                    <td>Usuário 7</td>            
+                    <td>Disney</td>            
+                    <td>00/00/0000 00:00</td>                                
+                  </tr> 
+
+                  <tr onclick="location.href='filme_curadoria.html'">
+                    <td><span class="span_status pendente">Pendente</span></td>
+                    <td>Filme 8</td>            
+                    <td>Usuário 8</td>            
+                    <td>Disney</td>            
+                    <td>00/00/0000 00:00</td>                                
+                  </tr>
+
+                  <tr onclick="location.href='filme_curadoria.html'">
+                    <td><span class="span_status pendente">Pendente</span></td>
+                    <td>Filme 9</td>            
+                    <td>Usuário 9</td>            
+                    <td>Disney</td>            
+                    <td>00/00/0000 00:00</td>                                
+                  </tr>
+
+                  <tr onclick="location.href='filme_curadoria.html'">
+                    <td><span class="span_status favorito">Favorito</span></td>
+                    <td>Filme 10</td>            
+                    <td>Usuário 10</td>            
+                    <td>Disney</td>            
+                    <td>00/00/0000 00:00</td>                                
+                  </tr>
+
+                </tbody>
+
+              </table>
   
-            </section>
-
-            <section class="grid-media">
-
-              <a href="images/ex1.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex1.jpg" /></figure></a>
-
-              <a href="images/ex2.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex2.jpg" /></figure></a>
-
-              <a href="images/ex3.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex3.jpg" /></figure></a>
-
-              <a href="images/ex4.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex4.jpg" /></figure></a>
-
-              <a href="images/ex5.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex5.jpg" /></figure></a>
-
-              <a href="images/ex6.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex6.jpg" /></figure></a>
-
-              <a href="images/ex7.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex7.jpg" /></figure></a>
-
-              <a href="images/ex1.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex1.jpg" /></figure></a>
-
-              <a href="images/ex2.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex2.jpg" /></figure></a>
-
-              <a href="images/ex3.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex3.jpg" /></figure></a>
-
-              <a href="images/ex4.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex4.jpg" /></figure></a>
-
-              <a href="images/ex5.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex5.jpg" /></figure></a>
-
-              <a href="images/ex6.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex6.jpg" /></figure></a>
-
-              <a href="images/ex7.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex7.jpg" /></figure></a>
-
-              <a href="images/ex1.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex1.jpg" /></figure></a>
-
-              <a href="images/ex2.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex2.jpg" /></figure></a>
-
-              <a href="images/ex3.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex3.jpg" /></figure></a>
-
-              <a href="images/ex4.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex4.jpg" /></figure></a>
-
-              <a href="images/ex5.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex5.jpg" /></figure></a>
-
-              <a href="images/ex6.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex6.jpg" /></figure></a>
-
-              <a href="images/ex7.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex7.jpg" /></figure></a>
-
-              <a href="images/ex1.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex1.jpg" /></figure></a>
-
-              <a href="images/ex2.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex2.jpg" /></figure></a>
-
-              <a href="images/ex3.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex3.jpg" /></figure></a>
-
-              <a href="images/ex4.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex4.jpg" /></figure></a>
-
-              <a href="images/ex5.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex5.jpg" /></figure></a>
-
-              <a href="images/ex6.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex6.jpg" /></figure></a>
-
-              <a href="images/ex7.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex7.jpg" /></figure></a>
-
-            </section>
-
-            <section class="media-video">
-              <video src="images/demo.mp4" class="media-video mdl-shadow--6dp" controls></video>
-            </section>
-
-            <div id="fab_ctn" class="mdl-button--fab_flinger-container">
-
-              <button id="fab_btn" style="display: none" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored action mdl-shadow--4dp"><i class="material-icons">thumbs_up_down</i></button>
-              <div class="mdl-button--fab_flinger-options">
-
-                <!-- APROVAR -->
-                <label>Aprovar</label>
-                <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored aprovado" data-featherlight="#lightbox_aprovado">
-                  <i class="material-icons">thumb_up</i>         
-                </button>
-                <!-- REPROVAR -->
-                <label>Reprovar</label>
-                <a href="reprovacao.html">
-                  <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored reprovado">
-                    <i class="material-icons">thumb_down</i>            
-                  </button>
-                </a>
-                <!-- FAVORITAR -->
-                <label>Favorito</label>
-                <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored favorito" data-featherlight="#lightbox_favorito">
-                  <i class="material-icons">star</i>            
-                </button>
-                <!-- MARCAR PARA REVISÃO -->
-                <label>Revisão</label>
-                <a href="revisao.html">
-                  <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored revisao">
-                    <i class="material-icons">flag</i>            
-                  </button>
-                </a>
-              </div>
             </div>
-
-            <div id="lightbox_aprovado" class="lightbox">
-              <div class="lightbox_card mdl-card mdl-shadow--2dp">
-                <div class="mdl-card__title mdl-card--expand mdl-color-text--white aprovado">
-                  <h2 class="mdl-card__title-text">Aprovar Filme</h2>
-                </div>
-                <div class="mdl-card__supporting-text">
-                  O filme será aprovado e liberado para o usuário.
-                </div>
-                <div class="mdl-card__actions mdl-card--border">
-                  <button id="cancelar" class="mdl-button mdl-js-button mdl-js-ripple-effect">
-                    Cancelar
-                  </button>
-                  <div class="mdl-layout-spacer"></div>
-                  <a href="filmes.html" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored aprovado">
-                    Aprovar
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div id="lightbox_favorito" class="lightbox">
-              <div class="lightbox_card mdl-card mdl-shadow--2dp">
-                <div class="mdl-card__title mdl-card--expand mdl-color-text--white favorito">
-                  <h2 class="mdl-card__title-text">Favoritar Filme</h2>
-                </div>
-                <div class="mdl-card__supporting-text">
-                  O filme será aprovado e adicionado a lista de filmes favoritos.
-                </div>
-                <div class="mdl-card__actions mdl-card--border">
-                  <button id="cancelar" class="mdl-button mdl-js-button mdl-js-ripple-effect">
-                    Cancelar
-                  </button>
-                  <div class="mdl-layout-spacer"></div>
-                  <a href="filmes.html" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored favorito">
-                    Aprovar
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div id="demo-toast-example" class="mdl-js-snackbar mdl-snackbar">
-              <div class="mdl-snackbar__text"></div>
-              <button class="mdl-snackbar__action" type="button"></button>
-            </div>
-
-            <script>
-              r(function(){
-                var snackbarContainer = document.querySelector('#demo-toast-example');
-                var data = { 
-                  message: 'Esse filme já está sendo visualizado por outra pessoa',
-                  timeout: 999999
-                };
-                snackbarContainer.MaterialSnackbar.showSnackbar(data);
-              });
-              function r(f){ /in/.test(document.readyState)?setTimeout('r('+f+')',9):f()}
-            </script>
             
           </div>          
         </div>
@@ -314,54 +310,22 @@
 
     </div>
     <!-- FIM ESTRUTURA -->
-   
+    
     <!-- JAVA SCRIPT -->
-    <script src="vendors/jquery/jquery.js"></script>
     <script src="vendors/mdl/material.js"></script>
-    <script src="vendors/mdl-speed-dial/mdl_speed_dial.js"></script>
-    <script src="vendors/simplbox/simplbox.js"></script>
-    <script src="vendors/featherlight/featherlight.js"></script>
+    <script src="vendors/jquery/jquery.js"></script>
     <script type="text/javascript">
-
-      var overlayOn = function () {
-        var newA = document.createElement("div");
-        newA.setAttribute("id", "simplbox-overlay");
-        document.body.appendChild(newA);
-      };
-
-      var overlayOff = function () {
-        var elA = document.getElementById("simplbox-overlay");
-        elA.parentNode.removeChild(elA);
-      };
-
-      var myelement = document.querySelectorAll("[data-simplbox]");
-      var simplbox = new SimplBox(myelement, {
-        onStart: overlayOn,
-        onEnd: overlayOff,
-      });  
-
-      simplbox.init();
-
-      $.extend($.featherlight.defaults, {
-        otherClose: '#cancelar'
-      });
-
-      $(function(){
-        console.log($(window).height());
-        console.log($(".mdl-layout__content").height());
-        console.log($(".mdl-layout__content").height() - $(window).height());
-      });
-
-      var limit = $(".mdl-layout__content").height() - $(window).height();
-        $(".mdl-layout__content").scroll(function() { 
-        if($(this).scrollTop() > limit) { 
-          $('#fab_btn').fadeIn("fast");   
-        } else { 
-          $('#fab_btn').fadeOut("fast"); 
-        }  
-      });      
         
-    </script>
+    $(function(){
+      $(".hide-labels-movie").hide();
+    })  
+      
+    $("#togle-labels-movie").on("click",function(){
+      $(".hide-labels-movie").slideToggle( "fast" );
+      $("#togle-labels-movie").toggleClass( "togle-active" );
+    });
 
+
+    </script>
   </body>
 </html>
