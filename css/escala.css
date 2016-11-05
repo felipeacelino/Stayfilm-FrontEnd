@@ -1,0 +1,150 @@
+
+#calendar-wrap {
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+#calendar-wrap header h2 {
+	text-align: center;
+	font-size: 24px;
+	margin: 0;
+}
+
+#calendar-wrap header h3 {
+	color: rgba(0,0,0, 0.54);
+	font-size: 1.3em;
+	line-height: 22px;
+}
+
+#calendar {
+	width: 100%;		
+}
+
+#calendar a {
+	color: #8e352e;
+	text-decoration: none;
+}
+
+#calendar ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	width: 100%;
+}
+
+#calendar li {
+	display: block;
+	float: left;
+	width: 14.342%;
+	padding: 5px;
+	box-sizing:border-box;
+	border: 1px solid #ccc;
+	margin-right: -1px;
+	margin-bottom: -1px;
+}
+
+#calendar li .mdl-icon-toggle {
+	margin-top: 5px;
+	margin-left: 30%;
+}
+
+#calendar li .mdl-icon-toggle.is-checked .mdl-icon-toggle__label {
+	color: #FFF;
+	background-color: #8BC34A;
+}
+
+#calendar ul.weekdays {
+	height: 40px;
+	background: #B0262C;
+}
+
+#calendar ul.weekdays li {
+	text-align: center;
+	text-transform: uppercase;
+	line-height: 20px;
+	border: none !important;
+	padding: 10px 6px;
+	color: #fff;
+	font-size: 13px;
+	font-weight: 500;
+}
+
+#calendar .days li {
+	height: 60px;
+}
+
+#calendar .days li:not(.other-month):hover {
+	background: #d3d3d3;
+}
+
+#calendar .date {
+	text-align: center;
+	margin-bottom: 5px;
+	padding: 4px;
+	color: #333;
+	width: 20px;
+	float: right;
+	font-weight: 500;
+}
+
+#calendar .days li .desc-day {
+	display: none;
+}
+
+#calendar .other-month {
+	background: #f5f5f5;
+	color: #666;
+	cursor: not-allowed;
+}
+
+#calendar .other-month .date {
+	color: #666;
+}
+
+@media(max-width: 772px) {
+
+	#calendar li .mdl-icon-toggle {
+		margin-top: 0px;
+		margin-left: 2%;
+	}
+
+}
+
+@media(max-width: 596px) {
+
+	#calendar li .mdl-icon-toggle {
+		margin-top: -35px;
+	}
+
+}
+
+@media(max-width: 480px) {
+
+	#calendar .weekdays, #calendar .other-month {
+		display: none;
+	}
+
+	#calendar li {
+		height: auto !important;
+		border: 1px solid #ededed;
+		width: 100%;
+		padding: 10px;
+		margin-bottom: -1px;
+	}
+
+	#calendar li .mdl-icon-toggle {
+		float: right;
+		margin-right: 16px;
+	}
+
+	#calendar .date {
+		float: none;
+		font-size: 1.5em;
+	}
+
+	#calendar .days li .desc-day {
+		display: block;
+		color: rgba(0,0,0,0.54);
+	}
+
+}
