@@ -1,0 +1,470 @@
+<!doctype html>
+
+<html lang="pt-br">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Stayfilm</title>
+
+    <!-- FONTS -->
+    <link href="vendors/material-icons/material-icons.css"
+      rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+
+    <!-- CSS -->    
+    <link rel="stylesheet" href="vendors/mdl/material.css">    
+    <link rel="stylesheet" href="vendors/getmdl-select-master/getmdl-select.min.css">  
+    <link rel="stylesheet" href="vendors/mdl-speed-dial/mdl_speed_dial.css">
+    <link rel="stylesheet" href="vendors/featherlight/featherlight.css">  
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/escala_bkp.css">
+
+  </head>
+
+  <body>
+
+    <!-- ESTRUTURA -->
+    <div class="estrutura mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+
+      <!-- BARRA SUPERIOR -->
+      <header class="barra-superior mdl-layout__header mdl-color--white">
+
+        <div class="mdl-layout__header-row mdl-color-text--blue-grey-900">
+
+          <!-- TÍTULO PRINCIPAL -->
+          <span class="mdl-layout-title">Minha Escala</span>
+          <!-- FIM TÍTULO PRINCIPAL -->
+
+        </div>
+
+      </header>
+
+      <!-- FIM BARRA SUPERIOR -->
+
+      <!-- BARRA LATERAL -->
+      <div class="barra-lateral mdl-layout__drawer">   
+
+        <header class="barra-lateral-header">
+
+          <!-- LOGO -->
+          <img src="images/logo.jpg" class="logo-principal">
+
+          <!-- USUÁRIO -->
+          <div class="user-descricao mdl-color-text--white">
+            <i class="material-icons" role="presentation">person</i>
+            <span>Fulano de Tal</span>            
+            <div class="mdl-layout-spacer"></div>
+            <button id="menu_user" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+              <i class="material-icons" role="presentation">arrow_drop_down</i>
+              <span class="visuallyhidden">Accounts</span>
+            </button>
+            <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="menu_user">
+              <a class="link_item" href="minha_escala.html">
+                <li class="mdl-menu__item">Minha Escala</li>
+              </a>
+            </ul>
+          </div>
+
+        </header>             
+
+        <nav class="nav-lateral mdl-navigation mdl-color--blue-grey-900">
+
+          <!-- ITEM BARRA LATERAL -->
+          <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="curadoria.html">
+            <i class="material-icons" role="presentation">movie</i>Curadoria
+            <div class="mdl-layout-spacer"></div>
+            <span class="count-label pendente">50</span>
+          </a>
+
+          <!-- ITEM BARRA LATERAL -->
+          <a class="mdl-navigation__link mdl-navigation__link-active mdl-color-text--blue-grey-100" href="monitoria.html">
+            <i class="material-icons" role="presentation">assessment</i>Monitoria
+            <div class="mdl-layout-spacer"></div>
+            <span class="count-label pendente">50</span>
+          </a>
+
+          <!-- ITEM BARRA LATERAL -->
+          <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="escala.html">
+            <i class="material-icons" role="presentation">event</i>Escala
+          </a>
+
+          <!-- ITEM BARRA LATERAL -->
+          <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="colaboradores.html">
+            <i class="material-icons" role="presentation">group</i>Colaboradores
+          </a>
+
+          <!-- ITEM BARRA LATERAL -->
+          <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="respostas.html">
+            <i class="material-icons" role="presentation">forum</i>Respostas
+          </a>
+          
+          <div class="mdl-layout-spacer"></div>
+
+          <!-- ITEM BARRA LATERAL -->
+          <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="index.html">
+            <i class="material-icons" role="presentation">backspace</i>Sair
+          </a>
+
+        </nav>
+
+      </div>
+      <!-- FIM BARRA LATERAL -->
+
+      <!-- CONTEÚDO -->
+      <main class="mdl-layout__content mdl-color--grey-100">
+        <div class="mdl-grid content">
+          <div class="conteudo mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+
+            <div id="calendar-wrap">
+
+              <header>
+                <h2>Novembro 2016</h2>
+                <h3>Selecione os dias do em que você poderá realizar a curadoria.</h3>
+              </header>
+
+              <div id="calendar">
+
+                <ul class="weekdays">
+                  <li>Domingo</li>
+                  <li>Segunda</li>
+                  <li>Terça</li>
+                  <li>Quarta</li>
+                  <li>Quinta</li>
+                  <li>Sexta</li>
+                  <li>Sábado</li>
+                </ul>
+
+                <!-- Days from previous month -->
+
+                <ul class="days">
+                  <li class="day other-month">
+                    <div class="date">30</div>              
+                  </li>
+                  <li class="day other-month">
+                    <div class="date">31</div>              
+                  </li>
+
+                  <!-- Days in current month -->
+
+                  <li class="day">
+                    <div class="date">1</div>
+                    <label class="mdl-icon-toggle mdl-js-icon-toggle mdl-js-ripple-effect" for="day-1">
+                      <input type="checkbox" id="day-1" class="mdl-icon-toggle__input">
+                      <i class="mdl-icon-toggle__label material-icons">done</i>
+                    </label>
+                    <label class="desc-day">Terça</label> 
+                  </li>
+                  <li class="day">
+                    <div class="date">2</div>
+                    <label class="mdl-icon-toggle mdl-js-icon-toggle mdl-js-ripple-effect" for="day-2">
+                      <input type="checkbox" id="day-2" class="mdl-icon-toggle__input">
+                      <i class="mdl-icon-toggle__label material-icons">done</i>
+                    </label>
+                    <label class="desc-day">Quarta</label> 
+                  </li>
+
+                  <li class="day">
+                    <div class="date">3</div>
+                    <label class="mdl-icon-toggle mdl-js-icon-toggle mdl-js-ripple-effect" for="day-3">
+                      <input type="checkbox" id="day-3" class="mdl-icon-toggle__input">
+                      <i class="mdl-icon-toggle__label material-icons">done</i>
+                    </label>
+                    <label class="desc-day">Quinta</label> 
+                  </li>
+                  <li class="day">
+                    <div class="date">4</div>
+                    <label class="mdl-icon-toggle mdl-js-icon-toggle mdl-js-ripple-effect" for="day-4">
+                      <input type="checkbox" id="day-4" class="mdl-icon-toggle__input">
+                      <i class="mdl-icon-toggle__label material-icons">done</i>
+                    </label>
+                    <label class="desc-day">Sexta</label> 
+                  </li>
+                  <li class="day">
+                    <div class="date">5</div>
+                    <label class="mdl-icon-toggle mdl-js-icon-toggle mdl-js-ripple-effect" for="day-5">
+                      <input type="checkbox" id="day-5" class="mdl-icon-toggle__input">
+                      <i class="mdl-icon-toggle__label material-icons">done</i>
+                    </label>
+                    <label class="desc-day">Sábado</label> 
+                  </li>
+                </ul>
+
+                <!-- Row #2 -->
+
+                <ul class="days">
+                  <li class="day">
+                    <div class="date">6</div>
+                    <label class="mdl-icon-toggle mdl-js-icon-toggle mdl-js-ripple-effect" for="day-6">
+                      <input type="checkbox" id="day-6" class="mdl-icon-toggle__input">
+                      <i class="mdl-icon-toggle__label material-icons">done</i>
+                    </label>
+                    <label class="desc-day">Domingo</label>
+                  </li>
+                  <li class="day">
+                    <div class="date">7</div>
+                    <label class="mdl-icon-toggle mdl-js-icon-toggle mdl-js-ripple-effect" for="day-7">
+                      <input type="checkbox" id="day-7" class="mdl-icon-toggle__input">
+                      <i class="mdl-icon-toggle__label material-icons">done</i>
+                    </label>
+                    <label class="desc-day">Segunda</label> 
+                  </li>
+                  <li class="day">
+                    <div class="date">8</div>
+                    <label class="mdl-icon-toggle mdl-js-icon-toggle mdl-js-ripple-effect" for="day-8">
+                      <input type="checkbox" id="day-8" class="mdl-icon-toggle__input">
+                      <i class="mdl-icon-toggle__label material-icons">done</i>
+                    </label>
+                    <label class="desc-day">Terça</label> 
+                  </li>
+                  <li class="day">
+                    <div class="date">9</div>
+                    <label class="mdl-icon-toggle mdl-js-icon-toggle mdl-js-ripple-effect" for="day-9">
+                      <input type="checkbox" id="day-9" class="mdl-icon-toggle__input">
+                      <i class="mdl-icon-toggle__label material-icons">done</i>
+                    </label>
+                    <label class="desc-day">Quarta</label> 
+                  </li>
+                  <li class="day">
+                    <div class="date">10</div>
+                    <label class="mdl-icon-toggle mdl-js-icon-toggle mdl-js-ripple-effect" for="day-10">
+                      <input type="checkbox" id="day-10" class="mdl-icon-toggle__input">
+                      <i class="mdl-icon-toggle__label material-icons">done</i>
+                    </label>
+                    <label class="desc-day">Quinta</label> 
+                  </li>
+                  <li class="day">
+                    <div class="date">11</div>
+                    <label class="mdl-icon-toggle mdl-js-icon-toggle mdl-js-ripple-effect" for="day-11">
+                      <input type="checkbox" id="day-11" class="mdl-icon-toggle__input">
+                      <i class="mdl-icon-toggle__label material-icons">done</i>
+                    </label>
+                    <label class="desc-day">Sexta</label> 
+                  </li>
+                  <li class="day">
+                    <div class="date">12</div>
+                    <label class="mdl-icon-toggle mdl-js-icon-toggle mdl-js-ripple-effect" for="day-12">
+                      <input type="checkbox" id="day-12" class="mdl-icon-toggle__input">
+                      <i class="mdl-icon-toggle__label material-icons">done</i>
+                    </label>
+                    <label class="desc-day">Sábado</label> 
+                  </li>
+                </ul>
+
+                <!-- Row #3 -->
+
+                <ul class="days">
+                  <li class="day">
+                    <div class="date">13</div>
+                    <label class="mdl-icon-toggle mdl-js-icon-toggle mdl-js-ripple-effect" for="day-13">
+                      <input type="checkbox" id="day-13" class="mdl-icon-toggle__input">
+                      <i class="mdl-icon-toggle__label material-icons">done</i>
+                    </label>
+                    <label class="desc-day">Domingo</label> 
+                  </li>
+                  <li class="day">
+                    <div class="date">14</div>
+                    <label class="mdl-icon-toggle mdl-js-icon-toggle mdl-js-ripple-effect" for="day-14">
+                      <input type="checkbox" id="day-14" class="mdl-icon-toggle__input">
+                      <i class="mdl-icon-toggle__label material-icons">done</i>
+                    </label>
+                    <label class="desc-day">Segunda</label> 
+                  </li>
+                  <li class="day">
+                    <div class="date">15</div>
+                    <label class="mdl-icon-toggle mdl-js-icon-toggle mdl-js-ripple-effect" for="day-15">
+                      <input type="checkbox" id="day-15" class="mdl-icon-toggle__input">
+                      <i class="mdl-icon-toggle__label material-icons">done</i>
+                    </label>
+                    <label class="desc-day">Terça</label> 
+                  </li>
+                  <li class="day">
+                    <div class="date">16</div>
+                    <label class="mdl-icon-toggle mdl-js-icon-toggle mdl-js-ripple-effect" for="day-16">
+                      <input type="checkbox" id="day-16" class="mdl-icon-toggle__input">
+                      <i class="mdl-icon-toggle__label material-icons">done</i>
+                    </label>
+                    <label class="desc-day">Quarta</label> 
+                  </li>
+                  <li class="day">
+                    <div class="date">17</div>
+                    <label class="mdl-icon-toggle mdl-js-icon-toggle mdl-js-ripple-effect" for="day-17">
+                      <input type="checkbox" id="day-17" class="mdl-icon-toggle__input">
+                      <i class="mdl-icon-toggle__label material-icons">done</i>
+                    </label>
+                    <label class="desc-day">Quinta</label> 
+                  </li>
+                  <li class="day">
+                    <div class="date">18</div>
+                    <label class="mdl-icon-toggle mdl-js-icon-toggle mdl-js-ripple-effect" for="day-18">
+                      <input type="checkbox" id="day-18" class="mdl-icon-toggle__input">
+                      <i class="mdl-icon-toggle__label material-icons">done</i>
+                    </label>
+                    <label class="desc-day">Sexta</label> 
+                  </li>
+                  <li class="day">
+                    <div class="date">19</div>
+                    <label class="mdl-icon-toggle mdl-js-icon-toggle mdl-js-ripple-effect" for="day-19">
+                      <input type="checkbox" id="day-19" class="mdl-icon-toggle__input">
+                      <i class="mdl-icon-toggle__label material-icons">done</i>
+                    </label>
+                    <label class="desc-day">Sábado</label> 
+                  </li>
+                </ul>
+
+              <!-- Row #4 -->
+
+              <ul class="days">
+                <li class="day">
+                  <div class="date">20</div>
+                  <label class="mdl-icon-toggle mdl-js-icon-toggle mdl-js-ripple-effect" for="day-20">
+                    <input type="checkbox" id="day-20" class="mdl-icon-toggle__input">
+                    <i class="mdl-icon-toggle__label material-icons">done</i>
+                  </label>
+                  <label class="desc-day">Domingo</label> 
+                </li>
+                <li class="day">
+                  <div class="date">21</div>
+                  <label class="mdl-icon-toggle mdl-js-icon-toggle mdl-js-ripple-effect" for="day-21">
+                    <input type="checkbox" id="day-21" class="mdl-icon-toggle__input">
+                    <i class="mdl-icon-toggle__label material-icons">done</i>
+                  </label>
+                  <label class="desc-day">Segunda</label> 
+                </li>
+                <li class="day">
+                  <div class="date">22</div>
+                  <label class="mdl-icon-toggle mdl-js-icon-toggle mdl-js-ripple-effect" for="day-22">
+                    <input type="checkbox" id="day-22" class="mdl-icon-toggle__input">
+                    <i class="mdl-icon-toggle__label material-icons">done</i>
+                  </label>
+                  <label class="desc-day">Terça</label> 
+                </li>
+                <li class="day">
+                  <div class="date">23</div>
+                  <label class="mdl-icon-toggle mdl-js-icon-toggle mdl-js-ripple-effect" for="day-23">
+                    <input type="checkbox" id="day-23" class="mdl-icon-toggle__input">
+                    <i class="mdl-icon-toggle__label material-icons">done</i>
+                  </label>
+                  <label class="desc-day">Quarta</label> 
+                </li>
+                <li class="day">
+                  <div class="date">24</div>
+                  <label class="mdl-icon-toggle mdl-js-icon-toggle mdl-js-ripple-effect" for="day-24">
+                    <input type="checkbox" id="day-24" class="mdl-icon-toggle__input">
+                    <i class="mdl-icon-toggle__label material-icons">done</i>
+                  </label>
+                  <label class="desc-day">Quinta</label> 
+                </li>
+                <li class="day">
+                  <div class="date">25</div>
+                  <label class="mdl-icon-toggle mdl-js-icon-toggle mdl-js-ripple-effect" for="day-25">
+                    <input type="checkbox" id="day-25" class="mdl-icon-toggle__input">
+                    <i class="mdl-icon-toggle__label material-icons">done</i>
+                  </label>
+                  <label class="desc-day">Sexta</label> 
+                </li>
+                <li class="day">
+                  <div class="date">26</div>
+                  <label class="mdl-icon-toggle mdl-js-icon-toggle mdl-js-ripple-effect" for="day-26">
+                    <input type="checkbox" id="day-26" class="mdl-icon-toggle__input">
+                    <i class="mdl-icon-toggle__label material-icons">done</i>
+                  </label>
+                  <label class="desc-day">Sábado</label> 
+                </li>
+              </ul>
+
+              <!-- Row #5 -->
+
+              <ul class="days">
+                <li class="day">
+                  <div class="date">27</div>
+                  <label class="mdl-icon-toggle mdl-js-icon-toggle mdl-js-ripple-effect" for="day-27">
+                    <input type="checkbox" id="day-27" class="mdl-icon-toggle__input">
+                    <i class="mdl-icon-toggle__label material-icons">done</i>
+                  </label>
+                  <label class="desc-day">Domingo</label> 
+                </li>
+                <li class="day">
+                  <div class="date">28</div>
+                  <label class="mdl-icon-toggle mdl-js-icon-toggle mdl-js-ripple-effect" for="day-28">
+                    <input type="checkbox" id="day-28" class="mdl-icon-toggle__input">
+                    <i class="mdl-icon-toggle__label material-icons">done</i>
+                  </label>
+                  <label class="desc-day">Segunda</label> 
+                </li>
+                <li class="day">
+                  <div class="date">29</div>
+                  <label class="mdl-icon-toggle mdl-js-icon-toggle mdl-js-ripple-effect" for="day-29">
+                    <input type="checkbox" id="day-29" class="mdl-icon-toggle__input">
+                    <i class="mdl-icon-toggle__label material-icons">done</i>
+                  </label>
+                  <label class="desc-day">Terça</label> 
+                </li>
+                <li class="day">
+                  <div class="date">30</div>
+                  <label class="mdl-icon-toggle mdl-js-icon-toggle mdl-js-ripple-effect" for="day-30">
+                    <input type="checkbox" id="day-30" class="mdl-icon-toggle__input">
+                    <i class="mdl-icon-toggle__label material-icons">done</i>
+                  </label>
+                  <label class="desc-day">Quarta</label> 
+                </li>
+                <li class="day other-month">
+                  <div class="date">1</div>              
+                </li>
+                <li class="day other-month">
+                  <div class="date">2</div>              
+                </li>
+                <li class="day other-month">
+                  <div class="date">3</div>              
+                </li>
+              </ul>
+
+              <!-- Row #6 -->
+
+              <ul class="days">
+                <li class="day other-month"> 
+                  <div class="date">4</div>              
+                </li>
+                <li class="day other-month">
+                  <div class="date">5</div> <!-- Next Month -->             
+                </li>
+                <li class="day other-month">
+                  <div class="date">6</div>             
+                </li>
+                <li class="day other-month">
+                  <div class="date">7</div>             
+                </li>
+                <li class="day other-month">
+                  <div class="date">8</div>             
+                </li>
+                <li class="day other-month">
+                  <div class="date">9</div>             
+                </li>
+                <li class="day other-month">
+                  <div class="date">10</div>             
+                </li>
+              </ul>
+
+            </div>
+          </div>
+
+          <div class="mdl-card__actions mdl-card__actions-resposta"> 
+            <a href="#" class="mdl-button mdl-js-button mdl-js-ripple-effect">Voltar</a>
+            <div class="mdl-layout-spacer"></div>
+            <input type="submit" value="Gravar" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored action" onclick="alert('ok')" />
+          </div>
+            
+          </div>          
+        </div>
+      </main>
+      <!-- FIM CONTEÚDO -->
+
+    </div>
+    <!-- FIM ESTRUTURA -->
+    
+    <!-- JAVA SCRIPT -->
+    <script src="vendors/mdl/material.js"></script>
+
+  </body>
+</html>
