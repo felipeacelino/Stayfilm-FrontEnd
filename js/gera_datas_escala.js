@@ -39,13 +39,13 @@
 
     	// Label da data
     	var lblDate = document.createElement('label');
-        // Atribui formatação diferente caso seja Sábado ou Domingo
-    	i.getDay() === 0 || i.getDay() === 6 ? lblDate.setAttribute('class','date fds') : lblDate.setAttribute('class','date');
+    	lblDate.setAttribute('class','date');
     	lblDate.innerHTML = data;
 
     	// Label do dia da semana
     	var lblNomeSemana = document.createElement('label');
-    	lblNomeSemana.setAttribute('class','desc-date');
+        // Atribui formatação diferente caso seja Sábado ou Domingo
+        i.getDay() === 0 || i.getDay() === 6 ? lblNomeSemana.setAttribute('class','desc-date fds') : lblNomeSemana.setAttribute('class','desc-date');
     	lblNomeSemana.innerHTML = nomeSemana;
 
     	// Campo checkbox

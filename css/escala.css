@@ -50,14 +50,14 @@
 	border-radius: 3px;
 }
 
-#calendar li .fds {
-	background-color: rgba(0,0,0,0.3) !important;
-}
-
 #calendar li .desc-date {
 	color: rgba(0, 0, 0, 0.54);
 	font-size: 1rem;
 	margin-left: 16px;
+}
+
+#calendar li .fds {
+	font-weight: bold !important;
 }
 
 #calendar li .mdl-icon-toggle {
