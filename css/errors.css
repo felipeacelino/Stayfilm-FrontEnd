@@ -1,0 +1,27 @@
+
+.error-container {
+	width: 100%;
+	height: 80vh;
+	float: left;
+}
+
+.error-page {
+	float: left;
+	width: 100%;
+	height: auto;
+	text-transform: uppercase;
+	text-align: center;
+	color: rgba(0,0,0,0.54);
+	font-weight: 500;
+}
+
+.error-code {
+	margin-top: 150px;
+	font-size: 8em;
+}
+
+.error-desc {
+	margin-top: 50px;
+	font-size: 1.5em;
+}
+
