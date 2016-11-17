@@ -1,24 +1,43 @@
 
-#calendar-wrap {
+.calendar-wrap {
 	width: 100%;
 	margin-bottom: 20px;
 }
 
-#calendar-wrap header h2 {
+.calendar-wrap header h2 {
 	text-align: center;
 	font-size: 24px;
-	margin: 0;
+	width: 100%;
+	margin: 0 auto;
 }
 
-#calendar-wrap header h3 {
+.calendar-wrap header h3 {
 	color: rgba(0,0,0, 0.54);
 	font-size: 1.3em;
 	line-height: 22px;
 }
 
-#calendar {
+.calendar-controls {
+	width: 100%;
+	margin-top: -40px;
+	margin-bottom: 30px;
 	float: left;
-	width: 100%;	
+}
+
+.calendar-controls #btn-ant {
+	float: left;
+}
+
+.calendar-controls #btn-prox {
+	float: right;
+}
+
+#calendar {
+	width: 100%;		
+}
+
+#calendar a {
+	text-decoration: none;
 }
 
 #calendar ul {
@@ -31,54 +50,166 @@
 #calendar li {
 	display: block;
 	float: left;
-	width: 100%;
-	height: auto;
-	padding: 15px;
+	width: 14.342%;
+	padding: 5px;
 	box-sizing:border-box;
-	border: 1px solid rgba(0, 0, 0, 0.1);
-	margin-bottom: 10px;
-	box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
-	background-color: #FFF;
+	border: 1px solid #ccc;
+	margin-right: -1px;
+	margin-bottom: -1px;
 }
 
-#calendar .escala .colaboradores {
-	float: left;
-	margin-top: 16px;
-} 
-
-#calendar .escala .colaboradores li {
-	background-color: rgba(0, 0, 0, 0.1);
-} 
-
-#calendar .escala .colaboradores li .col-nome {
-	float: left;
+/*#calendar li .mdl-icon-toggle {
 	margin-top: 5px;
-} 
+	margin-left: 30%;
+}
+*/
+/*#calendar li .mdl-icon-toggle.is-checked .mdl-icon-toggle__label {
+	color: #FFF;
+	background-color: #8BC34A;
+}*/
 
-#calendar li .date {
-	font-size: 1.2rem;	
-	font-weight: normal;
-	color: rgba(0, 0, 0, 0.84);
-	padding: 5px 7px;
-	border-radius: 3px;
+#calendar ul.weekdays {
+	height: 40px;
+	background: #B0262C;
+}
+
+#calendar ul.weekdays li {
+	text-align: center;
+	text-transform: uppercase;
+	line-height: 20px;
+	border: none !important;
+	padding: 10px 6px;
+	color: #fff;
+	font-size: 13px;
 	font-weight: 500;
 }
 
-#calendar li .desc-date {
-	color: rgba(0, 0, 0, 0.54);
-	font-size: 1rem;
-	margin-left: 16px;
+#calendar .days li {
+	height: 120px;
+	overflow: auto;
 }
 
-#calendar li .fds {
-	font-weight: bold !important;
+#calendar .days li:not(.other-month):hover {
+	background: #d3d3d3;
 }
 
-#calendar li .mdl-icon-toggle {
-	float: right;	
+#calendar .date {
+	text-align: center;
+	margin-bottom: 5px;
+	padding: 4px;
+	color: #333;
+	width: 20px;
+	float: right;
+	font-weight: 500;
 }
 
-#calendar li .mdl-icon-toggle.is-checked .mdl-icon-toggle__label {
+#calendar .days li .desc-day {
+	display: none;
+}
+
+#calendar .other-month {
+	background: #ddd;
+	color: #333;
+	cursor: not-allowed;
+}
+
+#calendar .other-month .date {
+	color: #666;
+}
+
+#calendar-load {
+	margin-bottom: 20px;
+	width: 100%;
+	float: left;
+}
+
+#calendar .card-horario {
+	width: 100%;
+	max-width: 400px;
+	margin: 0 auto;
+	display: none;
+}
+
+#calendar .card-horario .mdl-card__title {
+	background: #B0262C;
+}
+
+#calendar .card-horario .mdl-card__title .mdl-card__title-text,
+#calendar .card-horario .mdl-card__menu .mdl-button {
 	color: #FFF;
-	background-color: #8BC34A;
+}
+
+#calendar .card-horario #card-horario-form {
+	width: 90%;
+	margin: 0 auto;
+	float: left;
+}
+
+#calendar .card-horario .mdl-card__actions .mdl-button {
+	color: #FFF;
+	float: right;
+}
+
+#calendar .horario {
+    clear: both;
+    display: block;
+    font-size: 13px;
+    border-radius: 4px;
+    padding: 5px;
+    margin-top: 5px;
+    line-height: 14px;
+    background: #B0262C;
+    color: #FFF;
+    text-align: center;
+}
+
+/*@media(max-width: 772px) {
+
+	#calendar li .mdl-icon-toggle {
+		margin-top: 0px;
+		margin-left: 2%;
+	}
+
+}
+
+@media(max-width: 596px) {
+
+	#calendar li .mdl-icon-toggle {
+		margin-top: -35px;
+	}
+
+}*/
+
+@media(max-width: 768px) {
+
+	#calendar .weekdays, #calendar .other-month {
+		display: none;
+	}
+
+	#calendar li {
+		height: auto !important;
+		border: 1px solid #ededed;
+		width: 100%;
+		padding: 10px;
+		margin-bottom: -1px;
+	}
+
+	#calendar li .mdl-icon-toggle {
+		float: right;
+		margin-right: 16px;
+	}
+
+	#calendar .date {
+		float: none;
+		font-size: 1.5em;
+	}
+
+	#calendar .days li .desc-day {
+		display: block;
+		float: right;
+		margin-top: -30px;
+		margin-bottom: 20px;
+		color: rgba(0,0,0,0.54);
+	}
+
 }
