@@ -1,3 +1,9 @@
+.align-center {
+	border: 1px solid red;
+	width: 500px;
+	height: 50px;
+	float: left;
+}
 
 .calendar-wrap {
 	width: 100%;
@@ -163,6 +169,109 @@
     text-align: center;
 }
 
+.escala-container {
+	float: left;
+	width: 100%;
+	max-width: 850px;
+	height: auto;
+	margin: 0 auto;
+}
+
+.escala-container header {
+	width: 100%;
+}
+
+.escala-container header h1 {
+	width: 100%;
+	text-align: center;
+	font-size: 24px;
+	color: #FFF;
+	background: #B0262C;
+	margin: 0;
+	margin-bottom: 10px;
+	padding: 10px 0;
+}
+
+.escala-container header p {
+	width: 100%;
+	text-align: center;
+	font-size: 16px;
+	color: rgba(0,0,0,0.54);
+}
+
+.escala-escalados {
+	float: left;
+	width: 100%;
+	max-width: 400px;
+	border: 1px solid #ccc;	
+	margin: 0px 10px 10px 0px;
+}
+
+.escala-colaboradores {
+	float: left;
+	width: 100%;
+	max-width: 400px;
+	border: 1px solid #ccc;	
+}
+
+.escala-escalados h3,
+.escala-colaboradores h3 {
+	width: 100%;
+	background: #B0262C;
+	text-align: center;
+	margin: 0 0 10px 0;
+	color: #FFF;
+	font-size: 20px;
+	padding: 10px 0;
+}	
+
+.escala-escalados h4 {
+	width: 100%;
+	text-align: center;
+	margin: 0 0 10px 0;
+	color: rgba(0,0,0,0.54);
+	font-size: 20px;
+	padding: 10px 0;
+	border-top: 1px solid #CCC;
+	border-bottom: 1px solid #CCC;
+}	
+
+
+#escala-add-colaborador {
+	padding: 0 10px;
+}
+
+.escala-action {
+	width: 100%;
+	text-align: right;
+	margin-bottom: 20px;
+}
+
+.escala-action .mdl-button {
+	color: #FFF;
+}
+
+.lista-colaboradores .mdl-list__item {
+	border-bottom: 1px solid #CCC;
+}
+
+.list-horarios {
+	list-style: none;
+}
+
+.list-horarios li {
+	background: #B0262C;
+	color: #FFF;
+	border-radius: 4px;
+	padding: 5px;
+	margin-top: 5px;
+	font-size: 13px;
+	text-align: center;
+}
+
+.lista-escalados li {
+	width: 100%;
+}
 /*@media(max-width: 772px) {
 
 	#calendar li .mdl-icon-toggle {

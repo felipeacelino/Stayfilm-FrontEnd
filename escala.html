@@ -34,7 +34,7 @@
         <div class="mdl-layout__header-row mdl-color-text--blue-grey-900">
 
           <!-- TÍTULO PRINCIPAL -->
-          <span class="mdl-layout-title">Gerenciar Escala</span>
+          <span class="mdl-layout-title">Minha Escala</span>
           <!-- FIM TÍTULO PRINCIPAL -->
 
         </div>
@@ -132,119 +132,177 @@
         <div class="mdl-grid content">
           <div class="conteudo mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
 
-            <div id="calendar-wrap">
+            <div class="calendar-wrap">
 
               <header>
-                <h2 id="mes-ano-atual">Novembro 2016</h2>
-                <h3>Selecione os colaboradores disponíveis para cada dia e aprove a escala.</h3>
+                
+                <h2 id="calendar-title"></h2>
+
+                <div class="calendar-controls">
+
+                  <button id="btn-ant" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                    <i class="material-icons">keyboard_arrow_left</i>
+                  </button>      
+
+                  <button id="btn-prox" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                    <i class="material-icons">keyboard_arrow_right</i>
+                  </button> 
+
+                </div> 
+
+                <h3>Adicione os horários indisponíveis para cada dia do mês.</h3>
+
               </header>
 
               <div id="calendar">
 
-                <ul class="days">
+                <ul class="weekdays">
+                  <li>Domingo</li>
+                  <li>Segunda</li>
+                  <li>Terça</li>
+                  <li>Quarta</li>
+                  <li>Quinta</li>
+                  <li>Sexta</li>
+                  <li>Sábado</li>
+                </ul>
 
-                  <li class="day escala">
+                <span id="calendar-load"></span>              
+               
+            </div>
 
-                    <label class="date">01/11/2016</label>
-                    <label class="desc-date">Domingo</label>
+            <div class="escala-container">
 
-                    <ul class="colaboradores">
-                      <li class="colaborador">
-                        <label class="col-nome">Fulano de Tal</label>
-                        <label class="mdl-icon-toggle mdl-js-icon-toggle mdl-js-ripple-effect" for="col1">
-                          <input type="checkbox" id="col1" class="mdl-icon-toggle__input" />
-                          <i class="mdl-icon-toggle__label material-icons">done</i>
-                        </label>
-                      </li>
-                      <li class="colaborador">
-                        <label class="col-nome">Fulano de Tal</label>
-                        <label class="mdl-icon-toggle mdl-js-icon-toggle mdl-js-ripple-effect" for="col2">
-                          <input type="checkbox" id="col2" class="mdl-icon-toggle__input" />
-                          <i class="mdl-icon-toggle__label material-icons">done</i>
-                        </label>
-                      </li>
-                      <li class="colaborador">
-                        <label class="col-nome">Fulano de Tal</label>
-                        <label class="mdl-icon-toggle mdl-js-icon-toggle mdl-js-ripple-effect" for="col3">
-                          <input type="checkbox" id="col3" class="mdl-icon-toggle__input" />
-                          <i class="mdl-icon-toggle__label material-icons">done</i>
-                        </label>
-                      </li>
-                      <li class="colaborador">
-                        <label class="col-nome">Fulano de Tal</label>
-                        <label class="mdl-icon-toggle mdl-js-icon-toggle mdl-js-ripple-effect" for="col4">
-                          <input type="checkbox" id="col4" class="mdl-icon-toggle__input" />
-                          <i class="mdl-icon-toggle__label material-icons">done</i>
-                        </label>
-                      </li>
+              <header>
+                  <h1>Gerenciar Escala</h1>
+                  <p>Segunda, 15 de Dezembro de 2016</p>
+              </header>
+              
+              <div class="escala-escalados">
+                
+                <h3>Adicionar Colaborador</h3>
+                
+                <div id="escala-add-colaborador">                    
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="number" id="horario_inicio" name="horario_inicio">
+                    <label class="mdl-textfield__label">Horário Inicial</label>     
+                  </div>
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="number" id="horario_fim" name="horario_fim">
+                    <label class="mdl-textfield__label">Horário Final</label>       
+                  </div>
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fullwidth getmdl-select__fix-height">
+                    <input class="mdl-textfield__input required" type="text" id="colaborador" value="" readonly tabIndex="-1">
+                    <label for="colaborador" class="mdl-textfield__label">Colaboradores</label>
+                    <ul for="colaborador" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
+                      <li class="mdl-menu__item">Fulano de Tal</li>
+                      <li class="mdl-menu__item">Fulano de Tal</li>
+                      <li class="mdl-menu__item">Fulano de Tal</li>
+                      <li class="mdl-menu__item">Fulano de Tal</li>
+                      <li class="mdl-menu__item">Fulano de Tal</li>
                     </ul>
+                    <span class="mdl-textfield__error">Selecione um idioma</span>
+                  </div>
 
+                  <div class="escala-action">
+                    <a id="btn-add-colaborador" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect action">
+                      Adicionar
+                    </a>
+                  </div>
+
+                </div>
+
+                <h4>Escalados</h4>
+
+                <ul class="lista-escalados mdl-list">
+                  <li class="mdl-list__item">
+                    <span class="mdl-list__item-primary-content">
+                      <i class="material-icons  mdl-list__item-avatar">person</i>
+                      Fulano de tal
+                    </span>
+                    <span class="mdl-list__item-secondary-action">
+                      <button class="mdl-button mdl-js-button mdl-button--icon">
+                        <i class="material-icons">close</i>
+                      </button>
+                    </span>
                   </li>
-
-                  <li class="day escala">
-
-                    <label class="date">02/11/2016</label>
-                    <label class="desc-date">Segunda-feira</label>
-
-                    <ul class="colaboradores">                      
-                      <li class="colaborador">
-                        <label class="col-nome">Fulano de Tal</label>
-                        <label class="mdl-icon-toggle mdl-js-icon-toggle mdl-js-ripple-effect" for="col5">
-                          <input type="checkbox" id="col5" class="mdl-icon-toggle__input" />
-                          <i class="mdl-icon-toggle__label material-icons">done</i>
-                        </label>
-                      </li>
-                      <li class="colaborador">
-                        <label class="col-nome">Fulano de Tal</label>
-                        <label class="mdl-icon-toggle mdl-js-icon-toggle mdl-js-ripple-effect" for="col6">
-                          <input type="checkbox" id="col6" class="mdl-icon-toggle__input" />
-                          <i class="mdl-icon-toggle__label material-icons">done</i>
-                        </label>
-                      </li>
-                    </ul>
-
+                  <li class="mdl-list__item">
+                    <span class="mdl-list__item-primary-content">
+                      <i class="material-icons  mdl-list__item-avatar">person</i>
+                      Fulano de tal
+                    </span>
+                    <span class="mdl-list__item-secondary-action">
+                      <button class="mdl-button mdl-js-button mdl-button--icon">
+                        <i class="material-icons">close</i>
+                      </button>
+                    </span>
                   </li>
-
-                  <li class="day escala">
-
-                    <label class="date">03/11/2016</label>
-                    <label class="desc-date">Terça-feira</label>
-
-                    <ul class="colaboradores">
-                      <li class="colaborador">
-                        <label class="col-nome">Fulano de Tal</label>
-                        <label class="mdl-icon-toggle mdl-js-icon-toggle mdl-js-ripple-effect" for="col7">
-                          <input type="checkbox" id="col7" class="mdl-icon-toggle__input" />
-                          <i class="mdl-icon-toggle__label material-icons">done</i>
-                        </label>
-                      </li>
-                      <li class="colaborador">
-                        <label class="col-nome">Fulano de Tal</label>
-                        <label class="mdl-icon-toggle mdl-js-icon-toggle mdl-js-ripple-effect" for="col8">
-                          <input type="checkbox" id="col8" class="mdl-icon-toggle__input" />
-                          <i class="mdl-icon-toggle__label material-icons">done</i>
-                        </label>
-                      </li>
-                      <li class="colaborador">
-                        <label class="col-nome">Fulano de Tal</label>
-                        <label class="mdl-icon-toggle mdl-js-icon-toggle mdl-js-ripple-effect" for="col9">
-                          <input type="checkbox" id="col9" class="mdl-icon-toggle__input" />
-                          <i class="mdl-icon-toggle__label material-icons">done</i>
-                        </label>
-                      </li>
-                    </ul>
-
+                  <li class="mdl-list__item">
+                    <span class="mdl-list__item-primary-content">
+                      <i class="material-icons  mdl-list__item-avatar">person</i>
+                      Fulano de tal
+                    </span>
+                    <span class="mdl-list__item-secondary-action">
+                      <button class="mdl-button mdl-js-button mdl-button--icon">
+                        <i class="material-icons">close</i>
+                      </button>
+                    </span>
                   </li>
-
                 </ul>
 
               </div>
+
+              <div class="escala-colaboradores">
+
+                <header>
+                  <h1>Colaboradores</h1>
+                </header>
+
+                <ul class="lista-colaboradores mdl-list">
+                  <li class="mdl-list__item">
+                    <span class="mdl-list__item-primary-content">
+                      <i class="material-icons  mdl-list__item-avatar">person</i>
+                      Fulano de tal
+                    </span>
+                    <ul class="list-horarios">
+                      <li>00:00 - 00:00</li>
+                      <li>00:00 - 00:00</li>
+                      <li>00:00 - 00:00</li>
+                    </ul>
+                  </li>
+                  <li class="mdl-list__item">
+                    <span class="mdl-list__item-primary-content">
+                      <i class="material-icons  mdl-list__item-avatar">person</i>
+                      Fulano de tal
+                    </span>
+                    <ul class="list-horarios">
+                      <li>00:00 - 00:00</li>
+                      <li>00:00 - 00:00</li>
+                      <li>00:00 - 00:00</li>
+                    </ul>
+                  </li>
+                  <li class="mdl-list__item">
+                    <span class="mdl-list__item-primary-content">
+                      <i class="material-icons  mdl-list__item-avatar">person</i>
+                      Fulano de tal
+                    </span>
+                    <ul class="list-horarios">
+                      <li>00:00 - 00:00</li>
+                      <li>00:00 - 00:00</li>
+                      <li>00:00 - 00:00</li>
+                    </ul>
+                  </li>                   
+                </ul>
+
+              </div>
+            
             </div>
+
+          </div>
 
           <div class="mdl-card__actions mdl-card__actions-resposta"> 
             <a href="#" class="mdl-button mdl-js-button mdl-js-ripple-effect">Voltar</a>
             <div class="mdl-layout-spacer"></div>
-            <input type="submit" value="Aprovar" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored action" onclick="alert('ok')" />
+            <input type="submit" value="Gravar" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored action" onclick="alert('ok')" />
           </div>
             
           </div>          
@@ -257,6 +315,8 @@
     
     <!-- JAVA SCRIPT -->
     <script src="vendors/mdl/material.js"></script>
+    <script src="vendors/getmdl-select-master/getmdl-select.min.js"></script>
+    <script src="js/gerenciar_escala.js"></script>
 
   </body>
 </html>
