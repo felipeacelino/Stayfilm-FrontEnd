@@ -15,9 +15,6 @@
 
     <!-- CSS -->    
     <link rel="stylesheet" href="vendors/mdl/material.css">    
-    <link rel="stylesheet" href="vendors/getmdl-select-master/getmdl-select.min.css">  
-    <link rel="stylesheet" href="vendors/mdl-speed-dial/mdl_speed_dial.css">
-    <link rel="stylesheet" href="vendors/featherlight/featherlight.css">  
     <link rel="stylesheet" href="css/style.css">
 
   </head>
@@ -35,29 +32,27 @@
 
           <div id="bico"></div>
 
-          <form action="#" id="form-login">
+          <form id="form" class="form-login" method="post">
 
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-              <input class="mdl-textfield__input" pattern="-?[0-9]*(\.[0-9]+)?" type="text" id="usuario">
-              <label class="mdl-textfield__label" for="usuario">Usuário</label>
-              <span class="mdl-textfield__error error">Usuário incorreto</span>
-            </div>
+              <input class="mdl-textfield__input required" type="text" name="login" id="login">
+              <label class="mdl-textfield__label" for="login">Usuário</label>
+              <span class="mdl-textfield__error">Digite um usuário</span>
+            </div>         
 
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-              <input class="mdl-textfield__input" pattern="-?[0-9]*(\.[0-9]+)?" type="password" id="senha">
+              <input class="mdl-textfield__input required" type="password" name="senha" id="senha">
               <label class="mdl-textfield__label" for="senha">Senha</label>
-              <span class="mdl-textfield__error error">Senha incorreta</span>
+              <span class="mdl-textfield__error">Digite uma senha</span>
+            </div>                    
+
+            <div class="mdl-card__actions"> 
+              <div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active" id="icon-loading"></div>
+              <div class="mdl-layout-spacer"></div>             
+              <input type="submit" value="Entrar" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--blue-grey-900">          
             </div>
 
-          </form>
-
-          <div class="mdl-card__actions"> 
-            <a href="curadoria.html">
-              <button id="btn_envia" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--blue-grey-900">
-                Entrar
-              </button>
-            </a>
-          </div>
+          </form>         
           
         </div>
 
@@ -67,11 +62,19 @@
           </div>
         </div>
 
+        
+        <div id="demo-toast-example" class="mdl-js-snackbar mdl-snackbar">
+          <div class="mdl-snackbar__text"></div>
+        <button class="mdl-snackbar__action" type="button"></button>
+        </div>
+      
     </div>
     <!-- FIM ESTRUTURA -->
     
     <!-- JAVA SCRIPT -->
     <script src="vendors/mdl/material.js"></script>
-    
+    <script src="vendors/jquery/jquery.js"></script>
+    <script src="js/script.js"></script>
+
   </body>
 </html>
