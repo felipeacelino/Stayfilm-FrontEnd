@@ -2,34 +2,66 @@
             VALIDAÇÃO DO FORMULÁRIO
 ===================================================*/
 
-var validaFormulario =  function validaFormulario(callbackForm) {
+var validaFormulario =  function validaFormulario() {
 
   var cout_campos_invalidos = 0;
 
-  /*$(".required").blur(function(){
+  $(".required").each(function() { 
 
     if(!this.value){
       $(this).parent().addClass('is-invalid');
-    }
-
-  });*/
-
-  $(".required").each(function() { 
-
-    if(this.value){
-      $(this).parent().removeClass('is-invalid');
+      cout_campos_invalidos++;      
     }else{      
-      $(this).parent().addClass('is-invalid');
-      cout_campos_invalidos++;
+      $(this).parent().removeClass('is-invalid');
     }
 
   });
 
-  if (cout_campos_invalidos === 0) {   
-    callbackForm();
-  }
+  return cout_campos_invalidos === 0 ? true : false;
 
 }
+
+/*===================================================
+                      SNACKBAR
+===================================================*/
+
+var snackMessage = function snackMessage(obj, mensagem, tempo) {
+  // Configurações
+  var snackSettings = {
+    message: mensagem,  // Mensagem
+    timeout: tempo      // Tempo de exibição
+  };
+
+  var snackbarContainer = document.querySelector(obj);
+  snackbarContainer.MaterialSnackbar.showSnackbar(snackSettings);
+}
+
+/*===================================================
+                      LOADING ICON
+===================================================*/
+
+var LoadingProgress = {
+  container: document.querySelector('#icon-loading'),
+  show: function Show() {    
+    this.container.style.display = 'block';
+  },
+  hide: function Hide() {
+    this.container.style.display = 'none';
+  }
+}
+
+/*===================================================
+            ATIVA / DESATIVA UM BOTÃO
+===================================================*/
+
+var ativaBotao = function ativaBotao(botao) {
+  document.querySelector(botao).disabled = false;
+}
+
+var desativaBotao = function desativaBotao(botao) {
+  document.querySelector(botao).disabled = true;
+}
+
 
 /*===================================================
                       TOKEN
@@ -78,42 +110,74 @@ var clearToken = function clearToken() {
                       LOGIN
 ===================================================*/
 
-var login = function login(usuario, senha) {
+var efetuarLogin = function efetuarLogin(login, senha) {
 
+  // Adiciona os dados de login em um objeto
   var dados_login = {
-    login: $('#login').val(),
-    senha: $('#senha').val()
-  }
-
-  var data = {
-    message: 'Usuário ou senha incorretos'
-  };
-
-  var snackbarContainer = document.querySelector('#demo-toast-example');
-  snackbarContainer.MaterialSnackbar.showSnackbar(data);
-.
-
-  /*$.ajax({
+    login: login,
+    senha: senha
+  }  
+  
+  $.ajax({
 
     url: 'http://localhost/Prj_StayFilm/login',
     type: 'POST',
     dataType: 'json',
     contentType: 'application/json;charset=utf-8',
-    async: true,    
-    data: JSON.stringify(dados_login)
-      
+    data: JSON.stringify(dados_login) 
+
   }).done(function(response) {    
-      console.log(response);
-  }).fail(function(response) {
-      console.log(response);
-  });*/
+    
+    setToken(response.token);
+    location.href = 'curadoria.html';
+
+  }).fail(function(reponse) {    
+    if (reponse.readyState == 4) {
+      // HTTP error (can be checked by XMLHttpRequest.status and XMLHttpRequest.statusText)
+    }
+    else if (reponse.readyState == 0) {
+      // Network error (i.e. connection refused, access denied due to CORS, etc.)   
+
+      // Mensagem snackbar   
+      snackMessage('#snackbar', 'Problema na comunicação com o servidor', 3000);
+      // Ativa o botão de submit
+      ativaBotao('#btn-entrar');
+      // Oculta o ícone de loading
+      LoadingProgress.hide();
+    }
+    else {
+      // something weird is happening
+    }
+  });
 
 }
 
 $("#form").on('submit', function(e){
 
+  // Cancela o envio do formulário
   e.preventDefault();
-  validaFormulario(login);  
+  // Desativa o botão de submit
+  desativaBotao('#btn-entrar');
+  // Exibe o ícone de loading
+  LoadingProgress.show();
+  
+  if (validaFormulario()) {
+    
+    //Pega os valores do campo
+    var login = $('#login').val();
+    var senha = $('#senha').val();
+
+    // Executa a função de login
+    efetuarLogin(login, senha);    
+
+  } else {
+
+    // Ativa o botão de submit
+    ativaBotao('#btn-entrar');
+    // Oculta o ícone de loading
+    LoadingProgress.hide();
+
+  }
 
 });
 

@@ -45,6 +45,11 @@ html, body {
   display: none;
 }
 
+/* BOTÕES DESATIVADOS */
+input[type=submit]:disabled {
+  opacity: 0.5;
+}
+
 /* CORES */
 
 .pendente {
