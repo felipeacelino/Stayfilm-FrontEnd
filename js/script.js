@@ -39,8 +39,6 @@ var getPageName = function getPageName() {
 
 }
 
-console.log(getPageName());
-
 /*===================================================
                       SNACKBAR
 ===================================================*/
@@ -130,7 +128,7 @@ var clearToken = function clearToken() {
                     VERIFICA LOGIN
 ===================================================*/
 
-// Verifica se já está logado (Executada no load da página de login)
+// Verifica se já está logado
 var verificaLogin = function verificaLogin() {
 
   //console.log(getToken());
@@ -144,6 +142,15 @@ var verificaLogin = function verificaLogin() {
     }
 
   } 
+
+  else {
+
+    // Se a página atual for a index (login), redireciona para a principal (curadoria)... 
+    if (getPageName() === 'index.html') {
+      window.location.href = 'curadoria.html';
+    }
+
+  }
   
 }
 
@@ -164,7 +171,14 @@ var efetuarLogout = function efetuarLogout() {
 
 }
 
-//efetuarLogout();
+// Botão de logout
+var btnLogout = $('#btn-logout');
+
+// Evento de click do botão de logout
+btnLogout.on('click', function() {
+  // Efetua logout
+  efetuarLogout();
+});
 
 /*===================================================
                       LOGIN
@@ -189,12 +203,14 @@ var efetuarLogin = function efetuarLogin(email, senha) {
 
   }).done(function(response) {    
     
-    console.log('success!');
+    // Armazena o token
     setToken(response.token);        
     // Ativa o botão de submit
     ativaBotao('#btn-entrar');
     // Oculta o ícone de loading
     LoadingProgress.hide();
+    // Verifica o login
+    verificaLogin();
 
   }).fail(function(reponse) {    
 
