@@ -89,14 +89,15 @@ var desativaBotao = function desativaBotao(botao) {
 var setToken = function setToken(token) {
 
   clearToken();
-  localStorage.setItem('token', token);
+  window.localStorage.setItem('token', token);
 
 }
 
 // Retorna o TOKEN
 var getToken = function getToken() {
 
-  return localStorage.getItem('token');
+  var token = window.localStorage.getItem('token');
+  return token;
 
 }
 
@@ -119,8 +120,8 @@ var validaToken = function validaToken(token) {
 // Limpar o TOKEN
 var clearToken = function clearToken() {
 
-  localStorage.removeItem('token');
-  localStorage.clear();
+  window.localStorage.removeItem('token');
+  window.localStorage.clear();
 
 }
 
@@ -192,7 +193,7 @@ var efetuarLogin = function efetuarLogin(email, senha) {
     email: email,
     senha: senha
   }  
-  
+  console.log('entrei no metodo');
   $.ajax({
 
     url: 'http://localhost/Prj_StayFilm/login',
@@ -222,8 +223,11 @@ var efetuarLogin = function efetuarLogin(email, senha) {
         snackMessage('#snackbar', 'Dados de acesso inválidos!', 3000);
         // Ativa o botão de submit
         ativaBotao('#btn-entrar');
-        // Oculta o ícone de loading
+        // Oculta o ícone de loading       
         LoadingProgress.hide();
+        // Limpa e foca no campo de senha
+        $('#senha').val('');
+        $('#senha').focus();
 
       }     
     }
@@ -236,6 +240,10 @@ var efetuarLogin = function efetuarLogin(email, senha) {
       ativaBotao('#btn-entrar');
       // Oculta o ícone de loading
       LoadingProgress.hide();
+      // Limpa e foca no campo de senha
+      $('#senha').val('');
+      $('#senha').focus();
+      
     }
     else {
       // something weird is happening
@@ -244,6 +252,9 @@ var efetuarLogin = function efetuarLogin(email, senha) {
   });
 
 }
+
+// Variável para impedir que uma requisição seja realizada ao mesmo tempo
+var processando = false;
 
 $("#form").on('submit', function(e){
 
