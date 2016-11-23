@@ -22,6 +22,26 @@ var validaFormulario =  function validaFormulario() {
 }
 
 /*===================================================
+            OBTÉM O NOME DA PÁGINA NA URL
+===================================================*/
+
+var getPageName = function getPageName() {
+
+  /*var url = window.location.pathname;
+  var filename = url.substring(url.lastIndexOf('/')+1);*/
+
+  var url = document.location.href;
+  url = url.substring(0, (url.indexOf("#") == -1) ? url.length : url.indexOf("#"));
+  url = url.substring(0, (url.indexOf("?") == -1) ? url.length : url.indexOf("?"));
+  url = url.substring(url.lastIndexOf("/") + 1, url.length);
+
+  return url;
+
+}
+
+console.log(getPageName());
+
+/*===================================================
                       SNACKBAR
 ===================================================*/
 
@@ -107,14 +127,55 @@ var clearToken = function clearToken() {
 }
 
 /*===================================================
+                    VERIFICA LOGIN
+===================================================*/
+
+// Verifica se já está logado (Executada no load da página de login)
+var verificaLogin = function verificaLogin() {
+
+  //console.log(getToken());
+
+  // Se não existir um TOKEN está deslogado
+  if (!getToken()) {
+
+    // Se a página atual não for a index (login), redireciona para o login... 
+    if (getPageName() !== 'index.html') {
+      window.location.href = 'index.html';
+    }
+
+  } 
+  
+}
+
+// Executa ao carregar a página
+verificaLogin();
+
+/*===================================================
+                    LOGOUT
+===================================================*/
+
+var efetuarLogout = function efetuarLogout() {
+
+  //Limpa o token
+  clearToken();
+
+  // Verifica o login
+  verificaLogin();
+
+}
+
+//efetuarLogout();
+
+/*===================================================
                       LOGIN
 ===================================================*/
 
-var efetuarLogin = function efetuarLogin(login, senha) {
+// Função de login
+var efetuarLogin = function efetuarLogin(email, senha) {
 
   // Adiciona os dados de login em um objeto
   var dados_login = {
-    login: login,
+    email: email,
     senha: senha
   }  
   
@@ -128,15 +189,30 @@ var efetuarLogin = function efetuarLogin(login, senha) {
 
   }).done(function(response) {    
     
-    setToken(response.token);
-    location.href = 'curadoria.html';
+    console.log('success!');
+    setToken(response.token);        
+    // Ativa o botão de submit
+    ativaBotao('#btn-entrar');
+    // Oculta o ícone de loading
+    LoadingProgress.hide();
 
   }).fail(function(reponse) {    
-    if (reponse.readyState == 4) {
-      // HTTP error (can be checked by XMLHttpRequest.status and XMLHttpRequest.statusText)
+
+    // HTTP error (can be checked by XMLHttpRequest.status and XMLHttpRequest.statusText)
+    if (reponse.readyState == 4) {      
+      if (reponse.status == 401) {
+
+        // Mensagem snackbar   
+        snackMessage('#snackbar', 'Dados de acesso inválidos!', 3000);
+        // Ativa o botão de submit
+        ativaBotao('#btn-entrar');
+        // Oculta o ícone de loading
+        LoadingProgress.hide();
+
+      }     
     }
-    else if (reponse.readyState == 0) {
-      // Network error (i.e. connection refused, access denied due to CORS, etc.)   
+    // Network error (i.e. connection refused, access denied due to CORS, etc.)   
+    else if (reponse.readyState == 0) {      
 
       // Mensagem snackbar   
       snackMessage('#snackbar', 'Problema na comunicação com o servidor', 3000);
@@ -147,6 +223,7 @@ var efetuarLogin = function efetuarLogin(login, senha) {
     }
     else {
       // something weird is happening
+      console.log('erro other...');
     }
   });
 
@@ -164,11 +241,11 @@ $("#form").on('submit', function(e){
   if (validaFormulario()) {
     
     //Pega os valores do campo
-    var login = $('#login').val();
+    var email = $('#email').val();
     var senha = $('#senha').val();
 
     // Executa a função de login
-    efetuarLogin(login, senha);    
+    efetuarLogin(email, senha);    
 
   } else {
 
