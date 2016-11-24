@@ -55,7 +55,7 @@ var snackMessage = function snackMessage(obj, mensagem, tempo) {
 }
 
 /*===================================================
-                      LOADING ICON
+                   LOADING ICON
 ===================================================*/
 
 var LoadingProgress = {
@@ -117,11 +117,42 @@ var validaToken = function validaToken(token) {
 
 }
 
+// Decodifica o TOKEN
+var decodeToken = function decodeToken() {
+
+  var tokenLocal = getToken(); 
+  var tokenDecoded = jwt_decode(tokenLocal);
+
+  return tokenDecoded;
+
+}
+
 // Limpar o TOKEN
 var clearToken = function clearToken() {
 
   window.localStorage.removeItem('token');
   window.localStorage.clear();
+
+}
+
+/*===================================================
+       PERMISSÕES E INFOS DO USUÁRIO LOGADO
+===================================================*/
+
+var loadPermissoes = function loadPermissoes() {
+ 
+  // Objeto com as infos do usuário logado
+  var objUserInfos = decodeToken();
+
+  // Nome do usuário da barra de navegação lateral
+  $('#user-name-sidebar').text(objUserInfos.email);
+  // ATENÇÃO: Por enquanto exibindo o e-mail enquanto a API não retorna o nome...
+
+  // Oculta os itens da barra de navegação lateral se o usuário não for ADMINISTRADOR
+  if (objUserInfos.permissao !== 'ADMINISTRADOR') {
+    //$('.restrito-admin').attr('style','display: none !important');
+    $('.restrito-admin').remove();
+  } 
 
 }
 
@@ -134,7 +165,7 @@ var verificaLogin = function verificaLogin() {
 
   //console.log(getToken());
 
-  // Se não existir um TOKEN está deslogado
+  // Se estiver DESLOGADO (Não existe um TOKEN)
   if (!getToken()) {
 
     // Se a página atual não for a index (login), redireciona para o login... 
@@ -144,12 +175,16 @@ var verificaLogin = function verificaLogin() {
 
   } 
 
+  // Se estiver LOGADO (Existe um TOKEN)
   else {
 
     // Se a página atual for a index (login), redireciona para a principal (curadoria)... 
     if (getPageName() === 'index.html') {
       window.location.href = 'curadoria.html';
     }
+
+    // Carrega as infos e permissões do usuário
+    loadPermissoes();
 
   }
   
@@ -193,7 +228,7 @@ var efetuarLogin = function efetuarLogin(email, senha) {
     email: email,
     senha: senha
   }  
-  console.log('entrei no metodo');
+  
   $.ajax({
 
     url: 'http://localhost/Prj_StayFilm/login',

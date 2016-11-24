@@ -104,7 +104,7 @@
           <!-- USUÁRIO -->
           <div class="user-descricao mdl-color-text--white">
             <i class="material-icons" role="presentation">person</i>
-            <span>Fulano de Tal</span>            
+            <span id="user-name-sidebar"></span>            
             <div class="mdl-layout-spacer"></div>
             <button id="menu_user" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
               <i class="material-icons" role="presentation">arrow_drop_down</i>
@@ -136,34 +136,19 @@
           </a>
 
           <!-- ITEM BARRA LATERAL -->
-          <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="escala.html">
+          <a class="mdl-navigation__link mdl-color-text--blue-grey-100 restrito-admin" href="escala.html">
             <i class="material-icons" role="presentation">event</i>Escala
           </a>
 
           <!-- ITEM BARRA LATERAL -->
-          <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="colaboradores.html">
+          <a class="mdl-navigation__link mdl-color-text--blue-grey-100 restrito-admin" href="colaboradores.html">
             <i class="material-icons" role="presentation">group</i>Colaboradores
           </a>
 
           <!-- ITEM BARRA LATERAL -->
-          <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="respostas.html">
+          <a class="mdl-navigation__link mdl-color-text--blue-grey-100 restrito-admin" href="respostas.html">
             <i class="material-icons" role="presentation">forum</i>Respostas
-          </a>
-
-          <!-- ITEM BARRA LATERAL -->
-          <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="error_403.html">
-            <i class="material-icons" role="presentation">warning</i>Erro 403
-          </a>
-
-          <!-- ITEM BARRA LATERAL -->
-          <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="error_404.html">
-            <i class="material-icons" role="presentation">warning</i>Erro 404
-          </a>
-
-          <!-- ITEM BARRA LATERAL -->
-          <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="error_500.html">
-            <i class="material-icons" role="presentation">warning</i>Erro 500
-          </a>
+          </a>          
           
           <div class="mdl-layout-spacer"></div>
 
@@ -341,6 +326,7 @@
     <!-- JAVA SCRIPT -->
     <script src="vendors/mdl/material.js"></script>
     <script src="vendors/jquery/jquery.js"></script>
+    <script src="vendors/jwt-decode/jwt-decode.min.js"></script>
     <script src="js/script.js"></script>
     <script type="text/javascript">
         
