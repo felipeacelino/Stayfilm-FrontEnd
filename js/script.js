@@ -26,17 +26,12 @@ var validaFormulario =  function validaFormulario() {
 ===================================================*/
 
 var getPageName = function getPageName() {
-
-  /*var url = window.location.pathname;
-  var filename = url.substring(url.lastIndexOf('/')+1);*/
-
   var url = document.location.href;
   url = url.substring(0, (url.indexOf("#") == -1) ? url.length : url.indexOf("#"));
   url = url.substring(0, (url.indexOf("?") == -1) ? url.length : url.indexOf("?"));
   url = url.substring(url.lastIndexOf("/") + 1, url.length);
 
   return url;
-
 }
 
 /*===================================================
@@ -87,69 +82,93 @@ var desativaBotao = function desativaBotao(botao) {
 
 // Salva o TOKEN
 var setToken = function setToken(token) {
-
   clearToken();
   window.localStorage.setItem('token', token);
-
+  // Seta as informações do usuário
+  setInfosUser();
 }
 
 // Retorna o TOKEN
 var getToken = function getToken() {
-
   var token = window.localStorage.getItem('token');
   return token;
-
 }
 
 // Valida o TOKEN
 var validaToken = function validaToken(token) {
-
   // Verifica se é do tipo string
   if (typeof token === 'string') {
-
     var tokenLocal = getToken();
-
     return tokenLocal === token ? true : false;
-
   }
-
-  return false;   
-
+  return false;
 }
 
 // Decodifica o TOKEN
 var decodeToken = function decodeToken() {
-
   var tokenLocal = getToken(); 
   var tokenDecoded = jwt_decode(tokenLocal);
-
   return tokenDecoded;
-
 }
 
 // Limpar o TOKEN
 var clearToken = function clearToken() {
-
   window.localStorage.removeItem('token');
+  window.localStorage.removeItem('userId');
+  window.localStorage.removeItem('userNome');
+  window.localStorage.removeItem('userEmail');
+  window.localStorage.removeItem('userTipo');
   window.localStorage.clear();
-
 }
 
 /*===================================================
        PERMISSÕES E INFOS DO USUÁRIO LOGADO
 ===================================================*/
 
-var loadPermissoes = function loadPermissoes() {
- 
+var setInfosUser = function setInfosUser() {
+
   // Objeto com as infos do usuário logado
   var objUserInfos = decodeToken();
 
+  // ID do usuário
+  window.localStorage.setItem('userId', objUserInfos.id_colaborador);
+  // Nome do usuário
+  window.localStorage.setItem('userNome', objUserInfos.nome);
+  // E-mail do usuário
+  window.localStorage.setItem('userEmail', objUserInfos.email);
+  // Tipo do usuário (Permissão)
+  window.localStorage.setItem('userTipo', objUserInfos.permissao);
+
+}
+
+// Retorna o ID do usuário
+var getUserId = function getUserId() {
+  return window.localStorage.getItem('userId');
+}
+
+// Retorna o nome do usuário
+var getUserNome = function getUserNome() {
+  return window.localStorage.getItem('userNome');
+}
+
+// Retorna o e-mail do usuário
+var getUserEmail = function getUserEmail() {
+  return window.localStorage.getItem('userEmail');
+}
+
+// Retorna o tipo do usuário
+var getUserTipo = function getUserTipo() {
+  return window.localStorage.getItem('userTipo');
+}
+
+var loadPermissoes = function loadPermissoes() {
+  
   // Nome do usuário da barra de navegação lateral
-  $('#user-name-sidebar').text(objUserInfos.email);
+  $('#user-name-sidebar').text(getUserEmail());
   // ATENÇÃO: Por enquanto exibindo o e-mail enquanto a API não retorna o nome...
 
   // Oculta os itens da barra de navegação lateral se o usuário não for ADMINISTRADOR
-  if (objUserInfos.permissao !== 'ADMINISTRADOR') {
+  if (getUserTipo() !== 'ADMINISTRADOR') {
     //$('.restrito-admin').attr('style','display: none !important');
     $('.restrito-admin').remove();
   } 
@@ -202,8 +221,8 @@ var efetuarLogout = function efetuarLogout() {
   //Limpa o token
   clearToken();
 
-  // Verifica o login
-  verificaLogin();
+  // Redireciona
+  window.location.href = 'index.html';
 
 }
 
