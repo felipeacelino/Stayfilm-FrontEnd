@@ -75,7 +75,6 @@ var desativaBotao = function desativaBotao(botao) {
   document.querySelector(botao).disabled = true;
 }
 
-
 /*===================================================
                       TOKEN
 ===================================================*/
@@ -176,6 +175,36 @@ var loadPermissoes = function loadPermissoes() {
 }
 
 /*===================================================
+              MENSAGENS SNACK DE RETORNO
+===================================================*/
+$(window).load(function () {
+    
+  // Cadastrado com sucesso
+  if (document.URL.indexOf('#cad-success') !== -1) {
+    snackMessage('#snackbar', 'Cadastrado com sucesso!', 3000);
+  }
+
+  // Editado com sucesso
+  if (document.URL.indexOf('#edit-success') !== -1) {
+    snackMessage('#snackbar', 'Alterado com sucesso!', 3000);
+  }
+
+  // Removido com sucesso
+  if (document.URL.indexOf('#del-success') !== -1) {
+    snackMessage('#snackbar', 'Removido com sucesso!', 3000);
+  }
+
+});
+/*
+r(function(){
+    var snackbarContainer = document.querySelector('#demo-toast-example');
+    var data = { message: 'Example Message.'};
+    snackbarContainer.MaterialSnackbar.showSnackbar(data);
+});
+function r(f){ /in/.test(document.readyState)?setTimeout('r('+f+')',9):f()}*/
+
+
+/*===================================================
                     VERIFICA LOGIN
 ===================================================*/
 
@@ -267,11 +296,11 @@ var efetuarLogin = function efetuarLogin(email, senha) {
     // Verifica o login
     verificaLogin();
 
-  }).fail(function(reponse) {    
+  }).fail(function(response) {    
 
     // HTTP error (can be checked by XMLHttpRequest.status and XMLHttpRequest.statusText)
-    if (reponse.readyState == 4) {      
-      if (reponse.status == 401) {
+    if (response.readyState == 4) {      
+      if (response.status == 401) {
 
         // Mensagem snackbar   
         snackMessage('#snackbar', 'Dados de acesso inválidos!', 3000);
@@ -286,10 +315,10 @@ var efetuarLogin = function efetuarLogin(email, senha) {
       }     
     }
     // Network error (i.e. connection refused, access denied due to CORS, etc.)   
-    else if (reponse.readyState == 0) {      
+    else if (response.readyState == 0) {      
 
       // Mensagem snackbar   
-      snackMessage('#snackbar', 'Problema na comunicação com o servidor', 3000);
+      snackMessage('#snackbar', 'Problemas na comunicação com o servidor', 3000);
       // Ativa o botão de submit
       ativaBotao('#btn-entrar');
       // Oculta o ícone de loading
@@ -355,16 +384,36 @@ var listarRespostas = function listarRespostas() {
     
     console.log(response);   
 
-  }).fail(function(reponse) {   
+  }).fail(function(response) {   
 
-    console.log(response);
+    // HTTP error (can be checked by XMLHttpRequest.status and XMLHttpRequest.statusText)
+    if (response.readyState == 4) {      
+  
+      console.log('erro 4');
+          
+    }
+    // Network error (i.e. connection refused, access denied due to CORS, etc.)   
+    else if (response.readyState == 0) {      
+
+      // Mensagem snackbar   
+      //snackMessage('#snackbar', 'Problemas na comunicação com o servidor', 3000);
+      // Ativa o botão de submit
+      ativaBotao('#btn-submit');
+      // Oculta o ícone de loading
+      //LoadingProgress.hide();
+      // Limpa e foca no campo de senha
+      //$('#senha').val('');
+      //$('#senha').focus();
+      
+    }
+    else {
+      // something weird is happening
+      console.log('erro other...');
+    }
     
   });
 
 }
-
-
-listarRespostas();
 
 
 // Insere uma resposta
@@ -372,7 +421,7 @@ var insereResposta = function insereResposta(titulo, respostaBRA, respostaUSA, r
 
   // Adiciona os dados em um objeto
   var dados = {
-    titulo: titulo,
+    tituloResposta: titulo,
     respostaBRA: respostaBRA,
     respostaUSA: respostaUSA,
     respostaESP: respostaESP
@@ -389,36 +438,51 @@ var insereResposta = function insereResposta(titulo, respostaBRA, respostaUSA, r
 
   }).done(function(response) {    
     
-    console.log(response);   
+    // Mensagem snackbar   
+    snackMessage('#snackbar', 'Cadastrado com sucesso!', 3000);
+    // Exibe o botão de submit
+    $('#btn-submit').show();
+    // Oculta o ícone de loading
+    LoadingProgress.hide();
+    // Limpa os campos
+    /*$('#tituloResposta').val('');
+    $('#respostaBRA').val('');
+    $('#respostaUSA').val('');
+    $('#respostaESP').val('');*/
 
-  }).fail(function(reponse) {    
+  }).fail(function(response) {    
 
     // HTTP error (can be checked by XMLHttpRequest.status and XMLHttpRequest.statusText)
-    if (reponse.readyState == 4) {      
+    if (response.readyState == 4) {      
   
       // Mensagem snackbar   
       snackMessage('#snackbar', 'Dados de acesso inválidos!', 3000);
-      // Ativa o botão de submit
-      ativaBotao('#btn-submit');
-      // Oculta o ícone de loading       
-      //LoadingProgress.hide();
-      // Limpa e foca no campo de senha
-      //$('#senha').val('');
-      //$('#senha').focus();
+      // Exibe o botão de submit
+      $('#btn-submit').show();
+      // Oculta o ícone de loading
+      LoadingProgress.hide();
+      // Limpa os campos
+      /*$('#tituloResposta').val('');
+      $('#respostaBRA').val('');
+      $('#respostaUSA').val('');
+      $('#respostaESP').val('');*/
           
     }
     // Network error (i.e. connection refused, access denied due to CORS, etc.)   
-    else if (reponse.readyState == 0) {      
+    else if (response.readyState == 0) {      
 
       // Mensagem snackbar   
-      snackMessage('#snackbar', 'Problema na comunicação com o servidor', 3000);
+      snackMessage('#snackbar', 'Problemas na comunicação com o servidor', 3000);
       // Ativa o botão de submit
       ativaBotao('#btn-submit');
       // Oculta o ícone de loading
-      //LoadingProgress.hide();
+      LoadingProgress.hide();
       // Limpa e foca no campo de senha
-      //$('#senha').val('');
-      //$('#senha').focus();
+      // Limpa os campos
+      /*$('#tituloResposta').val('');
+      $('#respostaBRA').val('');
+      $('#respostaUSA').val('');
+      $('#respostaESP').val('');*/
       
     }
     else {
@@ -433,10 +497,10 @@ $("#form-resposta").on('submit', function(e){
 
   // Cancela o envio do formulário
   e.preventDefault();
-  // Desativa o botão de submit
-  desativaBotao('#btn-submit');
+  // Oculta o botão de submit
+  $('#btn-submit').hide();
   // Exibe o ícone de loading
-  //LoadingProgress.show();
+  LoadingProgress.show();
   
   if (validaFormulario()) {
     
@@ -451,10 +515,10 @@ $("#form-resposta").on('submit', function(e){
 
   } else {
 
-    // Ativa o botão de submit
-    ativaBotao('#btn-submit');
+    // Exibe o botão de submit
+    $('#btn-submit').show();
     // Oculta o ícone de loading
-    //LoadingProgress.hide();
+    LoadingProgress.hide();
     
   }
 
