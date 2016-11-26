@@ -1,3 +1,12 @@
+$(document).ready(function(){
+  // Chama a função de listagem
+  listarRespostas();
+/*if (getPageName() === 'respostas.html') {
+  console.log('entrei');
+}*/
+
+});
+
 /*===================================================
             VALIDAÇÃO DO FORMULÁRIO
 ===================================================*/
@@ -181,28 +190,20 @@ $(window).load(function () {
     
   // Cadastrado com sucesso
   if (document.URL.indexOf('#cad-success') !== -1) {
-    snackMessage('#snackbar', 'Cadastrado com sucesso!', 3000);
+    snackMessage('#snackbar', 'Cadastrado com sucesso', 3000);
   }
 
   // Editado com sucesso
   if (document.URL.indexOf('#edit-success') !== -1) {
-    snackMessage('#snackbar', 'Alterado com sucesso!', 3000);
+    snackMessage('#snackbar', 'Alterado com sucesso', 3000);
   }
 
   // Removido com sucesso
   if (document.URL.indexOf('#del-success') !== -1) {
-    snackMessage('#snackbar', 'Removido com sucesso!', 3000);
+    snackMessage('#snackbar', 'Removido com sucesso', 3000);
   }
 
 });
-/*
-r(function(){
-    var snackbarContainer = document.querySelector('#demo-toast-example');
-    var data = { message: 'Example Message.'};
-    snackbarContainer.MaterialSnackbar.showSnackbar(data);
-});
-function r(f){ /in/.test(document.readyState)?setTimeout('r('+f+')',9):f()}*/
-
 
 /*===================================================
                     VERIFICA LOGIN
@@ -380,37 +381,98 @@ var listarRespostas = function listarRespostas() {
 
     headers: {'Authorization': getToken()} 
 
-  }).done(function(response) {    
+  }).done(function(itens) {    
     
-    console.log(response);   
+    // Popula a tabela com os dados
+    itens.forEach(function(item) {
 
+      // TBODY Container
+      var tdobyDOM = document.querySelector('#carrega-lista');
+
+      // Linha (TR)
+      var trDOM = document.createElement('tr');
+
+      // TD vazio
+      var td1DOM = document.createElement('td');  
+      trDOM.appendChild(td1DOM);
+
+      // Título (Motivo da resposta)
+      var td2DOM = document.createElement('td');
+      td2DOM.innerHTML = item.tituloResposta;
+      trDOM.appendChild(td2DOM);
+
+      // Detalhe da resposta
+      var td3DOM = document.createElement('td');
+      td3DOM.setAttribute('class', 'visible_desktop');
+      td3DOM.innerHTML = item.respostaBRA;
+      trDOM.appendChild(td3DOM);
+
+      // Opções
+      var td4DOM = document.createElement('td');
+
+      // Botão de opção (Arrow)
+      var btnOptDOM = document.createElement('button');
+      btnOptDOM.setAttribute('class', 'btn-menu mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon');
+      btnOptDOM.setAttribute('id', 'item_' + item.idResposta);
+
+      // Ícone do botão de ação
+      var iconBtnOptDOM = document.createElement('i');
+      iconBtnOptDOM.setAttribute('class', 'material-icons');
+      iconBtnOptDOM.setAttribute('role', 'presentation');
+      iconBtnOptDOM.innerHTML = 'keyboard_arrow_down';
+      btnOptDOM.appendChild(iconBtnOptDOM);
+      td4DOM.appendChild(btnOptDOM);
+
+      // Opções do botão de ação (UL)
+      var ulOptsDOM = document.createElement('ul');
+      ulOptsDOM.setAttribute('class', 'mdl-menu-item mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right');
+      ulOptsDOM.setAttribute('for', 'item_' + item.idResposta);
+
+      // Item da opção (Edit)
+      var aOptEditDOM = document.createElement('a');
+      aOptEditDOM.setAttribute('class', 'link_item');
+      aOptEditDOM.setAttribute('href', 'editar_resposta.html/' + item.idResposta);
+      var liOptEditDOM = document.createElement('li');
+      liOptEditDOM.setAttribute('class', 'mdl-menu__item');      
+      var iconOptEditDOM = document.createElement('i');
+      iconOptEditDOM.setAttribute('class', 'material-icons');
+      iconOptEditDOM.setAttribute('role', 'presentation');
+      iconOptEditDOM.innerHTML = 'edit';
+      var txtIconOptEditDOM = document.createElement('span');
+      txtIconOptEditDOM.innerHTML = 'Editar';      
+      liOptEditDOM.appendChild(iconOptEditDOM);
+      liOptEditDOM.appendChild(txtIconOptEditDOM);
+      aOptEditDOM.appendChild(liOptEditDOM);
+      ulOptsDOM.appendChild(aOptEditDOM);
+
+      // Item da opção (Edit)
+      var aOptDelDOM = document.createElement('a');
+      aOptDelDOM.setAttribute('class', 'link_item');
+      aOptDelDOM.setAttribute('data-featherlight', '#lightbox_remover');
+      var liOptDelDOM = document.createElement('li');
+      liOptDelDOM.setAttribute('class', 'mdl-menu__item');      
+      var iconOptDelDOM = document.createElement('i');
+      iconOptDelDOM.setAttribute('class', 'material-icons');
+      iconOptDelDOM.setAttribute('role', 'presentation');
+      iconOptDelDOM.innerHTML = 'delete';
+      var txtIconOptDelDOM = document.createElement('span');
+      txtIconOptDelDOM.innerHTML = 'Remover';
+      liOptDelDOM.appendChild(iconOptDelDOM);
+      liOptDelDOM.appendChild(txtIconOptDelDOM);
+      aOptDelDOM.appendChild(liOptDelDOM);
+      ulOptsDOM.appendChild(aOptDelDOM);
+      td4DOM.appendChild(ulOptsDOM);
+      trDOM.appendChild(td4DOM);
+
+      tdobyDOM.appendChild(trDOM);
+
+    });
+    
   }).fail(function(response) {   
 
-    // HTTP error (can be checked by XMLHttpRequest.status and XMLHttpRequest.statusText)
-    if (response.readyState == 4) {      
-  
-      console.log('erro 4');
-          
-    }
-    // Network error (i.e. connection refused, access denied due to CORS, etc.)   
-    else if (response.readyState == 0) {      
-
-      // Mensagem snackbar   
-      //snackMessage('#snackbar', 'Problemas na comunicação com o servidor', 3000);
-      // Ativa o botão de submit
-      ativaBotao('#btn-submit');
-      // Oculta o ícone de loading
-      //LoadingProgress.hide();
-      // Limpa e foca no campo de senha
-      //$('#senha').val('');
-      //$('#senha').focus();
-      
-    }
-    else {
-      // something weird is happening
-      console.log('erro other...');
-    }
-    
+    // Mensagem snackbar   
+    snackMessage('#snackbar', 'Problemas na comunicação com o servidor', 3000);
+        
   });
 
 }
@@ -438,57 +500,18 @@ var insereResposta = function insereResposta(titulo, respostaBRA, respostaUSA, r
 
   }).done(function(response) {    
     
+    // Redireciona para a tela de listagem com a flag #cad-success
+    window.location.href = 'respostas.html#cad-success';
+
+  }).fail(function(response) {    
+    
     // Mensagem snackbar   
-    snackMessage('#snackbar', 'Cadastrado com sucesso!', 3000);
+    snackMessage('#snackbar', 'Problemas na comunicação com o servidor', 3000);
     // Exibe o botão de submit
     $('#btn-submit').show();
     // Oculta o ícone de loading
     LoadingProgress.hide();
-    // Limpa os campos
-    /*$('#tituloResposta').val('');
-    $('#respostaBRA').val('');
-    $('#respostaUSA').val('');
-    $('#respostaESP').val('');*/
 
-  }).fail(function(response) {    
-
-    // HTTP error (can be checked by XMLHttpRequest.status and XMLHttpRequest.statusText)
-    if (response.readyState == 4) {      
-  
-      // Mensagem snackbar   
-      snackMessage('#snackbar', 'Dados de acesso inválidos!', 3000);
-      // Exibe o botão de submit
-      $('#btn-submit').show();
-      // Oculta o ícone de loading
-      LoadingProgress.hide();
-      // Limpa os campos
-      /*$('#tituloResposta').val('');
-      $('#respostaBRA').val('');
-      $('#respostaUSA').val('');
-      $('#respostaESP').val('');*/
-          
-    }
-    // Network error (i.e. connection refused, access denied due to CORS, etc.)   
-    else if (response.readyState == 0) {      
-
-      // Mensagem snackbar   
-      snackMessage('#snackbar', 'Problemas na comunicação com o servidor', 3000);
-      // Ativa o botão de submit
-      ativaBotao('#btn-submit');
-      // Oculta o ícone de loading
-      LoadingProgress.hide();
-      // Limpa e foca no campo de senha
-      // Limpa os campos
-      /*$('#tituloResposta').val('');
-      $('#respostaBRA').val('');
-      $('#respostaUSA').val('');
-      $('#respostaESP').val('');*/
-      
-    }
-    else {
-      // something weird is happening
-      console.log('erro other...');
-    }
   });
 
 }
