@@ -132,26 +132,31 @@
         <div class="mdl-grid content">
           <div class="conteudo mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
 
-            <form class="form-colaborador">         
+            <form id="form-colaborador" class="form-colaborador">         
               
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" name="nome">
-                <label class="mdl-textfield__label">Nome Completo</label>            
+                <input class="mdl-textfield__input required" type="text" id="nome" name="nome">
+                <label class="mdl-textfield__label">Nome Completo</label>
+                 <span class="mdl-textfield__error">Digite o nome!</span>            
               </div>
 
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" name="email">
-                <label class="mdl-textfield__label">E-mail</label>            
+                <input class="mdl-textfield__input required" type="text" id="email" name="email">
+                <label class="mdl-textfield__label">E-mail</label>
+                <span class="mdl-textfield__error">Digite o email!</span>                 
               </div>
 
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" name="telefone">
-                <label class="mdl-textfield__label">Telefone</label>            
+                <input class="mdl-textfield__input required" type="text" id="telefone" name="telefone">
+                <label class="mdl-textfield__label">Telefone</label> 
+                <span class="mdl-textfield__error">Digite o telefone!</span>           
               </div>
 
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" name="nascimento">
-                <label class="mdl-textfield__label">Nascimento</label>            
+                <input class="mdl-textfield__input" type="text" id="nascimento" name="nascimento">
+                <label class="mdl-textfield__label">Nascimento</label>   
+                <span class="mdl-textfield__error">Digite a data de nascimento!</span>
+
               </div>
 
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fullwidth getmdl-select__fix-height">
