@@ -140,16 +140,18 @@
         <div class="mdl-grid content">
           <div class="conteudo mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
 
-            <form class="form-colaborador">
+            <form id="form-colaborador" class="form-colaborador">
 
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" name="instituicao">
-                <label class="mdl-textfield__label">Instituição</label>            
+                <input class="mdl-textfield__input required" type="text" id="instituicao" name="instituicao">
+                <label class="mdl-textfield__label">Instituição</label>
+                <span class="mdl-textfield__error">Digite a instituição!</span>             
               </div>
 
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" name="atividade">
-                <label class="mdl-textfield__label">Atividade</label>            
+                <input class="mdl-textfield__input required" type="text" id="atividade" name="atividade">
+                <label class="mdl-textfield__label">Atividade</label>
+                <span class="mdl-textfield__error">Digite a atividade!</span>             
               </div>         
               
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fullwidth getmdl-select__fix-height">

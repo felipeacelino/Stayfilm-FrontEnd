@@ -140,16 +140,18 @@
         <div class="mdl-grid content">
           <div class="conteudo mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
 
-            <form class="form-colaborador">
+            <form id="form-colaborador" class="form-colaborador">
 
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" name="cep">
-                <label class="mdl-textfield__label">CEP</label>            
+                <input class="mdl-textfield__input required" type="text" id="cep" name="cep">
+                <label class="mdl-textfield__label">CEP</label>
+                <span class="mdl-textfield__error">Digite o CEP!</span>             
               </div>         
               
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" name="endereco">
-                <label class="mdl-textfield__label">Endereço</label>            
+                <input class="mdl-textfield__input required" type="text" id="endereco" name="endereco">
+                <label class="mdl-textfield__label">Endereço</label>           
+                <span class="mdl-textfield__error">Digite o endereço</span>  
               </div>
 
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -158,13 +160,15 @@
               </div>
 
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" name="bairro">
-                <label class="mdl-textfield__label">Bairro</label>            
+                <input class="mdl-textfield__input required" type="text" id="bairro" name="bairro">
+                <label class="mdl-textfield__label">Bairro</label>  
+                <span class="mdl-textfield__error">Digite o bairro!</span>           
               </div>
 
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" name="cidade">
-                <label class="mdl-textfield__label">Cidade</label>            
+                <input class="mdl-textfield__input required" type="text" id="cidade"  name="cidade">
+                <label class="mdl-textfield__label">Cidade</label> 
+                <span class="mdl-textfield__error">Digite a cidade!</span>            
               </div>
 
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fullwidth getmdl-select__fix-height">
