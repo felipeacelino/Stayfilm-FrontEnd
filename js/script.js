@@ -164,7 +164,7 @@ var getUserTipo = function getUserTipo() {
 var loadPermissoes = function loadPermissoes() {
   
   // Nome do usuário da barra de navegação lateral
-  $('#user-name-sidebar').text(getUserEmail());
+  $('#user-name-sidebar').text(getUserNome());
   // ATENÇÃO: Por enquanto exibindo o e-mail enquanto a API não retorna o nome...
 
   // Oculta os itens da barra de navegação lateral se o usuário não for ADMINISTRADOR
@@ -307,10 +307,7 @@ var efetuarLogin = function efetuarLogin(email, senha) {
 
 }
 
-// Variável para impedir que uma requisição seja realizada ao mesmo tempo
-var processando = false;
-
-$("#form").on('submit', function(e){
+$("#form-login").on('submit', function(e){
 
   // Cancela o envio do formulário
   e.preventDefault();
@@ -339,4 +336,127 @@ $("#form").on('submit', function(e){
 
 });
 
+/*===================================================
+                  RESPOSTAS
+===================================================*/
+// Lista as respostas
+var listarRespostas = function listarRespostas() {
+
+  $.ajax({
+
+    url: 'http://localhost/Prj_StayFilm/respostas',
+    type: 'GET',
+    dataType: 'json',
+    contentType: 'application/json;charset=utf-8',
+
+    headers: {'Authorization': getToken()} 
+
+  }).done(function(response) {    
+    
+    console.log(response);   
+
+  }).fail(function(reponse) {   
+
+    console.log(response);
+    
+  });
+
+}
+
+
+listarRespostas();
+
+
+// Insere uma resposta
+var insereResposta = function insereResposta(titulo, respostaBRA, respostaUSA, respostaESP) {
+
+  // Adiciona os dados em um objeto
+  var dados = {
+    titulo: titulo,
+    respostaBRA: respostaBRA,
+    respostaUSA: respostaUSA,
+    respostaESP: respostaESP
+  }  
+
+  $.ajax({
+
+    url: 'http://localhost/Prj_StayFilm/resposta',
+    type: 'POST',
+    dataType: 'json',
+    contentType: 'application/json;charset=utf-8',
+    data: JSON.stringify(dados),
+    headers: {'Authorization': getToken()} 
+
+  }).done(function(response) {    
+    
+    console.log(response);   
+
+  }).fail(function(reponse) {    
+
+    // HTTP error (can be checked by XMLHttpRequest.status and XMLHttpRequest.statusText)
+    if (reponse.readyState == 4) {      
+  
+      // Mensagem snackbar   
+      snackMessage('#snackbar', 'Dados de acesso inválidos!', 3000);
+      // Ativa o botão de submit
+      ativaBotao('#btn-submit');
+      // Oculta o ícone de loading       
+      //LoadingProgress.hide();
+      // Limpa e foca no campo de senha
+      //$('#senha').val('');
+      //$('#senha').focus();
+          
+    }
+    // Network error (i.e. connection refused, access denied due to CORS, etc.)   
+    else if (reponse.readyState == 0) {      
+
+      // Mensagem snackbar   
+      snackMessage('#snackbar', 'Problema na comunicação com o servidor', 3000);
+      // Ativa o botão de submit
+      ativaBotao('#btn-submit');
+      // Oculta o ícone de loading
+      //LoadingProgress.hide();
+      // Limpa e foca no campo de senha
+      //$('#senha').val('');
+      //$('#senha').focus();
+      
+    }
+    else {
+      // something weird is happening
+      console.log('erro other...');
+    }
+  });
+
+}
+
+$("#form-resposta").on('submit', function(e){
+
+  // Cancela o envio do formulário
+  e.preventDefault();
+  // Desativa o botão de submit
+  desativaBotao('#btn-submit');
+  // Exibe o ícone de loading
+  //LoadingProgress.show();
+  
+  if (validaFormulario()) {
+    
+    //Pega os valores do campo
+    var titulo = $('#tituloResposta').val();
+    var respostaBRA = $('#respostaBRA').val();
+    var respostaUSA = $('#respostaUSA').val();
+    var respostaESP = $('#respostaESP').val();
+   
+    // Executa a função de insert
+    insereResposta(titulo, respostaBRA, respostaUSA, respostaESP);    
+
+  } else {
+
+    // Ativa o botão de submit
+    ativaBotao('#btn-submit');
+    // Oculta o ícone de loading
+    //LoadingProgress.hide();
+    
+  }
+
+});
 

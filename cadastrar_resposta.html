@@ -16,7 +16,6 @@
     <!-- CSS -->    
     <link rel="stylesheet" href="vendors/mdl/material.css">    
     <link rel="stylesheet" href="vendors/getmdl-select-master/getmdl-select.min.css">  
-    <link rel="stylesheet" href="vendors/mdl-speed-dial/mdl_speed_dial.css">
     <link rel="stylesheet" href="vendors/featherlight/featherlight.css">  
     <link rel="stylesheet" href="css/style.css">
 
@@ -116,40 +115,43 @@
         <div class="mdl-grid content">
           <div class="conteudo mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
 
-            <form class="form-resposta">
+            <form id="form-resposta" class="form-resposta" method="post">
 
               <div class="mdl-card__supporting-text">
                 Por favor, preencha os campos abaixo para cadastrar uma nova resposta. 
               </div>           
   
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text">
-                <label class="mdl-textfield__label">Motivo</label>            
+                <input class="mdl-textfield__input required" type="text" name="tituloResposta" id="tituloResposta">
+                <label class="mdl-textfield__label">Motivo</label>
+                <span class="mdl-textfield__error">Digite um motivo</span>            
               </div>
 
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <textarea class="mdl-textfield__input" type="text" rows="5" id="resposta_pt"></textarea>
-                <label class="mdl-textfield__label" for="resposta_pt">Resposta (Português)</label>
+                <textarea class="mdl-textfield__input required" type="text" rows="5" name="respostaBRA" id="respostaBRA"></textarea>
+                <label class="mdl-textfield__label" for="respostaBRA">Resposta (Português)</label>
+                <span class="mdl-textfield__error">Campo obrigatório</span>
               </div>
 
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <textarea class="mdl-textfield__input" type="text" rows="5" id="resposta_en"></textarea>
-                <label class="mdl-textfield__label" for="resposta_en">Resposta (Inglês)</label>
+                <textarea class="mdl-textfield__input required" type="text" rows="5" name="respostaUSA" id="respostaUSA"></textarea>
+                <label class="mdl-textfield__label" for="respostaUSA">Resposta (Inglês)</label>
+                <span class="mdl-textfield__error">Campo obrigatório</span>
               </div>
 
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <textarea class="mdl-textfield__input" type="text" rows="5" id="resposta_es"></textarea>
-                <label class="mdl-textfield__label" for="resposta_es">Resposta (Espanhol)</label>
+                <textarea class="mdl-textfield__input required" type="text" rows="5" name="respostaESP" id="respostaESP"></textarea>
+                <label class="mdl-textfield__label" for="respostaESP">Resposta (Espanhol)</label>
+                <span class="mdl-textfield__error">Campo obrigatório</span>
+              </div>
+
+              <div class="mdl-card__actions mdl-card__actions-resposta"> 
+                <a href="respostas.html" class="mdl-button mdl-js-button mdl-js-ripple-effect">Cancelar</a>
+                <div class="mdl-layout-spacer"></div>
+                <input type="submit" value="Cadastrar" id="btn-submit" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored action" />
               </div>
 
             </form>
-
-            <div class="mdl-card__actions mdl-card__actions-resposta"> 
-              <a href="respostas.html" class="mdl-button mdl-js-button mdl-js-ripple-effect">Cancelar</a>
-              <div class="mdl-layout-spacer"></div>
-              <input type="submit" value="Cadastrar" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored action" />
-            </div>  
-
           </div>          
         </div>
       </main>
@@ -157,11 +159,17 @@
 
     </div>
     <!-- FIM ESTRUTURA -->
+
+    <div id="snackbar" class="mdl-js-snackbar mdl-snackbar">
+      <div class="mdl-snackbar__text"></div>
+      <button class="mdl-snackbar__action" type="button"></button>
+    </div>
     
     <!-- JAVA SCRIPT -->
     <script src="vendors/mdl/material.js"></script>
     <script src="vendors/getmdl-select-master/getmdl-select.min.js"></script>
     <script src="vendors/jquery/jquery.js"></script>
+    <script src="js/script.js"></script>
 
   </body>
 </html>
