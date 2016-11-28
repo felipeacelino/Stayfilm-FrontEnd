@@ -1,12 +1,3 @@
-$(document).ready(function(){
-  // Chama a função de listagem
-  listarRespostas();
-/*if (getPageName() === 'respostas.html') {
-  console.log('entrei');
-}*/
-
-});
-
 /*===================================================
             VALIDAÇÃO DO FORMULÁRIO
 ===================================================*/
@@ -388,23 +379,28 @@ var listarRespostas = function listarRespostas() {
 
       // TBODY Container
       var tdobyDOM = document.querySelector('#carrega-lista');
+      componentHandler.upgradeElement(tdobyDOM);
 
       // Linha (TR)
       var trDOM = document.createElement('tr');
+      componentHandler.upgradeElement(trDOM);
 
       // TD vazio
       var td1DOM = document.createElement('td');  
+      componentHandler.upgradeElement(td1DOM);
       trDOM.appendChild(td1DOM);
 
       // Título (Motivo da resposta)
       var td2DOM = document.createElement('td');
       td2DOM.innerHTML = item.tituloResposta;
+      componentHandler.upgradeElement(td2DOM);
       trDOM.appendChild(td2DOM);
 
       // Detalhe da resposta
       var td3DOM = document.createElement('td');
       td3DOM.setAttribute('class', 'visible_desktop');
       td3DOM.innerHTML = item.respostaBRA;
+      componentHandler.upgradeElement(td3DOM);
       trDOM.appendChild(td3DOM);
 
       // Opções
@@ -420,7 +416,9 @@ var listarRespostas = function listarRespostas() {
       iconBtnOptDOM.setAttribute('class', 'material-icons');
       iconBtnOptDOM.setAttribute('role', 'presentation');
       iconBtnOptDOM.innerHTML = 'keyboard_arrow_down';
+      componentHandler.upgradeElement(iconBtnOptDOM);
       btnOptDOM.appendChild(iconBtnOptDOM);
+      componentHandler.upgradeElement(btnOptDOM);
       td4DOM.appendChild(btnOptDOM);
 
       // Opções do botão de ação (UL)
@@ -439,13 +437,18 @@ var listarRespostas = function listarRespostas() {
       iconOptEditDOM.setAttribute('role', 'presentation');
       iconOptEditDOM.innerHTML = 'edit';
       var txtIconOptEditDOM = document.createElement('span');
-      txtIconOptEditDOM.innerHTML = 'Editar';      
+      txtIconOptEditDOM.innerHTML = 'Editar';   
+
+      componentHandler.upgradeElement(iconOptEditDOM);          
       liOptEditDOM.appendChild(iconOptEditDOM);
+      componentHandler.upgradeElement(txtIconOptEditDOM);
       liOptEditDOM.appendChild(txtIconOptEditDOM);
+      componentHandler.upgradeElement(liOptEditDOM);  
       aOptEditDOM.appendChild(liOptEditDOM);
+      componentHandler.upgradeElement(aOptEditDOM);
       ulOptsDOM.appendChild(aOptEditDOM);
 
-      // Item da opção (Edit)
+      // Item da opção (Remove)
       var aOptDelDOM = document.createElement('a');
       aOptDelDOM.setAttribute('class', 'link_item');
       aOptDelDOM.setAttribute('data-featherlight', '#lightbox_remover');
@@ -457,13 +460,22 @@ var listarRespostas = function listarRespostas() {
       iconOptDelDOM.innerHTML = 'delete';
       var txtIconOptDelDOM = document.createElement('span');
       txtIconOptDelDOM.innerHTML = 'Remover';
-      liOptDelDOM.appendChild(iconOptDelDOM);
-      liOptDelDOM.appendChild(txtIconOptDelDOM);
-      aOptDelDOM.appendChild(liOptDelDOM);
-      ulOptsDOM.appendChild(aOptDelDOM);
-      td4DOM.appendChild(ulOptsDOM);
-      trDOM.appendChild(td4DOM);
 
+      componentHandler.upgradeElement(iconOptDelDOM);
+      liOptDelDOM.appendChild(iconOptDelDOM);
+      componentHandler.upgradeElement(txtIconOptDelDOM);
+      liOptDelDOM.appendChild(txtIconOptDelDOM);
+      componentHandler.upgradeElement(liOptDelDOM);
+      aOptDelDOM.appendChild(liOptDelDOM);
+      componentHandler.upgradeElement(aOptDelDOM);
+      ulOptsDOM.appendChild(aOptDelDOM);
+      componentHandler.upgradeElement(ulOptsDOM);
+
+
+      td4DOM.appendChild(ulOptsDOM);
+      componentHandler.upgradeElement(td4DOM);
+      trDOM.appendChild(td4DOM);
+      componentHandler.upgradeElement(trDOM);
       tdobyDOM.appendChild(trDOM);
 
     });
