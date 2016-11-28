@@ -174,25 +174,77 @@ var loadPermissoes = function loadPermissoes() {
 
 }
 
+// Verifica se o usuário tem permissão para uma determinada página
+var permissaoPage = function permissaoPage(pagina) {
+
+  // Permissão da página
+  var permissaoPage = false;
+
+  // Páginas que os usuários ADMIN tem acesso
+  var pags_admin = [
+  'respostas.html',
+  'cadastrar_resposta.html',
+  'colaboradores.html',
+  'cadastrar_colaborador.html',
+  'curadoria.html'
+  ];
+
+  // Páginas que os usuários COMUNS tem acesso
+  var pags_user = [
+  'curadoria.html',
+  'monitoria.html'
+  ];
+
+  // Obtém o tipo do usuário
+  var tipoUser = getUserTipo();
+
+  // Verifica o tipo para que seja feita a busca no array para cada tipo de usuário
+  if (tipoUser === 'ADMINISTRADOR') {
+
+    // Percorre o array de páginas e retorna TRUE caso seja encontrada a página especificada
+    permissaoPage = pags_admin.some(function(pag) {
+      return pag === pagina;
+    });
+
+  } else {
+
+    // Percorre o array de páginas e retorna TRUE caso seja encontrada a página especificada
+    permissaoPage = pags_user.some(function(pag) {
+      return pag === pagina;
+    });
+
+  }
+
+  if (!permissaoPage) {
+    window.location.href = 'error_403.html';
+  }
+
+  
+}
+
 /*===================================================
               MENSAGENS SNACK DE RETORNO
 ===================================================*/
-$(window).load(function () {
-    
-  // Cadastrado com sucesso
-  if (document.URL.indexOf('#cad-success') !== -1) {
-    snackMessage('#snackbar', 'Cadastrado com sucesso', 3000);
-  }
+$(document).ready(function () {
 
-  // Editado com sucesso
-  if (document.URL.indexOf('#edit-success') !== -1) {
-    snackMessage('#snackbar', 'Alterado com sucesso', 3000);
-  }
+  setTimeout(function() {
 
-  // Removido com sucesso
-  if (document.URL.indexOf('#del-success') !== -1) {
-    snackMessage('#snackbar', 'Removido com sucesso', 3000);
-  }
+    // Cadastrado com sucesso
+    if (document.URL.indexOf('#cad-success') !== -1) {
+      snackMessage('#snackbar', 'Cadastrado com sucesso', 3000);
+    }
+
+    // Editado com sucesso
+    if (document.URL.indexOf('#edit-success') !== -1) {
+      snackMessage('#snackbar', 'Alterado com sucesso', 3000);
+    }
+
+    // Removido com sucesso
+    if (document.URL.indexOf('#del-success') !== -1) {
+      snackMessage('#snackbar', 'Removido com sucesso', 3000);
+    }
+
+  },500);
 
 });
 
@@ -226,12 +278,17 @@ var verificaLogin = function verificaLogin() {
     // Carrega as infos e permissões do usuário
     loadPermissoes();
 
+    // Verifica permissão para acessar a página
+    permissaoPage(getPageName());
+
   }
   
 }
 
-// Executa ao carregar a página
-verificaLogin();
+// Verifica o login ao carregar a página
+$(document).ready(function () {  
+  verificaLogin();
+});
 
 /*===================================================
                     LOGOUT
@@ -372,113 +429,109 @@ var listarRespostas = function listarRespostas() {
 
     headers: {'Authorization': getToken()} 
 
-  }).done(function(itens) {    
-    
-    // Popula a tabela com os dados
-    itens.forEach(function(item) {
+  }).done(function(itens) {   
 
-      // TBODY Container
-      var tdobyDOM = document.querySelector('#carrega-lista');
-      componentHandler.upgradeElement(tdobyDOM);
+    if (itens.length > 0) {
 
-      // Linha (TR)
-      var trDOM = document.createElement('tr');
-      componentHandler.upgradeElement(trDOM);
+      // Popula a tabela com os dados
+      itens.forEach(function(item) {
 
-      // TD vazio
-      var td1DOM = document.createElement('td');  
-      componentHandler.upgradeElement(td1DOM);
-      trDOM.appendChild(td1DOM);
+        // TBODY Container
+        var tdobyDOM = document.querySelector('#carrega-lista');
+        
 
-      // Título (Motivo da resposta)
-      var td2DOM = document.createElement('td');
-      td2DOM.innerHTML = item.tituloResposta;
-      componentHandler.upgradeElement(td2DOM);
-      trDOM.appendChild(td2DOM);
+        // Linha (TR)
+        var trDOM = document.createElement('tr');
+        
 
-      // Detalhe da resposta
-      var td3DOM = document.createElement('td');
-      td3DOM.setAttribute('class', 'visible_desktop');
-      td3DOM.innerHTML = item.respostaBRA;
-      componentHandler.upgradeElement(td3DOM);
-      trDOM.appendChild(td3DOM);
+        // TD vazio
+        var td1DOM = document.createElement('td');  
+       
+        trDOM.appendChild(td1DOM);
 
-      // Opções
-      var td4DOM = document.createElement('td');
+        // Título (Motivo da resposta)
+        var td2DOM = document.createElement('td');
+        td2DOM.innerHTML = item.tituloResposta;
+       
+        trDOM.appendChild(td2DOM);
 
-      // Botão de opção (Arrow)
-      var btnOptDOM = document.createElement('button');
-      btnOptDOM.setAttribute('class', 'btn-menu mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon');
-      btnOptDOM.setAttribute('id', 'item_' + item.idResposta);
+        // Detalhe da resposta
+        var td3DOM = document.createElement('td');
+        td3DOM.setAttribute('class', 'visible_desktop');
+        td3DOM.innerHTML = item.respostaBRA;
+        
+        trDOM.appendChild(td3DOM);
 
-      // Ícone do botão de ação
-      var iconBtnOptDOM = document.createElement('i');
-      iconBtnOptDOM.setAttribute('class', 'material-icons');
-      iconBtnOptDOM.setAttribute('role', 'presentation');
-      iconBtnOptDOM.innerHTML = 'keyboard_arrow_down';
-      componentHandler.upgradeElement(iconBtnOptDOM);
-      btnOptDOM.appendChild(iconBtnOptDOM);
-      componentHandler.upgradeElement(btnOptDOM);
-      td4DOM.appendChild(btnOptDOM);
+        // Opções
+        var td4DOM = document.createElement('td');
 
-      // Opções do botão de ação (UL)
-      var ulOptsDOM = document.createElement('ul');
-      ulOptsDOM.setAttribute('class', 'mdl-menu-item mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right');
-      ulOptsDOM.setAttribute('for', 'item_' + item.idResposta);
+        // Botão de opção (Arrow)
+        var btnOptDOM = document.createElement('button');
+        btnOptDOM.setAttribute('class', 'btn-menu mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon');
+        btnOptDOM.setAttribute('id', 'item_' + item.idResposta);
 
-      // Item da opção (Edit)
-      var aOptEditDOM = document.createElement('a');
-      aOptEditDOM.setAttribute('class', 'link_item');
-      aOptEditDOM.setAttribute('href', 'editar_resposta.html/' + item.idResposta);
-      var liOptEditDOM = document.createElement('li');
-      liOptEditDOM.setAttribute('class', 'mdl-menu__item');      
-      var iconOptEditDOM = document.createElement('i');
-      iconOptEditDOM.setAttribute('class', 'material-icons');
-      iconOptEditDOM.setAttribute('role', 'presentation');
-      iconOptEditDOM.innerHTML = 'edit';
-      var txtIconOptEditDOM = document.createElement('span');
-      txtIconOptEditDOM.innerHTML = 'Editar';   
+        // Ícone do botão de ação
+        var iconBtnOptDOM = document.createElement('i');
+        iconBtnOptDOM.setAttribute('class', 'material-icons');
+        iconBtnOptDOM.setAttribute('role', 'presentation');
+        iconBtnOptDOM.innerHTML = 'keyboard_arrow_down';
+       
+        btnOptDOM.appendChild(iconBtnOptDOM);
+       
+        td4DOM.appendChild(btnOptDOM);
 
-      componentHandler.upgradeElement(iconOptEditDOM);          
-      liOptEditDOM.appendChild(iconOptEditDOM);
-      componentHandler.upgradeElement(txtIconOptEditDOM);
-      liOptEditDOM.appendChild(txtIconOptEditDOM);
-      componentHandler.upgradeElement(liOptEditDOM);  
-      aOptEditDOM.appendChild(liOptEditDOM);
-      componentHandler.upgradeElement(aOptEditDOM);
-      ulOptsDOM.appendChild(aOptEditDOM);
+        // Opções do botão de ação (UL)
+        var ulOptsDOM = document.createElement('ul');
+        ulOptsDOM.setAttribute('class', 'mdl-menu-item mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right');
+        ulOptsDOM.setAttribute('for', 'item_' + item.idResposta);
 
-      // Item da opção (Remove)
-      var aOptDelDOM = document.createElement('a');
-      aOptDelDOM.setAttribute('class', 'link_item');
-      aOptDelDOM.setAttribute('data-featherlight', '#lightbox_remover');
-      var liOptDelDOM = document.createElement('li');
-      liOptDelDOM.setAttribute('class', 'mdl-menu__item');      
-      var iconOptDelDOM = document.createElement('i');
-      iconOptDelDOM.setAttribute('class', 'material-icons');
-      iconOptDelDOM.setAttribute('role', 'presentation');
-      iconOptDelDOM.innerHTML = 'delete';
-      var txtIconOptDelDOM = document.createElement('span');
-      txtIconOptDelDOM.innerHTML = 'Remover';
+        // Item da opção (Edit)
+        var aOptEditDOM = document.createElement('a');
+        aOptEditDOM.setAttribute('class', 'link_item');
+        aOptEditDOM.setAttribute('href', 'editar_resposta.html/' + item.idResposta);
+        var liOptEditDOM = document.createElement('li');
+        liOptEditDOM.setAttribute('class', 'mdl-menu__item');      
+        var iconOptEditDOM = document.createElement('i');
+        iconOptEditDOM.setAttribute('class', 'material-icons');
+        iconOptEditDOM.setAttribute('role', 'presentation');
+        iconOptEditDOM.innerHTML = 'edit';
+        var txtIconOptEditDOM = document.createElement('span');
+        txtIconOptEditDOM.innerHTML = 'Editar';         
+        liOptEditDOM.appendChild(iconOptEditDOM);    
+        liOptEditDOM.appendChild(txtIconOptEditDOM);     
+        aOptEditDOM.appendChild(liOptEditDOM);      
+        ulOptsDOM.appendChild(aOptEditDOM);
 
-      componentHandler.upgradeElement(iconOptDelDOM);
-      liOptDelDOM.appendChild(iconOptDelDOM);
-      componentHandler.upgradeElement(txtIconOptDelDOM);
-      liOptDelDOM.appendChild(txtIconOptDelDOM);
-      componentHandler.upgradeElement(liOptDelDOM);
-      aOptDelDOM.appendChild(liOptDelDOM);
-      componentHandler.upgradeElement(aOptDelDOM);
-      ulOptsDOM.appendChild(aOptDelDOM);
-      componentHandler.upgradeElement(ulOptsDOM);
+        // Item da opção (Remove)
+        var aOptDelDOM = document.createElement('a');
+        aOptDelDOM.setAttribute('class', 'link_item');
+        aOptDelDOM.setAttribute('data-featherlight', '#lightbox_remover');
+        var liOptDelDOM = document.createElement('li');
+        liOptDelDOM.setAttribute('class', 'mdl-menu__item');      
+        var iconOptDelDOM = document.createElement('i');
+        iconOptDelDOM.setAttribute('class', 'material-icons');
+        iconOptDelDOM.setAttribute('role', 'presentation');
+        iconOptDelDOM.innerHTML = 'delete';
+        var txtIconOptDelDOM = document.createElement('span');
+        txtIconOptDelDOM.innerHTML = 'Remover';     
+        liOptDelDOM.appendChild(iconOptDelDOM);    
+        liOptDelDOM.appendChild(txtIconOptDelDOM);     
+        aOptDelDOM.appendChild(liOptDelDOM);      
+        ulOptsDOM.appendChild(aOptDelDOM);    
 
+        td4DOM.appendChild(ulOptsDOM);    
+        trDOM.appendChild(td4DOM);      
+        tdobyDOM.appendChild(trDOM);
 
-      td4DOM.appendChild(ulOptsDOM);
-      componentHandler.upgradeElement(td4DOM);
-      trDOM.appendChild(td4DOM);
-      componentHandler.upgradeElement(trDOM);
-      tdobyDOM.appendChild(trDOM);
+        componentHandler.upgradeDom();
 
-    });
+      });
+      
+    } else {
+      console.log('sem registro');
+      $('#table').hide();
+      $('.sem-registros').show();
+    }
     
   }).fail(function(response) {   
 
@@ -489,6 +542,12 @@ var listarRespostas = function listarRespostas() {
 
 }
 
+// Chama a funcção de listagem se a página for a correta (Respostas)
+$(document).ready(function () {
+  if (getPageName() === 'respostas.html') {
+    listarRespostas();
+  }
+});
 
 // Insere uma resposta
 var insereResposta = function insereResposta(titulo, respostaBRA, respostaUSA, respostaESP) {

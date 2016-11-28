@@ -481,6 +481,13 @@ input[type=submit]:disabled {
   }
 }
 
+/* MENSAGEM SEM REGISTROS */
+.sem-registros {
+  display: none;
+  width: 100%;
+  text-align: center;
+}
+
 /* ======================== FILME CURADORIA ======================== */
 
 .mdl-layout__header--waterfall {
