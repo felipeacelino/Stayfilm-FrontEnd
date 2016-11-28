@@ -161,15 +161,16 @@
                 </div>
                 <div class="mdl-card__supporting-text">
                   Deseja realmente remover o item selecionado?
+                  <input type="hidden" name="id-item-remove" id="id-item-remove">
                 </div>
                 <div class="mdl-card__actions mdl-card--border">
-                  <button id="cancelar" class="mdl-button mdl-js-button mdl-js-ripple-effect">
+                  <button id="btn-cancelar-modal" class="mdl-button mdl-js-button mdl-js-ripple-effect">
                     Cancelar
                   </button>
                   <div class="mdl-layout-spacer"></div>
-                  <a href="atividades.html" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored reprovado">
+                  <button id="btn-modal-remover-resposta" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored reprovado">
                     Remover
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>
@@ -195,7 +196,7 @@
     <script type="text/javascript">
 
       $.extend($.featherlight.defaults, {
-        otherClose: '#cancelar'
+        otherClose: '#btn-cancelar-modal, #btn-modal-remover-resposta'
       });
 
     </script>

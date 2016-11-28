@@ -215,10 +215,10 @@ var permissaoPage = function permissaoPage(pagina) {
 
   }
 
+  // Se não tiver permissão, redireciona para a página de erro 403
   if (!permissaoPage) {
     window.location.href = 'error_403.html';
   }
-
   
 }
 
@@ -239,12 +239,7 @@ $(document).ready(function () {
       snackMessage('#snackbar', 'Alterado com sucesso', 3000);
     }
 
-    // Removido com sucesso
-    if (document.URL.indexOf('#del-success') !== -1) {
-      snackMessage('#snackbar', 'Removido com sucesso', 3000);
-    }
-
-  },500);
+  },100);
 
 });
 
@@ -433,17 +428,18 @@ var listarRespostas = function listarRespostas() {
 
     if (itens.length > 0) {
 
+      // TBODY Container
+      var tbodyDOM = document.querySelector('#carrega-lista');
+
+      // Limpa o conteúdo
+      tbodyDOM.innerHTML = '';
+
       // Popula a tabela com os dados
-      itens.forEach(function(item) {
-
-        // TBODY Container
-        var tdobyDOM = document.querySelector('#carrega-lista');
-        
-
+      itens.forEach(function(item) {      
+       
         // Linha (TR)
         var trDOM = document.createElement('tr');
         
-
         // TD vazio
         var td1DOM = document.createElement('td');  
        
@@ -504,8 +500,14 @@ var listarRespostas = function listarRespostas() {
 
         // Item da opção (Remove)
         var aOptDelDOM = document.createElement('a');
-        aOptDelDOM.setAttribute('class', 'link_item');
-        aOptDelDOM.setAttribute('data-featherlight', '#lightbox_remover');
+        aOptDelDOM.setAttribute('class', 'link_item remove-item');
+        aOptDelDOM.setAttribute('data-id-tem-remove', item.idResposta);
+
+        aOptDelDOM.addEventListener('click', function() {
+          $('#id-item-remove').val(item.idResposta);
+          $.featherlight('#lightbox_remover');
+        });
+
         var liOptDelDOM = document.createElement('li');
         liOptDelDOM.setAttribute('class', 'mdl-menu__item');      
         var iconOptDelDOM = document.createElement('i');
@@ -521,15 +523,16 @@ var listarRespostas = function listarRespostas() {
 
         td4DOM.appendChild(ulOptsDOM);    
         trDOM.appendChild(td4DOM);      
-        tdobyDOM.appendChild(trDOM);
+        tbodyDOM.appendChild(trDOM);
 
         componentHandler.upgradeDom();
 
       });
       
     } else {
-      console.log('sem registro');
+      // Oculta a tabela
       $('#table').hide();
+      // Exibe a mensagem 'Sem registros'
       $('.sem-registros').show();
     }
     
@@ -586,6 +589,42 @@ var insereResposta = function insereResposta(titulo, respostaBRA, respostaUSA, r
   });
 
 }
+
+// Remove uma resposta
+var removeResposta = function removeResposta(idResposta) {
+  
+  $.ajax({
+
+    url: 'http://localhost/Prj_StayFilm/resposta/' + idResposta,
+    type: 'DELETE',
+    dataType: 'json',
+    contentType: 'application/json;charset=utf-8',
+
+    headers: {'Authorization': getToken()} 
+
+  }).done(function(response) { 
+
+    // Mensagem snackbar   
+    snackMessage('#snackbar', 'Removido com sucesso', 3000);
+    // Lista os itens
+    listarRespostas();
+
+  }).fail(function(response) {    
+    
+    console.log(response);
+    // Mensagem snackbar   
+    snackMessage('#snackbar', 'Não foi possível realizar essa operação', 3000);
+    
+  });
+
+}
+
+// Evento do click na caixa de remoção
+$(document).ready(function() {
+  $('#btn-modal-remover-resposta').on('click', function(del) {
+    removeResposta($('#id-item-remove').val());
+  });
+});
 
 $("#form-resposta").on('submit', function(e){
 
