@@ -393,7 +393,7 @@ var efetuarLogin = function efetuarLogin(email, senha) {
     else if (response.readyState == 0) {      
 
       // Mensagem snackbar   
-      snackMessage('#snackbar', 'Problemas na comunicação com o servidor', 3000);
+      snackMessage('#snackbar', 'Não foi possível realizar essa operação', 3000);
       // Ativa o botão de submit
       ativaBotao('#btn-entrar');
       // Oculta o ícone de loading
@@ -579,7 +579,7 @@ var listarRespostas = function listarRespostas() {
     console.log(response);
 
     // Mensagem snackbar   
-    snackMessage('#snackbar', 'Problemas na comunicação com o servidor', 3000);
+    snackMessage('#snackbar', 'Não foi possível realizar essa operação', 3000);
         
   });
 
@@ -626,7 +626,7 @@ var insereResposta = function insereResposta(titulo, respostaBRA, respostaUSA, r
     console.log(response);
     
     // Mensagem snackbar   
-    snackMessage('#snackbar', 'Problemas na comunicação com o servidor', 3000);
+    snackMessage('#snackbar', 'Não foi possível realizar essa operação', 3000);
     // Exibe o botão de submit
     $('#btn-submit').show();
     // Oculta o ícone de loading
@@ -707,7 +707,7 @@ var updateResposta = function updateResposta(idResposta, tituloResposta, respost
     // Exibe os detalhes no console
     console.log(response);
     // Mensagem snackbar   
-    snackMessage('#snackbar', 'Problemas na comunicação com o servidor', 3000);
+    snackMessage('#snackbar', 'Não foi possível realizar essa operação', 3000);
     // Exibe o botão de submit
     $('#btn-submit').show();
     // Oculta o ícone de loading
