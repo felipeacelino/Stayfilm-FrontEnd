@@ -29,15 +29,13 @@
     <div class="estrutura mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
 
       <!-- BARRA SUPERIOR -->
-      <header class="barra-superior mdl-layout__header mdl-color--white mdl-color-text--blue-grey-900">
+      <header class="barra-superior mdl-layout__header mdl-layout__header--waterfall mdl-color--white">
 
         <div class="mdl-layout__header-row">
 
           <!-- TÍTULO PRINCIPAL -->
-          <span class="mdl-layout-title">Respostas</span>
-          <!-- FIM TÍTULO PRINCIPAL -->
-
-          <div class="mdl-layout-spacer"></div>         
+          <span class="mdl-layout-title mdl-color-text--blue-grey-900">Editar Resposta</span>
+          <!-- FIM TÍTULO PRINCIPAL -->   
 
         </div>
 
@@ -119,60 +117,41 @@
         <div class="mdl-grid content">
           <div class="conteudo mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
 
-            <div class="table-responsive-vertical">
-              
-              <table id="table" class="table table-bordered">
-
-                <thead>
-                  <tr>
-                    <th></th>
-                    <th>Motivo</th>
-                    <th class="visible_desktop">Resposta</th>
-                    <th></th>
-                  </tr>                                     
-                </thead>
-
-                <tbody id="carrega-lista">              
-
-                  <!-- DADOS CARREGADOS VIA AJAX -->
-
-                </tbody>
-
-              </table> 
-
-              <div class="sem-registros">
-                Nenhum registro encontrado
+            <form id="form-edit-resposta" class="form-resposta" method="post">        
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input required" type="text" name="tituloResposta" id="tituloResposta" value="">
+                <label class="mdl-textfield__label">Motivo</label>
+                <span class="mdl-textfield__error">Digite um motivo</span>            
               </div>
 
-            </div>
-
-            <a href="cadastrar_resposta.html">      
-            <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored action btn_acao mdl-shadow--4dp">
-              <i class="material-icons">add</i>
-            </button>
-            </a>
-
-            <div id="lightbox_remover" class="lightbox lightbox_reprovado">
-              <div class="lightbox_card mdl-card mdl-shadow--2dp">
-                <div class="mdl-card__title mdl-card--expand mdl-color-text--white reprovado">
-                  <h2 class="mdl-card__title-text">Remover Item</h2>
-                </div>
-                <div class="mdl-card__supporting-text">
-                  Deseja realmente remover o item selecionado?
-                  <input type="hidden" name="id-item-remove" id="id-item-remove">
-                </div>
-                <div class="mdl-card__actions mdl-card--border">
-                  <button id="btn-cancelar-modal" class="mdl-button mdl-js-button mdl-js-ripple-effect">
-                    Cancelar
-                  </button>
-                  <div class="mdl-layout-spacer"></div>
-                  <button id="btn-modal-remover-resposta" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored reprovado">
-                    Remover
-                  </button>
-                </div>
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <textarea class="mdl-textfield__input required" type="text" rows="5" name="respostaBRA" id="respostaBRA"></textarea>
+                <label class="mdl-textfield__label" for="respostaBRA">Resposta (Português)</label>
+                <span class="mdl-textfield__error">Campo obrigatório</span>
               </div>
-            </div>
-            
+
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <textarea class="mdl-textfield__input required" type="text" rows="5" name="respostaUSA" id="respostaUSA"></textarea>
+                <label class="mdl-textfield__label" for="respostaUSA">Resposta (Inglês)</label>
+                <span class="mdl-textfield__error">Campo obrigatório</span>
+              </div>
+
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <textarea class="mdl-textfield__input required" type="text" rows="5" name="respostaESP" id="respostaESP"></textarea>
+                <label class="mdl-textfield__label" for="respostaESP">Resposta (Espanhol)</label>
+                <span class="mdl-textfield__error">Campo obrigatório</span>
+              </div>
+
+              <input type="hidden" name="id_edit" id="id_edit">
+
+              <div class="mdl-card__actions mdl-card__actions-resposta"> 
+                <a href="respostas.html" class="mdl-button mdl-js-button mdl-js-ripple-effect">Cancelar</a>
+                <div class="mdl-layout-spacer"></div>
+                <input type="submit" value="Atualizar" id="btn-submit" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored action" />
+                <div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active" id="icon-loading"></div>
+              </div>
+
+            </form>
           </div>          
         </div>
       </main>
@@ -190,14 +169,6 @@
     <script src="vendors/jquery/jquery.js"></script>
     <script src="vendors/featherlight/featherlight.js"></script>
     <script src="js/script.js"></script>
-    
-    <script type="text/javascript">
-
-      $.extend($.featherlight.defaults, {
-        otherClose: '#btn-cancelar-modal, #btn-modal-remover-resposta'
-      });
-
-    </script>
 
   </body>
 </html>

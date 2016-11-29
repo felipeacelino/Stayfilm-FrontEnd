@@ -35,6 +35,25 @@ var getPageName = function getPageName() {
 }
 
 /*===================================================
+            OBTÉM UM PARÂMETRO NA URL
+===================================================*/
+
+var getParam = function getParam(param) {
+  var vars = {};
+  window.location.href.replace( location.hash, '' ).replace( 
+    /[?&]+([^=&]+)=?([^&]*)?/gi, // regexp
+    function( m, key, value ) { // callback
+      vars[key] = value !== undefined ? value : '';
+    }
+  );
+
+  if ( param ) {
+    return vars[param] ? vars[param] : null;  
+  }
+  return vars;
+}
+
+/*===================================================
                       SNACKBAR
 ===================================================*/
 
@@ -184,6 +203,7 @@ var permissaoPage = function permissaoPage(pagina) {
   var pags_admin = [
   'respostas.html',
   'cadastrar_resposta.html',
+  'editar_resposta.html',
   'colaboradores.html',
   'cadastrar_colaborador.html',
   'curadoria.html'
@@ -225,21 +245,32 @@ var permissaoPage = function permissaoPage(pagina) {
 /*===================================================
               MENSAGENS SNACK DE RETORNO
 ===================================================*/
+
+// Grava a mensagem de retorno
+var setMessageRetorno = function setMessageRetorno(msg) {
+  if (msg) {
+    sessionStorage.setItem('msg', msg);
+  }
+}
+
+// Exibe a mensagem de retorno
+var showMessageRetorno = function showMessageRetorno() {
+  //snackMessage('#snackbar', 'teste', 3000);
+  if (window.sessionStorage.getItem('msg')) {
+    snackMessage('#snackbar', window.sessionStorage.getItem('msg'), 3000);
+    window.sessionStorage.removeItem('msg');
+  }
+}
+
 $(document).ready(function () {
 
+  // Timeout de 0.1s
   setTimeout(function() {
-
-    // Cadastrado com sucesso
-    if (document.URL.indexOf('#cad-success') !== -1) {
-      snackMessage('#snackbar', 'Cadastrado com sucesso', 3000);
-    }
-
-    // Editado com sucesso
-    if (document.URL.indexOf('#edit-success') !== -1) {
-      snackMessage('#snackbar', 'Alterado com sucesso', 3000);
-    }
-
-  },100);
+    
+    // Exibe a mensagem de retorno 
+    showMessageRetorno();
+    
+  }, 100);
 
 });
 
@@ -409,9 +440,10 @@ $("#form-login").on('submit', function(e){
 
 });
 
-/*===================================================
-                  RESPOSTAS
+/*=================================================
+                     RESPOSTAS
 ===================================================*/
+
 // Lista as respostas
 var listarRespostas = function listarRespostas() {
 
@@ -441,21 +473,18 @@ var listarRespostas = function listarRespostas() {
         var trDOM = document.createElement('tr');
         
         // TD vazio
-        var td1DOM = document.createElement('td');  
-       
+        var td1DOM = document.createElement('td');         
         trDOM.appendChild(td1DOM);
 
         // Título (Motivo da resposta)
         var td2DOM = document.createElement('td');
-        td2DOM.innerHTML = item.tituloResposta;
-       
+        td2DOM.innerHTML = item.tituloResposta;       
         trDOM.appendChild(td2DOM);
 
         // Detalhe da resposta
         var td3DOM = document.createElement('td');
         td3DOM.setAttribute('class', 'visible_desktop');
-        td3DOM.innerHTML = item.respostaBRA;
-        
+        td3DOM.innerHTML = item.respostaBRA;        
         trDOM.appendChild(td3DOM);
 
         // Opções
@@ -470,10 +499,9 @@ var listarRespostas = function listarRespostas() {
         var iconBtnOptDOM = document.createElement('i');
         iconBtnOptDOM.setAttribute('class', 'material-icons');
         iconBtnOptDOM.setAttribute('role', 'presentation');
-        iconBtnOptDOM.innerHTML = 'keyboard_arrow_down';
-       
+        iconBtnOptDOM.innerHTML = 'keyboard_arrow_down';       
         btnOptDOM.appendChild(iconBtnOptDOM);
-       
+        
         td4DOM.appendChild(btnOptDOM);
 
         // Opções do botão de ação (UL)
@@ -484,13 +512,16 @@ var listarRespostas = function listarRespostas() {
         // Item da opção (Edit)
         var aOptEditDOM = document.createElement('a');
         aOptEditDOM.setAttribute('class', 'link_item');
-        aOptEditDOM.setAttribute('href', 'editar_resposta.html/' + item.idResposta);
+        aOptEditDOM.setAttribute('href', 'editar_resposta.html?id=' + item.idResposta); 
+
         var liOptEditDOM = document.createElement('li');
-        liOptEditDOM.setAttribute('class', 'mdl-menu__item');      
+        liOptEditDOM.setAttribute('class', 'mdl-menu__item'); 
+
         var iconOptEditDOM = document.createElement('i');
         iconOptEditDOM.setAttribute('class', 'material-icons');
         iconOptEditDOM.setAttribute('role', 'presentation');
         iconOptEditDOM.innerHTML = 'edit';
+
         var txtIconOptEditDOM = document.createElement('span');
         txtIconOptEditDOM.innerHTML = 'Editar';         
         liOptEditDOM.appendChild(iconOptEditDOM);    
@@ -501,35 +532,41 @@ var listarRespostas = function listarRespostas() {
         // Item da opção (Remove)
         var aOptDelDOM = document.createElement('a');
         aOptDelDOM.setAttribute('class', 'link_item remove-item');
-        aOptDelDOM.setAttribute('data-id-tem-remove', item.idResposta);
-
+        // Evento click (Remover)
         aOptDelDOM.addEventListener('click', function() {
+          // Passa o ID do item para o campo oculto do modal de exclusão
           $('#id-item-remove').val(item.idResposta);
+          // Abre o modal de exclusão
           $.featherlight('#lightbox_remover');
         });
 
         var liOptDelDOM = document.createElement('li');
-        liOptDelDOM.setAttribute('class', 'mdl-menu__item');      
+        liOptDelDOM.setAttribute('class', 'mdl-menu__item');
+
         var iconOptDelDOM = document.createElement('i');
         iconOptDelDOM.setAttribute('class', 'material-icons');
         iconOptDelDOM.setAttribute('role', 'presentation');
         iconOptDelDOM.innerHTML = 'delete';
+
         var txtIconOptDelDOM = document.createElement('span');
         txtIconOptDelDOM.innerHTML = 'Remover';     
         liOptDelDOM.appendChild(iconOptDelDOM);    
         liOptDelDOM.appendChild(txtIconOptDelDOM);     
         aOptDelDOM.appendChild(liOptDelDOM);      
-        ulOptsDOM.appendChild(aOptDelDOM);    
+        ulOptsDOM.appendChild(aOptDelDOM);
 
         td4DOM.appendChild(ulOptsDOM);    
         trDOM.appendChild(td4DOM);      
         tbodyDOM.appendChild(trDOM);
 
+        // Atualiza os componentes do MDL
         componentHandler.upgradeDom();
 
       });
       
-    } else {
+    } 
+    // Se não houver registros
+    else {
       // Oculta a tabela
       $('#table').hide();
       // Exibe a mensagem 'Sem registros'
@@ -537,6 +574,9 @@ var listarRespostas = function listarRespostas() {
     }
     
   }).fail(function(response) {   
+
+    // Exibe os detalhes no console
+    console.log(response);
 
     // Mensagem snackbar   
     snackMessage('#snackbar', 'Problemas na comunicação com o servidor', 3000);
@@ -572,12 +612,18 @@ var insereResposta = function insereResposta(titulo, respostaBRA, respostaUSA, r
     data: JSON.stringify(dados),
     headers: {'Authorization': getToken()} 
 
-  }).done(function(response) {    
+  }).done(function(response) {      
+
+    // Armazena a mensagem de retorno
+    setMessageRetorno('Cadastrado com sucesso');    
     
-    // Redireciona para a tela de listagem com a flag #cad-success
-    window.location.href = 'respostas.html#cad-success';
+    // Redireciona para a tela de listagem
+    window.location.href = 'respostas.html';
 
   }).fail(function(response) {    
+
+    // Exibe os detalhes no console
+    console.log(response);
     
     // Mensagem snackbar   
     snackMessage('#snackbar', 'Problemas na comunicação com o servidor', 3000);
@@ -611,6 +657,7 @@ var removeResposta = function removeResposta(idResposta) {
 
   }).fail(function(response) {    
     
+    // Exibe os detalhes no console
     console.log(response);
     // Mensagem snackbar   
     snackMessage('#snackbar', 'Não foi possível realizar essa operação', 3000);
@@ -626,7 +673,103 @@ $(document).ready(function() {
   });
 });
 
-$("#form-resposta").on('submit', function(e){
+// Altera uma resposta
+var updateResposta = function updateResposta(idResposta, tituloResposta, respostaBRA, respostaUSA, respostaESP) {
+
+  // Adiciona os dados em um objeto
+  var dados = {
+    idResposta: idResposta,
+    tituloResposta: tituloResposta,
+    respostaBRA: respostaBRA,
+    respostaUSA: respostaUSA,
+    respostaESP: respostaESP
+  }  
+
+  $.ajax({
+
+    url: 'http://localhost/Prj_StayFilm/resposta/editar/' + idResposta,
+    type: 'PUT',
+    dataType: 'json',
+    contentType: 'application/json;charset=utf-8',
+    data: JSON.stringify(dados),
+    headers: {'Authorization': getToken()} 
+
+  }).done(function(response) {      
+
+    // Armazena a mensagem de retorno
+    setMessageRetorno('Alterado com sucesso');    
+    
+    // Redireciona para a tela de listagem
+    window.location.href = 'respostas.html';
+
+  }).fail(function(response) {    
+    
+    // Exibe os detalhes no console
+    console.log(response);
+    // Mensagem snackbar   
+    snackMessage('#snackbar', 'Problemas na comunicação com o servidor', 3000);
+    // Exibe o botão de submit
+    $('#btn-submit').show();
+    // Oculta o ícone de loading
+    LoadingProgress.hide();
+
+  });
+
+}
+
+// Retorna uma resposta
+var getResposta = function getResposta(id) {
+
+  $.ajax({
+
+    url: 'http://localhost/Prj_StayFilm/resposta/' + id,
+    type: 'GET',
+    dataType: 'json',
+    contentType: 'application/json;charset=utf-8',
+
+    headers: {'Authorization': getToken()} 
+
+  }).done(function(response) {
+
+    // Passa os valores para os campos
+    $('#id_edit').val(response.idResposta).parent().addClass('is-dirty');
+    $('#tituloResposta').val(response.tituloResposta).parent().addClass('is-dirty');
+    $('#respostaBRA').val(response.respostaBRA).parent().addClass('is-dirty');
+    $('#respostaUSA').val(response.respostaUSA).parent().addClass('is-dirty');
+    $('#respostaESP').val(response.respostaESP).parent().addClass('is-dirty');
+    
+  }).fail(function(response) {    
+    
+    // Exibe os detalhes no console
+    console.log(response);
+      
+    // Armazena a mensagem de retorno
+    setMessageRetorno('Não foi possível realizar essa operação');
+
+    // Redireciona para a tela de listagem
+    window.location.href = 'respostas.html';
+
+  });
+
+}
+
+// Carrega a resposta a ser editada
+$(document).ready(function () {
+  if (getPageName() === 'editar_resposta.html') {
+    // Verifica se tem o ID na URL 
+    var id = getParam('id');
+    if (id) {
+      // Carrega a resposta
+      getResposta(id);
+    } 
+    // Redireciona para a tela de listagem
+    else {
+      window.location.href = 'respostas.html';
+    }    
+  } 
+});
+
+$("#form-cad-resposta").on('submit', function(e){
 
   // Cancela o envio do formulário
   e.preventDefault();
@@ -645,6 +788,38 @@ $("#form-resposta").on('submit', function(e){
    
     // Executa a função de insert
     insereResposta(titulo, respostaBRA, respostaUSA, respostaESP);    
+
+  } else {
+
+    // Exibe o botão de submit
+    $('#btn-submit').show();
+    // Oculta o ícone de loading
+    LoadingProgress.hide();
+    
+  }
+
+});
+
+$("#form-edit-resposta").on('submit', function(e){
+
+  // Cancela o envio do formulário
+  e.preventDefault();
+  // Oculta o botão de submit
+  $('#btn-submit').hide();
+  // Exibe o ícone de loading
+  LoadingProgress.show();
+  
+  if (validaFormulario()) {
+    
+    //Pega os valores do campo
+    var idResposta = $('#id_edit').val();
+    var tituloResposta = $('#tituloResposta').val();
+    var respostaBRA = $('#respostaBRA').val();
+    var respostaUSA = $('#respostaUSA').val();
+    var respostaESP = $('#respostaESP').val();
+   
+    // Executa a função de update
+    updateResposta(idResposta, tituloResposta, respostaBRA, respostaUSA, respostaESP);    
 
   } else {
 

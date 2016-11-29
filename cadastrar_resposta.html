@@ -15,9 +15,11 @@
 
     <!-- CSS -->    
     <link rel="stylesheet" href="vendors/mdl/material.css">    
-    <link rel="stylesheet" href="vendors/getmdl-select-master/getmdl-select.min.css">  
     <link rel="stylesheet" href="vendors/featherlight/featherlight.css">  
     <link rel="stylesheet" href="css/style.css">
+
+    <!-- JS -->
+    <script defer src="vendors/mdl/material.js"></script>
 
   </head>
 
@@ -32,7 +34,7 @@
         <div class="mdl-layout__header-row">
 
           <!-- TÍTULO PRINCIPAL -->
-          <span class="mdl-layout-title mdl-color-text--blue-grey-900">Nova Resposta</span>
+          <span class="mdl-layout-title mdl-color-text--blue-grey-900">Cadastrar Resposta</span>
           <!-- FIM TÍTULO PRINCIPAL -->   
 
         </div>
@@ -115,11 +117,7 @@
         <div class="mdl-grid content">
           <div class="conteudo mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
 
-            <form id="form-resposta" class="form-resposta" method="post">
-
-              <div class="mdl-card__supporting-text">
-                Por favor, preencha os campos abaixo para cadastrar uma nova resposta. 
-              </div>           
+            <form id="form-cad-resposta" class="form-resposta" method="post">       
   
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 <input class="mdl-textfield__input required" type="text" name="tituloResposta" id="tituloResposta">
@@ -167,9 +165,8 @@
     </div>
     
     <!-- JAVA SCRIPT -->
-    <script src="vendors/mdl/material.js"></script>
-    <script src="vendors/getmdl-select-master/getmdl-select.min.js"></script>
     <script src="vendors/jquery/jquery.js"></script>
+    <script src="vendors/featherlight/featherlight.js"></script>
     <script src="js/script.js"></script>
 
   </body>
