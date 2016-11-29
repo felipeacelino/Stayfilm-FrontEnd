@@ -832,3 +832,313 @@ $("#form-edit-resposta").on('submit', function(e){
 
 });
 
+/*=================================================
+                  FORMATA DATAS
+===================================================*/
+
+// Formata data no formata SQL
+var formatDataSQL = function formatDataSQL(data) {
+
+  var dataSplit = data.split('/');
+  return dataSplit[2] + '-' + dataSplit[1] + '-' + dataSplit[0];
+
+}
+
+// Formata data no formata BR
+var formatDataBR = function formatDataBR(data) {
+
+  var dataSplit = data.split('-');
+  return dataSplit[2] + '-' + dataSplit[1] + '-' + dataSplit[0];
+
+}
+
+/*=================================================
+                  COLABORADORES
+===================================================*/
+
+// Lista os colaboradores
+var listarColaboradores = function listarColaboradores() {
+
+  $.ajax({
+
+    url: 'http://localhost/Prj_StayFilm/listarColaboradores',
+    type: 'GET',
+    dataType: 'json',
+    contentType: 'application/json;charset=utf-8',
+
+    headers: {'Authorization': getToken()} 
+
+  }).done(function(itens) {   
+
+    if (itens.length > 0) {
+
+      // TBODY Container
+      var tbodyDOM = document.querySelector('#carrega-lista');
+
+      // Limpa o conteúdo
+      tbodyDOM.innerHTML = '';
+
+      // Popula a tabela com os dados
+      itens.forEach(function(item, index) {      
+       
+        // Linha (TR)
+        var trDOM = document.createElement('tr');
+        
+        // TD vazio
+        var td1DOM = document.createElement('td');         
+        trDOM.appendChild(td1DOM);
+
+        // Nome
+        var td2DOM = document.createElement('td');
+        td2DOM.innerHTML = item[0];       
+        trDOM.appendChild(td2DOM);
+
+        // E-mail
+        var td3DOM = document.createElement('td');
+        td3DOM.innerHTML = item[1];        
+        trDOM.appendChild(td3DOM);
+
+        // E-mail
+        var td4DOM = document.createElement('td');
+        td4DOM.innerHTML = item[2];        
+        trDOM.appendChild(td4DOM);
+
+        // Opções
+        var td5DOM = document.createElement('td');
+
+        // Botão de opção (Arrow)
+        var btnOptDOM = document.createElement('button');
+        btnOptDOM.setAttribute('class', 'btn-menu mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon');
+        btnOptDOM.setAttribute('id', 'item_' + index);
+
+        // Ícone do botão de ação
+        var iconBtnOptDOM = document.createElement('i');
+        iconBtnOptDOM.setAttribute('class', 'material-icons');
+        iconBtnOptDOM.setAttribute('role', 'presentation');
+        iconBtnOptDOM.innerHTML = 'keyboard_arrow_down';       
+        btnOptDOM.appendChild(iconBtnOptDOM);
+        
+        td5DOM.appendChild(btnOptDOM);
+
+        // Opções do botão de ação (UL)
+        var ulOptsDOM = document.createElement('ul');
+        ulOptsDOM.setAttribute('class', 'mdl-menu-item mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right');
+        ulOptsDOM.setAttribute('for', 'item_' + index);
+
+        // Item da opção (Edit)
+        var aOptEditDOM = document.createElement('a');
+        aOptEditDOM.setAttribute('class', 'link_item');
+        aOptEditDOM.setAttribute('href', 'editar_colaborador.html?id=' + index); 
+
+        var liOptEditDOM = document.createElement('li');
+        liOptEditDOM.setAttribute('class', 'mdl-menu__item'); 
+
+        var iconOptEditDOM = document.createElement('i');
+        iconOptEditDOM.setAttribute('class', 'material-icons');
+        iconOptEditDOM.setAttribute('role', 'presentation');
+        iconOptEditDOM.innerHTML = 'edit';
+
+        var txtIconOptEditDOM = document.createElement('span');
+        txtIconOptEditDOM.innerHTML = 'Editar';         
+        liOptEditDOM.appendChild(iconOptEditDOM);    
+        liOptEditDOM.appendChild(txtIconOptEditDOM);     
+        aOptEditDOM.appendChild(liOptEditDOM);      
+        ulOptsDOM.appendChild(aOptEditDOM);
+
+        // Item da opção (Atividades)
+        var aOptAtivDOM = document.createElement('a');
+        aOptAtivDOM.setAttribute('class', 'link_item');
+        aOptAtivDOM.setAttribute('href', 'atividades.html?id=' + index); 
+
+        var liOptAtivDOM = document.createElement('li');
+        liOptAtivDOM.setAttribute('class', 'mdl-menu__item'); 
+
+        var iconOptAtivDOM = document.createElement('i');
+        iconOptAtivDOM.setAttribute('class', 'material-icons');
+        iconOptAtivDOM.setAttribute('role', 'presentation');
+        iconOptAtivDOM.innerHTML = 'school';
+
+        var txtIconOptAtivDOM = document.createElement('span');
+        txtIconOptAtivDOM.innerHTML = 'Atividades';         
+        liOptAtivDOM.appendChild(iconOptAtivDOM);    
+        liOptAtivDOM.appendChild(txtIconOptAtivDOM);     
+        aOptAtivDOM.appendChild(liOptAtivDOM);      
+        ulOptsDOM.appendChild(aOptAtivDOM);
+
+        // Item da opção (Endereço)
+        var aOptEndDOM = document.createElement('a');
+        aOptEndDOM.setAttribute('class', 'link_item');
+        aOptEndDOM.setAttribute('href', 'endereco_colaborador.html?id=' + index); 
+
+        var liOptEndDOM = document.createElement('li');
+        liOptEndDOM.setAttribute('class', 'mdl-menu__item'); 
+
+        var iconOptEndDOM = document.createElement('i');
+        iconOptEndDOM.setAttribute('class', 'material-icons');
+        iconOptEndDOM.setAttribute('role', 'presentation');
+        iconOptEndDOM.innerHTML = 'location_on';
+
+        var txtIconOptEndDOM = document.createElement('span');
+        txtIconOptEndDOM.innerHTML = 'Endereço';         
+        liOptEndDOM.appendChild(iconOptEndDOM);    
+        liOptEndDOM.appendChild(txtIconOptEndDOM);     
+        aOptEndDOM.appendChild(liOptEndDOM);      
+        ulOptsDOM.appendChild(aOptEndDOM);
+
+        td5DOM.appendChild(ulOptsDOM);    
+        trDOM.appendChild(td5DOM);      
+        tbodyDOM.appendChild(trDOM);
+
+        // Atualiza os componentes do MDL
+        componentHandler.upgradeDom();
+
+      });
+      
+    } 
+    // Se não houver registros
+    else {
+      // Oculta a tabela
+      $('#table').hide();
+      // Exibe a mensagem 'Sem registros'
+      $('.sem-registros').show();
+    }
+    
+  }).fail(function(response) {   
+
+    // Exibe os detalhes no console
+    console.log(response);
+
+    // Mensagem snackbar   
+    snackMessage('#snackbar', 'Não foi possível realizar essa operação', 3000);
+        
+  });
+
+}
+
+// Chama a funcção de listagem se a página for a correta (Respostas)
+$(document).ready(function () {
+  if (getPageName() === 'colaboradores.html') {
+    listarColaboradores();
+  }
+});
+
+// Insere um colaborador
+var insereColaborador = function insereColaborador(nome, nascimento, telefone, celular, email, senha, permissao, status) {
+
+  // Adiciona os dados em um objeto
+  var dados = {
+    nome: nome,
+    dataNasc: nascimento,
+    status: status,
+    telefoneResidencial: telefone,
+    telefoneCelular: celular,
+    email: email,
+    senha: senha,
+    permissao: permissao
+  }  
+ 
+  $.ajax({
+
+    url: 'http://localhost/Prj_StayFilm/private/colaborador',
+    type: 'POST',
+    dataType: 'json',
+    contentType: 'application/json;charset=utf-8',
+    data: JSON.stringify(dados),
+    headers: {'Authorization': getToken()} 
+
+  }).done(function(response) {      
+
+    // Armazena a mensagem de retorno
+    setMessageRetorno('Cadastrado com sucesso');    
+    
+    // Redireciona para a tela de listagem
+    window.location.href = 'colaboradores.html';
+
+  }).fail(function(response) {    
+
+    // Exibe os detalhes no console
+    console.log(response);
+    
+    // Mensagem snackbar   
+    snackMessage('#snackbar', 'Não foi possível realizar essa operação', 3000);
+    // Exibe o botão de submit
+    $('#btn-submit').show();
+    // Oculta o ícone de loading
+    LoadingProgress.hide();
+
+  });
+
+}
+
+// Validações e configurações do formulário
+$(document).ready(function() {
+  // Verifica se a página é a de cadastrar colaborador
+  if (getPageName() === 'cadastrar_colaborador.html') {
+
+    // Máscaras de campo
+    $("#nascimento").mask("99/99/9999",{placeholder:"dd/mm/yyyy"});
+    $("#telefone").mask("(99) 9999-9999");
+    $("#celular").mask("(99) 99999-9999");
+
+    // Ajusta na classe MDL
+    $("#nascimento, #telefone, #celular").on('change', function() {
+      if ($(this).val()) {
+        $(this).parent().addClass('is-dirty');
+      } else {
+        $(this).parent().removeClass('is-dirty'); 
+      }          
+    });
+
+    // Verifica se o e-mail já está cadastrado
+    $("#email").on('change', function() {
+      console.log('verificar email');    
+    });
+
+    // Verifica se a senha e a confirmação são iguais
+    $("#senha2").on('change', function() {       
+      if ($(this).val() != $('#senha').val()) {
+        $(this).parent().addClass('is-invalid');
+        $(this).val('');          
+      } else {
+        $(this).parent().removeClass('is-invalid');          
+      }        
+    });
+
+  }
+  
+});
+
+$("#form-cad-colaborador").on('submit', function(e){
+
+  // Cancela o envio do formulário
+  e.preventDefault();
+  // Oculta o botão de submit
+  $('#btn-submit').hide();
+  // Exibe o ícone de loading
+  LoadingProgress.show();
+  
+  if (validaFormulario()) {
+    
+    //Pega os valores do campo e formata os necessários
+    var nome = $('#nome').val();
+    var nascimento = formatDataSQL($('#nascimento').val());
+    var telefone = $('#telefone').val();
+    var celular = $('#celular').val();
+    var email = $('#email').val();
+    var senha = $('#senha').val();
+    var permissao = $('#permissao').val() === 'Administrador' ? 1 : 0;
+    var status = $('#status').val() === 'Ativo' ? true : false;
+  
+    // Executa a função de insert
+    insereColaborador(nome, nascimento, telefone, celular, email, senha, permissao, status);  
+
+  } else {
+
+    // Exibe o botão de submit
+    $('#btn-submit').show();
+    /// Oculta o ícone de loading
+    LoadingProgress.hide();
+    
+  }
+
+});
