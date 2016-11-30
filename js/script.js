@@ -889,8 +889,13 @@ var listarColaboradores = function listarColaboradores() {
         // Linha (TR)
         var trDOM = document.createElement('tr');
         
-        // TD vazio
-        var td1DOM = document.createElement('td');         
+        // Status
+        var td1DOM = document.createElement('td'); 
+        var spanStatus = document.createElement('span');
+        spanStatus.setAttribute('class', 'span_status aprovado');
+        spanStatus.innerHTML = 'Ativo';
+        td1DOM.appendChild(spanStatus);
+
         trDOM.appendChild(td1DOM);
 
         // Nome
