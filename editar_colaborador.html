@@ -33,9 +33,9 @@
       <header class="barra-superior mdl-layout__header mdl-layout__header--waterfall mdl-color--white">
 
         <div class="mdl-layout__header-row">
-          
+
           <!-- TÍTULO PRINCIPAL -->
-          <span class="mdl-layout-title mdl-color-text--blue-grey-900">Cadastrar Colaborador</span>
+          <span class="mdl-layout-title mdl-color-text--blue-grey-900">Editar Colaborador</span>
           <!-- FIM TÍTULO PRINCIPAL -->   
 
         </div>
@@ -118,7 +118,7 @@
         <div class="mdl-grid content">
           <div class="conteudo mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
 
-            <form id="form-cad-colaborador" class="form-colaborador" method="post">         
+            <form id="form-edit-colaborador" class="form-colaborador" method="post">         
               
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 <input class="mdl-textfield__input required" type="text" id="nome" name="nome">
@@ -150,19 +150,7 @@
                 <input class="mdl-textfield__input required" type="email" id="email" name="email">
                 <label class="mdl-textfield__label">E-mail</label>            
                 <span class="mdl-textfield__error">Digite um email</span> 
-              </div>
-
-              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input required" type="password" id="senha" name="senha">
-                <label class="mdl-textfield__label">Senha</label>            
-                <span class="mdl-textfield__error">Digite uma senha</span> 
-              </div>
-
-              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input required" type="password" id="senha2" name="senha2">
-                <label class="mdl-textfield__label">Confirmar Senha</label>            
-                <span class="mdl-textfield__error">Confirme a senha</span> 
-              </div>
+              </div>              
 
               <div class="mdl-layout-spacer"></div>
 
@@ -186,10 +174,12 @@
                 <span class="mdl-textfield__error">Selecione um status</span>
               </div> 
 
+              <input type="hidden" name="id_edit" id="id_edit">
+
               <div class="mdl-card__actions mdl-card__actions-resposta"> 
                 <a href="colaboradores.html" class="mdl-button mdl-js-button mdl-js-ripple-effect">Cancelar</a>
                 <div class="mdl-layout-spacer"></div>
-                <input type="submit" value="Cadastrar" id="btn-submit" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored action" />
+                <input type="submit" value="Atualizar" id="btn-submit" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored action" />
                 <div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active" id="icon-loading"></div>
               </div>
           

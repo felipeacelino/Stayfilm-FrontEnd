@@ -201,12 +201,15 @@ var permissaoPage = function permissaoPage(pagina) {
 
   // Páginas que os usuários ADMIN tem acesso
   var pags_admin = [
+  'index.html',
   'respostas.html',
   'cadastrar_resposta.html',
   'editar_resposta.html',
   'colaboradores.html',
   'cadastrar_colaborador.html',
-  'curadoria.html'
+  'editar_colaborador.html',
+  'curadoria.html',
+  'monitoria.html'
   ];
 
   // Páginas que os usuários COMUNS tem acesso
@@ -769,6 +772,7 @@ $(document).ready(function () {
   } 
 });
 
+// Envia o formulário
 $("#form-cad-resposta").on('submit', function(e){
 
   // Cancela o envio do formulário
@@ -800,6 +804,7 @@ $("#form-cad-resposta").on('submit', function(e){
 
 });
 
+// Envia o formulário
 $("#form-edit-resposta").on('submit', function(e){
 
   // Cancela o envio do formulário
@@ -848,7 +853,7 @@ var formatDataSQL = function formatDataSQL(data) {
 var formatDataBR = function formatDataBR(data) {
 
   var dataSplit = data.split('-');
-  return dataSplit[2] + '-' + dataSplit[1] + '-' + dataSplit[0];
+  return dataSplit[2] + '/' + dataSplit[1] + '/' + dataSplit[0];
 
 }
 
@@ -879,7 +884,7 @@ var listarColaboradores = function listarColaboradores() {
       tbodyDOM.innerHTML = '';
 
       // Popula a tabela com os dados
-      itens.forEach(function(item, index) {      
+      itens.forEach(function(item) {      
        
         // Linha (TR)
         var trDOM = document.createElement('tr');
@@ -890,17 +895,17 @@ var listarColaboradores = function listarColaboradores() {
 
         // Nome
         var td2DOM = document.createElement('td');
-        td2DOM.innerHTML = item[0];       
+        td2DOM.innerHTML = item[1];       
         trDOM.appendChild(td2DOM);
 
         // E-mail
         var td3DOM = document.createElement('td');
-        td3DOM.innerHTML = item[1];        
+        td3DOM.innerHTML = item[2];        
         trDOM.appendChild(td3DOM);
 
         // E-mail
         var td4DOM = document.createElement('td');
-        td4DOM.innerHTML = item[2];        
+        td4DOM.innerHTML = item[3];        
         trDOM.appendChild(td4DOM);
 
         // Opções
@@ -909,7 +914,7 @@ var listarColaboradores = function listarColaboradores() {
         // Botão de opção (Arrow)
         var btnOptDOM = document.createElement('button');
         btnOptDOM.setAttribute('class', 'btn-menu mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon');
-        btnOptDOM.setAttribute('id', 'item_' + index);
+        btnOptDOM.setAttribute('id', 'item_' + item[0]);
 
         // Ícone do botão de ação
         var iconBtnOptDOM = document.createElement('i');
@@ -923,12 +928,12 @@ var listarColaboradores = function listarColaboradores() {
         // Opções do botão de ação (UL)
         var ulOptsDOM = document.createElement('ul');
         ulOptsDOM.setAttribute('class', 'mdl-menu-item mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right');
-        ulOptsDOM.setAttribute('for', 'item_' + index);
+        ulOptsDOM.setAttribute('for', 'item_' + item[0]);
 
         // Item da opção (Edit)
         var aOptEditDOM = document.createElement('a');
         aOptEditDOM.setAttribute('class', 'link_item');
-        aOptEditDOM.setAttribute('href', 'editar_colaborador.html?id=' + index); 
+        aOptEditDOM.setAttribute('href', 'editar_colaborador.html?id=' + item[0]); 
 
         var liOptEditDOM = document.createElement('li');
         liOptEditDOM.setAttribute('class', 'mdl-menu__item'); 
@@ -948,7 +953,7 @@ var listarColaboradores = function listarColaboradores() {
         // Item da opção (Atividades)
         var aOptAtivDOM = document.createElement('a');
         aOptAtivDOM.setAttribute('class', 'link_item');
-        aOptAtivDOM.setAttribute('href', 'atividades.html?id=' + index); 
+        aOptAtivDOM.setAttribute('href', 'atividades.html?id=' + item[0]); 
 
         var liOptAtivDOM = document.createElement('li');
         liOptAtivDOM.setAttribute('class', 'mdl-menu__item'); 
@@ -968,7 +973,7 @@ var listarColaboradores = function listarColaboradores() {
         // Item da opção (Endereço)
         var aOptEndDOM = document.createElement('a');
         aOptEndDOM.setAttribute('class', 'link_item');
-        aOptEndDOM.setAttribute('href', 'endereco_colaborador.html?id=' + index); 
+        aOptEndDOM.setAttribute('href', 'endereco_colaborador.html?id=' + item[0]); 
 
         var liOptEndDOM = document.createElement('li');
         liOptEndDOM.setAttribute('class', 'mdl-menu__item'); 
@@ -1070,10 +1075,126 @@ var insereColaborador = function insereColaborador(nome, nascimento, telefone, c
 
 }
 
+// Altera uma resposta
+var updateColaborador = function updateColaborador(idColaborador, nome, nascimento, telefone, celular, email, permissao, status) {
+
+  // Adiciona os dados em um objeto
+  var dados = {
+    idColaborador: idColaborador,
+    nome: nome,
+    dataNasc: nascimento,
+    status: status,
+    telefoneResidencial: telefone,
+    telefoneCelular: celular,
+    email: email,
+    senha: '123',
+    permissao: permissao
+  }  
+
+  $.ajax({
+
+    url: 'http://localhost/Prj_StayFilm/colaborador/editar/' + idColaborador,
+    type: 'PUT',
+    dataType: 'json',
+    contentType: 'application/json;charset=utf-8',
+    data: JSON.stringify(dados),
+    headers: {'Authorization': getToken()} 
+
+  }).done(function(response) {      
+
+    // Armazena a mensagem de retorno
+    setMessageRetorno('Alterado com sucesso');    
+    
+    // Redireciona para a tela de listagem
+    window.location.href = 'colaboradores.html';
+
+  }).fail(function(response) {    
+    
+    if (response.status == 200) {
+
+      // Armazena a mensagem de retorno
+      setMessageRetorno('Alterado com sucesso');    
+    
+      // Redireciona para a tela de listagem
+      window.location.href = 'colaboradores.html';
+
+    } else {
+
+      // Exibe os detalhes no console
+      console.log(response.status);
+      // Mensagem snackbar   
+      snackMessage('#snackbar', 'Não foi possível realizar essa operação', 3000);
+      // Exibe o botão de submit
+      $('#btn-submit').show();
+      // Oculta o ícone de loading
+      LoadingProgress.hide();
+      
+    }
+    
+
+  });
+
+}
+
+// Retorna um colaborador
+var getColaborador = function getColaborador(id) {
+
+  $.ajax({
+
+    url: 'http://localhost/Prj_StayFilm/private/colaborador/busca/' + id,
+    type: 'GET',
+    dataType: 'json',
+    contentType: 'application/json;charset=utf-8',
+
+    headers: {'Authorization': getToken()} 
+
+  }).done(function(response) {
+
+    // Passa os valores para os campos
+    $('#id_edit').val(response.idColaborador);
+    $('#nome').val(response.nome).parent().addClass('is-dirty');
+    $('#nascimento').val(response.dataNasc.replace(/-/g, '/')).parent().addClass('is-dirty');
+    $('#telefone').val(response.telefoneResidencial).parent().addClass('is-dirty');
+    $('#celular').val(response.telefoneCelular).parent().addClass('is-dirty');
+    $('#email').val(response.email).parent().addClass('is-dirty');    
+    response.permissao === 'ADMINISTRADOR' ? $('#permissao').val('Administrador').parent().addClass('is-dirty') : $('#permissao').val('Usuário Comum').parent().addClass('is-dirty');
+    !!response.status ? $('#status').val('Ativo').parent().addClass('is-dirty') : $('#status').val('Inativo').parent().addClass('is-dirty');
+    
+  }).fail(function(response) {    
+    
+    // Exibe os detalhes no console
+    console.log(response);
+      
+    // Armazena a mensagem de retorno
+    setMessageRetorno('Não foi possível realizar essa operação');
+
+    // Redireciona para a tela de listagem
+    window.location.href = 'colaboradores.html';
+
+  });
+
+}
+
+// Carrega o colaborador a ser editado
+$(document).ready(function () {
+  if (getPageName() === 'editar_colaborador.html') {
+    // Verifica se tem o ID na URL 
+    var id = getParam('id');
+    if (id) {
+      // Carrega o colaborador
+      getColaborador(id);
+    } 
+    // Redireciona para a tela de listagem
+    else {
+      window.location.href = 'colaboradores.html';
+    }    
+  } 
+});
+
 // Validações e configurações do formulário
 $(document).ready(function() {
   // Verifica se a página é a de cadastrar colaborador
-  if (getPageName() === 'cadastrar_colaborador.html') {
+  if (getPageName() === 'cadastrar_colaborador.html' || getPageName() === 'editar_colaborador.html') {
 
     // Máscaras de campo
     $("#nascimento").mask("99/99/9999",{placeholder:"dd/mm/yyyy"});
@@ -1131,6 +1252,41 @@ $("#form-cad-colaborador").on('submit', function(e){
   
     // Executa a função de insert
     insereColaborador(nome, nascimento, telefone, celular, email, senha, permissao, status);  
+
+  } else {
+
+    // Exibe o botão de submit
+    $('#btn-submit').show();
+    /// Oculta o ícone de loading
+    LoadingProgress.hide();
+    
+  }
+
+});
+
+$("#form-edit-colaborador").on('submit', function(e){
+
+  // Cancela o envio do formulário
+  e.preventDefault();
+  // Oculta o botão de submit
+  $('#btn-submit').hide();
+  // Exibe o ícone de loading
+  LoadingProgress.show();
+  
+  if (validaFormulario()) {
+    
+    //Pega os valores do campo e formata os necessários
+    var idColaborador = $('#id_edit').val();
+    var nome = $('#nome').val();
+    var nascimento = formatDataSQL($('#nascimento').val());
+    var telefone = $('#telefone').val();
+    var celular = $('#celular').val();
+    var email = $('#email').val();    
+    var permissao = $('#permissao').val() === 'Administrador' ? 1 : 0;
+    var status = $('#status').val() === 'Ativo' ? true : false;
+  
+    // Executa a função de update
+    updateColaborador(idColaborador, nome, nascimento, telefone, celular, email, permissao, status);  
 
   } else {
 
