@@ -252,16 +252,16 @@ var permissaoPage = function permissaoPage(pagina) {
 // Grava a mensagem de retorno
 var setMessageRetorno = function setMessageRetorno(msg) {
   if (msg) {
-    sessionStorage.setItem('msg', msg);
+    window.localStorage.setItem('msg', msg);
   }
 }
 
 // Exibe a mensagem de retorno
 var showMessageRetorno = function showMessageRetorno() {
   //snackMessage('#snackbar', 'teste', 3000);
-  if (window.sessionStorage.getItem('msg')) {
-    snackMessage('#snackbar', window.sessionStorage.getItem('msg'), 3000);
-    window.sessionStorage.removeItem('msg');
+  if (window.localStorage.getItem('msg')) {
+    snackMessage('#snackbar', window.localStorage.getItem('msg'), 3000);
+    window.localStorage.removeItem('msg');
   }
 }
 
@@ -1128,7 +1128,7 @@ var updateColaborador = function updateColaborador(idColaborador, nome, nascimen
       $('#btn-submit').show();
       // Oculta o ícone de loading
       LoadingProgress.hide();
-      
+
     }
     
 
