@@ -13,12 +13,14 @@
       rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
 
-    <!-- CSS -->    
+    <!-- CSS -->     
     <link rel="stylesheet" href="vendors/mdl/material.css">    
-    <link rel="stylesheet" href="vendors/getmdl-select-master/getmdl-select.min.css">  
-    <link rel="stylesheet" href="vendors/mdl-speed-dial/mdl_speed_dial.css">
     <link rel="stylesheet" href="vendors/featherlight/featherlight.css">  
+    <link rel="stylesheet" href="vendors/getmdl-select-master/getmdl-select.min.css">
     <link rel="stylesheet" href="css/style.css">
+
+    <!-- JS -->
+    <script defer src="vendors/mdl/material.js"></script>
 
   </head>
 
@@ -33,7 +35,7 @@
         <div class="mdl-layout__header-row">
 
           <!-- TÍTULO PRINCIPAL -->
-          <span class="mdl-layout-title">Colaborador Fulano</span>
+          <span class="mdl-layout-title" id="titulo-nome-colaborador"></span>
           <!-- FIM TÍTULO PRINCIPAL -->
 
           <div class="mdl-layout-spacer"></div>         
@@ -61,7 +63,7 @@
           <!-- USUÁRIO -->
           <div class="user-descricao mdl-color-text--white">
             <i class="material-icons" role="presentation">person</i>
-            <span>Fulano de Tal</span>            
+            <span id="user-name-sidebar"></span>            
             <div class="mdl-layout-spacer"></div>
             <button id="menu_user" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
               <i class="material-icons" role="presentation">arrow_drop_down</i>
@@ -106,22 +108,6 @@
           <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="respostas.html">
             <i class="material-icons" role="presentation">forum</i>Respostas
           </a>
-
-          <!-- ITEM BARRA LATERAL -->
-          <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="error_403.html">
-            <i class="material-icons" role="presentation">warning</i>Erro 403
-          </a>
-
-          <!-- ITEM BARRA LATERAL -->
-          <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="error_404.html">
-            <i class="material-icons" role="presentation">warning</i>Erro 404
-          </a>
-
-          <!-- ITEM BARRA LATERAL -->
-          <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="error_500.html">
-            <i class="material-icons" role="presentation">warning</i>Erro 500
-          </a>
-
           
           <div class="mdl-layout-spacer"></div>
 
@@ -140,18 +126,18 @@
         <div class="mdl-grid content">
           <div class="conteudo mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
 
-            <form id="form-colaborador" class="form-colaborador">
+            <form id="form-cad-atividade" class="form-atividade" method="post">
 
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 <input class="mdl-textfield__input required" type="text" id="instituicao" name="instituicao">
                 <label class="mdl-textfield__label">Instituição</label>
-                <span class="mdl-textfield__error">Digite a instituição!</span>             
+                <span class="mdl-textfield__error">Digite uma instituição</span>             
               </div>
 
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 <input class="mdl-textfield__input required" type="text" id="atividade" name="atividade">
                 <label class="mdl-textfield__label">Atividade</label>
-                <span class="mdl-textfield__error">Digite a atividade!</span>             
+                <span class="mdl-textfield__error">Digite uma atividade</span>             
               </div>         
               
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fullwidth getmdl-select__fix-height">
@@ -163,15 +149,18 @@
                   <li class="mdl-menu__item">Noite</li>
                 </ul>
                 <span class="mdl-textfield__error">Selecione um período</span>
-              </div>             
+              </div>   
 
-            </form>
+              <input type="hidden" name="id_colaborador" id="id_colaborador">
 
-            <div class="mdl-card__actions mdl-card__actions-resposta"> 
-              <a href="atividades.html" class="mdl-button mdl-js-button mdl-js-ripple-effect">Cancelar</a>
-              <div class="mdl-layout-spacer"></div>
-              <input type="submit" value="Cadastrar" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored action" />
-            </div>
+              <div class="mdl-card__actions mdl-card__actions-resposta"> 
+                <a href="colaboradores.html" id="btn-cancelar-form-atividades" class="mdl-button mdl-js-button mdl-js-ripple-effect">Cancelar</a>
+                <div class="mdl-layout-spacer"></div>
+                <input type="submit" value="Cadastrar" id="btn-submit" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored action" />
+                <div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active" id="icon-loading"></div>
+              </div>      
+
+            </form>         
 
           </div>          
         </div>
@@ -181,10 +170,17 @@
     </div>
     <!-- FIM ESTRUTURA -->
     
+    <div id="snackbar" class="mdl-js-snackbar mdl-snackbar">
+      <div class="mdl-snackbar__text"></div>
+      <button class="mdl-snackbar__action" type="button"></button>
+    </div>
+    
     <!-- JAVA SCRIPT -->
     <script src="vendors/mdl/material.js"></script>
     <script src="vendors/getmdl-select-master/getmdl-select.min.js"></script>
     <script src="vendors/jquery/jquery.js"></script>
+    <script src="vendors/maskedinput/jquery.maskedinput.min.js"></script>
+    <script src="js/script.js"></script>
 
   </body>
 </html>

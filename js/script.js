@@ -208,8 +208,9 @@ var permissaoPage = function permissaoPage(pagina) {
   'colaboradores.html',
   'cadastrar_colaborador.html',
   'editar_colaborador.html',
-  'curadoria.html',
-  'monitoria.html'
+  'atividades.html',
+  'cadastrar_atividade.html',
+  'editar_atividade.html'
   ];
 
   // Páginas que os usuários COMUNS tem acesso
@@ -861,6 +862,7 @@ var formatDataBR = function formatDataBR(data) {
                   COLABORADORES
 ===================================================*/
 
+
 // Lista os colaboradores
 var listarColaboradores = function listarColaboradores() {
 
@@ -1155,15 +1157,49 @@ var getColaborador = function getColaborador(id) {
 
   }).done(function(response) {
 
-    // Passa os valores para os campos
-    $('#id_edit').val(response.idColaborador);
-    $('#nome').val(response.nome).parent().addClass('is-dirty');
-    $('#nascimento').val(response.dataNasc.replace(/-/g, '/')).parent().addClass('is-dirty');
-    $('#telefone').val(response.telefoneResidencial).parent().addClass('is-dirty');
-    $('#celular').val(response.telefoneCelular).parent().addClass('is-dirty');
-    $('#email').val(response.email).parent().addClass('is-dirty');    
-    response.permissao === 'ADMINISTRADOR' ? $('#permissao').val('Administrador').parent().addClass('is-dirty') : $('#permissao').val('Usuário Comum').parent().addClass('is-dirty');
-    !!response.status ? $('#status').val('Ativo').parent().addClass('is-dirty') : $('#status').val('Inativo').parent().addClass('is-dirty');
+    // Executa determinada ação dependendo da página
+    switch (getPageName()) {
+
+      case 'editar_colaborador.html':
+
+        // Passa os valores para os campos
+        $('#id_edit').val(response.idColaborador);
+        $('#nome').val(response.nome).parent().addClass('is-dirty');
+        $('#nascimento').val(response.dataNasc.replace(/-/g, '/')).parent().addClass('is-dirty');
+        $('#telefone').val(response.telefoneResidencial).parent().addClass('is-dirty');
+        $('#celular').val(response.telefoneCelular).parent().addClass('is-dirty');
+        $('#email').val(response.email).parent().addClass('is-dirty');    
+        response.permissao === 'ADMINISTRADOR' ? $('#permissao').val('Administrador').parent().addClass('is-dirty') : $('#permissao').val('Usuário Comum').parent().addClass('is-dirty');
+        !!response.status ? $('#status').val('Ativo').parent().addClass('is-dirty') : $('#status').val('Inativo').parent().addClass('is-dirty');
+        break;
+
+      case 'atividades.html':
+        
+        // Exibe o nome do colaborador no título da tela de atividades
+        $('#titulo-nome-colaborador').text(response.nome);
+
+        // Personaliza o link para cadastrar uma atividade com o ID do colaborador
+        $('#btn-cad-atividade').attr('href', 'cadastrar_atividade.html?id=' + response.idColaborador);
+        
+        // Lista as atividades do colaborador
+        listarAtividades(response.idColaborador);
+        break; 
+
+      case 'cadastrar_atividade.html':
+      case 'editar_atividade.html':
+        
+        // Exibe o nome do colaborador no título da tela de atividades
+        $('#titulo-nome-colaborador').text(response.nome);
+
+        // Passa o id do colaborador para um campo oculto do formulário
+        $('#id_colaborador').val(response.idColaborador);
+
+        // Personaliza o link de cancalar no formulário de cadastro da atividade com o ID do colaborador
+        $('#btn-cancelar-form-atividades').attr('href', 'atividades.html?id=' + response.idColaborador);
+
+        break;   
+
+    }
     
   }).fail(function(response) {    
     
@@ -1302,4 +1338,448 @@ $("#form-edit-colaborador").on('submit', function(e){
     
   }
 
+});
+
+/*=================================================
+                   ATIVIDADES
+===================================================*/
+
+// Lista as atividades
+var listarAtividades = function listarAtividades(idColaborador) {
+
+  $.ajax({
+
+    url: 'http://localhost/Prj_StayFilm/lista/' + idColaborador,
+    type: 'GET',
+    dataType: 'json',
+    contentType: 'application/json;charset=utf-8',
+
+    headers: {'Authorization': getToken()} 
+
+  }).done(function(itens) {   
+
+    if (itens.length > 0) {
+
+      // TBODY Container
+      var tbodyDOM = document.querySelector('#carrega-lista');
+
+      // Limpa o conteúdo
+      tbodyDOM.innerHTML = '';
+
+      // Popula a tabela com os dados
+      itens.forEach(function(item) {      
+       
+        // Linha (TR)
+        var trDOM = document.createElement('tr');
+        
+        // TD vazio
+        var td1DOM = document.createElement('td');         
+        trDOM.appendChild(td1DOM);
+
+        // Título 
+        var td2DOM = document.createElement('td');
+        td2DOM.innerHTML = item[1];       
+        trDOM.appendChild(td2DOM);
+
+        // Instituição
+        var td3DOM = document.createElement('td');
+        td3DOM.innerHTML = item[2];        
+        trDOM.appendChild(td3DOM);
+
+        // Período
+        var td4DOM = document.createElement('td');
+        td4DOM.innerHTML = item[3];        
+        trDOM.appendChild(td4DOM);
+
+        // Opções
+        var td5DOM = document.createElement('td');
+
+        // Botão de opção (Arrow)
+        var btnOptDOM = document.createElement('button');
+        btnOptDOM.setAttribute('class', 'btn-menu mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon');
+        btnOptDOM.setAttribute('id', 'item_' + item[0]);
+
+        // Ícone do botão de ação
+        var iconBtnOptDOM = document.createElement('i');
+        iconBtnOptDOM.setAttribute('class', 'material-icons');
+        iconBtnOptDOM.setAttribute('role', 'presentation');
+        iconBtnOptDOM.innerHTML = 'keyboard_arrow_down';       
+        btnOptDOM.appendChild(iconBtnOptDOM);
+        
+        td5DOM.appendChild(btnOptDOM);
+
+        // Opções do botão de ação (UL)
+        var ulOptsDOM = document.createElement('ul');
+        ulOptsDOM.setAttribute('class', 'mdl-menu-item mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right');
+        ulOptsDOM.setAttribute('for', 'item_' + item[0]);
+
+        // Item da opção (Edit)
+        var aOptEditDOM = document.createElement('a');
+        aOptEditDOM.setAttribute('class', 'link_item');
+        aOptEditDOM.setAttribute('href', 'editar_atividade.html?id=' + idColaborador + '&id_atividade=' + item[0]); 
+
+        var liOptEditDOM = document.createElement('li');
+        liOptEditDOM.setAttribute('class', 'mdl-menu__item'); 
+
+        var iconOptEditDOM = document.createElement('i');
+        iconOptEditDOM.setAttribute('class', 'material-icons');
+        iconOptEditDOM.setAttribute('role', 'presentation');
+        iconOptEditDOM.innerHTML = 'edit';
+
+        var txtIconOptEditDOM = document.createElement('span');
+        txtIconOptEditDOM.innerHTML = 'Editar';         
+        liOptEditDOM.appendChild(iconOptEditDOM);    
+        liOptEditDOM.appendChild(txtIconOptEditDOM);     
+        aOptEditDOM.appendChild(liOptEditDOM);      
+        ulOptsDOM.appendChild(aOptEditDOM);
+
+        // Item da opção (Remove)
+        var aOptDelDOM = document.createElement('a');
+        aOptDelDOM.setAttribute('class', 'link_item remove-item');
+        // Evento click (Remover)
+        aOptDelDOM.addEventListener('click', function() {
+          // Passa o ID do item para o campo oculto do modal de exclusão
+          $('#id-item-remove').val(item[0]);
+          // Passa o ID do colaborador para o campo oculto do modal de exclusão
+          $('#id-item-colaborador').val(idColaborador);
+          // Abre o modal de exclusão
+          $.featherlight('#lightbox_remover');
+        });
+
+        var liOptDelDOM = document.createElement('li');
+        liOptDelDOM.setAttribute('class', 'mdl-menu__item');
+
+        var iconOptDelDOM = document.createElement('i');
+        iconOptDelDOM.setAttribute('class', 'material-icons');
+        iconOptDelDOM.setAttribute('role', 'presentation');
+        iconOptDelDOM.innerHTML = 'delete';
+
+        var txtIconOptDelDOM = document.createElement('span');
+        txtIconOptDelDOM.innerHTML = 'Remover';     
+        liOptDelDOM.appendChild(iconOptDelDOM);    
+        liOptDelDOM.appendChild(txtIconOptDelDOM);     
+        aOptDelDOM.appendChild(liOptDelDOM);      
+        ulOptsDOM.appendChild(aOptDelDOM);
+
+        td5DOM.appendChild(ulOptsDOM);    
+        trDOM.appendChild(td5DOM);      
+        tbodyDOM.appendChild(trDOM);
+
+        // Atualiza os componentes do MDL
+        componentHandler.upgradeDom();
+
+      });
+      
+    } 
+    // Se não houver registros
+    else {
+      // Oculta a tabela
+      $('#table').hide();
+      // Exibe a mensagem 'Sem registros'
+      $('.sem-registros').show();
+    }
+    
+  }).fail(function(response) {   
+
+    // Exibe os detalhes no console
+    console.log(response);
+
+    // Mensagem snackbar   
+    snackMessage('#snackbar', 'Não foi possível realizar essa operação', 3000);
+        
+  });
+
+}
+
+// Insere uma atividade
+var insereAtividade = function insereAtividade(idColaborador, instituicao, atividade, periodo) {
+
+  // Adiciona os dados em um objeto
+  var dados = {
+    instituicao: instituicao,
+    atividade: atividade,
+    periodo: periodo
+  }  
+
+  $.ajax({
+
+    url: 'http://localhost/Prj_StayFilm/atividade/' + idColaborador,
+    type: 'POST',
+    dataType: 'json',
+    contentType: 'application/json;charset=utf-8',
+    data: JSON.stringify(dados),
+    headers: {'Authorization': getToken()} 
+
+  }).done(function(response) {      
+
+    // Armazena a mensagem de retorno
+    setMessageRetorno('Cadastrado com sucesso');    
+    
+    // Redireciona para a tela de listagem
+    window.location.href = 'atividades.html?id=' + idColaborador;
+
+  }).fail(function(response) {    
+
+    // Exibe os detalhes no console
+    console.log(response);
+    
+    // Mensagem snackbar   
+    snackMessage('#snackbar', 'Não foi possível realizar essa operação', 3000);
+    // Exibe o botão de submit
+    $('#btn-submit').show();
+    // Oculta o ícone de loading
+    LoadingProgress.hide();
+
+  });
+
+}
+
+// Altera uma atividade
+var updateAtividade = function updateAtividade(idColaborador, idAtividade, instituicao, atividade, periodo) {
+
+  // Adiciona os dados em um objeto
+  var dados = {
+    idAtividade: idAtividade,
+    instituicao: instituicao,
+    atividade: atividade,
+    periodo: periodo
+  }  
+
+  $.ajax({
+
+    url: 'http://localhost/Prj_StayFilm/atividade/editar/' + idAtividade + '/' + idColaborador,
+    type: 'PUT',
+    dataType: 'json',
+    contentType: 'application/json;charset=utf-8',
+    data: JSON.stringify(dados),
+    headers: {'Authorization': getToken()} 
+
+  }).done(function(response) {      
+
+    // Armazena a mensagem de retorno
+    setMessageRetorno('Alterado com sucesso');    
+    
+    // Redireciona para a tela de listagem
+    window.location.href = 'atividades.html?id' + idColaborador;
+
+  }).fail(function(response) {    
+    
+    // Exibe os detalhes no console
+    console.log(response);
+    // Mensagem snackbar   
+    snackMessage('#snackbar', 'Não foi possível realizar essa operação', 3000);
+    // Exibe o botão de submit
+    $('#btn-submit').show();
+    // Oculta o ícone de loading
+    LoadingProgress.hide();
+
+  });
+
+}
+
+// Remove uma atividade
+var removeAtividade = function removeAtividade(idColaborador, idAtividade) {
+  
+  $.ajax({
+
+    url: 'http://localhost/Prj_StayFilm/atividade/' + idAtividade,
+    type: 'DELETE',
+    dataType: 'json',
+    contentType: 'application/json;charset=utf-8',
+
+    headers: {'Authorization': getToken()} 
+
+  }).done(function(response) { 
+
+    // Mensagem snackbar   
+    snackMessage('#snackbar', 'Removido com sucesso', 3000);
+    // Lista os itens
+    listarAtividades(idColaborador);
+
+  }).fail(function(response) {    
+    
+    // Exibe os detalhes no console
+    console.log(response);
+    // Mensagem snackbar   
+    snackMessage('#snackbar', 'Não foi possível realizar essa operação', 3000);
+    
+  });
+
+}
+
+// Retorna uma atividade
+var getAtividade = function getAtividade(id) {
+
+  $.ajax({
+
+    url: 'http://localhost/Prj_StayFilm/atividade/busca/' + id,
+    type: 'GET',
+    dataType: 'json',
+    contentType: 'application/json;charset=utf-8',
+
+    headers: {'Authorization': getToken()} 
+
+  }).done(function(response) {
+
+    // Passa os valores para os campos
+    $('#id_edit').val(response.idAtividade).parent().addClass('is-dirty');
+    $('#instituicao').val(response.instituicao).parent().addClass('is-dirty');
+    $('#atividade').val(response.atividade).parent().addClass('is-dirty');
+    switch (response.periodo) {
+      case 'MANHA':
+        $('#periodo').val('Manhã').parent().addClass('is-dirty');
+        break;
+      case 'TARDE':
+        $('#periodo').val('Tarde').parent().addClass('is-dirty');
+        break;
+      case 'NOITE':
+        $('#periodo').val('Noite').parent().addClass('is-dirty');
+        break;   
+    }
+    
+  }).fail(function(response) {    
+    
+    // Exibe os detalhes no console
+    console.log(response);
+      
+    // Armazena a mensagem de retorno
+    setMessageRetorno('Não foi possível realizar essa operação');
+
+  });
+
+}
+
+// Envia o formulário de cadastro
+$("#form-cad-atividade").on('submit', function(e){
+
+  // Cancela o envio do formulário
+  e.preventDefault();
+  // Oculta o botão de submit
+  $('#btn-submit').hide();
+  // Exibe o ícone de loading
+  LoadingProgress.show();
+  
+  if (validaFormulario()) {
+    
+    //Pega os valores do campo e formata os necessários
+    var idColaborador = $('#id_colaborador').val();
+    var instituicao = $('#instituicao').val();
+    var atividade = $('#atividade').val();
+    var periodo;
+    switch ($('#periodo').val()) {
+      case 'Manhã':
+        periodo = 'MANHA';
+        break;
+      case 'Tarde':
+        periodo = 'TARDE';
+        break;
+      case 'Noite':
+        periodo = 'NOITE';
+        break;   
+    }
+  
+    // Executa a função de insert
+    insereAtividade(idColaborador, instituicao, atividade, periodo);  
+
+  } else {
+
+    // Exibe o botão de submit
+    $('#btn-submit').show();
+    /// Oculta o ícone de loading
+    LoadingProgress.hide();
+    
+  }
+
+});
+
+// Envia o formulário de editar
+$("#form-edit-atividade").on('submit', function(e){
+
+  // Cancela o envio do formulário
+  e.preventDefault();
+  // Oculta o botão de submit
+  $('#btn-submit').hide();
+  // Exibe o ícone de loading
+  LoadingProgress.show();
+  
+  if (validaFormulario()) {
+    
+    //Pega os valores do campo e formata os necessários
+    var idAtividade = $('#id_edit').val();
+    var idColaborador = $('#id_colaborador').val();
+    var instituicao = $('#instituicao').val();
+    var atividade = $('#atividade').val();
+    var periodo;
+    switch ($('#periodo').val()) {
+      case 'Manhã':
+        periodo = 'MANHA';
+        break;
+      case 'Tarde':
+        periodo = 'TARDE';
+        break;
+      case 'Noite':
+        periodo = 'NOITE';
+        break;   
+    }
+  
+    // Executa a função de update
+    updateAtividade(idColaborador, idAtividade, instituicao, atividade, periodo);  
+
+  } else {
+
+    // Exibe o botão de submit
+    $('#btn-submit').show();
+    /// Oculta o ícone de loading
+    LoadingProgress.hide();
+    
+  }
+
+});
+
+
+// Evento do click na caixa de remoção
+$(document).ready(function() {
+  $('#btn-modal-remover-atividade').on('click', function(del) {
+    removeAtividade($('#id-item-remove').val(), $('#id-item-colaborador').val());
+  });
+});
+
+// Carrega os dados do colaborador
+$(document).ready(function () {
+
+  if (getPageName() === 'atividades.html' || 
+      getPageName() === 'cadastrar_atividade.html' ||
+      getPageName() === 'editar_atividade.html') {
+
+    // Verifica se tem o ID na URL 
+    var id = getParam('id');
+
+    if (id) {
+      // Carrega o colaborador
+      getColaborador(id);
+    } 
+
+    // Redireciona para a tela de listagem
+    else {
+      window.location.href = 'colaboradores.html';
+    }   
+
+  } 
+});
+
+// Carrega a atividade a ser editada
+$(document).ready(function () {
+  if (getPageName() === 'editar_atividade.html') {
+    // Verifica se vieram parâmetros na url
+    var id = getParam('id');
+    var id_atividade = getParam('id_atividade');
+    if (id && id_atividade) {
+      // Carrega a atividade
+      getAtividade(id);
+    } 
+    // Redireciona para a tela de listagem
+    else {
+      window.location.href = 'atividades.html?id=' + id;
+    }    
+  } 
 });

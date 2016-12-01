@@ -710,6 +710,9 @@ figure {
 .form-colaborador {
   width: 100%;
 }
+.form-atividade {
+  width: 100%;
+}
 .form-resposta .mdl-card__supporting-text {
   width: 100%;
   font-size: 16px;
