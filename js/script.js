@@ -210,7 +210,12 @@ var permissaoPage = function permissaoPage(pagina) {
   'editar_colaborador.html',
   'atividades.html',
   'cadastrar_atividade.html',
-  'editar_atividade.html'
+  'editar_atividade.html',
+  'editar_atividade.html',
+  'curadoria.html',
+  'filme_curadoria.html',
+  'monitoria.html',
+  'filme_monitoria.html'
   ];
 
   // Páginas que os usuários COMUNS tem acesso
@@ -862,7 +867,6 @@ var formatDataBR = function formatDataBR(data) {
                   COLABORADORES
 ===================================================*/
 
-
 // Lista os colaboradores
 var listarColaboradores = function listarColaboradores() {
 
@@ -894,10 +898,16 @@ var listarColaboradores = function listarColaboradores() {
         // Status
         var td1DOM = document.createElement('td'); 
         var spanStatus = document.createElement('span');
-        spanStatus.setAttribute('class', 'span_status aprovado');
-        spanStatus.innerHTML = 'Ativo';
-        td1DOM.appendChild(spanStatus);
 
+        // Verifica o status do colaborador
+        if (item[4] === true) {
+          spanStatus.setAttribute('class', 'span_status aprovado');
+          spanStatus.innerHTML = 'Ativo';
+        } else {
+          spanStatus.setAttribute('class', 'span_status reprovado');
+          spanStatus.innerHTML = 'Inativo';
+        }
+        td1DOM.appendChild(spanStatus);
         trDOM.appendChild(td1DOM);
 
         // Nome
@@ -1736,7 +1746,6 @@ $("#form-edit-atividade").on('submit', function(e){
 
 });
 
-
 // Evento do click na caixa de remoção
 $(document).ready(function() {
   $('#btn-modal-remover-atividade').on('click', function(del) {
@@ -1781,5 +1790,193 @@ $(document).ready(function () {
     else {
       window.location.href = 'atividades.html?id=' + id;
     }    
+  } 
+});
+
+/*=================================================
+                   ENDEREÇO
+===================================================*/
+
+// PENDENTE
+
+/*=================================================
+                CURADORIA
+===================================================*/
+
+// Listar os filmes da curadoria
+var listarFilmesCuradoria = function listarFilmesCuradoria() {
+
+  // Simulador
+  var itens = [
+    {
+      idFilme: 1,
+      dataCriacao: '02/12/2015 20:55',
+      descricaoFilme: 'Aniversário da Rafa',
+      statusFilme: 'Pendente',
+      temaFilme: 'Disney',
+      usuarioFilme: 'Felipe Silva'
+    },
+    {
+      idFilme: 2,
+      dataCriacao: '03/12/2015 10:00',
+      descricaoFilme: 'Viagem 2016',
+      statusFilme: 'Pendente',
+      temaFilme: 'Disney',
+      usuarioFilme: 'Camila Oliveira'
+    },
+    {
+      idFilme: 3,
+      dataCriacao: '03/12/2015 10:55',
+      descricaoFilme: 'Meu príncipe',
+      statusFilme: 'Pendente',
+      temaFilme: 'Disney',
+      usuarioFilme: 'Maria Antônia'
+    },
+    {
+      idFilme: 4,
+      dataCriacao: '02/12/2015 20:55',
+      descricaoFilme: 'Amor pra vida toda',
+      statusFilme: 'Pendente',
+      temaFilme: 'Disney',
+      usuarioFilme: 'Gustavo'
+    },
+    {
+      idFilme: 5,
+      dataCriacao: '12/02/2016 18:00',
+      descricaoFilme: 'Débora, eu te amo',
+      statusFilme: 'Pendente',
+      temaFilme: 'Disney',
+      usuarioFilme: 'Luís Alberto'
+    }
+  ]; 
+
+  if (itens.length > 0) {
+
+    // TBODY Container
+    var tbodyDOM = document.querySelector('#carrega-lista');
+
+    // Limpa o conteúdo
+    tbodyDOM.innerHTML = '';
+
+    // Popula a tabela com os dados
+    itens.forEach(function(item) {      
+     
+      // Linha (TR)
+      var trDOM = document.createElement('tr');
+      //Torna a linha da dabela clicável
+      trDOM.addEventListener('click', function() {
+        window.location.href = 'filme_curadoria.html?id=' + item.idFilme;
+      });
+
+      // Status
+      var td1DOM = document.createElement('td'); 
+      var spanStatus = document.createElement('span');
+
+      // Verifica o status do filme
+      switch (item.statusFilme) {
+        // Pendente
+        case 'Pendente':
+          spanStatus.setAttribute('class', 'span_status pendente');
+          spanStatus.innerHTML = 'Pendente';
+          break;
+        // Revisão
+        case 'Revisao':
+          spanStatus.setAttribute('class', 'span_status revisao');
+          spanStatus.innerHTML = 'Revisão';
+          break;
+        // Aprovado
+        case 'Aprovado':
+          spanStatus.setAttribute('class', 'span_status aprovado');
+          spanStatus.innerHTML = 'Aprovado';
+          break;
+        // Reprovado
+        case 'Reprovado':
+          spanStatus.setAttribute('class', 'span_status reprovado');
+          spanStatus.innerHTML = 'Reprovado';
+          break;
+        // Favorito
+        case 'Favorito':
+          spanStatus.setAttribute('class', 'span_status favorito');
+          spanStatus.innerHTML = 'Favorito';
+          break;
+      }  
+      td1DOM.appendChild(spanStatus);
+      trDOM.appendChild(td1DOM);
+
+      // Título 
+      var td2DOM = document.createElement('td');
+      td2DOM.innerHTML = item.descricaoFilme;       
+      trDOM.appendChild(td2DOM);
+
+      // Usuário
+      var td3DOM = document.createElement('td');
+      td3DOM.innerHTML = item.usuarioFilme;        
+      trDOM.appendChild(td3DOM);
+
+      // Tema
+      var td4DOM = document.createElement('td');
+      td4DOM.setAttribute('class', 'visible_desktop');
+      td4DOM.innerHTML = item.dataCriacao;        
+      trDOM.appendChild(td4DOM);
+
+      // Data
+      var td5DOM = document.createElement('td');
+      td5DOM.setAttribute('class', 'visible_desktop');
+      td5DOM.innerHTML = item.temaFilme;        
+      trDOM.appendChild(td5DOM);
+
+      tbodyDOM.appendChild(trDOM);
+
+      // Atualiza os componentes do MDL
+      componentHandler.upgradeDom();
+
+    });
+    
+  } 
+  // Se não houver registros
+  else {
+    // Oculta a tabela
+    $('#table').hide();
+    // Exibe a mensagem 'Sem registros'
+    $('.sem-registros').show();
+  }
+
+ /* $.ajax({
+
+    url: '',
+    type: 'GET',
+    dataType: 'json',
+    contentType: 'application/json;charset=utf-8',
+
+    headers: {'Authorization': getToken()} 
+
+  }).done(function(itens) { 
+
+    
+    
+  }).fail(function(response) {   
+
+    // Exibe os detalhes no console
+    console.log(response);
+
+    // Mensagem snackbar   
+    snackMessage('#snackbar', 'Não foi possível realizar essa operação', 3000);
+        
+  });*/
+
+}
+
+// Carrega Filme
+var carregaFilme = function carregaFilme(idFilme) {
+
+}
+
+
+// Carrega os dados da tela de curadoria
+$(document).ready(function () {
+  // Por enqunto listando na página de monitoria para teste...<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+  if (getPageName() === 'curadoria.html' || getPageName() === 'monitoria.html') {
+    // Lista os filmes da curadoria
+    listarFilmesCuradoria();  
   } 
 });

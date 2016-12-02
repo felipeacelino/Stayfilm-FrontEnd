@@ -15,10 +15,11 @@
 
     <!-- CSS -->    
     <link rel="stylesheet" href="vendors/mdl/material.css">    
-    <link rel="stylesheet" href="vendors/getmdl-select-master/getmdl-select.min.css">  
-    <link rel="stylesheet" href="vendors/mdl-speed-dial/mdl_speed_dial.css">
     <link rel="stylesheet" href="vendors/featherlight/featherlight.css">  
     <link rel="stylesheet" href="css/style.css">
+
+    <!-- JS -->
+    <script defer src="vendors/mdl/material.js"></script>
 
   </head>
 
@@ -43,51 +44,10 @@
 
           <span class="mdl-layout-title">Pendentes</span>
           <span class="count-label pendente">50</span>
-      
-          <div class="mdl-layout-spacer"></div>
-
-          <button id="togle-labels-movie" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-            <i class="material-icons" role="presentation">expand_more</i>
-          </button>
           
         </div>
         <!-- FIM LINHA LABEL PENDENTES -->
 
-        <!-- LINHA LABEL REVISÃO -->
-        <div class="mdl-layout__header-row mdl-layout__header-row-subtitle-small hide-labels-movie">
-
-          <span class="mdl-layout-title">Revisão</span>
-          <span class="count-label revisao">50</span>
-          
-        </div>
-        <!-- FIM LINHA LABEL REVISÃO -->
-
-        <!-- LINHA LABEL APROVADO -->
-        <div class="mdl-layout__header-row mdl-layout__header-row-subtitle-small hide-labels-movie">
-
-          <span class="mdl-layout-title">Aprovados</span>
-          <span class="count-label aprovado">50</span>
-          
-        </div>
-        <!-- FIM LINHA LABEL APROVADO -->
-
-        <!-- LINHA LABEL FAVORITO -->
-        <div class="mdl-layout__header-row mdl-layout__header-row-subtitle-small hide-labels-movie">
-
-          <span class="mdl-layout-title">Favoritos</span>
-          <span class="count-label favorito">50</span>
-          
-        </div>
-        <!-- FIM LINHA LABEL FAVORITO -->
-
-        <!-- LINHA LABEL REPROVADO-->
-        <div class="mdl-layout__header-row mdl-layout__header-row-subtitle-small hide-labels-movie">
-
-          <span class="mdl-layout-title">Reprovados</span>
-          <span class="count-label reprovado">50</span>
-          
-        </div>
-        <!-- FIM LINHA LABEL REPROVADO-->
 
       </header>
 
@@ -189,9 +149,8 @@
                   <i class="material-icons" role="presentation">filter_list</i>
                 </button>
                 <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right " for="btn-filtro-cliente">
-                  <li class="mdl-menu__item">Cliente 1</li>
-                  <li class="mdl-menu__item">Cliente 2</li>
-                  <li class="mdl-menu__item">Cliente 3</li>
+                  <li class="mdl-menu__item">Disney</li>
+                  <li class="mdl-menu__item">Rádio Disney</li>
                 </ul>
               </div>              
 
@@ -211,107 +170,17 @@
                   </tr>
                 </thead>
 
-                <tbody>
+                <tbody id="carrega-lista">
 
-                  <tr onclick="location.href='filme_curadoria.html'">
-                    <td><span class="span_status pendente">Pendente</span></td>
-                    <td>Filme</td>            
-                    <td>Usuário 1</td>   
-                    <td class="visible_desktop">Disney</td>            
-                    <td class="visible_desktop">00/00/0000 00:00</td>                                                                
-                  </tr>
-
-                  <tr onclick="location.href='filme_curadoria.html'">
-                    <td><span class="span_status revisao">Revisão</span></td>
-                    <td>Filme 2</td>            
-                    <td>Usuário 2</td>            
-                    <td class="visible_desktop">Disney</td>            
-                    <td class="visible_desktop">00/00/0000 00:00</td>                                
-                  </tr>
-
-                  <tr onclick="location.href='filme_curadoria.html'">
-                    <td><span class="span_status aprovado">Aprovado</span></td>
-                    <td>Filme 3</td>            
-                    <td>Usuário 3</td>            
-                    <td class="visible_desktop">Disney</td>            
-                    <td class="visible_desktop">00/00/0000 00:00</td>                                
-                  </tr>
-
-                  <tr onclick="location.href='filme_curadoria.html'">
-                    <td><span class="span_status revisao">Revisão</span></td>
-                    <td>Filme 2</td>            
-                    <td>Usuário 2</td>            
-                    <td class="visible_desktop">Disney</td>            
-                    <td class="visible_desktop">00/00/0000 00:00</td>                                
-                  </tr>
-
-                  <tr onclick="location.href='filme_curadoria.html'">
-                    <td><span class="span_status aprovado">Aprovado</span></td>
-                    <td>Filme 3</td>            
-                    <td>Usuário 3</td>            
-                    <td class="visible_desktop">Disney</td>            
-                    <td class="visible_desktop">00/00/0000 00:00</td>                                
-                  </tr>
-
-                  <tr onclick="location.href='filme_curadoria.html'">
-                    <td><span class="span_status aprovado">Aprovado</span></td>
-                    <td>Filme 4</td>            
-                    <td>Usuário 4</td>            
-                    <td class="visible_desktop">Disney</td>            
-                    <td class="visible_desktop">00/00/0000 00:00</td>                                
-                  </tr>
-
-                  <tr onclick="location.href='filme_curadoria.html'">
-                    <td><span class="span_status reprovado">Reprovado</span></td>
-                    <td>Filme 5</td>            
-                    <td>Usuário 5</td>            
-                    <td class="visible_desktop">Disney</td>            
-                    <td class="visible_desktop">00/00/0000 00:00</td>                                
-                  </tr>
-
-                  <tr onclick="location.href='filme_curadoria.html'">
-                    <td><span class="span_status reprovado">Reprovado</span></td>
-                    <td>Filme 6</td>            
-                    <td>Usuário 6</td>            
-                    <td class="visible_desktop">Disney</td>            
-                    <td class="visible_desktop">00/00/0000 00:00</td>                                
-                  </tr>
-
-                  <tr onclick="location.href='filme_curadoria.html'">
-                    <td><span class="span_status aprovado">Aprovado</span></td>
-                    <td>Filme 7</td>            
-                    <td>Usuário 7</td>            
-                    <td class="visible_desktop">Disney</td>            
-                    <td class="visible_desktop">00/00/0000 00:00</td>                                
-                  </tr> 
-
-                  <tr onclick="location.href='filme_curadoria.html'">
-                    <td><span class="span_status pendente">Pendente</span></td>
-                    <td>Filme 8</td>            
-                    <td>Usuário 8</td>            
-                    <td class="visible_desktop">Disney</td>            
-                    <td class="visible_desktop">00/00/0000 00:00</td>                                
-                  </tr>
-
-                  <tr onclick="location.href='filme_curadoria.html'">
-                    <td><span class="span_status pendente">Pendente</span></td>
-                    <td>Filme 9</td>            
-                    <td>Usuário 9</td>            
-                    <td class="visible_desktop">Disney</td>            
-                    <td class="visible_desktop">00/00/0000 00:00</td>                                
-                  </tr>
-
-                  <tr onclick="location.href='filme_curadoria.html'">
-                    <td><span class="span_status favorito">Favorito</span></td>
-                    <td>Filme 10</td>            
-                    <td>Usuário 10</td>            
-                    <td class="visible_desktop">Disney</td>            
-                    <td class="visible_desktop">00/00/0000 00:00</td>                                
-                  </tr>
+                  <!-- DADOS CARREGADOS VIA AJAX -->
 
                 </tbody>
 
               </table>
+
+              <div class="sem-registros">
+                Nenhum registro encontrado
+              </div>
   
             </div>
             
@@ -322,24 +191,16 @@
 
     </div>
     <!-- FIM ESTRUTURA -->
+
+    <div id="snackbar" class="mdl-js-snackbar mdl-snackbar">
+      <div class="mdl-snackbar__text"></div>
+      <button class="mdl-snackbar__action" type="button"></button>
+    </div>
     
     <!-- JAVA SCRIPT -->
-    <script src="vendors/mdl/material.js"></script>
     <script src="vendors/jquery/jquery.js"></script>
-    <script src="vendors/jwt-decode/jwt-decode.min.js"></script>
+    <script src="vendors/featherlight/featherlight.js"></script>
     <script src="js/script.js"></script>
-    <script type="text/javascript">
-        
-    $(function(){
-      $(".hide-labels-movie").hide();
-    })  
-      
-    $("#togle-labels-movie").on("click",function(){
-      $(".hide-labels-movie").slideToggle( "fast" );
-      $("#togle-labels-movie").toggleClass( "togle-active" );
-    });
 
-
-    </script>
   </body>
 </html>
