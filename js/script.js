@@ -211,7 +211,7 @@ var permissaoPage = function permissaoPage(pagina) {
   'atividades.html',
   'cadastrar_atividade.html',
   'editar_atividade.html',
-  'editar_atividade.html',
+  'editar_endereco.html',
   'curadoria.html',
   'filme_curadoria.html',
   'monitoria.html',
@@ -614,7 +614,7 @@ var insereResposta = function insereResposta(titulo, respostaBRA, respostaUSA, r
 
   $.ajax({
 
-    url: 'http://localhost/Prj_StayFilm/resposta',
+    url: 'http://localhost/Prj_StayFilm/private/resposta',
     type: 'POST',
     dataType: 'json',
     contentType: 'application/json;charset=utf-8',
@@ -650,7 +650,7 @@ var removeResposta = function removeResposta(idResposta) {
   
   $.ajax({
 
-    url: 'http://localhost/Prj_StayFilm/resposta/' + idResposta,
+    url: 'http://localhost/Prj_StayFilm/private/resposta/remove/' + idResposta,
     type: 'DELETE',
     dataType: 'json',
     contentType: 'application/json;charset=utf-8',
@@ -696,7 +696,7 @@ var updateResposta = function updateResposta(idResposta, tituloResposta, respost
 
   $.ajax({
 
-    url: 'http://localhost/Prj_StayFilm/resposta/editar/' + idResposta,
+    url: 'http://localhost/Prj_StayFilm/private/resposta/editar/' + idResposta,
     type: 'PUT',
     dataType: 'json',
     contentType: 'application/json;charset=utf-8',
@@ -900,7 +900,7 @@ var listarColaboradores = function listarColaboradores() {
         var spanStatus = document.createElement('span');
 
         // Verifica o status do colaborador
-        if (item[4] === true) {
+        if (item.status === true) {
           spanStatus.setAttribute('class', 'span_status aprovado');
           spanStatus.innerHTML = 'Ativo';
         } else {
@@ -912,17 +912,17 @@ var listarColaboradores = function listarColaboradores() {
 
         // Nome
         var td2DOM = document.createElement('td');
-        td2DOM.innerHTML = item[1];       
+        td2DOM.innerHTML = item.nome;       
         trDOM.appendChild(td2DOM);
 
         // E-mail
         var td3DOM = document.createElement('td');
-        td3DOM.innerHTML = item[2];        
+        td3DOM.innerHTML = item.email;        
         trDOM.appendChild(td3DOM);
 
-        // E-mail
+        // Telefone
         var td4DOM = document.createElement('td');
-        td4DOM.innerHTML = item[3];        
+        td4DOM.innerHTML = item.telefoneResidencial;        
         trDOM.appendChild(td4DOM);
 
         // Opções
@@ -931,7 +931,7 @@ var listarColaboradores = function listarColaboradores() {
         // Botão de opção (Arrow)
         var btnOptDOM = document.createElement('button');
         btnOptDOM.setAttribute('class', 'btn-menu mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon');
-        btnOptDOM.setAttribute('id', 'item_' + item[0]);
+        btnOptDOM.setAttribute('id', 'item_' + item.idColaborador);
 
         // Ícone do botão de ação
         var iconBtnOptDOM = document.createElement('i');
@@ -945,12 +945,12 @@ var listarColaboradores = function listarColaboradores() {
         // Opções do botão de ação (UL)
         var ulOptsDOM = document.createElement('ul');
         ulOptsDOM.setAttribute('class', 'mdl-menu-item mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right');
-        ulOptsDOM.setAttribute('for', 'item_' + item[0]);
+        ulOptsDOM.setAttribute('for', 'item_' + item.idColaborador);
 
         // Item da opção (Edit)
         var aOptEditDOM = document.createElement('a');
         aOptEditDOM.setAttribute('class', 'link_item');
-        aOptEditDOM.setAttribute('href', 'editar_colaborador.html?id=' + item[0]); 
+        aOptEditDOM.setAttribute('href', 'editar_colaborador.html?id=' + item.idColaborador); 
 
         var liOptEditDOM = document.createElement('li');
         liOptEditDOM.setAttribute('class', 'mdl-menu__item'); 
@@ -970,7 +970,7 @@ var listarColaboradores = function listarColaboradores() {
         // Item da opção (Atividades)
         var aOptAtivDOM = document.createElement('a');
         aOptAtivDOM.setAttribute('class', 'link_item');
-        aOptAtivDOM.setAttribute('href', 'atividades.html?id=' + item[0]); 
+        aOptAtivDOM.setAttribute('href', 'atividades.html?id=' + item.idColaborador); 
 
         var liOptAtivDOM = document.createElement('li');
         liOptAtivDOM.setAttribute('class', 'mdl-menu__item'); 
@@ -990,7 +990,7 @@ var listarColaboradores = function listarColaboradores() {
         // Item da opção (Endereço)
         var aOptEndDOM = document.createElement('a');
         aOptEndDOM.setAttribute('class', 'link_item');
-        aOptEndDOM.setAttribute('href', 'endereco_colaborador.html?id=' + item[0]); 
+        aOptEndDOM.setAttribute('href', 'editar_endereco.html?id=' + item.idColaborador); 
 
         var liOptEndDOM = document.createElement('li');
         liOptEndDOM.setAttribute('class', 'mdl-menu__item'); 
@@ -1058,6 +1058,8 @@ var insereColaborador = function insereColaborador(nome, nascimento, telefone, c
     senha: senha,
     permissao: permissao
   }  
+
+  console.log(dados);
  
   $.ajax({
 
@@ -1093,7 +1095,7 @@ var insereColaborador = function insereColaborador(nome, nascimento, telefone, c
 }
 
 // Altera uma resposta
-var updateColaborador = function updateColaborador(idColaborador, nome, nascimento, telefone, celular, email, permissao, status) {
+var updateColaborador = function updateColaborador(idColaborador, nome, nascimento, telefone, celular, email, permissao, status, senha) {
 
   // Adiciona os dados em um objeto
   var dados = {
@@ -1104,14 +1106,16 @@ var updateColaborador = function updateColaborador(idColaborador, nome, nascimen
     telefoneResidencial: telefone,
     telefoneCelular: celular,
     email: email,
-    senha: '123',
+    senha: senha,
     permissao: permissao
   }  
+
+  console.log(dados);
 
   $.ajax({
 
     url: 'http://localhost/Prj_StayFilm/colaborador/editar/' + idColaborador,
-    type: 'PUT',
+    type: 'PATCH',
     dataType: 'json',
     contentType: 'application/json;charset=utf-8',
     data: JSON.stringify(dados),
@@ -1197,7 +1201,7 @@ var getColaborador = function getColaborador(id) {
 
       case 'cadastrar_atividade.html':
       case 'editar_atividade.html':
-        
+
         // Exibe o nome do colaborador no título da tela de atividades
         $('#titulo-nome-colaborador').text(response.nome);
 
@@ -1206,6 +1210,19 @@ var getColaborador = function getColaborador(id) {
 
         // Personaliza o link de cancalar no formulário de cadastro da atividade com o ID do colaborador
         $('#btn-cancelar-form-atividades').attr('href', 'atividades.html?id=' + response.idColaborador);
+
+        break;   
+
+      case 'editar_endereco.html':
+
+        // Exibe o nome do colaborador no título da tela de atividades
+        $('#titulo-nome-colaborador').text(response.nome);
+
+        // Passa o id do colaborador para um campo oculto do formulário
+        $('#id_colaborador').val(response.idColaborador);
+
+        // Personaliza o link de cancalar no formulário de cadastro da atividade com o ID do colaborador
+        $('#btn-cancelar-form-atividades').attr('href', 'colaboradores.html');
 
         break;   
 
@@ -1333,11 +1350,12 @@ $("#form-edit-colaborador").on('submit', function(e){
     var telefone = $('#telefone').val();
     var celular = $('#celular').val();
     var email = $('#email').val();    
+    var senha = $('#senha').val();
     var permissao = $('#permissao').val() === 'Administrador' ? 1 : 0;
     var status = $('#status').val() === 'Ativo' ? true : false;
   
     // Executa a função de update
-    updateColaborador(idColaborador, nome, nascimento, telefone, celular, email, permissao, status);  
+    updateColaborador(idColaborador, nome, nascimento, telefone, celular, email, permissao, status, senha);  
 
   } else {
 
@@ -1367,7 +1385,7 @@ var listarAtividades = function listarAtividades(idColaborador) {
     headers: {'Authorization': getToken()} 
 
   }).done(function(itens) {   
-
+    
     if (itens.length > 0) {
 
       // TBODY Container
@@ -1388,17 +1406,17 @@ var listarAtividades = function listarAtividades(idColaborador) {
 
         // Título 
         var td2DOM = document.createElement('td');
-        td2DOM.innerHTML = item[1];       
+        td2DOM.innerHTML = item.atividade;       
         trDOM.appendChild(td2DOM);
 
         // Instituição
         var td3DOM = document.createElement('td');
-        td3DOM.innerHTML = item[2];        
+        td3DOM.innerHTML = item.instituicao;        
         trDOM.appendChild(td3DOM);
 
         // Período
         var td4DOM = document.createElement('td');
-        td4DOM.innerHTML = item[3];        
+        td4DOM.innerHTML = item.periodo;        
         trDOM.appendChild(td4DOM);
 
         // Opções
@@ -1407,7 +1425,7 @@ var listarAtividades = function listarAtividades(idColaborador) {
         // Botão de opção (Arrow)
         var btnOptDOM = document.createElement('button');
         btnOptDOM.setAttribute('class', 'btn-menu mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon');
-        btnOptDOM.setAttribute('id', 'item_' + item[0]);
+        btnOptDOM.setAttribute('id', 'item_' + item.idAtividade);
 
         // Ícone do botão de ação
         var iconBtnOptDOM = document.createElement('i');
@@ -1421,12 +1439,12 @@ var listarAtividades = function listarAtividades(idColaborador) {
         // Opções do botão de ação (UL)
         var ulOptsDOM = document.createElement('ul');
         ulOptsDOM.setAttribute('class', 'mdl-menu-item mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right');
-        ulOptsDOM.setAttribute('for', 'item_' + item[0]);
+        ulOptsDOM.setAttribute('for', 'item_' + item.idAtividade);
 
         // Item da opção (Edit)
         var aOptEditDOM = document.createElement('a');
         aOptEditDOM.setAttribute('class', 'link_item');
-        aOptEditDOM.setAttribute('href', 'editar_atividade.html?id=' + idColaborador + '&id_atividade=' + item[0]); 
+        aOptEditDOM.setAttribute('href', 'editar_atividade.html?id=' + idColaborador + '&id_atividade=' + item.idAtividade); 
 
         var liOptEditDOM = document.createElement('li');
         liOptEditDOM.setAttribute('class', 'mdl-menu__item'); 
@@ -1449,7 +1467,7 @@ var listarAtividades = function listarAtividades(idColaborador) {
         // Evento click (Remover)
         aOptDelDOM.addEventListener('click', function() {
           // Passa o ID do item para o campo oculto do modal de exclusão
-          $('#id-item-remove').val(item[0]);
+          $('#id-item-remove').val(item.idAtividade);
           // Passa o ID do colaborador para o campo oculto do modal de exclusão
           $('#id-item-colaborador').val(idColaborador);
           // Abre o modal de exclusão
@@ -1589,7 +1607,7 @@ var updateAtividade = function updateAtividade(idColaborador, idAtividade, insti
 
 // Remove uma atividade
 var removeAtividade = function removeAtividade(idColaborador, idAtividade) {
-  
+
   $.ajax({
 
     url: 'http://localhost/Prj_StayFilm/atividade/' + idAtividade,
@@ -1749,7 +1767,7 @@ $("#form-edit-atividade").on('submit', function(e){
 // Evento do click na caixa de remoção
 $(document).ready(function() {
   $('#btn-modal-remover-atividade').on('click', function(del) {
-    removeAtividade($('#id-item-remove').val(), $('#id-item-colaborador').val());
+    removeAtividade($('#id-item-colaborador').val(), $('#id-item-remove').val());
   });
 });
 
@@ -1758,7 +1776,8 @@ $(document).ready(function () {
 
   if (getPageName() === 'atividades.html' || 
       getPageName() === 'cadastrar_atividade.html' ||
-      getPageName() === 'editar_atividade.html') {
+      getPageName() === 'editar_atividade.html' ||
+      getPageName() === 'editar_endereco.html') {
 
     // Verifica se tem o ID na URL 
     var id = getParam('id');
@@ -1796,6 +1815,268 @@ $(document).ready(function () {
 /*=================================================
                    ENDEREÇO
 ===================================================*/
+
+// Array de estados
+var estados_nomes = [];
+estados_nomes['AC'] = 'Acre';
+estados_nomes['AL'] = 'Alagoas';
+estados_nomes['AP'] = 'Amapá';
+estados_nomes['AM'] = 'Amazonas';
+estados_nomes['BA'] = 'Bahia';
+estados_nomes['CE'] = 'Ceará';
+estados_nomes['DF'] = 'Distrito Federal';
+estados_nomes['ES'] = 'Espírito Santo';
+estados_nomes['GO'] = 'Goiás';
+estados_nomes['MA'] = 'Maranhão';
+estados_nomes['MT'] = 'Mato Grosso';
+estados_nomes['MS'] = 'Mato Grosso do Sul';
+estados_nomes['MG'] = 'Minas Gerais';
+estados_nomes['PA'] = 'Pará';
+estados_nomes['PB'] = 'Paraíba';
+estados_nomes['PR'] = 'Paraná';
+estados_nomes['PE'] = 'Pernambuco';
+estados_nomes['PI'] = 'Piauí';
+estados_nomes['RJ'] = 'Rio de Janeiro';
+estados_nomes['RN'] = 'Rio Grande do Norte';
+estados_nomes['RS'] = 'Rio Grande do Sul';
+estados_nomes['RO'] = 'Rondônia';
+estados_nomes['RR'] = 'Roraima';
+estados_nomes['SC'] = 'Santa Catarina';
+estados_nomes['SP'] = 'São Paulo';
+estados_nomes['SE'] = 'Sergipe';
+estados_nomes['TO'] = 'Tocantins';
+
+var estados_siglas = [];
+estados_siglas['Acre'] = 'AC';
+estados_siglas['Alagoas'] = 'AL';
+estados_siglas['Amapá'] = 'AP';
+estados_siglas['Amazonas'] = 'AM'; 
+estados_siglas['Bahia'] = 'BA';
+estados_siglas['Ceará'] = 'CE';
+estados_siglas['Distrito Federal'] = 'DF';
+estados_siglas['Espírito Santo'] = 'ES';
+estados_siglas['Goiás'] = 'GO';
+estados_siglas['Maranhão'] = 'MA';
+estados_siglas['Mato Grosso'] = 'MT';
+estados_siglas['Mato Grosso do Sul'] = 'MS';
+estados_siglas['Minas Gerais'] = 'MG';
+estados_siglas['Pará'] = 'PA';
+estados_siglas['Paraíba'] = 'PB';
+estados_siglas['Paraná'] = 'PR';
+estados_siglas['Pernambuco'] = 'PE';
+estados_siglas['Piauí'] = 'PI';
+estados_siglas['Rio de Janeiro'] = 'RJ';
+estados_siglas['Rio Grande do Norte'] = 'RN';
+estados_siglas['Rio Grande do Sul'] = 'RS';
+estados_siglas['Rondônia'] = 'RO';
+estados_siglas['Roraima'] = 'RR';
+estados_siglas['Santa Catarina'] = 'SC';
+estados_siglas['São Paulo'] = 'SP';
+estados_siglas['Sergipe'] = 'SE';
+estados_siglas['Tocantins'] = 'TO';
+
+// Insere um endereço
+var insereEndereco = function insereEndereco(idColaborador, endereco, complemento, bairro, cidade, estado, cep) {
+
+  // Adiciona os dados em um objeto
+  var dados = {
+    endereco: endereco,
+    complemento: complemento,
+    bairro: bairro,
+    cidade: cidade,
+    estado: estado,
+    cep: cep
+  }  
+
+  $.ajax({
+
+    url: 'http://localhost/Prj_StayFilm/endereco/' + idColaborador,
+    type: 'POST',
+    dataType: 'json',
+    contentType: 'application/json;charset=utf-8',
+    data: JSON.stringify(dados),
+    headers: {'Authorization': getToken()} 
+
+  }).done(function(response) {      
+
+    // Armazena a mensagem de retorno
+    setMessageRetorno('Cadastrado com sucesso'); 
+
+    window.location;href = 'colaboradores.html';
+    
+  }).fail(function(response) {    
+
+    // Exibe os detalhes no console
+    console.log(response);
+    
+    // Mensagem snackbar   
+    snackMessage('#snackbar', 'Não foi possível realizar essa operação', 3000);
+    // Exibe o botão de submit
+    $('#btn-submit').show();
+    // Oculta o ícone de loading
+    LoadingProgress.hide();
+
+  });
+
+}
+
+// Atualiza um endereço
+var updateEndereco = function  updateEndereco(idEndereco, idColaborador, endereco, complemento, bairro, cidade, estado, cep) {
+
+  // Adiciona os dados em um objeto
+  var dados = {
+    idEndereco: idEndereco,
+    endereco: endereco,
+    complemento: complemento,
+    bairro: bairro,
+    cidade: cidade,
+    estado: estado,
+    cep: cep
+  }  
+
+  $.ajax({
+
+    url: 'http://localhost/Prj_StayFilm/endereco/editar/' + idEndereco + '/' + idColaborador,
+    type: 'PUT',
+    dataType: 'json',
+    contentType: 'application/json;charset=utf-8',
+    data: JSON.stringify(dados),
+    headers: {'Authorization': getToken()} 
+
+  }).done(function(response) {      
+
+    // Armazena a mensagem de retorno
+    setMessageRetorno('Alterado com sucesso');    
+    
+    // Redireciona para a tela de listagem
+    window.location.href = 'colaboradores.html'; 
+
+  }).fail(function(response) {    
+
+    // Exibe os detalhes no console
+    console.log(response);
+    
+    // Mensagem snackbar   
+    snackMessage('#snackbar', 'Não foi possível realizar essa operação', 3000);
+    // Exibe o botão de submit
+    $('#btn-submit').show();
+    // Oculta o ícone de loading
+    LoadingProgress.hide();
+
+  });
+
+}
+
+// Retorna um endereço
+var getEndereco = function getEndereco(idColaborador) {
+
+  $.ajax({
+
+    url: 'http://localhost/Prj_StayFilm/buscarEndereco/' + idColaborador,
+    type: 'GET',
+    dataType: 'json',
+    contentType: 'application/json;charset=utf-8',
+
+    headers: {'Authorization': getToken()} 
+
+  }).done(function(response) {
+
+    // Caso não seja retornado nenhum endereco, atribui ao form a ação de inserir
+    $('#acao').val('update');
+    $('#btn-submit').val('Atualizar');
+
+    // Passa os valores para os campos
+    $('#id_edit').val(response.idEndereco).parent().addClass('is-dirty');
+    $('#id_colaborador').val(response.idColaborador.idColaborador).parent().addClass('is-dirty');
+    $('#bairro').val(response.bairro).parent().addClass('is-dirty');
+    $('#cep').val(response.cep).parent().addClass('is-dirty');
+    $('#cidade').val(response.cidade).parent().addClass('is-dirty');
+    $('#complemento').val(response.complemento).parent().addClass('is-dirty');
+    $('#endereco').val(response.endereco).parent().addClass('is-dirty');
+    $('#estado').val(estados_nomes[response.estado]).parent().addClass('is-dirty');
+    
+  }).fail(function(response) { 
+
+    // Caso não seja retornado nenhum endereco, atribui ao form a ação de inserir
+    $('#acao').val('insert');
+    $('#btn-submit').val('Cadastrar');
+    
+    // Exibe os detalhes no console
+    console.log(response);
+      
+    // Armazena a mensagem de retorno
+    //setMessageRetorno('Não foi possível realizar essa operação');
+
+  });
+
+}
+
+// Envia o formulário de cadastro
+$("#form-endereco").on('submit', function(e){
+  
+  // Cancela o envio do formulário
+  e.preventDefault();
+  // Oculta o botão de submit
+  $('#btn-submit').hide();
+  // Exibe o ícone de loading
+  LoadingProgress.show();
+
+  if (validaFormulario()) {
+    
+    //Pega os valores do campo e formata os necessários
+    var idEndereco = $('#id_edit').val();
+    var idColaborador = $('#id_colaborador').val();
+    var cep = $('#cep').val();
+    var endereco = $('#endereco').val();
+    var complemento = $('#complemento').val();
+    var bairro = $('#bairro').val();
+    var cidade = $('#cidade').val();       
+    var estado = estados_siglas[$('#estado').val()];
+
+    if ($('#acao').val() == 'insert') {
+
+      // Executa a função de insert
+      insereEndereco(idColaborador, endereco, complemento, bairro, cidade, estado, cep);
+
+    } else {
+
+      // Executa a função de update
+      updateEndereco(idEndereco, idColaborador, endereco, complemento, bairro, cidade, estado, cep);
+
+    }
+     
+  } else {
+
+    // Exibe o botão de submit
+    $('#btn-submit').show();
+    /// Oculta o ícone de loading
+    LoadingProgress.hide();
+    
+  }
+
+});
+
+// Carrega o endereço a ser editado
+$(document).ready(function () {
+  if (getPageName() === 'editar_endereco.html') {
+
+    // Verifica se vieram parâmetros na url
+    var idColaborador = getParam('id');
+    if (idColaborador && idColaborador) {
+
+      // Máscaras de campo
+      $("#cep").mask("99999-999");
+      // Carrega o endereço
+      getEndereco(idColaborador);
+
+    } 
+    // Redireciona para a tela de listagem
+    else {
+      window.location.href = 'colaboradores.html';
+    }    
+  } 
+});
+
 
 // PENDENTE
 
@@ -1970,7 +2251,6 @@ var listarFilmesCuradoria = function listarFilmesCuradoria() {
 var carregaFilme = function carregaFilme(idFilme) {
 
 }
-
 
 // Carrega os dados da tela de curadoria
 $(document).ready(function () {
