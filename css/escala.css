@@ -156,7 +156,7 @@
 	float: right;
 }
 
-#calendar .horario {
+#calendar .horario-block {
     clear: both;
     display: block;
     font-size: 13px;
@@ -165,6 +165,19 @@
     margin-top: 5px;
     line-height: 14px;
     background: #B0262C;
+    color: #FFF;
+    text-align: center;
+}
+
+#calendar .horario-escal {
+    clear: both;
+    display: block;
+    font-size: 13px;
+    border-radius: 4px;
+    padding: 5px;
+    margin-top: 5px;
+    line-height: 14px;
+    background: #8BC34A;
     color: #FFF;
     text-align: center;
 }

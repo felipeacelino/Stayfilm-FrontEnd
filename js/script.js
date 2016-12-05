@@ -215,13 +215,15 @@ var permissaoPage = function permissaoPage(pagina) {
   'curadoria.html',
   'filme_curadoria.html',
   'monitoria.html',
-  'filme_monitoria.html'
+  'filme_monitoria.html',
+  'minha_escala.html'
   ];
 
   // Páginas que os usuários COMUNS tem acesso
   var pags_user = [
   'curadoria.html',
-  'monitoria.html'
+  'monitoria.html',
+  'minha_escala.html'
   ];
 
   // Obtém o tipo do usuário
@@ -1442,7 +1444,7 @@ var listarAtividades = function listarAtividades(idColaborador) {
         ulOptsDOM.setAttribute('for', 'item_' + item.idAtividade);
 
         // Item da opção (Edit)
-        var aOptEditDOM = document.createElement('a');
+        /*var aOptEditDOM = document.createElement('a');
         aOptEditDOM.setAttribute('class', 'link_item');
         aOptEditDOM.setAttribute('href', 'editar_atividade.html?id=' + idColaborador + '&id_atividade=' + item.idAtividade); 
 
@@ -1459,7 +1461,7 @@ var listarAtividades = function listarAtividades(idColaborador) {
         liOptEditDOM.appendChild(iconOptEditDOM);    
         liOptEditDOM.appendChild(txtIconOptEditDOM);     
         aOptEditDOM.appendChild(liOptEditDOM);      
-        ulOptsDOM.appendChild(aOptEditDOM);
+        ulOptsDOM.appendChild(aOptEditDOM);*/
 
         // Item da opção (Remove)
         var aOptDelDOM = document.createElement('a');
@@ -1520,7 +1522,7 @@ var listarAtividades = function listarAtividades(idColaborador) {
 }
 
 // Insere uma atividade
-var insereAtividade = function insereAtividade(idColaborador, instituicao, atividade, periodo) {
+var insereAtividade = function insereAtividade(idColaborador, instituicao, atividade, periodo, escalasFixas) {
 
   // Adiciona os dados em um objeto
   var dados = {
@@ -1528,6 +1530,29 @@ var insereAtividade = function insereAtividade(idColaborador, instituicao, ativi
     atividade: atividade,
     periodo: periodo
   }  
+
+  var insereEscalaFixa = function insereEscalaFixa(idColaborador, escala) {
+
+    $.ajax({
+
+      url: 'http://localhost/Prj_StayFilm/escalabloqueiofixo/' + idColaborador,
+      type: 'POST',
+      dataType: 'json',
+      contentType: 'application/json;charset=utf-8',
+      data: JSON.stringify(escala),
+      headers: {'Authorization': getToken()} 
+
+    }).done(function(response) {      
+
+      console.log('escala inserida com sucesso');
+
+    }).fail(function(response) {    
+
+      console.log('erro ao inserir escala');
+
+    });
+
+  }
 
   $.ajax({
 
@@ -1539,6 +1564,10 @@ var insereAtividade = function insereAtividade(idColaborador, instituicao, ativi
     headers: {'Authorization': getToken()} 
 
   }).done(function(response) {      
+
+    escalasFixas.forEach(function(escala) {
+      insereEscalaFixa(idColaborador, escala);
+    });
 
     // Armazena a mensagem de retorno
     setMessageRetorno('Cadastrado com sucesso');    
@@ -1588,7 +1617,7 @@ var updateAtividade = function updateAtividade(idColaborador, idAtividade, insti
     setMessageRetorno('Alterado com sucesso');    
     
     // Redireciona para a tela de listagem
-    window.location.href = 'atividades.html?id' + idColaborador;
+    window.location.href = 'atividades.html?id=' + idColaborador;
 
   }).fail(function(response) {    
     
@@ -1705,9 +1734,22 @@ $("#form-cad-atividade").on('submit', function(e){
         periodo = 'NOITE';
         break;   
     }
-  
+
+    var escalasFixas = [];
+    $('input[name="dias_semana"]:checked').each(function() {
+
+      horarios = $('#horario_' + this.value).val().replace(/h|\s*/ig,'').split('às');
+
+      escalasFixas.push({
+        "diaSemana": this.value.toUpperCase(),
+        "horaInicio": horarios[0].replace(/^0+/,''),
+        "horaFim": horarios[1].replace(/^0+/,''),
+        "colaboradorId": idColaborador
+      });
+    });
+
     // Executa a função de insert
-    insereAtividade(idColaborador, instituicao, atividade, periodo);  
+    insereAtividade(idColaborador, instituicao, atividade, periodo, escalasFixas);  
 
   } else {
 
@@ -1778,6 +1820,15 @@ $(document).ready(function () {
       getPageName() === 'cadastrar_atividade.html' ||
       getPageName() === 'editar_atividade.html' ||
       getPageName() === 'editar_endereco.html') {
+
+    if (getPageName() === 'cadastrar_atividade.html') {
+      $(".horario_semana").mask("99h às 99h");
+      $('.mdl-textfield__input').on('change', function() {
+        if ($(this).val()) {
+          $(this).parent().addClass('is-dirty');
+        }
+      });
+    }
 
     // Verifica se tem o ID na URL 
     var id = getParam('id');
@@ -2260,3 +2311,479 @@ $(document).ready(function () {
     listarFilmesCuradoria();  
   } 
 });
+
+/*=================================================
+                  MINHA ESCALA
+===================================================*/
+
+// Nomes dos meses
+var nomeMeses = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+
+// Nomes dos dias da semana
+var nomeDias = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
+
+// Salva o mês corrente
+var setMes = function setMes(mes) {
+
+  if (mes > 11) {
+    window.localStorage.setItem('mes', 0);
+    setAno(getAno() + 1);
+  } else if (mes < 0) {
+    window.localStorage.setItem('mes', 11);
+    setAno(getAno() - 1);
+  } else {
+    window.localStorage.setItem('mes', mes);     
+  } 
+
+}
+
+// Retorna o mês corrente
+var getMes = function getMes() {
+  var mes = window.localStorage.getItem('mes');
+  return Number(mes);
+}
+
+// Altera o ano corrente
+var setAno = function setAno (ano) {
+  window.localStorage.setItem('ano', ano);
+}
+
+// Retorna o ano corrente
+var getAno = function getAno() {
+  var ano = window.localStorage.getItem('ano');
+  return Number(ano);
+}
+
+// Ontem os dias do mês
+var obterDiasDoMes = function obterDiasDoMes(mes, ano) {
+  var data = new Date(ano, mes, 1);
+  var dias = [];
+  while (data.getMonth() === mes) {
+    dias.push(new Date(data));
+    data.setDate(data.getDate() + 1);
+  }
+  return dias;
+}
+
+// Preenche a primeira e a última semana do mês com os dias do mês anterior e posterior
+var preecheSemanas = function preecheSemanas(dias) {
+
+  // Array de dias
+  var dias = dias;
+
+  // Primeiro dia da semana
+  var primeiroDia = dias[0];
+  // Segundo dia da semana
+  var ultimoDia = dias[dias.length-1];
+
+  /** Número do dia da semana do primeiro e último dia
+  Domingo: 0,
+  Segunda: 1,
+  Terça:   2,
+  Quarta:  3,
+  Quinta:  4,
+  Sexta:   5,
+  Sábado:  6 **/
+  var primeiroDiaNumSemana = primeiroDia.getDay();
+  var ultimoDiaNumSemana = ultimoDia.getDay();
+  
+  // Quantidade de dias do mês anterior a serem preenchidos na primeira semana
+  var qtdeDiasMesAnterior = primeiroDiaNumSemana;
+
+  // Dias mês anterior
+  if (primeiroDia.getMonth() == 0) {
+    var diasMesAnterior = obterDiasDoMes(11, (primeiroDia.getFullYear() - 1));
+  } else {
+    var diasMesAnterior = obterDiasDoMes((primeiroDia.getMonth() - 1), primeiroDia.getFullYear());
+  }
+
+  // Último dia do mês anterior
+  var ultimoDiaMesAnterior = diasMesAnterior[diasMesAnterior.length-1];
+
+  // Preeche a primeira semana
+  if (primeiroDiaNumSemana != 0) {
+    for(var i=0; i<qtdeDiasMesAnterior; i++) {
+      var data_anterior = diasMesAnterior[diasMesAnterior.length - (i + 1)];
+      dias.unshift(data_anterior);
+    }
+  }
+  
+  // Quantidade de dias do mês posterior a serem preenchidos na última semana
+  var qtdeDiasMesPosterior = 7 - (ultimoDiaNumSemana + 1) ;
+
+  // Dias mês postetior
+  if (ultimoDia.getMonth() == 11) {
+    var diasMesPostetior = obterDiasDoMes(0, (primeiroDia.getFullYear() + 1));
+  } else {
+    var diasMesPostetior = obterDiasDoMes((primeiroDia.getMonth() + 1), primeiroDia.getFullYear());
+  }
+  
+  // Preeche a última semana
+  if (ultimoDiaNumSemana != 6) {
+    for(var i=0; i<qtdeDiasMesPosterior; i++) {
+      var data_posterior = diasMesPostetior[i];
+      dias.push(data_posterior);
+    }
+  }
+  return dias;
+}
+
+// Divide o array de dias em partes (semanas)
+var quebraArray = function quebraArray(array, numPartes) {
+
+  // Matriz das partes do array
+  var matriz = [];
+
+  // Quantidade de arrays
+  var qtdeArrays = array.length / numPartes;
+
+  // Quantidade de itens já transferidos 
+  var itensTransferidos = 0;
+
+  // Partes já transferidas
+  var partesTransferidas = numPartes;
+ 
+  for(var i=0; i<qtdeArrays; i++) {
+
+    // Parte do array
+    var array_parte = [];
+
+    // Adiciona os itens em cada parte do array
+    for(var x=itensTransferidos; x<partesTransferidas; x++) {
+      if(!array[x]){
+        continue;
+      }
+      array_parte.push(array[x]);
+    }
+
+    // Atualiza a quantidade de itens já transferidos
+    itensTransferidos += numPartes;
+    // Atualiza a quantidade de partes já transferidos
+    partesTransferidas += numPartes;
+
+    // Adiciona a parte do array na matriz
+    matriz.push(array_parte);
+
+  }
+
+  return matriz;
+}
+
+// Popula o calendário
+var populaCalendario = function populaCalendario(mes, ano) {
+
+  $.ajax({
+
+    url: 'http://localhost/Prj_StayFilm/listarEscalaMontada/'+getUserId()+'?mes='+(mes+1)+'&ano='+ano,
+    type: 'GET',
+    dataType: 'json',
+    contentType: 'application/json;charset=utf-8',
+
+    headers: {'Authorization': getToken()} 
+
+  }).done(function(escalas) {   
+    
+    // Limpa o calendário
+    limparCalendario();
+
+    // Mês completo
+    var mesCompleto = quebraArray(preecheSemanas(obterDiasDoMes(mes,ano)),7);
+
+    // Título do Calendário
+    var calendarioTitulo = document.querySelector('#calendar-title');
+    calendarioTitulo.innerHTML = nomeMeses[mes] + ' ' + ano;
+
+    // Caléndario
+    var calendarioDOM = document.querySelector('#calendar-load');
+
+    // Percorre o array populando as semanas e dias
+    mesCompleto.forEach(function(semana){
+
+      // Semana
+      var semanaDOM =  document.createElement('ul');
+      semanaDOM.setAttribute('class','days');
+
+      semana.forEach(function(dia){
+
+        // Dia
+        var diaDOM =  document.createElement('li');
+        
+        // Data
+        var dataDOM =  document.createElement('div');
+        dataDOM.setAttribute('class','date');
+        dataDOM.innerHTML = dia.getDate();
+
+        // Adiciona a data no dia
+        diaDOM.appendChild(dataDOM);
+
+        // Nome do dia da semana
+        var dataDescDOM = document.createElement('label');
+        dataDescDOM.setAttribute('class','desc-day');
+        dataDescDOM.innerHTML = nomeDias[dia.getDay()];       
+        diaDOM.appendChild(dataDescDOM);
+        
+        // Verifica se o dia é do mês atual
+        if (dia.getMonth() === mes) {
+        
+          // Percorre a escala
+          escalas.forEach(function(escala, index) {
+            // Verifica se o dia atual é igual oo dia do calendário
+            if (escala.dia == dia.getDate()) {
+              // Verifica se há horários indisponíveis
+              if (escala.bloqueado.length > 0) {
+
+                escala.bloqueado.forEach(function(horario) {
+                  var horarioDOM = document.createElement('div');
+                  horarioDOM.setAttribute('class','horario-block');           
+                  horarioDOM.innerHTML = horario;
+                  diaDOM.appendChild(horarioDOM);
+                });
+
+              }
+              // Verifica se há horários indisponíveis
+              if (escala.escalados.length > 0) {
+
+                escala.bloqueado.forEach(function(horario) {
+                  var horarioDOM = document.createElement('div');
+                  horarioDOM.setAttribute('class','horario-escal');           
+                  horarioDOM.innerHTML = horario;
+                  diaDOM.appendChild(horarioDOM);
+                });
+                
+              }
+            }
+          });
+
+          diaDOM.setAttribute('class','day');
+          var dataAttr = dia.getFullYear() + '-' + (dia.getMonth() + 1) + '-' + dia.getDate();
+          diaDOM.setAttribute('data-data', dataAttr);
+
+        } else {
+          diaDOM.setAttribute('class','day other-month');
+        }       
+        
+        // Adiciona o dia na semana   
+        semanaDOM.appendChild(diaDOM);      
+
+      });
+
+      // Adiciona a semana no calendario
+      calendarioDOM.appendChild(semanaDOM);
+
+    });
+    
+  }).fail(function(response) {   
+
+    // Exibe os detalhes no console
+    console.log(response);
+
+    // Mensagem snackbar   
+    snackMessage('#snackbar', 'Não foi possível realizar essa operação', 3000);
+        
+  });
+
+}
+
+// Limpa o calendário
+var limparCalendario = function limparCalendario() {
+
+  // Caléndario
+  var calendarioDOM = document.querySelector('#calendar-load');
+
+  // Limpa o calendário
+  calendarioDOM.innerHTML = '';
+
+}
+
+// Soma +1 ao dia da data
+var soma1Data = function soma1Data(data) {
+  var dataSplit = data.split('-');
+  return dataSplit[0] + '-' + dataSplit[1] + '-' + (Number(dataSplit[2])+1);
+}
+
+// Adiciona um evento
+var AddHorario = function AddHorario(data, horaInicio, horaFim) {
+
+  // Adiciona os dados em um objeto
+  var dados = {
+    data: soma1Data(data),
+    horaInicio: horaInicio,
+    horaFim: horaFim
+  }
+
+  $.ajax({
+
+    url: 'http://localhost/Prj_StayFilm/escalabloqueioEspecifico/' + getUserId(),
+    type: 'POST',
+    dataType: 'json',
+    contentType: 'application/json;charset=utf-8',
+    data: JSON.stringify(dados),
+    headers: {'Authorization': getToken()} 
+
+  }).done(function(response) {      
+
+    console.log('escala inserida com sucesso');
+
+  }).fail(function(response) {    
+
+    console.log('erro ao inserir escala');
+
+  });
+
+  // Popula o calendário
+  populaCalendario(getMes(), getAno());
+  
+}
+
+//Retorna o objeto Date
+var strToDate = function strToDate(string) {
+
+  var dataSplit = string.split('/');
+
+  var diaSplit = dataSplit[0];
+  var mesSplit = dataSplit[1];  
+  mesSplit--;
+  var anoSplit = dataSplit[2];
+
+  var dataObj = new Date(anoSplit, mesSplit, diaSplit);
+
+  return dataObj;
+}
+
+// Retorna a data por extenso
+var dataExtenso = function dataExtenso(data) {
+  var dataObj = strToDate(data);
+  return nomeDias[dataObj.getDay()] + ', ' + dataObj.getDate() + ' de ' + nomeMeses[dataObj.getMonth()] + ' de ' + dataObj.getFullYear();
+}
+
+// Carrega os dados da minha escala
+$(document).ready(function () {
+  
+  if (getPageName() === 'minha_escala.html') {
+
+    // Data atual
+    var dataAtual = new Date();
+    setMes(dataAtual.getMonth());
+    setAno(dataAtual.getFullYear());
+     
+    // Popula o calendário
+    populaCalendario(getMes(), getAno());
+
+    // Botão (Mês anterior)
+    var btnAnt = document.querySelector('#btn-ant');
+    // Evento click (Mês anterior)
+    btnAnt.addEventListener('click', function(){    
+      setMes(getMes()-1);
+      populaCalendario(getMes(), getAno());
+    });
+    // Botão (Mês posterior)
+    var btnProx = document.querySelector('#btn-prox');
+    // Evento click (Mês posterior)
+    btnProx.addEventListener('click', function(){
+      setMes(getMes()+1);
+      populaCalendario(getMes(), getAno());
+    });
+
+    // Caléndario
+    var calendarioDOM = document.querySelector('#calendar-load');
+
+    // Foca no Caléndario
+    var calendarioFocus = function calendarioFocus() {
+      calendarioDOM.scrollIntoView();
+    }
+
+    calendarioDOM.addEventListener('click', function(clickDay){
+
+      // Alvo do click
+      var alvoClick = clickDay.target;
+
+      // Verifica se foi clicado na 'LI'
+      if (alvoClick.nodeName === 'LI' || alvoClick.nodeName === 'DIV') {
+
+        var dataClicadaDOM;
+
+        if (alvoClick.nodeName === 'LI') {
+          //dataClicadaDOM = clickDay.target.dataset.data;
+          dataClicadaDOM = clickDay.target;
+        } else if (alvoClick.nodeName === 'DIV') {
+          //dataClicadaDOM = clickDay.target.parentElement.dataset.data;
+          dataClicadaDOM = clickDay.target.parentElement;
+        }
+        
+        if (dataClicadaDOM.className === 'day') {
+
+          var dataClicada = dataClicadaDOM.dataset.data;
+
+          fechaCaixa();
+
+          horarioDescDOM.innerHTML = dataExtenso(formatDataBR(dataClicada));
+          InputHorarioData.value = dataClicada;
+          abreCaixa();
+
+        }   
+      
+      } else {
+        clickDay.stopPropagation();
+        clickDay.preventDefault();
+      }
+
+    });
+
+    // Caixa para adicionar um novo horário
+    var caixaDOM = document.querySelector('.card-horario');
+    // Fechar caixa
+    var fechaCaixa = function fechaCaixa() {
+      caixaDOM.style.display = 'none';
+      calendarioFocus();
+    }
+    // Abre caixa
+    var abreCaixa = function abreCaixa() {
+      caixaDOM.style.display = '-webkit-flex';  
+      caixaDOM.style.display = '-ms-flexbox';
+      caixaDOM.style.display = 'flex';
+      caixaFocus();
+    }
+    // Foca na caixa
+    var caixaFocus = function caixaFocus() {
+      caixaDOM.scrollIntoView();
+    }
+    // Botão para fechar caixa
+    var btnClose = document.querySelector('#box-close');
+    btnClose.addEventListener('click', function(){
+      fechaCaixa();
+    });
+
+    $("#horario").mask("99h às 99h");
+    $('.mdl-textfield__input').on('change', function() {
+      if ($(this).val()) {
+        $(this).parent().addClass('is-dirty');
+      }
+    });
+
+    // Data label
+    var horarioDescDOM = document.querySelector('#horario-desc');
+    // Campo Data
+    var InputHorarioData = document.querySelector('#horario-data');
+    // Campo Horário
+    var InputHorario = document.querySelector('#horario');  
+  
+    // Botão adicionar horário
+    var btnAdd = document.querySelector('#btn-add');
+
+    // Evento adiciona um horário
+    btnAdd.addEventListener('click', function(){
+
+      horarios = InputHorario.value.replace(/h|\s*/ig,'').split('às');
+       
+      var hData = InputHorarioData.value;
+      var hInicio = horarios[0].replace(/^0+/,'');
+      var hFinal = horarios[1].replace(/^0+/,'');
+
+      AddHorario(hData, hInicio, hFinal);
+      fechaCaixa();
+    });
+
+  } 
+});
+
+  

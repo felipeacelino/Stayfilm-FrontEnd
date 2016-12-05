@@ -31,6 +31,28 @@ html, body {
 .mdl-textfield__label:after {
   background-color: #408F9C;
 }
+.title-campos {
+  float: left;
+  clear: both;
+  color: rgba(0,0,0, 0.54);
+  font-size: 18px;
+  margin: 20px 0;
+}
+
+.escala-fixa {
+  width: 100%;
+  float: left;
+}
+.field-horario {
+  float: left;
+  width: 100px !important;
+}
+.field-dia-semana {
+  float: left;
+  width: 100%;
+  max-width: 120px !important;
+  margin-top: 20px;
+}
 
 /*BOTAO AÇÃO*/
 

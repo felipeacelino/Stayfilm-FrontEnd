@@ -15,11 +15,12 @@
 
     <!-- CSS -->    
     <link rel="stylesheet" href="vendors/mdl/material.css">    
-    <link rel="stylesheet" href="vendors/getmdl-select-master/getmdl-select.min.css">  
-    <link rel="stylesheet" href="vendors/mdl-speed-dial/mdl_speed_dial.css">
     <link rel="stylesheet" href="vendors/featherlight/featherlight.css">  
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/escala.css">
+
+    <!-- JS -->
+    <script defer src="vendors/mdl/material.js"></script> 
 
   </head>
 
@@ -99,21 +100,6 @@
           <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="respostas.html">
             <i class="material-icons" role="presentation">forum</i>Respostas
           </a>
-
-          <!-- ITEM BARRA LATERAL -->
-          <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="error_403.html">
-            <i class="material-icons" role="presentation">warning</i>Erro 403
-          </a>
-
-          <!-- ITEM BARRA LATERAL -->
-          <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="error_404.html">
-            <i class="material-icons" role="presentation">warning</i>Erro 404
-          </a>
-
-          <!-- ITEM BARRA LATERAL -->
-          <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="error_500.html">
-            <i class="material-icons" role="presentation">warning</i>Erro 500
-          </a>
           
           <div class="mdl-layout-spacer"></div>
 
@@ -179,16 +165,12 @@
                   </div>
 
                   <input type="hidden" id="horario-data" value="">
-
+    
                   <div id="card-horario-form">                    
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                      <input class="mdl-textfield__input" type="number" id="horario_inicio" name="horario_inicio">
-                      <label class="mdl-textfield__label">Horário Inicial</label>            
-                    </div>
-                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                      <input class="mdl-textfield__input" type="number" id="horario_fim" name="horario_fim">
-                      <label class="mdl-textfield__label">Horário Final</label>            
-                    </div>
+                      <input class="mdl-textfield__input" type="text" id="horario" name="horario">
+                      <label class="mdl-textfield__label">Horário</label>            
+                    </div>                    
                   </div>
 
                   <div class="mdl-card__actions mdl-card--border">
@@ -205,15 +187,10 @@
 
                 </div>
              
-            </div>
-          </div>
+              </div>
 
-          <div class="mdl-card__actions mdl-card__actions-resposta"> 
-            <a href="#" class="mdl-button mdl-js-button mdl-js-ripple-effect">Voltar</a>
-            <div class="mdl-layout-spacer"></div>
-            <input type="submit" value="Gravar" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored action" onclick="alert('ok')" />
-          </div>
-            
+            </div>
+
           </div>          
         </div>
       </main>
@@ -221,10 +198,16 @@
 
     </div>
     <!-- FIM ESTRUTURA -->
+
+    <div id="snackbar" class="mdl-js-snackbar mdl-snackbar">
+      <div class="mdl-snackbar__text"></div>
+      <button class="mdl-snackbar__action" type="button"></button>
+    </div>
     
     <!-- JAVA SCRIPT -->
-    <script src="vendors/mdl/material.js"></script>
-    <script src="js/minha_escala.js"></script>
-
+    <script src="vendors/jquery/jquery.js"></script>
+    <script src="vendors/maskedinput/jquery.maskedinput.min.js"></script>
+    <script src="js/script.js"></script>
+  
   </body>
 </html>
