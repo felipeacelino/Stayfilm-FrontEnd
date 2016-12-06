@@ -213,16 +213,26 @@ var permissaoPage = function permissaoPage(pagina) {
   'editar_atividade.html',
   'editar_endereco.html',
   'curadoria.html',
+  'curadoria_revisao.html',
+  'curadoria_reprovacao.html',
   'filme_curadoria.html',
   'monitoria.html',
   'filme_monitoria.html',
+  'monitoria_revisao.html',
+  'monitoria_reprovacao.html',
   'minha_escala.html'
   ];
 
   // Páginas que os usuários COMUNS tem acesso
   var pags_user = [
   'curadoria.html',
+  'curadoria_revisao.html',
+  'curadoria_reprovacao.html',
+  'filme_curadoria.html',
   'monitoria.html',
+  'filme_monitoria.html',
+  'monitoria_revisao.html',
+  'monitoria_reprovacao.html',
   'minha_escala.html'
   ];
 
