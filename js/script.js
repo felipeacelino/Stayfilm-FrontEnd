@@ -2471,7 +2471,7 @@ var quebraArray = function quebraArray(array, numPartes) {
 
 // Popula o calendário
 var populaCalendario = function populaCalendario(mes, ano) {
-
+  
   $.ajax({
 
     url: 'http://localhost/Prj_StayFilm/listarEscalaMontada/'+getUserId()+'?mes='+(mes+1)+'&ano='+ano,
@@ -2561,7 +2561,7 @@ var populaCalendario = function populaCalendario(mes, ano) {
         } else {
           diaDOM.setAttribute('class','day other-month');
         }       
-        
+
         // Adiciona o dia na semana   
         semanaDOM.appendChild(diaDOM);      
 
@@ -2630,8 +2630,7 @@ var AddHorario = function AddHorario(data, horaInicio, horaFim) {
 
   });
 
-  // Popula o calendário
-  populaCalendario(getMes(), getAno());
+  window.location.reload();
   
 }
 
