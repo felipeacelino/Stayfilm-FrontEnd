@@ -40,7 +40,7 @@
         <div class="mdl-layout__header-row">
 
           <!-- TÍTULO PRINCIPAL -->
-          <span class="mdl-layout-title" id="titulo-filme">Filme de Fulano</span>
+          <span class="mdl-layout-title" id="titulo-filme">null</span>
           <!-- FIM TÍTULO PRINCIPAL -->          
             
         </div>
@@ -48,8 +48,8 @@
         <div class="mdl-layout__header-row mdl-layout__header-row-subtitle">
 
           <nav class="mdl-navigation">
-            <a class="mdl-navigation__link" id="link-perfil-user" target="_blank" href="">
-              <i class="material-icons" role="presentation">person</i><span id="nome-user">Fulano</span>
+            <a class="mdl-navigation__link" id="link-perfil-user" target="_blank" href="http://www.stayfilm.com">
+              <i class="material-icons" role="presentation">person</i><span id="nome-user">null</span>
             </a>
           </nav>
 
@@ -69,8 +69,8 @@
         <div class="mdl-layout__header-row mdl-layout__header-row-subtitle-small">
 
           <nav class="mdl-navigation">
-            <a class="mdl-navigation__link tema-filme" id="tema-filme">Disney</a>
-            <a class="mdl-navigation__link data-filme" id="data-filme">00/00/0000 00:00</a>
+            <a class="mdl-navigation__link tema-filme" id="tema-filme">null</a>
+            <a class="mdl-navigation__link data-filme" id="data-filme">null</a>
           </nav>    
             
         </div>
@@ -111,14 +111,14 @@
           <a class="mdl-navigation__link mdl-navigation__link-active mdl-color-text--blue-grey-100" href="curadoria.html">
             <i class="material-icons" role="presentation">movie</i>Curadoria
             <div class="mdl-layout-spacer"></div>
-            <span class="count-label pendente">50</span>
+            <span id="count-pendentes-curadoria-lt" class="count-label pendente"></span>
           </a>
 
           <!-- ITEM BARRA LATERAL -->
           <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="monitoria.html">
             <i class="material-icons" role="presentation">assessment</i>Monitoria
             <div class="mdl-layout-spacer"></div>
-            <span class="count-label pendente">50</span>
+            <span id="count-pendentes-monitoria-lt" class="count-label pendente"></span>
           </a>
 
           <!-- ITEM BARRA LATERAL -->
@@ -155,34 +155,77 @@
 
             <div id="lightbox_video" class="lightbox"><video src="images/demo.mp4" id="filme-final" controls></video></div>
 
-            <input type="text" name="id_filme" id="id_filme">
+            <input type="hidden" name="id_filme" id="id_filme">
 
             <!-- COMENTÁRIOS -->
-            <section class="detalhes-revisao" id="carrega-comentarios">
-
-              <h2>Comentários</h2>
-
-              <!-- <div class="detalhe">
-                <p>
-                  Vi algumas imagens com conteúdo estranho. Não tenho certeza se são proibidas...
-                </p>
-                <span>Fulano de Tal em 00/00/0000</span>
-              </div> -->
-
-            </section>
+            <span id="load_comentarios"></span>
             <!-- FIM COMENTÁRIOS -->
 
             <!-- IMAGENS -->
-            <section class="grid-media" id="carrega-imagens">
+            <section class="grid-media">
 
-              <!-- <a href="images/ex1.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex1.jpg" /></figure></a> -->
+              <a href="images/ex1.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex1.jpg" /></figure></a>
+
+              <a href="images/ex2.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex2.jpg" /></figure></a>
+
+              <a href="images/ex3.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex3.jpg" /></figure></a>
+
+              <a href="images/ex4.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex4.jpg" /></figure></a>
+
+              <a href="images/ex5.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex5.jpg" /></figure></a>
+
+              <a href="images/ex6.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex6.jpg" /></figure></a>
+
+              <a href="images/ex7.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex7.jpg" /></figure></a>
+
+              <a href="images/ex1.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex1.jpg" /></figure></a>
+
+              <a href="images/ex2.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex2.jpg" /></figure></a>
+
+              <a href="images/ex3.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex3.jpg" /></figure></a>
+
+              <a href="images/ex4.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex4.jpg" /></figure></a>
+
+              <a href="images/ex5.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex5.jpg" /></figure></a>
+
+              <a href="images/ex6.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex6.jpg" /></figure></a>
+
+              <a href="images/ex7.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex7.jpg" /></figure></a>
+
+              <a href="images/ex1.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex1.jpg" /></figure></a>
+
+              <a href="images/ex2.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex2.jpg" /></figure></a>
+
+              <a href="images/ex3.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex3.jpg" /></figure></a>
+
+              <a href="images/ex4.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex4.jpg" /></figure></a>
+
+              <a href="images/ex5.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex5.jpg" /></figure></a>
+
+              <a href="images/ex6.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex6.jpg" /></figure></a>
+
+              <a href="images/ex7.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex7.jpg" /></figure></a>
+
+              <a href="images/ex1.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex1.jpg" /></figure></a>
+
+              <a href="images/ex2.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex2.jpg" /></figure></a>
+
+              <a href="images/ex3.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex3.jpg" /></figure></a>
+
+              <a href="images/ex4.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex4.jpg" /></figure></a>
+
+              <a href="images/ex5.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex5.jpg" /></figure></a>
+
+              <a href="images/ex6.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex6.jpg" /></figure></a>
+
+              <a href="images/ex7.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex7.jpg" /></figure></a>
 
             </section>
             <!-- FIM IMAGENS -->
 
             <!-- VÍDEOS -->
             <section class="media-video">
-              <!-- <video src="images/demo.mp4" class="media-video mdl-shadow--6dp" controls></video> -->
+              <video src="images/demo.mp4" class="media-video mdl-shadow--6dp" controls></video>
             </section>
             <!-- FIM VÍDEOS -->
 
@@ -253,7 +296,7 @@
                     Cancelar
                   </button>
                   <div class="mdl-layout-spacer"></div>
-                  <button id="btn-aprovar-filme" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored favorito">
+                  <button id="btn-favoritar-filme" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored favorito">
                     Favoritar
                   </button>
                 </div>

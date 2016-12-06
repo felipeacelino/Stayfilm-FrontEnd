@@ -696,7 +696,9 @@ figure {
 }
 
 /* COMENTÁRIOS REVISÃO */
-
+#load_comentarios {
+  width: 100%;
+}
 .detalhes-revisao {
   width: 100%;
   color: rgba(0,0,0,0.54);

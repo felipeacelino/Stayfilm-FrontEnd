@@ -13,12 +13,19 @@
       rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
 
+    <!-- FONTS -->
+    <link href="vendors/material-icons/material-icons.css"
+      rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+
     <!-- CSS -->    
-    <link rel="stylesheet" href="vendors/mdl/material.css">    
-    <link rel="stylesheet" href="vendors/getmdl-select-master/getmdl-select.min.css">  
-    <link rel="stylesheet" href="vendors/mdl-speed-dial/mdl_speed_dial.css">
+    <link rel="stylesheet" href="vendors/mdl/material.css"> 
+    <link rel="stylesheet" href="vendors/mdl-speed-dial/mdl_speed_dial.css">   
     <link rel="stylesheet" href="vendors/featherlight/featherlight.css">  
     <link rel="stylesheet" href="css/style.css">
+
+    <!-- JS -->
+    <script defer src="vendors/mdl/material.js"></script> 
 
   </head>
 
@@ -33,7 +40,7 @@
         <div class="mdl-layout__header-row">
 
           <!-- TÍTULO PRINCIPAL -->
-          <span class="mdl-layout-title">Filme de Fulano</span>
+          <span class="mdl-layout-title" id="titulo-filme">null</span>
           <!-- FIM TÍTULO PRINCIPAL -->          
             
         </div>
@@ -41,16 +48,17 @@
         <div class="mdl-layout__header-row mdl-layout__header-row-subtitle">
 
           <nav class="mdl-navigation">
-            <a class="mdl-navigation__link" target="_blank" href="https://www.stayfilm.com/">
-              <i class="material-icons" role="presentation">person</i>Fulano
+            <a class="mdl-navigation__link" id="link-perfil-user" target="_blank" href="http://www.stayfilm.com">
+              <i class="material-icons" role="presentation">person</i><span id="nome-user">null</span>
             </a>
           </nav>
 
           <div class="mdl-layout-spacer"></div>
 
+          <!-- Filme criado -->
           <nav class="mdl-navigation">
             <a class="mdl-navigation__link" data-featherlight="#lightbox_video" href="#">
-              <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-color--white monitoria-color_text" id="play-filme">
+              <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-color--white curadoria-color_text" id="play-filme">
                 <i class="material-icons">play_arrow</i>
               </button>
             </a>
@@ -61,8 +69,8 @@
         <div class="mdl-layout__header-row mdl-layout__header-row-subtitle-small">
 
           <nav class="mdl-navigation">
-            <a class="mdl-navigation__link tema-filme">Disney</a>
-            <a class="mdl-navigation__link data-filme">00/00/0000 00:00</a>
+            <a class="mdl-navigation__link tema-filme" id="tema-filme">null</a>
+            <a class="mdl-navigation__link data-filme" id="data-filme">null</a>
           </nav>    
             
         </div>
@@ -103,14 +111,14 @@
           <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="curadoria.html">
             <i class="material-icons" role="presentation">movie</i>Curadoria
             <div class="mdl-layout-spacer"></div>
-            <span class="count-label pendente">50</span>
+            <span id="count-pendentes-curadoria-lt" class="count-label pendente"></span>
           </a>
 
           <!-- ITEM BARRA LATERAL -->
           <a class="mdl-navigation__link mdl-navigation__link-active mdl-color-text--blue-grey-100" href="monitoria.html">
             <i class="material-icons" role="presentation">assessment</i>Monitoria
             <div class="mdl-layout-spacer"></div>
-            <span class="count-label pendente">50</span>
+            <span id="count-pendentes-monitoria-lt" class="count-label pendente"></span>
           </a>
 
           <!-- ITEM BARRA LATERAL -->
@@ -127,22 +135,7 @@
           <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="respostas.html">
             <i class="material-icons" role="presentation">forum</i>Respostas
           </a>
-
-          <!-- ITEM BARRA LATERAL -->
-          <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="error_403.html">
-            <i class="material-icons" role="presentation">warning</i>Erro 403
-          </a>
-
-          <!-- ITEM BARRA LATERAL -->
-          <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="error_404.html">
-            <i class="material-icons" role="presentation">warning</i>Erro 404
-          </a>
-
-          <!-- ITEM BARRA LATERAL -->
-          <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="error_500.html">
-            <i class="material-icons" role="presentation">warning</i>Erro 500
-          </a>
-          
+  
           <div class="mdl-layout-spacer"></div>
 
           <!-- ITEM BARRA LATERAL -->
@@ -162,33 +155,13 @@
 
             <div id="lightbox_video" class="lightbox"><video src="images/demo.mp4" id="filme-final" controls></video></div>
 
-            <section class="detalhes-revisao">
+            <input type="hidden" name="id_filme" id="id_filme">
 
-              <h2>Comentários</h2>
+            <!-- COMENTÁRIOS -->
+            <span id="load_comentarios"></span>
+            <!-- FIM COMENTÁRIOS -->
 
-              <div class="detalhe">
-                <p>
-                  Vi algumas imagens com conteúdo estranho. Não tenho certeza se são proibidas...
-                </p>
-                <span>Fulano de Tal em 00/00/0000</span>
-              </div>
-
-              <div class="detalhe">
-                <p>
-                  Vi algumas imagens com conteúdo estranho. Não tenho certeza se são proibidas...
-                </p>
-                <span>Fulano de Tal em 00/00/0000</span>
-              </div>
-
-              <div class="detalhe">
-                <p>
-                  Vi algumas imagens com conteúdo estranho. Não tenho certeza se são proibidas...
-                </p>
-                <span>Fulano de Tal em 00/00/0000</span>
-              </div>
-  
-            </section>
-
+            <!-- IMAGENS -->
             <section class="grid-media">
 
               <a href="images/ex1.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex1.jpg" /></figure></a>
@@ -248,14 +221,18 @@
               <a href="images/ex7.jpg" class="media-img mdl-shadow--4dp" data-simplbox><figure><img src="images/ex7.jpg" /></figure></a>
 
             </section>
+            <!-- FIM IMAGENS -->
 
+            <!-- VÍDEOS -->
             <section class="media-video">
               <video src="images/demo.mp4" class="media-video mdl-shadow--6dp" controls></video>
             </section>
+            <!-- FIM VÍDEOS -->
 
+            <!-- BOTÃO DE AÇÃO -->
             <div id="fab_ctn" class="mdl-button--fab_flinger-container">
 
-              <button id="fab_btn" style="display: none" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored action mdl-shadow--4dp"><i class="material-icons">thumbs_up_down</i></button>
+              <button id="fab_btn" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored action mdl-shadow--4dp"><i class="material-icons">thumbs_up_down</i></button>
               <div class="mdl-button--fab_flinger-options">
 
                 <!-- APROVAR -->
@@ -263,27 +240,28 @@
                 <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored aprovado" data-featherlight="#lightbox_aprovado">
                   <i class="material-icons">thumb_up</i>         
                 </button>
+
                 <!-- REPROVAR -->
                 <label>Reprovar</label>
-                <a href="reprovacao.html">
-                  <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored reprovado">
-                    <i class="material-icons">thumb_down</i>            
-                  </button>
-                </a>
+                <button id="btn-reprovar-filme" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored reprovado">
+                  <i class="material-icons">thumb_down</i>            
+                </button>
+                
                 <!-- FAVORITAR -->
                 <label>Favorito</label>
                 <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored favorito" data-featherlight="#lightbox_favorito">
                   <i class="material-icons">star</i>            
                 </button>
+
                 <!-- MARCAR PARA REVISÃO -->
-                <label>Revisão</label>
-                <a href="revisao.html">
-                  <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored revisao">
-                    <i class="material-icons">flag</i>            
-                  </button>
-                </a>
+                <label>Revisão</label>              
+                <button id="btn-revisao-filme" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored revisao">
+                  <i class="material-icons">flag</i>            
+                </button>
+                
               </div>
             </div>
+            <!-- FIM BOTÃO DE AÇÃO -->
 
             <div id="lightbox_aprovado" class="lightbox">
               <div class="lightbox_card mdl-card mdl-shadow--2dp">
@@ -298,9 +276,9 @@
                     Cancelar
                   </button>
                   <div class="mdl-layout-spacer"></div>
-                  <a href="curadoria.html" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored aprovado">
+                  <button id="btn-aprovar-filme" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored aprovado">
                     Aprovar
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>
@@ -318,30 +296,13 @@
                     Cancelar
                   </button>
                   <div class="mdl-layout-spacer"></div>
-                  <a href="curadoria.html" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored favorito">
-                    Aprovar
-                  </a>
+                  <button id="btn-favoritar-filme" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored favorito">
+                    Favoritar
+                  </button>
                 </div>
               </div>
             </div>
 
-            <div id="demo-toast-example" class="mdl-js-snackbar mdl-snackbar">
-              <div class="mdl-snackbar__text"></div>
-              <button class="mdl-snackbar__action" type="button"></button>
-            </div>
-
-            <script>
-              r(function(){
-                var snackbarContainer = document.querySelector('#demo-toast-example');
-                var data = { 
-                  message: 'Esse filme já está sendo visualizado por outra pessoa',
-                  timeout: 999999
-                };
-                snackbarContainer.MaterialSnackbar.showSnackbar(data);
-              });
-              function r(f){ /in/.test(document.readyState)?setTimeout('r('+f+')',9):f()}
-            </script>
-            
           </div>          
         </div>
       </main>
@@ -349,13 +310,20 @@
 
     </div>
     <!-- FIM ESTRUTURA -->
+
+    <div id="snackbar" class="mdl-js-snackbar mdl-snackbar">
+      <div class="mdl-snackbar__text"></div>
+      <button class="mdl-snackbar__action" type="button"></button>
+    </div>
    
     <!-- JAVA SCRIPT -->
     <script src="vendors/jquery/jquery.js"></script>
-    <script src="vendors/mdl/material.js"></script>
-    <script src="vendors/mdl-speed-dial/mdl_speed_dial.js"></script>
-    <script src="vendors/simplbox/simplbox.js"></script>
     <script src="vendors/featherlight/featherlight.js"></script>
+    <script src="vendors/simplbox/simplbox.js"></script>
+    <script src="vendors/mdl-speed-dial/mdl_speed_dial.js"></script>
+    <script src="js/filmes.js"></script>
+    <!-- <script src="js/script.js"></script> -->
+
     <script type="text/javascript">
 
       var overlayOn = function () {
@@ -379,14 +347,7 @@
 
       $.extend($.featherlight.defaults, {
         otherClose: '#cancelar'
-      });
-
-      var limit = $(".mdl-layout__content").height() - $(window).height();
-      $(".mdl-layout__content").scroll(function() { 
-        if($(this).scrollTop() > limit) { 
-          $('#fab_btn').fadeIn("fast");   
-        } 
-      });      
+      });   
         
     </script>
 
