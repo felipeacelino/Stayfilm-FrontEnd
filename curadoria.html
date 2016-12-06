@@ -43,7 +43,7 @@
         <div class="mdl-layout__header-row mdl-layout__header-row-subtitle-small">
 
           <span class="mdl-layout-title">Pendentes</span>
-          <span class="count-label pendente">50</span>
+          <span id="count-pendentes-hd" class="count-label pendente"></span>
           
         </div>
         <!-- FIM LINHA LABEL PENDENTES -->
@@ -85,14 +85,14 @@
           <a class="mdl-navigation__link mdl-navigation__link-active mdl-color-text--blue-grey-100" href="curadoria.html">
             <i class="material-icons" role="presentation">movie</i>Curadoria
             <div class="mdl-layout-spacer"></div>
-            <span class="count-label pendente">50</span>
+            <span id="count-pendentes-curadoria-lt" class="count-label pendente"></span>
           </a>
 
           <!-- ITEM BARRA LATERAL -->
           <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="monitoria.html">
             <i class="material-icons" role="presentation">assessment</i>Monitoria
             <div class="mdl-layout-spacer"></div>
-            <span class="count-label pendente">50</span>
+            <span id="count-pendentes-monitoria-lt" class="count-label pendente">50</span>
           </a>
 
           <!-- ITEM BARRA LATERAL -->
@@ -135,11 +135,11 @@
                   <i class="material-icons" role="presentation">filter_list</i>
                 </button>
                 <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right " for="btn-filtro-status">
-                  <li class="mdl-menu__item">Pendentes</li>
-                  <li class="mdl-menu__item">Revisão</li>
-                  <li class="mdl-menu__item">Aprovados</li>
-                  <li class="mdl-menu__item">Reprovados</li>
-                  <li class="mdl-menu__item">Favoritos</li>
+                  <li class="mdl-menu__item" id="btn-filtro-status-pendentes">Pendentes</li>
+                  <li class="mdl-menu__item" id="btn-filtro-status-revisao">Revisão</li>
+                  <li class="mdl-menu__item" id="btn-filtro-status-aprovados">Aprovados</li>
+                  <li class="mdl-menu__item" id="btn-filtro-status-reprovados">Reprovados</li>
+                  <li class="mdl-menu__item" id="btn-filtro-status-favoritos">Favoritos</li>
                 </ul>
               </div>
 
@@ -149,8 +149,8 @@
                   <i class="material-icons" role="presentation">filter_list</i>
                 </button>
                 <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right " for="btn-filtro-cliente">
-                  <li class="mdl-menu__item">Disney</li>
-                  <li class="mdl-menu__item">Rádio Disney</li>
+                  <li class="mdl-menu__item" id="btn-filtro-cliente-disney">Disney</li>
+                  <li class="mdl-menu__item" id="btn-filtro-cliente-radio-disney">Rádio Disney</li>
                 </ul>
               </div>              
 
@@ -200,7 +200,8 @@
     <!-- JAVA SCRIPT -->
     <script src="vendors/jquery/jquery.js"></script>
     <script src="vendors/featherlight/featherlight.js"></script>
-    <script src="js/script.js"></script>
+    <script src="js/filmes.js"></script>
+    <!-- <script src="js/script.js"></script> -->
 
   </body>
 </html>
