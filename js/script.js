@@ -309,6 +309,12 @@ var verificaLogin = function verificaLogin() {
 
     // Se a página atual for a index (login), redireciona para a principal (curadoria)... 
     if (getPageName() === 'index.html') {
+
+      // Gera os filmes
+      if (!getFilmes()) {
+        gerarListaFilmes(50);
+      }
+
       window.location.href = 'curadoria.html';
     }
 
@@ -2620,7 +2626,7 @@ $(document).ready(function () {
 
     // Gera os filmes
     if (!getFilmes()) {
-      gerarListaFilmes(10);
+      gerarListaFilmes(50);
     }
     
     // Lista os Filmes da Curadoria
@@ -2928,7 +2934,7 @@ $(document).ready(function () {
 
     // Gera os filmes
     if (!getFilmes()) {
-      gerarListaFilmes(10);
+      gerarListaFilmes(50);
     }
     
     // Lista os Filmes da Monitoria

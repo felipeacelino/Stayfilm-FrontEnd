@@ -1,0 +1,229 @@
+<!doctype html>
+
+<html lang="pt-br">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Stayfilm</title>
+
+    <!-- FONTS -->
+    <link href="vendors/material-icons/material-icons.css"
+      rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+
+    <!-- CSS -->     
+    <link rel="stylesheet" href="vendors/mdl/material.css">    
+    <link rel="stylesheet" href="vendors/featherlight/featherlight.css">  
+    <link rel="stylesheet" href="vendors/getmdl-select-master/getmdl-select.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- JS -->
+    <script defer src="vendors/mdl/material.js"></script>
+
+  </head>
+
+  <body>
+
+    <!-- ESTRUTURA -->
+    <div class="estrutura mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+
+      <!-- BARRA SUPERIOR -->
+      <header class="barra-superior mdl-layout__header mdl-color--white mdl-color-text--blue-grey-900">
+
+        <div class="mdl-layout__header-row">
+
+          <!-- TÍTULO PRINCIPAL -->
+          <span class="mdl-layout-title" id="titulo-nome-colaborador"></span>
+          <!-- FIM TÍTULO PRINCIPAL -->
+
+          <div class="mdl-layout-spacer"></div>         
+
+        </div>
+
+        <div class="mdl-layout__header-row mdl-layout__header-row-subtitle-small">
+
+          <span class="mdl-layout-title">Endereço</span>
+          
+        </div>
+
+      </header>
+
+      <!-- FIM BARRA SUPERIOR -->
+
+      <!-- BARRA LATERAL -->
+      <div class="barra-lateral mdl-layout__drawer">   
+
+        <header class="barra-lateral-header">
+
+          <!-- LOGO -->
+          <img src="images/logo.jpg" class="logo-principal">
+
+          <!-- USUÁRIO -->
+          <div class="user-descricao mdl-color-text--white">
+            <i class="material-icons" role="presentation">person</i>
+            <span id="user-name-sidebar"></span>            
+            <div class="mdl-layout-spacer"></div>
+            <button id="menu_user" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+              <i class="material-icons" role="presentation">arrow_drop_down</i>
+              <span class="visuallyhidden">Accounts</span>
+            </button>
+            <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="menu_user">
+              <a class="link_item" href="minha_escala.html">
+                <li class="mdl-menu__item">Minha Escala</li>
+              </a>
+            </ul>
+          </div>
+
+        </header>             
+
+        <nav class="nav-lateral mdl-navigation mdl-color--blue-grey-900">
+
+          <!-- ITEM BARRA LATERAL -->
+          <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="curadoria.html">
+            <i class="material-icons" role="presentation">movie</i>Curadoria
+            <div class="mdl-layout-spacer"></div>
+            <span class="count-label pendente">50</span>
+          </a>
+
+          <!-- ITEM BARRA LATERAL -->
+          <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="monitoria.html">
+            <i class="material-icons" role="presentation">assessment</i>Monitoria
+            <div class="mdl-layout-spacer"></div>
+            <span class="count-label pendente">50</span>
+          </a>
+
+          <!-- ITEM BARRA LATERAL -->
+          <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="escala.html">
+            <i class="material-icons" role="presentation">event</i>Escala
+          </a>
+
+          <!-- ITEM BARRA LATERAL -->
+          <a class="mdl-navigation__link mdl-navigation__link-active mdl-color-text--blue-grey-100" href="colaboradores.html">
+            <i class="material-icons" role="presentation">group</i>Colaboradores
+          </a>
+
+          <!-- ITEM BARRA LATERAL -->
+          <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="respostas.html">
+            <i class="material-icons" role="presentation">forum</i>Respostas
+          </a>
+         
+          <div class="mdl-layout-spacer"></div>
+
+          <!-- ITEM BARRA LATERAL -->
+          <a class="mdl-navigation__link mdl-color-text--blue-grey-100" id="btn-logout" href="#">
+            <i class="material-icons" role="presentation">backspace</i>Sair
+          </a>
+
+        </nav>
+
+      </div>
+      <!-- FIM BARRA LATERAL -->
+
+      <!-- CONTEÚDO -->
+      <main class="mdl-layout__content mdl-color--grey-100">
+        <div class="mdl-grid content">
+          <div class="conteudo mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+
+            <form id="form-endereco" class="form-colaborador" method="post">
+
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input required" type="text" id="cep" name="cep">
+                <label class="mdl-textfield__label">CEP</label>
+                <span class="mdl-textfield__error">Digite um CEP</span>             
+              </div>         
+              
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input required" type="text" id="endereco" name="endereco">
+                <label class="mdl-textfield__label">Endereço</label>           
+                <span class="mdl-textfield__error">Digite um endereço</span>  
+              </div>
+
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" name="complemento" id="complemento">
+                <label class="mdl-textfield__label">Complemento</label>            
+              </div>
+
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input required" type="text" id="bairro" name="bairro">
+                <label class="mdl-textfield__label">Bairro</label>  
+                <span class="mdl-textfield__error">Digite um bairro</span>           
+              </div>
+
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input required" type="text" id="cidade"  name="cidade">
+                <label class="mdl-textfield__label">Cidade</label> 
+                <span class="mdl-textfield__error">Digite um cidade</span>            
+              </div>
+
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fullwidth getmdl-select__fix-height">
+                <input class="mdl-textfield__input required" type="text" id="estado" name="estado" value="" readonly tabIndex="-1">
+                <label for="estado" class="mdl-textfield__label">Estado</label>
+                <ul for="estado" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
+                  <li class="mdl-menu__item">Acre</li>
+                  <li class="mdl-menu__item">Alagoas</li>
+                  <li class="mdl-menu__item">Amapá</li>
+                  <li class="mdl-menu__item">Amazonas</li>
+                  <li class="mdl-menu__item">Bahia</li>
+                  <li class="mdl-menu__item">Ceará</li>
+                  <li class="mdl-menu__item">Distrito Federal</li>
+                  <li class="mdl-menu__item">Espírito Santo</li>
+                  <li class="mdl-menu__item">Goiás</li>
+                  <li class="mdl-menu__item">Maranhão</li>
+                  <li class="mdl-menu__item">Mato Grosso</li>
+                  <li class="mdl-menu__item">Mato Grosso do Sul</li>
+                  <li class="mdl-menu__item">Minas Gerais</li>
+                  <li class="mdl-menu__item">Pará</li>
+                  <li class="mdl-menu__item">Paraíba</li>
+                  <li class="mdl-menu__item">Paraná</li>
+                  <li class="mdl-menu__item">Pernambuco</li>
+                  <li class="mdl-menu__item">Piauí</li>
+                  <li class="mdl-menu__item">Rio de Janeiro</li>
+                  <li class="mdl-menu__item">Rio Grande do Norte</li>
+                  <li class="mdl-menu__item">Rio Grande do Sul</li>
+                  <li class="mdl-menu__item">Rondônia</li>
+                  <li class="mdl-menu__item">Roraima</li>
+                  <li class="mdl-menu__item">Santa Catarina</li>
+                  <li class="mdl-menu__item">São Paulo</li>
+                  <li class="mdl-menu__item">Sergipe</li>
+                  <li class="mdl-menu__item">Tocantins</li>
+                </ul>
+                <span class="mdl-textfield__error">Selecione um estado</span>
+              </div>     
+
+              <input type="hidden" name="acao" id="acao"> 
+              <input type="hidden" name="id_edit" id="id_edit"> 
+              <input type="hidden" name="id_colaborador" id="id_colaborador"> 
+
+              <div class="mdl-card__actions mdl-card__actions-resposta"> 
+                <a href="colaboradores.html" id="btn-cancelar-form-atividades" class="mdl-button mdl-js-button mdl-js-ripple-effect">Cancelar</a>
+                <div class="mdl-layout-spacer"></div>
+                <input type="submit" value="Atualizar" id="btn-submit" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored action" />
+                <div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active" id="icon-loading"></div>
+              </div>       
+
+            </form>
+
+          </div>          
+        </div>
+      </main>
+      <!-- FIM CONTEÚDO -->
+
+    </div>
+    <!-- FIM ESTRUTURA -->
+
+    <div id="snackbar" class="mdl-js-snackbar mdl-snackbar">
+      <div class="mdl-snackbar__text"></div>
+      <button class="mdl-snackbar__action" type="button"></button>
+    </div>
+    
+    <!-- JAVA SCRIPT -->
+    <script src="vendors/mdl/material.js"></script>
+    <script src="vendors/getmdl-select-master/getmdl-select.min.js"></script>
+    <script src="vendors/jquery/jquery.js"></script>
+    <script src="vendors/maskedinput/jquery.maskedinput.min.js"></script>
+    <script src="js/script.js"></script>
+
+  </body>
+</html>
