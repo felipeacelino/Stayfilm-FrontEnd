@@ -136,7 +136,7 @@ var clearToken = function clearToken() {
   window.localStorage.removeItem('userNome');
   window.localStorage.removeItem('userEmail');
   window.localStorage.removeItem('userTipo');
-  window.localStorage.clear();
+  //window.localStorage.clear();
 }
 
 /*===================================================
@@ -220,11 +220,13 @@ var permissaoPage = function permissaoPage(pagina) {
   'filme_monitoria.html',
   'monitoria_revisao.html',
   'monitoria_reprovacao.html',
-  'minha_escala.html'
+  'minha_escala.html',
+  'escala.html'
   ];
 
   // Páginas que os usuários COMUNS tem acesso
   var pags_user = [
+  'index.html',
   'curadoria.html',
   'curadoria_revisao.html',
   'curadoria_reprovacao.html',
@@ -255,7 +257,7 @@ var permissaoPage = function permissaoPage(pagina) {
     });
 
   }
-
+  
   // Se não tiver permissão, redireciona para a página de erro 403
   if (!permissaoPage) {
     window.location.href = 'error_403.html';
@@ -321,9 +323,9 @@ var verificaLogin = function verificaLogin() {
     if (getPageName() === 'index.html') {
 
       // Gera os filmes
-      if (!getFilmes()) {
+      /*if (!getFilmes()) {
         gerarListaFilmes(50);
-      }
+      }*/
 
       window.location.href = 'curadoria.html';
     }
@@ -2145,8 +2147,6 @@ $(document).ready(function () {
 });
 
 
-// PENDENTE
-
 /*=================================================
                 CURADORIA
 ===================================================*/
@@ -2258,22 +2258,20 @@ var getNumPendentesCuradoria = function getNumPendentesCuradoria() {
 
   var qtdePendentes = 0;
 
-  getFilmes().forEach(function(filme, index) {
-
-    // Filtra pelos clientes (Curadoria)  
-    if (!clientesMonitoria.some(function(cliente) {
-      return filme.temaFilme == cliente;
-    })) {
-
-      if (filme.statusFilme == 'Pendente') {
-        qtdePendentes++;
+  // Gera os filmes
+  if (getFilmes()) {
+    getFilmes().forEach(function(filme, index) {
+      // Filtra pelos clientes (Curadoria)  
+      if (!clientesMonitoria.some(function(cliente) {
+        return filme.temaFilme == cliente;
+      })) {
+        if (filme.statusFilme == 'Pendente') {
+          qtdePendentes++;
+        }
       }
-    }
-      
-  });
-
+    });
+  }
   return qtdePendentes;
-
 }
 
 // Retorna a quantidade de filmes pendentes (Monitoria)
@@ -2281,22 +2279,20 @@ var getNumPendentesMonitoria = function getNumPendentesMonitoria() {
 
   var qtdePendentes = 0;
 
-  getFilmes().forEach(function(filme, index) {
-
-    // Filtra pelos clientes (Curadoria)  
-    if (!clientesCuradoria.some(function(cliente) {
-      return filme.temaFilme == cliente;
-    })) {
-
-      if (filme.statusFilme == 'Pendente') {
-        qtdePendentes++;
+  // Gera os filmes
+  if (getFilmes()) {
+    getFilmes().forEach(function(filme, index) {
+      // Filtra pelos clientes (Curadoria)  
+      if (!clientesCuradoria.some(function(cliente) {
+        return filme.temaFilme == cliente;
+      })) {
+        if (filme.statusFilme == 'Pendente') {
+          qtdePendentes++;
+        }
       }
-    }
-      
-  });
-
+    });
+  }
   return qtdePendentes;
-
 }
 
 // Obtém o índice do filme no array de filmes
@@ -2852,7 +2848,7 @@ $(document).ready(function () {
         if (validaFormulario()) {
           
           var comentario = $('#comentario').val();
-          addComentFilme(filmeRevisao.idFilme, comentario, 'Fulano'); // PENDENTE (NOME DO USER)
+          addComentFilme(filmeRevisao.idFilme, comentario, getUserNome());
           updateStatusFilme(filmeRevisao.idFilme, 'Revisao');
 
           setMessageRetorno('Filme marcado para revisão');
@@ -2885,10 +2881,81 @@ $(document).ready(function () {
     var id = getParam('id');
     if (id) {
 
-      //Carregar as respostas()
-
       // Carrega o filme
       var filmeRevisao = getFilme(id);
+
+      // Idioma do usuário
+      switch (filmeRevisao.usuarioIdioma) {
+        case 'pt':
+          $('#idioma-user').text('Português');
+          break;
+        case 'en':
+          $('#idioma-user').text('Inglês');
+          break;  
+        case 'es':
+          $('#idioma-user').text('Espanhol');
+          break;  
+      }
+      
+
+      //Carregar as respostas
+      $.ajax({
+
+        url: 'http://localhost/Prj_StayFilm/respostas',
+        type: 'GET',
+        dataType: 'json',
+        contentType: 'application/json;charset=utf-8',
+
+        headers: {'Authorization': getToken()} 
+
+      }).done(function(itens) {   
+
+        if (itens.length > 0) {
+
+          // Select
+          var select = document.querySelector('#carrega_respostas');
+
+          // Popula o select com as respostas
+          itens.forEach(function(item) {           
+            
+            var liOpt = document.createElement('li');
+            liOpt.setAttribute('class', 'mdl-menu__item');
+            liOpt.innerHTML = item.tituloResposta;
+
+            liOpt.addEventListener('click', function(e) {
+
+              switch (filmeRevisao.usuarioIdioma) {
+                case 'pt':
+                  $('#resposta').val(item.respostaBRA).parent().addClass('is-dirty');
+                  break;
+                case 'en':
+                  $('#resposta').val(item.respostaUSA).parent().addClass('is-dirty');
+                  break;  
+                case 'es':
+                  $('#resposta').val(item.respostaESP).parent().addClass('is-dirty');
+                  break;  
+              }
+
+            });
+
+            select.appendChild(liOpt);
+
+            // Atualiza os componentes do MDL
+            getmdlSelect.init('.getmdl-select');
+
+          });
+          
+        } 
+                
+      }).fail(function(response) {   
+
+        // Exibe os detalhes no console
+        console.log(response);
+
+        // Mensagem snackbar   
+        snackMessage('#snackbar', 'Não foi possível realizar essa operação', 3000);
+            
+      });
 
       // ID do Filme
       $('#id_filme').val(filmeRevisao.idFilme);
@@ -3130,7 +3197,7 @@ $(document).ready(function () {
   } 
 });
 
-// TELA DE REVISÃO DO FILME DA CURADORIA
+// TELA DE REVISÃO DO FILME DA MONITORIA
 $(document).ready(function () {
   if (getPageName() === 'monitoria_revisao.html') {
 
@@ -3160,7 +3227,7 @@ $(document).ready(function () {
         if (validaFormulario()) {
           
           var comentario = $('#comentario').val();
-          addComentFilme(filmeRevisao.idFilme, comentario, 'Fulano'); // PENDENTE (NOME DO USER)
+          addComentFilme(filmeRevisao.idFilme, comentario, getUserNome());
           updateStatusFilme(filmeRevisao.idFilme, 'Revisao');
 
           setMessageRetorno('Filme marcado para revisão');
@@ -3185,7 +3252,7 @@ $(document).ready(function () {
   } 
 });
 
-// TELA DE REPROVAÇÃO DO FILME DA CURADORIA
+// TELA DE REPROVAÇÃO DO FILME DA MONITORIA
 $(document).ready(function () {
   if (getPageName() === 'monitoria_reprovacao.html') {
 
@@ -3193,10 +3260,80 @@ $(document).ready(function () {
     var id = getParam('id');
     if (id) {
 
-      //Carregar as respostas()
-
       // Carrega o filme
       var filmeRevisao = getFilme(id);
+
+      // Idioma do usuário
+      switch (filmeRevisao.usuarioIdioma) {
+        case 'pt':
+          $('#idioma-user').text('Português');
+          break;
+        case 'en':
+          $('#idioma-user').text('Inglês');
+          break;  
+        case 'es':
+          $('#idioma-user').text('Espanhol');
+          break;  
+      }
+
+      //Carregar as respostas
+      $.ajax({
+
+        url: 'http://localhost/Prj_StayFilm/respostas',
+        type: 'GET',
+        dataType: 'json',
+        contentType: 'application/json;charset=utf-8',
+
+        headers: {'Authorization': getToken()} 
+
+      }).done(function(itens) {   
+
+        if (itens.length > 0) {
+
+          // Select
+          var select = document.querySelector('#carrega_respostas');
+
+          // Popula o select com as respostas
+          itens.forEach(function(item) {           
+            
+            var liOpt = document.createElement('li');
+            liOpt.setAttribute('class', 'mdl-menu__item');
+            liOpt.innerHTML = item.tituloResposta;
+
+            liOpt.addEventListener('click', function(e) {
+
+              switch (filmeRevisao.usuarioIdioma) {
+                case 'pt':
+                  $('#resposta').val(item.respostaBRA).parent().addClass('is-dirty');
+                  break;
+                case 'en':
+                  $('#resposta').val(item.respostaUSA).parent().addClass('is-dirty');
+                  break;  
+                case 'es':
+                  $('#resposta').val(item.respostaESP).parent().addClass('is-dirty');
+                  break;  
+              }
+
+            });
+
+            select.appendChild(liOpt);
+
+            // Atualiza os componentes do MDL
+            getmdlSelect.init('.getmdl-select');
+
+          });
+          
+        } 
+                
+      }).fail(function(response) {   
+
+        // Exibe os detalhes no console
+        console.log(response);
+
+        // Mensagem snackbar   
+        snackMessage('#snackbar', 'Não foi possível realizar essa operação', 3000);
+            
+      });
 
       // ID do Filme
       $('#id_filme').val(filmeRevisao.idFilme);
@@ -3718,4 +3855,409 @@ $(document).ready(function () {
   } 
 });
 
+  
+
+/*=================================================
+                GERENCIAR ESCALA
+===================================================*/
+
+// Popula o calendário
+var populaCalendarioGerenciamento = function populaCalendarioGerenciamento(mes, ano) {
+  
+  $.ajax({
+
+    url: 'http://localhost/Prj_StayFilm/diasConcluidosMes/?mes='+(mes+1)+'&ano='+ano,
+    type: 'GET',
+    dataType: 'json',
+    contentType: 'application/json;charset=utf-8',
+
+    headers: {'Authorization': getToken()} 
+
+  }).done(function(response) { 
+
+    // Apçica o distinct no arrray
+    var diasConcluidos = [];
+    $.each(response, function(i, el){
+      if($.inArray(el, diasConcluidos) === -1) diasConcluidos.push(el);
+    });
+    //console.log(diasConcluidos);
+    // Limpa o calendário
+    limparCalendario();
+
+    // Mês completo
+    var mesCompleto = quebraArray(preecheSemanas(obterDiasDoMes(mes,ano)),7);
+
+    // Título do Calendário
+    var calendarioTitulo = document.querySelector('#calendar-title');
+    calendarioTitulo.innerHTML = nomeMeses[mes] + ' ' + ano;
+
+    // Caléndario
+    var calendarioDOM = document.querySelector('#calendar-load');
+
+    // Percorre o array populando as semanas e dias
+    mesCompleto.forEach(function(semana){
+
+      // Semana
+      var semanaDOM =  document.createElement('ul');
+      semanaDOM.setAttribute('class','days');
+
+      semana.forEach(function(dia){
+
+        // Dia
+        var diaDOM =  document.createElement('li');
+        
+        // Data
+        var dataDOM =  document.createElement('div');
+        dataDOM.setAttribute('class','date');
+        dataDOM.innerHTML = dia.getDate();
+
+        // Adiciona a data no dia
+        diaDOM.appendChild(dataDOM);
+
+        // Nome do dia da semana
+        var dataDescDOM = document.createElement('label');
+        dataDescDOM.setAttribute('class','desc-day');
+        dataDescDOM.innerHTML = nomeDias[dia.getDay()];       
+        diaDOM.appendChild(dataDescDOM);
+        
+        // Verifica se o dia é do mês atual
+        if (dia.getMonth() === mes) {
+        
+          // Verifica se o dia está concluido
+          if (diasConcluidos.some(function(diaC) {
+            return diaC == dia.getDate();
+          })) {
+            diaDOM.style.background = '#8BC34A';
+          } 
+
+          diaDOM.setAttribute('class','day');
+          var dataAttr = dia.getFullYear() + '-' + (dia.getMonth() + 1) + '-' + dia.getDate();
+          diaDOM.setAttribute('data-data', dataAttr);
+
+        } else {
+          diaDOM.setAttribute('class','day other-month');
+        }       
+
+        // Adiciona o dia na semana   
+        semanaDOM.appendChild(diaDOM);      
+
+      });
+
+      // Adiciona a semana no calendario
+      calendarioDOM.appendChild(semanaDOM);
+
+    });
+    
+  }).fail(function(response) {   
+
+    // Exibe os detalhes no console
+    console.log(response);
+
+    // Mensagem snackbar   
+    snackMessage('#snackbar', 'Não foi possível realizar essa operação', 3000);
+        
+  });
+
+}
+
+// Adiciona uma escala
+var AddEscala = function AddEscala(dataEscala, horaEscalaInicio, horaEscalaFim, colaboradorId) {
+
+  // Adiciona os dados em um objeto
+  var dados = {
+    dataEscala: soma1Data(dataEscala),
+    horaEscalaInicio: horaEscalaInicio,
+    horaEscalaFim: horaEscalaFim,
+    colaboradorId: colaboradorId
+  }
+
+  $.ajax({
+
+    url: 'http://localhost/Prj_StayFilm/escala/' + getUserId(),
+    type: 'POST',
+    dataType: 'json',
+    contentType: 'application/json;charset=utf-8',
+    data: JSON.stringify(dados),
+    headers: {'Authorization': getToken()} 
+
+  }).done(function(response) {   
+
+    console.log('ok');   
+    
+    setMessageRetorno('Colaborador escalado com sucesso');
+
+    window.location.reload();
+
+  }).fail(function(response) {    
+
+    console.log(response);
+
+    //setMessageRetorno('Não foi possível realizar essa operação');
+
+  });
+  
+}
+
+// Carrega os dados do gerenciar escala
+$(document).ready(function () {
+  
+  if (getPageName() === 'escala.html') {
+
+    // Data atual
+    var dataAtual = new Date();
+    setMes(dataAtual.getMonth());
+    setAno(dataAtual.getFullYear());
+     
+    // Popula o calendário
+    populaCalendarioGerenciamento(getMes(), getAno());
+
+    // Botão (Mês anterior)
+    var btnAnt = document.querySelector('#btn-ant');
+    // Evento click (Mês anterior)
+    btnAnt.addEventListener('click', function(){    
+      setMes(getMes()-1);
+      populaCalendarioGerenciamento(getMes(), getAno());
+    });
+    // Botão (Mês posterior)
+    var btnProx = document.querySelector('#btn-prox');
+    // Evento click (Mês posterior)
+    btnProx.addEventListener('click', function(){
+      setMes(getMes()+1);
+      populaCalendarioGerenciamento(getMes(), getAno());
+    });
+
+    // Caléndario
+    var calendarioDOM = document.querySelector('#calendar-load');
+
+    // Foca no Caléndario
+    var calendarioFocus = function calendarioFocus() {
+      calendarioDOM.scrollIntoView();
+    }
+
+    calendarioDOM.addEventListener('click', function(clickDay){
+
+      // Alvo do click
+      var alvoClick = clickDay.target;
+
+      // Verifica se foi clicado na 'LI'
+      if (alvoClick.nodeName === 'LI' || alvoClick.nodeName === 'DIV') {
+
+        var dataClicadaDOM;
+
+        if (alvoClick.nodeName === 'LI') {
+          //dataClicadaDOM = clickDay.target.dataset.data;
+          dataClicadaDOM = clickDay.target;
+        } else if (alvoClick.nodeName === 'DIV') {
+          //dataClicadaDOM = clickDay.target.parentElement.dataset.data;
+          dataClicadaDOM = clickDay.target.parentElement;
+        }
+        
+        if (dataClicadaDOM.className === 'day') {
+
+          var dataClicada = dataClicadaDOM.dataset.data;
+          $('#horario-desc').text(dataExtenso(formatDataBR(dataClicada)));
+
+          //console.log(dataClicada);
+          $('#data-escala').val(dataClicada);
+
+          $('#escala-container').show();
+          $('#escala-container')[0].scrollIntoView();
+
+          // Obtem os colaboradores bloqueados no dia
+          $.ajax({
+            url: 'http://localhost/Prj_StayFilm/private/bloqueadosDia/'+dataClicada,
+            type: 'GET',
+            dataType: 'json',
+            contentType: 'application/json;charset=utf-8',
+
+            headers: {'Authorization': getToken()} 
+
+          }).done(function(response) { 
+
+            // Lista bloqueados Conteiner
+            var listaBloq = document.querySelector('#lista-bloqueados');
+            listaBloq.innerHTML = '';
+
+            response.forEach(function(colBloq) {
+
+              var liBloq = document.createElement('li');
+              liBloq.setAttribute('class', 'mdl-list__item');
+              var spanNomeBloq = document.createElement('span');
+              spanNomeBloq.setAttribute('class', 'mdl-list__item-primary-content');
+              var iconBloq = document.createElement('i');
+              iconBloq.setAttribute('class', 'material-icons  mdl-list__item-avatar');
+              iconBloq.innerHTML = 'person';
+              spanNomeBloq.appendChild(iconBloq);
+              var spanNomeBloq2 = document.createElement('span');
+              spanNomeBloq2.innerHTML = colBloq.nome;
+              spanNomeBloq.appendChild(spanNomeBloq2);
+              liBloq.appendChild(spanNomeBloq);
+              var ulHorariosBloq = document.createElement('ul');
+              ulHorariosBloq.setAttribute('class', 'list-horarios');
+              var liHorariosBloq = document.createElement('li');
+              liHorariosBloq.innerHTML = colBloq.horario[0]+'h - '+colBloq.horario[colBloq.horario.length-1]+'h';
+              ulHorariosBloq.appendChild(liHorariosBloq);
+              liBloq.appendChild(ulHorariosBloq);
+
+              listaBloq.appendChild(liBloq);
+
+            });
+                  
+          }).fail(function(response) {   
+
+            // Exibe os detalhes no console
+            console.log(response);
+
+          });
+
+          // Obtem os colaboradores escaldos no dia
+          $.ajax({
+            url: 'http://localhost/Prj_StayFilm/private/escaladosDia/'+dataClicada,
+            type: 'GET',
+            dataType: 'json',
+            contentType: 'application/json;charset=utf-8',
+
+            headers: {'Authorization': getToken()} 
+
+          }).done(function(response) { 
+
+            // Lista escalados Conteiner
+            var listaEsc = document.querySelector('#carrega-escalados');
+            listaEsc.innerHTML = '';
+
+            response.forEach(function(colEsc) {
+
+              var liEsc = document.createElement('li');
+              liEsc.setAttribute('class', 'mdl-list__item');
+              var spanNomeEsc = document.createElement('span');
+              spanNomeEsc.setAttribute('class', 'mdl-list__item-primary-content');
+              var iconEsc = document.createElement('i');
+              iconEsc.setAttribute('class', 'material-icons  mdl-list__item-avatar');
+              iconEsc.innerHTML = 'person';
+              spanNomeEsc.appendChild(iconEsc);
+              var spanNomeEsc2 = document.createElement('span');
+              spanNomeEsc2.innerHTML = colEsc.nome;
+              spanNomeEsc.appendChild(spanNomeEsc2);
+              liEsc.appendChild(spanNomeEsc);
+              var ulHorariosEsc = document.createElement('ul');
+              ulHorariosEsc.setAttribute('class', 'list-horarios');
+              colEsc.horarios.forEach(function(horario) {
+                var liHorariosEsc = document.createElement('li');
+                liHorariosEsc.innerHTML = horario.horarioInicio+'h - '+horario.horarioFim+'h';
+                ulHorariosEsc.appendChild(liHorariosEsc);
+              });
+              liEsc.appendChild(ulHorariosEsc);
+
+              listaEsc.appendChild(liEsc);
+
+            });
+            
+            /*<li class="mdl-list__item">
+              <span class="mdl-list__item-primary-content">
+                <i class="material-icons  mdl-list__item-avatar">person</i>
+                Fulano de tal
+              </span>
+              <span class="mdl-list__item-secondary-action">
+                <button class="mdl-button mdl-js-button mdl-button--icon">
+                  <i class="material-icons">close</i>
+                </button>
+              </span>
+            </li>*/
+                  
+          }).fail(function(response) {   
+
+            // Exibe os detalhes no console
+            console.log(response);
+
+          });
+
+          // Lista os colaboradores
+          $.ajax({
+            url: 'http://localhost/Prj_StayFilm/listarColaboradores',
+            type: 'GET',
+            dataType: 'json',
+            contentType: 'application/json;charset=utf-8',
+
+            headers: {'Authorization': getToken()} 
+
+          }).done(function(response) { 
+            
+            // Select colaboradores
+            var selectColaboradores = document.querySelector('#carrega-colaboradores');
+            selectColaboradores.innerHTML = '';
+
+            response.forEach(function(colaborador) {
+
+              var colItem = document.createElement('li');
+              colItem.setAttribute('class', 'mdl-menu__item');
+              colItem.setAttribute('data-id', colaborador.idColaborador);
+              colItem.innerHTML = colaborador.nome;
+              colItem.addEventListener('click', function(e) {
+                $('#id-colaborador').val(colaborador.idColaborador);
+                e.preventDefault();
+                e.stopPropagation();
+              });
+              selectColaboradores.appendChild(colItem); 
+
+            });
+
+            // Atualiza os componentes do MDL
+            getmdlSelect.init('.getmdl-select');
+            componentHandler.upgradeDom();
+    
+          }).fail(function(response) {   
+
+            // Exibe os detalhes no console
+            console.log(response);
+
+          });
+
+        }   
+      
+      } else {
+        clickDay.stopPropagation();
+        clickDay.preventDefault();
+      }
+
+    });
+
+  }
+
+});
+ 
+// Envia o formulário de cadastro
+$("#escala-add-colaborador").on('submit', function(e){
+  
+  // Cancela o envio do formulário
+  e.preventDefault();
+  // Oculta o botão de submit
+  $('#btn-submit').hide();
+  $('#msg-erro-escala').text('');
+
+  if (validaFormulario()) {
+
+    var horaInicial = Number($('#horario_inicial').val().replace(':00',''));
+    var horaFinal = Number($('#horario_final').val().replace(':00',''));
+    
+    if (horaInicial < horaFinal) {
+
+      var dataEscala = $('#data-escala').val();
+      var colaboradorId = $('#id-colaborador').val();
+
+      AddEscala(dataEscala, horaInicial, horaFinal, colaboradorId);
+      
+    } else {
+      $('#msg-erro-escala').text('Selecione um horário final maior que o inicial');
+      // Exibe o botão de submit
+      $('#btn-submit').show();
+    }
+       
+  } else {
+
+    // Exibe o botão de submit
+    $('#btn-submit').show();
+       
+  }
+
+});
   

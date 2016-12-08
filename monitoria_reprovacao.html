@@ -97,17 +97,17 @@
           </a>
 
           <!-- ITEM BARRA LATERAL -->
-          <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="escala.html">
+          <a class="mdl-navigation__link mdl-color-text--blue-grey-100 restrito-admin" href="escala.html">
             <i class="material-icons" role="presentation">event</i>Escala
           </a>
 
           <!-- ITEM BARRA LATERAL -->
-          <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="colaboradores.html">
+          <a class="mdl-navigation__link mdl-color-text--blue-grey-100 restrito-admin" href="colaboradores.html">
             <i class="material-icons" role="presentation">group</i>Colaboradores
           </a>
 
           <!-- ITEM BARRA LATERAL -->
-          <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="respostas.html">
+          <a class="mdl-navigation__link mdl-color-text--blue-grey-100 restrito-admin" href="respostas.html">
             <i class="material-icons" role="presentation">forum</i>Respostas
           </a>
           
@@ -134,14 +134,14 @@
                 Por favor, escolha abaixo o motivo pelo qual o filme será reprovado.
               </div>
 
+              <div class="mdl-card__supporting-text mdl-color-text--blue-grey-900">
+                Idioma do usuário: <span id="idioma-user"></span>
+              </div>
+
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fullwidth getmdl-select__fix-height">
                 <input class="mdl-textfield__input required" type="text" id="motivo" value="" readonly tabIndex="-1">
                 <label for="motivo" class="mdl-textfield__label">Motivo</label>
-                <ul for="motivo" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
-                  <li class="mdl-menu__item">Viola as Regras ou Políticas</li>
-                  <li class="mdl-menu__item">Nudez, Pornografia ou Violência</li>
-                  <li class="mdl-menu__item">Direito de Imagem</li>
-                  <li class="mdl-menu__item">Outro Motivo</li>
+                <ul for="motivo" id="carrega_respostas" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
                 </ul>
                 <span class="mdl-textfield__error">Selecione um motivo</span>
               </div>

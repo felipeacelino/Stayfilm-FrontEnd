@@ -15,12 +15,13 @@
 
     <!-- CSS -->    
     <link rel="stylesheet" href="vendors/mdl/material.css">    
-    <link rel="stylesheet" href="vendors/featherlight/featherlight.css">  
+    <link rel="stylesheet" href="vendors/featherlight/featherlight.css"> 
+    <link rel="stylesheet" href="vendors/getmdl-select-master/getmdl-select.min.css"> 
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/escala.css">
 
     <!-- JS -->
-    <script defer src="vendors/mdl/material.js"></script>
+    <script defer src="vendors/mdl/material.js"></script> 
 
   </head>
 
@@ -101,11 +102,6 @@
             <i class="material-icons" role="presentation">forum</i>Respostas
           </a>
 
-          <!-- ITEM BARRA LATERAL -->
-          <a class="mdl-navigation__link mdl-color-text--blue-grey-100" href="error_403.html">
-            <i class="material-icons" role="presentation">warning</i>Erro 403
-          </a>
-
           <div class="mdl-layout-spacer"></div>
 
           <!-- ITEM BARRA LATERAL -->
@@ -141,7 +137,7 @@
 
                 </div> 
 
-                <h3>Adicione os horários indisponíveis para cada dia do mês.</h3>
+                <h3>Selecione o horário de escala para cada colaborador.</h3>
 
               </header>
 
@@ -161,83 +157,88 @@
                
             </div>
 
-            <div class="escala-container">
+            <div class="escala-container" id="escala-container">
 
               <header>
                   <h1>Gerenciar Escala</h1>
-                  <p>Segunda, 15 de Dezembro de 2016</p>
+                  <p id="horario-desc"></p>
               </header>
               
               <div class="escala-escalados">
                 
                 <h3>Adicionar Colaborador</h3>
                 
-                <div id="escala-add-colaborador">                    
-                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                    <input class="mdl-textfield__input" type="number" id="horario_inicio" name="horario_inicio">
-                    <label class="mdl-textfield__label">Horário Inicial</label>     
+                <form id="escala-add-colaborador">  
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fullwidth getmdl-select__fix-height">
+                    <input class="mdl-textfield__input required" type="text" id="horario_inicial" value="" readonly tabIndex="-1">
+                    <label for="horario_inicial" class="mdl-textfield__label">Horário Inicial</label>
+                    <ul for="horario_inicial" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
+                      <li class="mdl-menu__item">8:00</li>
+                      <li class="mdl-menu__item">9:00</li>
+                      <li class="mdl-menu__item">10:00</li>
+                      <li class="mdl-menu__item">11:00</li>
+                      <li class="mdl-menu__item">12:00</li>
+                      <li class="mdl-menu__item">13:00</li>
+                      <li class="mdl-menu__item">14:00</li>
+                      <li class="mdl-menu__item">15:00</li>
+                      <li class="mdl-menu__item">16:00</li>
+                      <li class="mdl-menu__item">17:00</li>
+                      <li class="mdl-menu__item">18:00</li>
+                      <li class="mdl-menu__item">19:00</li>
+                      <li class="mdl-menu__item">20:00</li>
+                      <li class="mdl-menu__item">21:00</li>
+                      <li class="mdl-menu__item">22:00</li>                      
+                    </ul>
+                    <span class="mdl-textfield__error">Selecione um horário</span>
                   </div>
-                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                    <input class="mdl-textfield__input" type="number" id="horario_fim" name="horario_fim">
-                    <label class="mdl-textfield__label">Horário Final</label>       
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fullwidth getmdl-select__fix-height">
+                    <input class="mdl-textfield__input required" type="text" id="horario_final" value="" readonly tabIndex="-1">
+                    <label for="horario_final" class="mdl-textfield__label">Horário Final</label>
+                    <ul for="horario_final" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
+                      <li class="mdl-menu__item">8:00</li>
+                      <li class="mdl-menu__item">9:00</li>
+                      <li class="mdl-menu__item">10:00</li>
+                      <li class="mdl-menu__item">11:00</li>
+                      <li class="mdl-menu__item">12:00</li>
+                      <li class="mdl-menu__item">13:00</li>
+                      <li class="mdl-menu__item">14:00</li>
+                      <li class="mdl-menu__item">15:00</li>
+                      <li class="mdl-menu__item">16:00</li>
+                      <li class="mdl-menu__item">17:00</li>
+                      <li class="mdl-menu__item">18:00</li>
+                      <li class="mdl-menu__item">19:00</li>
+                      <li class="mdl-menu__item">20:00</li>
+                      <li class="mdl-menu__item">21:00</li>
+                      <li class="mdl-menu__item">22:00</li>                      
+                    </ul>
+                    <span class="mdl-textfield__error">Selecione um horário</span>
                   </div>
+
+                  <span id="msg-erro-escala" class="msg-erro-escala"></span>
+
                   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fullwidth getmdl-select__fix-height">
                     <input class="mdl-textfield__input required" type="text" id="colaborador" value="" readonly tabIndex="-1">
                     <label for="colaborador" class="mdl-textfield__label">Colaboradores</label>
-                    <ul for="colaborador" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
-                      <li class="mdl-menu__item">Fulano de Tal</li>
-                      <li class="mdl-menu__item">Fulano de Tal</li>
-                      <li class="mdl-menu__item">Fulano de Tal</li>
-                      <li class="mdl-menu__item">Fulano de Tal</li>
-                      <li class="mdl-menu__item">Fulano de Tal</li>
+                    <ul for="colaborador" id="carrega-colaboradores" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
                     </ul>
-                    <span class="mdl-textfield__error">Selecione um idioma</span>
+                    <span class="mdl-textfield__error">Selecione um colaborador</span>
                   </div>
+
+                  <input type="hidden" name="id-colaborador" id="id-colaborador">
+                  <input type="hidden" name="data-escala" id="data-escala">
 
                   <div class="escala-action">
-                    <a id="btn-add-colaborador" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect action">
-                      Adicionar
-                    </a>
+                    <input type="submit" id="btn-submit" value="Adicionar" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect action">
                   </div>
 
-                </div>
+                </form>
 
                 <h4>Escalados</h4>
 
-                <ul class="lista-escalados mdl-list">
-                  <li class="mdl-list__item">
-                    <span class="mdl-list__item-primary-content">
-                      <i class="material-icons  mdl-list__item-avatar">person</i>
-                      Fulano de tal
-                    </span>
-                    <span class="mdl-list__item-secondary-action">
-                      <button class="mdl-button mdl-js-button mdl-button--icon">
-                        <i class="material-icons">close</i>
-                      </button>
-                    </span>
-                  </li>
-                  <li class="mdl-list__item">
-                    <span class="mdl-list__item-primary-content">
-                      <i class="material-icons  mdl-list__item-avatar">person</i>
-                      Fulano de tal
-                    </span>
-                    <span class="mdl-list__item-secondary-action">
-                      <button class="mdl-button mdl-js-button mdl-button--icon">
-                        <i class="material-icons">close</i>
-                      </button>
-                    </span>
-                  </li>
-                  <li class="mdl-list__item">
-                    <span class="mdl-list__item-primary-content">
-                      <i class="material-icons  mdl-list__item-avatar">person</i>
-                      Fulano de tal
-                    </span>
-                    <span class="mdl-list__item-secondary-action">
-                      <button class="mdl-button mdl-js-button mdl-button--icon">
-                        <i class="material-icons">close</i>
-                      </button>
-                    </span>
-                  </li>
+                <ul class="lista-escalados mdl-list" id="carrega-escalados">
+                  <!-- Carrega colaboradores escalados -->  
                 </ul>
 
               </div>
@@ -245,55 +246,17 @@
               <div class="escala-colaboradores">
 
                 <header>
-                  <h1>Colaboradores</h1>
+                  <h1>Horários Bloqueados</h1>
                 </header>
 
-                <ul class="lista-colaboradores mdl-list">
-                  <li class="mdl-list__item">
-                    <span class="mdl-list__item-primary-content">
-                      <i class="material-icons  mdl-list__item-avatar">person</i>
-                      Fulano de tal
-                    </span>
-                    <ul class="list-horarios">
-                      <li>00:00 - 00:00</li>
-                      <li>00:00 - 00:00</li>
-                      <li>00:00 - 00:00</li>
-                    </ul>
-                  </li>
-                  <li class="mdl-list__item">
-                    <span class="mdl-list__item-primary-content">
-                      <i class="material-icons  mdl-list__item-avatar">person</i>
-                      Fulano de tal
-                    </span>
-                    <ul class="list-horarios">
-                      <li>00:00 - 00:00</li>
-                      <li>00:00 - 00:00</li>
-                      <li>00:00 - 00:00</li>
-                    </ul>
-                  </li>
-                  <li class="mdl-list__item">
-                    <span class="mdl-list__item-primary-content">
-                      <i class="material-icons  mdl-list__item-avatar">person</i>
-                      Fulano de tal
-                    </span>
-                    <ul class="list-horarios">
-                      <li>00:00 - 00:00</li>
-                      <li>00:00 - 00:00</li>
-                      <li>00:00 - 00:00</li>
-                    </ul>
-                  </li>                   
+                <ul class="lista-colaboradores mdl-list" id="lista-bloqueados">
+                  <!-- Carrega colaboradores bloqueados -->              
                 </ul>
 
               </div>
             
             </div>
 
-          </div>
-
-          <div class="mdl-card__actions mdl-card__actions-resposta"> 
-            <a href="#" class="mdl-button mdl-js-button mdl-js-ripple-effect">Voltar</a>
-            <div class="mdl-layout-spacer"></div>
-            <input type="submit" value="Gravar" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored action" onclick="alert('ok')" />
           </div>
             
           </div>          
@@ -304,10 +267,16 @@
     </div>
     <!-- FIM ESTRUTURA -->
     
+    <div id="snackbar" class="mdl-js-snackbar mdl-snackbar">
+      <div class="mdl-snackbar__text"></div>
+      <button class="mdl-snackbar__action" type="button"></button>
+    </div>
+    
     <!-- JAVA SCRIPT -->
-    <script src="vendors/mdl/material.js"></script>
+    <script src="vendors/jquery/jquery.js"></script>
+    <script src="vendors/maskedinput/jquery.maskedinput.min.js"></script>
     <script src="vendors/getmdl-select-master/getmdl-select.min.js"></script>
-    <script src="js/gerenciar_escala.js"></script>
+    <script src="js/script.js"></script>
 
   </body>
 </html>

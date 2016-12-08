@@ -95,7 +95,7 @@
 	overflow: auto;
 }
 
-#calendar .days li:not(.other-month):hover {
+#calendar .days li:not(.other-month, .day-complete):hover {
 	background: #d3d3d3;
 }
 
@@ -117,6 +117,15 @@
 	background: #ddd;
 	color: #333;
 	cursor: not-allowed;
+}
+
+#calendar .day-complete {
+	background: #8BC34A;
+	color: #FFF;
+}
+
+#calendar .day-complete .date {
+	color: #FFF;
 }
 
 #calendar .other-month .date {
@@ -188,6 +197,7 @@
 	max-width: 850px;
 	height: auto;
 	margin: 0 auto;
+	display: none;
 }
 
 .escala-container header {
@@ -285,22 +295,11 @@
 .lista-escalados li {
 	width: 100%;
 }
-/*@media(max-width: 772px) {
 
-	#calendar li .mdl-icon-toggle {
-		margin-top: 0px;
-		margin-left: 2%;
-	}
+.msg-erro-escala {
 
+	color: rgb(213,0,0);
 }
-
-@media(max-width: 596px) {
-
-	#calendar li .mdl-icon-toggle {
-		margin-top: -35px;
-	}
-
-}*/
 
 @media(max-width: 768px) {
 
