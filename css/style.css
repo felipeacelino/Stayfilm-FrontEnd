@@ -768,3 +768,25 @@ figure {
 .link_item {
   text-decoration: none;
 }
+
+body.body-error {
+  background: #F5F5F5;
+  color: rgba(0,0,0,0.54);
+}
+
+.error-container {
+  width: 100%;
+  max-width: 600px;
+  margin: 50px auto;
+  text-align: center;
+  padding: 10px;
+}
+
+.error-container h1 {
+  text-transform: uppercase;
+  font-weight: bold;
+}  
+
+.error-container h2 {
+  font-size: 20px;
+} 
