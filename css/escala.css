@@ -95,8 +95,9 @@
 	overflow: auto;
 }
 
-#calendar .days li:not(.other-month, .day-complete):hover {
+#calendar .days li:not(.other-month):hover {
 	background: #d3d3d3;
+	cursor: pointer;
 }
 
 #calendar .date {
